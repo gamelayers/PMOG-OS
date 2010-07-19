@@ -4,9 +4,9 @@ h2. About
 
 PMOG / The Nethernet is a game played across all the sites of the web.  The game is up and running at "http://thenethernet.com":http://thenethernet.com - the code has been released open source so you can hack on it, improve the game, or build your own multiplayer online experience.
 
-h4. Server: http://github.com/gamelayers/pmog
+h4. Server: http://github.com/gamelayers/PMOG-OS
 
-h4. Client: http://github.com/gamelayers/pmog-hud
+h4. Client: http://github.com/gamelayers/PMOG-FF-EXT-OS
 
 h2. Installation Instructions
 
