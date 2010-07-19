@@ -1,0 +1,154 @@
+=Documenting the setup process for any new EY slice=
+
+  Gems:
+    Required:
+      ruby-openid
+      memcache-client
+      dike (for memory profiling)
+      ruby-debug
+      image_science
+    Optional (frozen into lib already)
+      rspec
+      tzinfo
+      rails_analyzer_tools
+      production_log_analyzer
+      gruff
+      rcov
+
+    A full list, EY style:
+      <gem name="dike" />
+      <gem name="gruff" />
+      <gem name="memcache-client" />
+      <gem name="production_log_analyzer" />
+      <gem name="rails" version="1.2.3" />
+      <gem name="rails_analyzer_tools" />
+      <gem name="rcov" />
+      <gem name="rspec" />
+      <gem name="ruby-openid" />
+      <gem name="ruby-yadis" />
+      <gem name="tzinfo" />
+      <gem name="uuidtools" />
+
+  RubyGems:
+    Run 'sudo gem install eyrubygems --source http://gems.engineyard.com'  locally
+
+  Site admins:
+    rake pmog:grant_site_admin RAILS_ENV=production
+
+  Folders:
+    Create a backups folder in /home/pmog for cron-enabled backups.
+    Create an image_assets folder in public/system for shared images between deployments.
+    Create a data folder in public/shared for shared benchmarking results.
+
+  Rspec (Deleted rspec as it was a pain to setup):
+    Run 'script/generate rspec' to update spec/spec_helper.rb
+    
+  Nginx config:
+    add rdf as text/xml to the mime.types file for nginx
+  
+=Deploy=
+
+  The deploy script symlinks a few files from /data/pmog/shared/config/ for things like memcached.yml
+  and database.yml.
+  
+  For memcached, note that the memcached.yml on staging points to ey01-s00093:11211 and on production
+  it points to ey01-s00094:11211. Locally, memcached.yml from subversion points to localhost.
+
+=Memcached=
+
+  Production setup, as created by Engine Yard:
+  
+    defaults:
+      ttl: 1800
+      readonly: false
+      urlencode: false
+      c_threshold: 10000
+      compression: true
+      debug: false
+      namespace: app
+      sessions: false
+      session_servers: false
+      fragments: false
+      memory: 64 
+      servers: ey01-s00094:11211
+      benchmarking: true
+      raise_errors: true
+      fast_hash: false
+      fastest_hash: false
+
+    production:
+      memory: 64 
+      benchmarking: false
+      servers:
+        - ey01-s00094:11211
+
+=IPs, PHPMyAdmin, Cap tasks, etc=
+
+  Production:
+    65.74.151.41
+    65.74.139.2:8094
+
+  Staging:
+    65.74.151.40
+    65.74.139.2:8093
+
+  PHPMyAdmin:
+    https://myadmin.utility.ey01.engineyard.com
+    mysql50-2
+
+  Cap:
+    cap staging deploy
+    cap staging deploy:migration
+
+    cap production deploy
+    cap production deploy:migration
+
+  Crontab:
+    Each new slice must have the scripts from crontab_staging or crontab_production setup like this:
+  
+      /data/pmog/shared/scripts/whatever.sh
+
+=Memcached=
+
+  It's on all EY slices, however there's a new gem we can use. Installed like this:
+    emerge -g libmemcached; gem install memcached --no-rdoc --no-ri
+
+=Munin & Monit=
+
+  Munin had to be installed and run by hand, but Monit seems to be installed by default.
+  Monit only offers the web admin age locally though, via `lynx localhost:9111`
+  
+=Nginx=
+
+  /etc/nginx/servers/pmog.conf
+  # this allows people to use images and css in their maintenance.html file
+  if ($request_filename ~* \.(css|jpg|gif|png)$) {
+    break;
+  }
+
+  # this rewrites all the requests to the maintenance.html
+  # page if it exists in the doc root. This is for capistrano's
+  # disable web task
+  if (-f $document_root/system/maintenance.html) {
+    rewrite  ^(.*)$  /system/maintenance.html last;
+    break;
+  }
+
+  location /track/ {
+    root /data/pmog/current/public;
+    return 404;
+    break;
+  }
+
+  location / {
+
+    location ~ ^/system/data(.*)/ {
+      auth_basic "Restricted Area";
+      auth_basic_user_file /etc/nginx/sites/pmog/users;
+    }  
+
+    <snip>
+  }
+  
+  Also add .xpi to the mime types files
+==

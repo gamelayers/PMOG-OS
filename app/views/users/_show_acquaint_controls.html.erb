@@ -1,0 +1,64 @@
+<% if not @suspended %>
+<table id="profileAdd">
+<tbody>
+<tr>
+	<td class="ally">        
+	<% if current_user.buddies.allied_with? @user %>
+  	<span class="poptip" title="Remove <%= @user.login %> as your Ally! - No longer can they be trusted."><%= link_to "<img src='/images/profile/ally_unmake.png' alt='remove ally' border='0' width='32' height='32' class='img_no_border'>", 
+                { :controller => 'acquaintances', :action =>'remove', :id => @user.login, :type => 'ally' }, 
+								{ :title => ''} 
+		%></span>
+  <% else %>
+    <span class="poptip" title="Make <%= @user.login %> your Ally! - This player can be trusted online."><%= link_to "<img src='/images/profile/ally_make.png' alt='make ally' border='0' width='32' height='32' class='img_no_border'>", 
+								{ :controller => 'acquaintances', :action =>'add', :id => @user.login, :type => 'ally' }, 
+								{ :title => ''} 
+		%></span>
+  <% end %>
+</td>
+<td class="contact">
+    <% if current_user.buddies.acquainted_with? @user %>
+      <span class="poptip" title="Remove <%= @user.login %> as your Contact! - Ending your loose affiliation."><%= link_to "<img src='/images/profile/acquaintance_unmake.png' alt='Remove Contact.' border='0' width='48' height='48' class='img_no_border'>", 
+ 									{ :controller => 'acquaintances', :action =>'remove', :id => @user.login, :type => 'acquaintance' }, 
+									{ :title => ''} 
+			%></a>
+    <% else %>
+<!-- #fixme adding someone as a contact needs a nearby notice that your request is pending-->
+      <span class="poptip" title="Add <%= @user.login %> as your Contact! - Signalling loose affiliation."><%= link_to "<img src='/images/profile/acquaintance_make.png' alt='make contact' border='0' width='48' height='48' class='img_no_border'>", 			 
+ 									{ :controller => 'acquaintances', :action =>'add', :id => @user.login, :type => 'acquaintance' }, 
+									{ :title => ''} 
+			%></span>
+    <% end %>
+</td>
+<td class="rival">
+		<% if current_user.buddies.rivaled_with? @user %>
+      <span class="poptip" title="Remove <%= @user.login %> as your Rival! - Perhaps things have improved between you."><%= link_to "<img src='/images/profile/rival_unmake.png' alt='remove rival' border='0' width='32' height='32' class='img_no_border' >", 
+									{ :controller => 'acquaintances', :action =>'remove', :id => @user.login, :type => 'rival' }, 
+									{ :title => ''}
+			%></span>
+    <% else %>
+      <span class="poptip" title="Make <%= @user.login %> your Rival! - And lo, it's on."><%= link_to "<img src='/images/profile/rival_make.png' alt='make rival' border='0' width='32' height='32' class='img_no_border' >", 
+									{ :controller => 'acquaintances', :action =>'add', :id => @user.login, :type => 'rival' }, 
+									{ :title => ''}
+			%></span>
+    <% end %>
+</td>
+</tr>
+</tbody>
+</table>
+
+<% end %>
+
+<!-- #fixme if we think these are displaying right, let's rip this out: -->
+
+<!-- Lance's Code:
+
+<table id="profileAdd">
+<tbody>
+<tr>
+	<td class="ally"><a href="[MAKE/UNMAKE ALLY]"><span class="poptip" title="Add <%= @user.login %> as your Ally! - Friends make the best enemies!"><img src="/images/profile/ally_make.png" alt="Add <%= @user.login %> as an Ally" width="32" height="32"/></span></a></td>
+	<td class="contact"><a href="[MAKE/UNMAKE CONTACT]"><span class="poptip" title="Add <%= @user.login %> as an Acquaintance! - Because you can always use more of those."><img src="/images/profile/acquaintance_make.png" alt="acquaintance_make" width="48" height="48"/></a></td>
+	<td class="rival"><a href="[MAKE/UNMAKE RIVAL]"><span class="poptip" title="Add <%= @user.login %> as your Rival! - Rivalry! Yeah!"><img src="/images/profile/rival_make.png" alt="rival_make" width="32" height="32"/></a></td>
+</tr>
+</tbody>
+</table>
+-->

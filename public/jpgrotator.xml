@@ -1,0 +1,18 @@
+<jpgrotator>
+
+	<parameters>
+		<rotatetime>5</rotatetime>
+		<randomplay>true</randomplay>
+		<shownavigation>false</shownavigation>
+		<transition>fade</transition>
+	</parameters>
+	
+	<photos>
+		<photo path="/images/welcome/rotator/badges.jpg" link="http://pmog.com/codex/badges/" />
+		<photo path="/images/welcome/rotator/mines.jpg" link="http://pmog.com/codex/tools/mines/" />
+		<photo path="/images/welcome/rotator/crates.jpg" link="http://pmog.com/codex/tools/crates/" />
+		<photo path="/images/welcome/rotator/order.jpg" link="http://pmog.com/codex/associations/" />
+		<photo path="/images/welcome/rotator/chaos.jpg" link="http://pmog.com/codex/associations/" />
+	</photos>
+
+</jpgrotator>

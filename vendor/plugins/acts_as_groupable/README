@@ -1,0 +1,14 @@
+ActsAsGroupable
+===============
+
+Provides a Group model and an acts_as_groupable extension to extend your existing model so it can
+be categorized into groups.
+
+
+Example
+=======
+
+TODO
+
+
+Copyright (c) 2008 Marc Adams (marc@gamelayers.com), released under the MIT license

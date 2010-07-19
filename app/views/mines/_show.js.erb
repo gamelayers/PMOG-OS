@@ -1,0 +1,65 @@
+  <div class="pmog_single_mine">
+
+    <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+
+    <br style="clear:both;"/>
+    
+    <% if @armor_deflections > 0 %>
+    
+      <% unless @armor_destroyed > 0 %>
+    
+        <img src="<%= host %>/images/ext/mines/armor_saved.png" width="145" height="85" style="float:left;" />
+        
+      <% else %>
+        
+        <img src="<%= host %>/images/ext/mines/armor_broken.png" width="145" height="77" style="float:left;" />
+        
+      <% end %>
+  
+    <% else %>
+    
+      <img src="<%= host %>/images/ext/mines/mine.png" width="145" height="72" style="float:left;" />
+    
+    <% end %>
+  
+  <% unless @minefield %>
+    <div class="pmog_mine_buttons">
+     
+      <% if current_user.inventory.st_nicks > 0 %>
+        <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                    pmog_m.setAttribute('server_url', '/users/<%= @miners.first.user.login %>/st_nicks/attach.json');
+                    pmog_m.setAttribute('method', 'put');
+                    pmog_m.setAttribute('action', 'submit');
+                    pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                    pmog_m.setAttribute('params', '{\'window_id\' : \'<%= @window_id %>\'}');
+                    pmog_m.dispatchEvent(pmog_e);
+                    return false;" href="#" class="attach_a_st_nick">&nbsp;</a>
+      <% end %>
+      
+      <%= render :partial => 'shared/ext/link_to_im_mines', :locals => { :message => 'send a thank you note?', :window_id => @window_id }%>
+    
+    </div>
+  <% end %>
+  
+    <br style="clear:both;" />
+    
+		<% if @minefield %>
+		  <div class="pmog_mine_text">
+        <p>Ouch! Your Mine exploded here! You weren't hurt this time.  You can lay a trap like this on any web site, by clicking your Mine button in your toolbar <img src="/images/learn/mines/mine.png" width="19" height="19" alt="Mine" />.</p>
+        
+        <p>Now, you might want to protect yourself: <a href='<%= host %>/learn/armor'>click here to learn about Armor</a> <img src="/images/learn/armor/armor.png" width="19" height="19" alt="Armor" /></p>
+      </div>
+      <% else %>
+    <div class="pmog_mine_text">
+      You tripped a <a href="<%= host %>/guide/tools/mines/" target="new">mine</a> from <a href="<%= host %>/users/<%= @miners.first.user.login %>"><%= @miners.first.user.login %></a>!
+
+    </div>
+	<% end %>
+	
+  <br style="clear:both;" />
+  
+</div>
+
+<% unless sound_off?  %>
+  <embed src="<%= host %>/sounds/ext/mine.wav" autostart="true" hidden="true" loop="0">
+<% end %>

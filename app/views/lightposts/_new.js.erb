@@ -1,0 +1,27 @@
+<div class="lightpost_make">
+  <div class="lightpost_make_close">
+    <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                         pmog_m.setAttribute('action', 'close');
+                         pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                         pmog_m.dispatchEvent(pmog_e);
+                         return false;"><img src="<%= host %>/images/ext/lightpost_make_close.jpg" width="39" height="39" alt="Close" /></a>
+  </div>
+  <br style="clear:both;" />
+  <div class="lightpost_make_form">
+    <form name="deploy_lightpost" method="post" action=""><br />
+      Tags (use commas to separate):<br /><input id="lightpost_tags" name="lightpost[tags]" class="lightpost_make_text" type="text" /><br /><br />
+
+      Description:<br />
+      <textarea name="lightpost[description]" class="lightpost_make_description" id="lightpost_description"></textarea>
+      <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                           pmog_m.setAttribute('lightpost_description', ''+ document.deploy_lightpost.lightpost_description.value + '');
+                           pmog_m.setAttribute('lightpost_tags', '' + document.deploy_lightpost.lightpost_tags.value + '');
+                           pmog_m.setAttribute('method', 'post');
+                           pmog_m.setAttribute('action', 'deploy_lightpost');
+                           pmog_m.setAttribute('server_url', '/locations/<%= @location.id %>/lightposts.json');
+                           pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                           pmog_m.setAttribute('extra_attributes', 'lightpost_description,lightpost_tags');
+                           pmog_m.dispatchEvent(pmog_e);return false;" class="pmog_lightpost_create">&nbsp;</a>
+    </form>
+  </div>
+</div>

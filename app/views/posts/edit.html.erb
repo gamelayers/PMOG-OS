@@ -1,0 +1,37 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/forums" %>
+	</div>
+<% end %>
+
+
+		<div id="copy">
+		
+			<div class="column width960">
+				<div class="column width700">
+
+					<div class="module width700">
+					
+
+<h1>Editing post</h1>
+
+<%= error_messages_for :post %>
+
+<% form_for(:post, :url => forum_topic_post_path(@post), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= f.text_area :body, :rows => 20, :cols => 70 %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<!-- #fixme these two links don't seem to work from this page-->
+
+<%#= link_to 'Show', forum_topic_post_path(@post) %> 
+<%#= link_to 'Back', forum_topic_posts_path %>
+
+					</div>
+				</div>
+			</div>

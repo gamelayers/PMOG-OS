@@ -1,0 +1,33 @@
+defaults:
+  ttl: 1800
+  readonly: false
+  urlencode: false
+  c_threshold: 10000
+  compression: true
+  debug: false
+  namespace: app
+  sessions: false
+  session_servers: false
+  fragments: false
+  memory: 64
+  servers: ey03-s00318:11211
+  benchmarking: true
+  raise_errors: true
+  fast_hash: false
+  fastest_hash: false
+
+production:
+  memory: 64
+  benchmarking: false
+  servers:
+    - ey03-s00318:11211
+    - ey03-s00319:11211
+    - ey03-s00320:11211
+    - ey03-s00321:11211
+    - ey03-s00322:11211
+    - ey03-s00323:11211
+    - ey03-s00324:11211
+    - ey03-s00353:11211
+    - ey03-s00354:11211
+    - ey03-s00355:11211
+    - ey03-s00356:11211

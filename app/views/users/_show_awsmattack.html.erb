@@ -1,0 +1,60 @@
+<div class="subtabs" id="attacks">
+  <ul>
+  	<li>Across all the Nethernet:</li>
+    <li><a href="#attacksTopWeek"><span>Top AWSM! vs Attacks! This Week</span></a></li>
+    <li>|</li>
+    <li><a href="#attacksRecent"><span>Most Recent AWSM! vs Attacks!</span></a></li>
+  </ul>
+  
+  <!-- ATTACKS weekly top -->
+  <div id="attacksTopWeek">
+    <table class="list">
+      <tbody>
+        <tr>
+          <td colspan="2" class="head">
+            <h3 class="center">Please Note: some links here might be NSFW!
+            <%= render :partial => 'shared/nsfw_tip' %>
+            As always, surf carefully.</h3>
+          </td>
+        </tr>
+        <tr>
+          <td width="330"><center><h2>Awsms</h2></center>
+            <%= render :partial => 'show_awsmattacks_list', :locals => { :awsmattacks => @top_awsm_this_week } %>
+          </td>
+          <td width="330"><center><h2>Attacks</h2></center>
+            <%= render :partial => 'show_awsmattacks_list', :locals => { :awsmattacks => @top_attack_this_week } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="nav">
+      <a href="/awsm-attack">Visit Awsm vs Attack page</a>
+    </p>
+  </div>
+  
+  <!-- ATTACKS recent -->
+  <div id="attacksRecent">
+    <table class="list">
+      <tbody>
+        <tr>
+          <td colspan="2" class="head">
+            <h3 class="center">Please Note: some links here might be NSFW!
+            <%= render :partial => 'shared/nsfw_tip' %>
+            As always, surf carefully.</h3>
+          </td>
+        </tr>
+        <tr>
+          <td width="330"><center><h2>Awsms</h2></center>
+            <%= render :partial => 'show_awsmattacks_list', :locals => { :awsmattacks => @most_recent_awsm } %>
+          </td>
+          <td width="330"><center><h2>Attacks</h2></center>
+            <%= render :partial => 'show_awsmattacks_list', :locals => { :awsmattacks => @most_recent_attack } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="nav">
+      <a href="/awsm-attack">Visit Awsm vs Attack page</a>
+    </p>
+  </div>
+</div>

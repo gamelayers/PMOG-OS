@@ -1,0 +1,1 @@
+page.replace_html "#welcome_#{@user.login}", "User Welcomed!"

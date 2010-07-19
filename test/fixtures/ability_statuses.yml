@@ -1,0 +1,75 @@
+--- 
+alex_ability_status: 
+  updated_at: 2009-02-06 18:33:21
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1d88ef6-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: f6183ed2-b028-11dd-ad1f-0017f2d41804
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:21
+  daily_invite_buffs: "5"
+k41d3n_ability_status: 
+  updated_at: 2009-02-06 18:33:21
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1e011ee-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: 243df398-de87-11dc-b0f2-001b63928f8d
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:21
+marc_ability_status: 
+  updated_at: 2009-02-06 18:33:21
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1e011ee-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:21
+  daily_invite_buffs: "5"
+suttree_ability_status: 
+  updated_at: 2009-02-06 18:33:21
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1e0d232-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:21
+justin_ability_status: 
+  updated_at: 2009-02-06 18:33:22
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1e18ea2-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: 6f15b9e8-cdfe-11dd-8896-0017f2d41804
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:22
+
+#UNUSED SO FAR, HIJACK FOR WHATEVER PURPOSES DEEMED WORTHWHILE
+ability_statuses_005: 
+  updated_at: 2009-02-06 18:33:22
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1e239b0-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:22
+ability_statuses_006: 
+  updated_at: 2009-02-06 18:33:22
+  vengeance: "1"
+  armor_charges: "0"
+  dodge: "1"
+  id: a1e2e20c-f47c-11dd-810c-0017f2d41804
+  disarm: "1"
+  user_id: f6183ed2-b028-11dd-ad1f-0017f2d41804
+  armor_equipped: "0"
+  created_at: 2009-02-06 18:33:22

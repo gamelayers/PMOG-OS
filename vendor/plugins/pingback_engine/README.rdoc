@@ -1,0 +1,124 @@
+= Pingback Engine
+
+Enables your Rails app to receive and send pingbacks as known from wordpress-like blogs.
+
+This engine includes an XML-RPC server controller for <em>receiving</em> pingbacks from
+other blogs. You can hook into the receiving and process the incoming ping by creating 
+a new comment record that represents that blog ping or whatever your app needs.
+
+
+Note: the current version only supports receiving pingbacks (that's way harder than
+sending pingbacks. Sending will be implemented in the next weeks).
+
+== What are Pingbacks?
+
+If you're writing in your blog A and refer to some other blog B, your blog system will
+usually inform the blog B about your article. This is known as a <em>Pingback</em> and 
+is simply a small XML-RPC call saying "Hey there, blog B! We're referencing your article 
+xy. You can find our linking article on blog A at yz."
+
+That's all the pure pingback does. It's up to blog B to handle the links, check if blog A
+is really refering, excerpt some content from the blog and display that on blog B. Usually
+a comment on blog B is created pointing back to blog A.
+
+Read more in the official specification at http://hixie.ch/specs/pingback/pingback .
+
+
+
+= Installation
+
+To install, simply cd to your rails app directory and run
+
+  script/plugin install git://github.com/apotonick/pingback_engine.git
+
+
+= Receiving pingbacks
+
+=== Propagating your pingback server url
+
+A blog refering to your site will scan your site for information on where to find your
+pingback XML-RPC server. You're on the safe side by sending the <tt>X-Pingback</tt> header
+as well as including the <tt><link rel="pingback" ...></tt> in your layout.
+
+In the controller class, include
+  class MyBlogController
+    include PingbackHelper
+    helper :pingback
+
+    def show_blog
+      set_xpingback_header
+      
+      # ...
+
+In the application layout, put
+  <html>
+    <head>
+      ...
+      <%= pingback_link_tag %>
+   </head>
+
+=== Processing incoming pings
+
+After the installation of the engine the XML-RPC server is automatically accessable at
+<tt>/pingback/xml</tt>.
+The server will create a Pingback instance. This object checks the origin link,
+retrieves the linking page and extracts the matching section from the page. If valid, 
+the hook method you provided is executed and the Pingback object passed as argument.
+
+Currently the hook method goes at the end of <tt>config/environment.rb</tt>, where Pingback#save_callback attaches the hook:
+
+  Pingback.save_callback do |ping|
+    AnonymousComment.process_pingback(ping)
+  end
+
+You can also process the ping directly in the block:
+
+  Pingback.save_callback do |ping|
+    comment = ArticleComment.new
+    comment.author      = ping.title
+    comment.author_url  = ping.source_uri
+    comment.text        = ping.content
+    
+    referenced_article = Article.find_by_url(ping.target_uri)
+    
+    if referenced_article
+      comment.article_id = referenced_article.id
+      comment.save
+      
+      ping.reply_ok # report success.
+    else
+      # report error:
+      ping.reply_target_uri_does_not_accept_posts
+    end
+  end
+
+
+= Testing
+You can use the plugins' <tt>script/send-pingback.rb</tt> tool to send an XML-RPC call 
+to your localhost.
+
+  pingback_engine$> script/send_pingback.rb http://some.blog.com/the-linking/article http://my-own-blog.de/the-referenced-article
+
+
+= License
+Copyright (c) 2008 Nick Sutterer <apotonick@gmail.com>
+
+The MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

@@ -1,0 +1,37 @@
+<h1>A Listing of Jobs in PMOG.</h1>
+<h5>I once dated a girl name BJ, no really...</h5>
+
+<br>
+
+<p align="right">
+	<%= will_paginate @jobs %>
+</p>
+
+<table border='1'>
+	<tr>
+		<td>#</td>
+		<td>Tag</td>
+		<td>Exit status</td>
+		<td>Stdout</td>
+		<td>Sterr</td>
+		<td>Priority</td>
+		<td>Status</td>
+	</tr>
+	<% @jobs.each do |job| %>
+		<tr>
+			<td><%= job.bj_job_id %></td>
+			<td><%= job.tag %></td>
+			<td><%= job.exit_status %></td>
+			<td><%= job.stdout %></td>
+			<td><%= job.stderr %></td>
+			<td><%= job.priority %></td>
+			<td><b><%= job.state %></b></td>
+		</tr>
+	<% end %>
+</table>
+
+<br/>
+
+<p align="right">
+	<%= will_paginate @jobs %>
+</p>

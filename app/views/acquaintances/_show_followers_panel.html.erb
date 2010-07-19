@@ -1,0 +1,27 @@
+<div class="subtabs" id="eventTabs">
+  <ul>
+  <li><%= render :partial => "shared/spinner", :locals => { :spinner_id => "followers_panel_spinner"} %> &nbsp;&nbsp;</li>
+  <li><a href="#followers_all" onclick="reloadPanel('followers', 'all');"><span>All (<%= @count %>)</span></a></li>
+  <li>|</li>
+  <li><a href="#followers_allies" onclick="reloadPanel('followers', 'allies');"><span>Allies (<%= @allies_count %>)</span></a></li>
+  <li>|</li>
+  <li><a href="#followers_contacts" onclick="reloadPanel('followers', 'contacts');"><span>Contacts (<%= @contacts_count %>)</span></a></li>
+  <li>|</li>
+  <li><a href="#followers_rivals" onclick="reloadPanel('followers', 'rivals');"><span>Rivals (<%= @rivals_count %>)</span></a></li>
+  </ul>
+
+  <div id="followers_all">
+  <%= render :partial => 'contacts_list', :locals => { :buddies => @contacts, :filter => 'all' } %>
+  </div>
+
+  <div id="followers_allies">
+  </div>
+
+  <div id="followers_contacts">
+  </div>
+
+  <div id="followers_rivals">
+  </div>
+
+</div>
+

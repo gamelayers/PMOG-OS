@@ -1,0 +1,57 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: branches
+#
+#  id             :string(36)    default(""), not null, primary key
+#  mission_id     :string(36)    
+#  parent_id      :string(36)    
+#  position       :integer(11)   not null
+#  branches_count :integer(11)   default(0)
+#  location_id    :string(36)    
+#  created_at     :datetime      
+#  updated_at     :datetime      
+#  description    :text          
+#  tested         :boolean(1)    
+#
+
+mission_with_long_text_branch_one:
+  mission_id: 4ec19502-f9df-11dc-a940-0016cb88feaa
+  branches_count: 0
+  location_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  id: 4ec8d240-f9df-11dc-a940-0016cb88feaa
+  description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?ENDOFBRANCHDESCRIPTION"
+  position: 1
+  tested: false
+mission_with_long_text_branch_two:
+  mission_id: 4ec19502-f9df-11dc-a940-0016cb88feaa
+  branches_count: 0
+  location_id: f57004a6-f5fc-11dc-a1b8-0016cb88feaa
+  id: 4eca780c-f9df-11dc-a940-0016cb88feaa
+  description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?ENDOFBRANCHDESCRIPTION"
+  position: 2
+  tested: false
+mission_with_long_text_branch_three:
+  mission_id: 4ec19502-f9df-11dc-a940-0016cb88feaa
+  branches_count: 0
+  location_id: 884f3a5c-f5fe-11dc-a1b8-0016cb88feaa
+  id: 4ecc9eb6-f9df-11dc-a940-0016cb88feaa
+  description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?ENDOFBRANCHDESCRIPTION"
+  position: 3
+  tested: false
+mission_with_long_text_branch_four:
+  mission_id: 4ec19502-f9df-11dc-a940-0016cb88feaa
+  branches_count: 0
+  location_id: dd913eb4-f600-11dc-8cff-0016cb88feaa
+  id: 4ece59ea-f9df-11dc-a940-0016cb88feaa
+  description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?ENDOFBRANCHDESCRIPTION"
+  position: 4
+  tested: false
+wercw_branch:
+  mission_id: 8302ddf0-eaf6-11dc-a561-001b63928f8f
+  branches_count: 0
+  location_id: dd913eb4-f600-11dc-8cff-0016cb88feaa
+  id: 5ece49ea-f9df-11dc-a940-0016cb88feaa
+  description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?ENDOFBRANCHDESCRIPTION"
+  position: 1
+  tested: false

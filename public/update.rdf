@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<r:RDF xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+       xmlns="http://www.mozilla.org/2004/em-rdf#">
+       
+<r:Description about="urn:mozilla:extension:pmog@bud.com">
+  <updates><!-- Everything in the update node is for Firefox v0.10 and newer -->
+    <r:Seq>
+      <r:li>
+        <r:Description>
+          <version>2.4</version>
+          <targetApplication>
+            <r:Description>
+              <id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</id>
+              <minVersion>1.5</minVersion>
+              <maxVersion>2.5</maxVersion>
+              <updateLink>http://pmog.com/firefox/pmog.xpi</updateLink>
+            </r:Description>
+          </targetApplication>
+        </r:Description>
+      </r:li>
+    </r:Seq>
+  </updates>
+
+  <!-- The 2 nodes below are for firefox 0.9 and older -->
+  <version>2.4</version>
+  <updateLink>http://pmog.com/firefox/pmog.xpi</updateLink>
+</r:Description>
+</r:RDF>

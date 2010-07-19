@@ -1,0 +1,33 @@
+<h2>Badges <span class="small"><%= @user.badges.count %> earnt</span></h2>
+<div class="module width240" id="profileBadges">
+	<div id="badgesOuter">
+		<div id="badgesInner">
+			<% if @user.badges.any? %>
+			<% @user.badges.each do |badge| %>
+			<a href="/guide/badges/<%= badge.url_name %>"><img src="/images/shared/badges/small/<%= badge.image %>" width='39' height='50' title='<%= badge.name %>' alt='<%= badge.name %>' class="user_badge"></a>
+			<% end %>
+			<div class="bottomNav">
+				<a href="/users/<%= @user.login %>/badges">See Badges <%= @user.login %> has Earned</a>
+			</div>
+			<% else %>
+
+			<div class="center">
+				<a href="/guide/badges/15-missions"><img src="/images/shared/badges/15-missions-tease.png" width="51" height="66" alt="15 Missions Badge" /></a>
+				<a href="/guide/badges/biddy"><img src="/images/shared/badges/biddy-tease.png" width="51" height="66" alt="Biddy Badge for Crates" /></a>
+				<a href="/guide/badges/illuminati"><img src="/images/shared/badges/illuminati-tease.png" width="51" height="66" alt="Illuminati Badge for Lightposts" /></a>
+			</div><br clear="all"/>
+
+			<p>Earn badges while you level up, by using items in your <a href="/guide/arsenal">Arsenal</a>!</p>
+
+			<div class="bottomNav"<a href="/guide/badges">See other Badges</a></div>
+			<!--
+				<% if @random_badge %>
+				<p><a href="/guide/badges/<%= @random_badge.url_name %>"><img src="/images/shared/badges/small/<%= @random_badge.image %>" alt="<%= @random_badge.name %>" width="39" height="50" /></a><br/>
+					<a href="/guide/badges/<%= @random_badge.url_name %>"><%= @random_badge.name %></a></p>
+					<% end %>
+				-->
+				<% end %>
+			</div>
+
+		</div>
+	</div>

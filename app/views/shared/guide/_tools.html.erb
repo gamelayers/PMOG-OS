@@ -1,0 +1,62 @@
+				<div class="column width700">
+
+<h2>Tools ::
+
+<span>The root of any strategy is a set of tools</span>
+</h2>				
+
+<% tools=Tool.cached_multi %>
+			
+					<div class="module width700">
+				
+
+						<div class="width325">
+<h3>Order Tools</h3>
+
+<% tools.select{|tool| [:crates, :lightposts, :armor].include? tool.url_name.to_sym }.each do |tool| %>
+
+<%= link_to "<img src=\"#{tool.small_image}\" title=\"#{tool.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{tool.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/tools/#{tool.url_name}" %>
+<h4><a
+href="/guide/tools/<%= tool.url_name %>"><%= tool.name.titleize %></a></h4>
+<p><%= tool.short_description %>. <a
+href="/guide/tools/<%= tool.url_name %>">Learn More</a></p>
+
+<% end %>
+						</div>
+					<div class="width20"></div>
+					<div class="width325">
+<h3>Chaos Tools</h3>
+
+<% tools.select{|tool| [:mines, :grenades, :portals, :st_nicks, :skeleton_keys, :watchdogs].include? tool.url_name.to_sym }.each do |tool| %>
+
+<%= link_to "<img src=\"#{tool.small_image}\" title=\"#{tool.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{tool.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/tools/#{tool.url_name}" %>
+<h4><a
+href="/guide/tools/<%= tool.url_name %>"><%= tool.name.titleize %></a></h4>
+<p><%= tool.short_description %>. <a
+href="/guide/tools/<%= tool.url_name %>">Learn More</a></p>
+
+<% end %>
+						</div>
+					
+					
+					
+					
+					</div>
+				
+				</div>

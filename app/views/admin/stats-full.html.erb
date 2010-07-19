@@ -1,0 +1,136 @@
+<h1>TNN Stats</h1>
+<h5>with great power comes eye-popping oversight</h5>
+
+<br />
+<h3>Please be gentle with this page - it noms a lot a data</h3>
+<br />
+
+<p><b>User Counts:</b>
+Registered Users: <%= User.count %>
+Beta signups: <%= BetaUser.count %> total; <%= @invited_beta_users %> invited; <%= @signed_up_beta_users %> signed up.</p>
+
+<p><b><a href="http://pmog.com/stats/view">Flash stats for pmog.com</a></b><br />
+<b>External Stats</b>: 
+<a href="http://www.quantcast.com/pmog.com">QuantCast</a> and 
+<a href="https://www.google.com/analytics/reporting/dashboard?id=1626866&scid=939728">Google Analytics</a> and 
+<a href="http://www.alexa.com/data/details/traffic_details/pmog.com">Alexa</a></p>
+
+<h3>Daily Activity:</h3>
+
+<table border="0" cellspacing="10" cellpadding="10">
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/connected_users_per_day'>Connected Users Per Day Graph<br />
+  <img src='/stats/connected_users_per_day' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/percentage_connected_users_per_day'>% Connected Users Per Day Graph<br />
+  <img src='/stats/percentage_connected_users_per_day' width='200' height='150' border='2'></a></td>
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/extension_versions_yesterday'>Yesterdays Extension Versions<br />
+  <img src='/stats/extension_versions_yesterday' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/virality_signup_graph'>Viral User Signup Graph<br />
+  <img src='/stats/virality_signup_graph' width='200' height='150' border='2'></a></td>
+  </tr>
+</table>
+
+<h3>Player Signups</h3>
+  
+<table border="0" cellspacing="10" cellpadding="10">
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/signup_graph'>User Signup Graph<br />
+  <img src='/stats/signup_graph' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/signup_accumulator'>User Signup Accumulator<br />
+  <img src='/stats/signup_accumulator' width='200' height='150' border='2'></a></td>
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/beta_signup_graph'>Beta User Signup Graph<br />
+  <img src='/stats/beta_signup_graph' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/beta_signup_accumulator'>Beta User Signup Accumulator<br />
+  <img src='/stats/beta_signup_accumulator' width='200' height='150' border='2'></a></td>
+  </tr>
+</table>
+
+<h3>Tool Use</h3>
+  
+<table border="0" cellspacing="10" cellpadding="10">
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/tool_usage_graph'>Tool Usage Graph<br />
+  <img src='/stats/tool_usage_graph' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/percentage_users_messaging_per_day'>% Users Messaging Per Day<br />
+  <img src='/stats/percentage_users_messaging_per_day' width='200' height='150' border='2'></a></td>
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/missions_created_per_day'>Missions Created Per Day<br />
+  <img src='/stats/missions_created_per_day' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/missions_taken_per_day'>Mission Taken Per Day<br />
+  <img src='/stats/missions_taken_per_day' width='200' height='150' border='2'></a></td>
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/portals_created_per_day'>Portals Created Per Day<br />
+  <img src='/stats/portals_created_per_day' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/portals_taken_per_day'>Portals Taken Per Day<br />
+  <img src='/stats/portals_taken_per_day' width='200' height='150' border='2'></a></td>
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/mines_trigged_per_day'>Mines Triggered Per Day<br />
+  <img src='/stats/mines_trigged_per_day' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/crates_looted_per_day'>Crates Looted Per Day<br />
+  <img src='/stats/crates_looted_per_day' width='200' height='150' border='2'></a></td>
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/messages_sent_per_day'>Messages Sent Per Day<br />
+  <img src='/stats/messages_sent_per_day' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/forum_posts_per_day'>Forum Posts Per Day<br />
+  <img src='/stats/forum_posts_per_day' width='200' height='150' border='2'></a></td>
+  </tr>
+  
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/extension_versions'>All Time Extension Version Usage Pie Chart<br />
+  <img src='/stats/extension_versions' width='200' height='150' border='2'></a></td>
+  <td><a href='/stats/missions_taken_per_user'>Mission Taken Per Active User<br />
+  <img src='/stats/missions_taken_per_user' width='200' height='150' border='2'></a></td>
+  </tr>
+  
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/concurrent_users'>Hourly Maximum Concurrent Users<br />
+  <img src='/stats/concurrent_users' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/gender_breakdown'>Gender Breakdown<br />
+  <img src='/stats/gender_breakdown' width='200' height='150' border='2'></a></td>  
+  </tr>
+
+  <tr>
+  <td width="240" align="center" valign="top"><a href='/stats/initial_passive_activity'>Initial Passive Activity<br />
+  <img src='/stats/initial_passive_activity' width='200' height='150' border='2'></a></td>
+  <td width="240" align="center" valign="top"><a href='/stats/user_retention'>
+    User Retention<br />
+    <img src='/stats/user_retention' width='200' height='150' border='2'></a>
+    <br/>
+    <form action='/stats/user_retention' method='get'>
+      <%= calendar_date_select_includes 'silver' %>
+      <br/>
+      Signups from: <%= calendar_date_select_tag "signup_window" %>
+      <br/>
+      <small>Default to 40 days before Initial date</small>
+      <br/>
+      <br/>
+      Initial date: <%= calendar_date_select_tag "date" %>
+      <br/>
+      <small>Default to 10 days ago</small>
+      <br/>
+      <br/>
+      Connected until: <%= calendar_date_select_tag "connectivity_window" %>
+      <br/>
+      <small>Default to 10 days after Initial date</small>
+      <br/>
+      <br/>
+      <input type='submit' value='Generate graph'>
+    </form>
+  </td>
+  </tr>  
+</table>

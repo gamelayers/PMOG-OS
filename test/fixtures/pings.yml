@@ -1,0 +1,29 @@
+--- 
+pings_004: 
+  name: Reply
+  points: "2"
+  id: "4"
+pings_005: 
+  name: New Post
+  points: "10"
+  id: "5"
+pings_006: 
+  name: Make Contact
+  points: "10"
+  id: "6"
+pings_007: 
+  name: 'Mission Taken'
+  points: "10"
+  id: "10"
+pings_001: 
+  name: Aid Ally
+  points: "10"
+  id: "1"
+pings_002: 
+  name: Damage Rival
+  points: "10"
+  id: "2"
+pings_003: 
+  name: Rating
+  points: "5"
+  id: "3"

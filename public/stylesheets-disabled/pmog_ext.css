@@ -1,0 +1,727 @@
+/*****************************************
+ Windows
+ *****************************************/
+.pmog_window {
+  width:305px;    
+}
+.pmog_deploy_window {
+  overflow:hidden;
+}
+
+.pmog_portal_window, .pmog_lightpost_window, .pmog_mine_window, .pmog_crate_window, .pmog_error_window {
+}
+
+.pmog_portal_window img, .pmog_crate_window img, .pmog_lightpost_window img, .pmog_mine_window img, .pmog_single_mine img, .pmog_single_crate img, .pmog_single_portal img, .pmog_single_mission img, .pmog_error_window img {
+  border:0 !important;
+}
+
+/*****************************************
+ Message Queue
+ *****************************************/
+#pmog_message_queue, #pmog_event_queue {
+  position:fixed;
+  z-index:1000;
+  margin:0;
+  padding:0;
+}
+
+#pmog_event_queue {
+  z-index:1001;
+}
+
+#pmog_message_queue dd, #pmog_event_queue dd {
+  padding:0;
+  margin:0;
+}
+
+#pmog_message_queue li, #pmog_event_queue li {
+  list-style-type:none !important;
+}
+
+#pmog_message_queue .pmog_window, #pmog_event_queue .pmog_window {
+  display:none;
+}
+
+#pmog_message_queue .pmog_hud_window, #pmog_event_queue .pmog_hud_window {
+  display:none;
+}
+
+#pmog_event_queue #pmog_subject_mine_message {
+  display:none;
+  margin-top:30px;
+}
+
+/*****************************************
+ Objects
+ *****************************************/
+.pmog_single_mine, .pmog_single_crate, .pmog_single_portal, .pmog_single_mission, .pmog_error_window {
+   font-family: 'Georgia', serif !important;
+   font-size:11px !important;
+	 font-variant:normal !important;
+   color:#fff !important;
+   background-position:top left !important;
+   background-repeat:no-repeat !important;
+   border:1px solid #000 !important;
+}
+
+.pmog_single_mine a, .pmog_single_crate a, .pmog_single_portal a, .pmog_single_mission a, .pmog_error_window a {
+	font-family: 'Georgia', serif !important;
+  color:yellow !important;
+	text-decoration:none !important;
+}
+
+.pmog_single_mine a:hover, .pmog_single_crate a:hover, .pmog_single_portal a:hover, .pmog_single_mission a:hover,  .pmog_error_window a:hover {
+	font-family: 'Georgia', serif !important;
+  text-decoration:underline !important;
+}
+
+.pmog_input{
+font-size:11px !important;
+border:1px solid #909090 !important;
+}
+
+/*****************************************
+ Objects::MINES
+ *****************************************/
+.pmog_single_mine{
+  background-color:#c00;
+}
+
+#pmog_subject_mine_message{
+  display:none;
+}
+
+.pmog_mine_text{
+font-size:11px !important;
+color:white !important;
+text-align:center;
+margin-top:3px;
+}
+
+.pmog_mine_buttons{
+width:120px;
+float:left;
+margin-left:20px;
+}
+
+a.attach_a_st_nick{
+	display:block;
+	width:128px;
+	height:40px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/mines/button_attachstnick.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.attach_a_st_nick{
+	background-position:0 -40px;
+	text-decoration:none!important;
+}
+
+/*****************************************
+ Objects::Crates
+ *****************************************/
+.pmog_single_crate{
+  background-color:#107b08;
+}
+
+a.crate_button_loot{
+	display:block;
+	width:113px;
+	height:45px;
+	margin:0 auto;
+	background:url(http://pmog.com/images/ext/crates/button_loot.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.crate_button_loot{
+	background-position:0 -45px;
+	text-decoration:none !important;
+}
+
+.pmog_single_crate_text{
+	margin:0 auto 10px auto;
+	font-size:12px;
+	text-align:center;
+	width:275px;
+}
+
+.crate_button_looted{
+	float:left;
+	margin-right:5px;
+}
+
+.pmog_crate_looted_buttons{
+	width:285px;
+	margin:0 auto;
+}
+
+.pmog_multi_crate_contents{
+display:block;
+text-align:center;
+}
+
+/*****************************************
+ Objects::Portals & LightPosts
+ *****************************************/
+.pmog_single_portal{
+  background-color:#01349d;
+}
+
+.pmog_portal_text{
+	font-size:12px;
+	width:280px;
+	margin:0 auto;
+	text-align:center;
+}
+
+.pmog_multi_portal_item {
+  float:left;
+  width:43px;
+  margin:5px 0px 0 10px;
+  text-align:center;
+}
+
+.portal_make {
+  z-index:10000;
+  width:359px;
+  height:246px;
+  position:fixed;
+  left:50%;
+  top:50%;
+  margin:-123px 0 0 -179px;
+  border:10px solid #E3BD6F;
+  background-image:url(http://pmog.com/images/ext/portal_make_bg.jpg);
+}
+
+.lightpost_make {
+  z-index:10000;
+	width:359px;
+  height:246px;
+	position:fixed;
+	left:50%;
+  top:50%;
+  margin:-123px 0 0 -179px;
+	border:10px solid #fbf666;
+	background-image:url(http://pmog.com/images/ext/lightpost_make_bg.jpg);
+	font-family:Georgia, serif;
+}
+
+.portal_make a, .lightpost_make a{
+  color:#0618f3;
+  text-decoration:none;
+}
+
+.portal_make a:hover, .lightpost_make a:hover{
+  text-decoration:underline;
+}
+
+.portal_make_close, .lightpost_make_close{
+  width:39px;
+  height:39px;
+  float:right;
+}
+
+.portal_make_close img, .lightpost_make_close img {
+  border:0 !important;
+}
+
+.portal_make_form, .lightpost_make_form {
+  width:195px;
+  float:right;
+  margin-top:25px;
+  text-align:left;
+  font-size:14px;
+  color:white;
+}
+
+.lightpost_make_form {
+  margin: 0 0 0 10px;
+  width:auto;
+  display:block;
+  float:none;    
+}
+
+.portal_make_text {
+  font-size:11px;
+  border:1px solid #909090;
+}
+
+.lightpost_make_text {
+  font-size:11px;
+	width:217px;
+  border:1px solid #909090;
+}
+
+.lightpost_make_description {
+	width:217px;
+	height:63px;
+	font-size:11px;
+	border: 1px solid #909090;
+}
+
+.portal_make_nsfw{
+  border:1px solid #909090;
+  width:25px;
+  height:25px;
+}
+
+a.portal_make_deploy{
+	display:block;
+	width:165px;
+	height:30px;
+	background:url(http://pmog.com/images/ext/portals/button_deploy.png);
+	text-decoration:none!important;
+}
+
+a:hover.portal_make_deploy{
+	background-position:0 -30px;
+	text-decoration:none!important;
+}
+
+.lightpost_make_deploy {
+  display:block;
+  clear:both;
+}
+
+a.pmog_lightpost_create{
+	display:block;
+	width:165px;
+	height:35px;
+	margin-top:10px;
+	background:url(http://pmog.com/images/ext/lightposts/create_button.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_lightpost_create{
+	background-position:0 -35px;
+	text-decoration:none!important;
+}
+
+a.pmog_take_portal{
+	display:block;
+	float:left;
+	width:113px;
+	height:57px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/portals/button_takeportal.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_take_portal{
+	background-position:0 -57px;
+	text-decoration:none!important;
+}
+
+a.pmog_take_portal_nsfw{
+	display:block;
+	float:left;
+	width:158px;
+	height:57px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/portals/button_takeportal_nsfw.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_take_portal_nsfw{
+	background-position:0 -57px;
+	text-decoration:none!important;
+}
+
+a.pmog_button_dismiss_portal{
+	display:block;
+	float:left;
+	width:119px;
+	height:35px;
+	margin-top:12px;
+	background:url(http://pmog.com/images/ext/portals/button_dismiss.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_button_dismiss_portal{
+	background-position:0 -35px;
+	text-decoration:none!important;
+}
+
+a.pmog_portal_rate_nsfw{
+	display:block;
+	width:85px;
+	height:30px;
+	margin:0 auto;
+	background:url(http://pmog.com/images/ext/portals/flag_nsfw.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_portal_rate_nsfw{
+	background-position:0 -30px;
+	text-decoration:none!important;
+}
+/*****************************************
+ Objects::Errors
+ *****************************************/
+.pmog_error_subject {
+  display: none;
+}
+/*****************************************
+ Objects::Mission
+ *****************************************/
+.pmog_single_mission {
+  background-color:#eb911f;
+	color:#000!important;
+}
+
+a.pmog_take_mission{
+	display:block;
+	float:left;
+	width:85px;
+	height:42px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/missions/button_takemission.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_take_mission{
+	background-position:0 -42px;
+	text-decoration:none!important;
+}
+
+a.pmog_take_mission_nsfw{
+	display:block;
+	float:left;
+	width:84px;
+	height:50px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/missions/button_takemission_nsfw.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_take_mission_nsfw{
+	background-position:0 -50px;
+	text-decoration:none!important;
+}
+
+.pmog_mission_text1{
+	text-align:center;
+	font-size:11px;
+	margin:0 auto;
+	width:280px;
+}
+
+.pmog_mission_text2{
+	margin:15px auto 0 auto;
+	width:274px;
+	text-align:center;
+}
+
+.pmog_mission_lightpost_text{
+	float:left;
+	text-align:center;
+	font-size:11px;
+	margin:0 0 0 5px;
+	width:235px;
+}
+
+a.pmog_button_dismiss{
+	display:block;
+	float:left;
+	margin:9px 0 0 10px;
+	width:90px;
+	height:26px;
+	background:url(http://pmog.com/images/ext/missions/button_dismiss.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_button_dismiss{
+	background-position:0 -26px;
+	text-decoration:none!important;
+}
+
+a.pmog_mission_queue{
+	display:block;
+	float:left;
+	margin:9px 0 0 5px;
+	width:84px;
+	height:25px;
+	background:url(http://pmog.com/images/ext/missions/button_queue.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_mission_queue{
+	background-position:0 -25px;
+	text-decoration:none!important;
+}
+
+a.pmog_complete_mission{
+	display:block;
+	width:163px;
+	height:25px;
+	margin:0 auto;
+	background:url(http://pmog.com/images/ext/missions/button_complete.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.pmog_complete_mission{
+	background-position:0 -25px;
+	text-decoration:none!important;
+}
+
+/*****************************************
+ Action Notifiers
+ *****************************************/
+
+.pmog_action_link{
+  float:left;
+  margin-left:5px;
+}
+
+.pmog_action_text{
+  float:right;
+  margin:2px 3px 0 0;
+}
+
+.pmog_action_button_close{
+  float:right;
+  margin-right:-3px;
+  margin-top:-3px;
+  border-left:1px solid black;
+  border-bottom:1px solid black;
+}
+
+.pmog_action_text_stnick{
+  float:left;
+  line-height:11px;
+  width:200px;
+  margin-top:5px;
+  margin-left:5px;
+}
+
+.pmog_action_user{
+  width:30px;
+  margin-right:3px;
+  margin-top:5px;
+  float:right;
+}
+
+.pmog_action {
+  float:right;
+  padding:0;
+  margin:0;
+  width:250px;
+  min-height:16px;
+  border:3px solid #d3d3d3 !important;
+  background-color:#fcffa9 !important;
+  font-family:Georgia, serif !important;
+	font-variant:normal !important;
+  font-size:10px !important;
+  font-weight:bold !important;
+  color:black !important;
+  text-align:left !important;
+}
+
+.pmog_action a {
+  color:#b27500;
+}
+
+.pmog_action a:hover {
+  text-decoration:none;
+}
+
+.pmog_action_margin {
+  margin-right:2px;
+}
+
+.pmog_action img {
+  float:right;
+  border:0 !important;
+}
+
+.pmog_action_close {
+  float:right;
+}
+
+/*****************************************
+ Messages
+ *****************************************/
+
+a.link_to_im{
+	display:block;
+	float:left;
+	width:131px;
+	height:37px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/crates/button_send.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.link_to_im{
+	background-position:0 -37px;
+	text-decoration:none!important;
+}
+
+a.link_to_im_mines{
+	display:block;
+	float:left;
+	width:129px;
+	height:43px;
+	margin:0;
+	background:url(http://pmog.com/images/ext/mines/button_sendmessage.png) 0 0 no-repeat;
+	text-decoration:none!important;
+}
+
+a:hover.link_to_im_mines{
+	background-position:0 -43px;
+	text-decoration:none!important;
+}
+
+.pmog_message_new{
+	z-index:10000;
+  width:359px;
+  height:246px;
+  position:fixed;
+  left:50%;
+  top:50%;
+  margin:-123px 0 0 -179px;
+  border:10px solid #E3BD6F;
+  background-image:url(http://pmog.com/images/ext/message_send_bg.jpg);
+}
+
+.pmog_message_new a{
+  color:#0618f3;
+  text-decoration:none;
+}
+
+.pmog_message_new a:hover{
+  text-decoration:underline;
+}
+
+.pmog_message_new_close{
+  width:39px;
+  height:39px;
+  float:right;
+}
+
+.pmog_message_new img{
+  border:0 !important;
+}
+
+.pmog_message_new_text{
+  width:345px;
+	margin:0 auto;
+}
+
+.pmog_message_new_header{
+	font-size:18px;
+}
+
+.pmog_message_form{
+	margin:25px 0 0 10px;
+}
+
+.pmog_message_to{
+	width:200px;
+	font-size:16px;
+	border:1px solid #909090;
+}
+
+.pmog_message_body{
+	width:250px;
+	margin:0 auto;
+	font-size:16px;
+	/* border:1px solid #909090; */
+}
+
+.pmog_message_new p{
+	font-size:12px;
+}
+
+.pmog_message_text{
+	float:left;
+	padding:5px;
+}
+
+.pmog_message_text p{
+	font-size:11px !important;
+}
+
+.instant_message_reply_input{
+	width:230px !important;
+	font-size:11px !important;
+}
+
+.pmog_mission_text img{
+	 border:0 !important;
+}
+
+/*****************************************
+ Event Alerts
+ *****************************************/
+.pmog_button_close {
+  float:right;
+  margin-left:10px;
+  border-left:1px solid black;
+  border-bottom:1px solid black;
+  height:16px;
+  width:16px;
+}
+
+.pmog_tool_icon{
+  float:right;
+  margin-right:2px;
+}
+
+.pmog_single_tool_icon{
+  float:left;
+  margin-left:5px;
+}
+
+.pmog_user_images{
+  margin:5px 0 0 10px;
+  text-align:left;
+}
+
+.pmog_user_images img{
+  padding:4px;
+  border:0 !important;
+  text-align:left;
+}
+
+.pmog_user_div{
+  width:52px;
+  background-color:#008200;
+  text-align:center;
+  margin-right:15px;
+  float: right;
+}
+
+.pmog_text {
+  float:right;
+  margin-right:5px;
+}
+
+.pmog_text_explain {
+  float:right;
+  padding:3px;
+  margin-right:10px;
+  font-size:10px;
+}
+
+.pmog_single_user_image {
+  float:right;
+  padding-right:5px;
+  padding-top:7px;
+}
+
+.pmog_single_user_image img {
+  border:0 !important;
+}
+
+.pmog_single_user_text {
+  float:left;
+  width:250px;
+  padding:7px;
+}
+
+.pmog_link_home {
+  float:left;
+  margin-left:5px;
+}

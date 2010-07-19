@@ -1,0 +1,34 @@
+= Memory Profiling =
+
+There's Bleak House, Dike, the Scottstuff profiler, etc, all of which are verbose and hard to make sense of. So here are some more general purpose tools for tracking down memory leaks.
+
+You can use `free -m` and `vmstat` to get an overview of memory on the server. However, to monitor the memory usage over a period of time, the following commands are more useful:
+
+ruby -e 'while true do; puts `ps -p <pid> u`; sleep 2; end;'
+
+ruby -e 'while true do; puts `ps -o rss,vsz -p <pid>`; sleep 2; end;'
+
+Where <pid> is most like the process id of a mongrel, which can be found using the following commands:
+
+`ps -A | grep mongrel` and then `ps -p <pid> u`
+
+Aside from this, you can profile a give method, using script/profiler.rb, like this:
+
+script/runner script/performance/profiler.rb 
+
+New in Rails 2.0, is this:
+
+script/performance/request -n 10 login_session.rb
+
+Or, you can run Bleak House (if you get it installed). See config/environment.rb for commented out instructions.
+
+Further links:
+  http://blog.pluron.com/2008/02/memory-profilin.html
+  http://eigenclass.org/hiki.rb?ruby+live+process+introspection
+  http://blog.methodmissing.com/2007/5/10/rails-memory-usage-case-study/
+
+To monitor swap usage, use "iostat -x 5"
+
+On top of that, don't forget ruby-prof for generating profile-graphs, see:
+
+  http://ruby-prof.rubyforge.org/graph.txt

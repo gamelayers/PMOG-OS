@@ -1,0 +1,158 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Stewards of The Nethernet</span></div>
+	</div>
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960" style="margin-bottom:10px;">
+
+		<div class="column width700">
+
+			<div class="module width700">
+
+				<a onclick="jQuery('#steward_listing').toggle();"><img src="/images/icons/roles/steward-32.png" class="icon32" align="right" /></a>
+
+				<h2>A Listing of Stewards</h2>
+
+				<table id="steward_listing" style="display:none;">
+			  <% @stewards.each_with_index do |stew,i| %>
+		    	<%= '<tr>' if i % 4 == 0 %>
+    				<td width="25%"><%= avatar_link_to_user :user => stew %> <%= link_to stew.login, user_path(stew) %></td>
+			    <%= '</tr>' if (i+1) % 4 == 0 %>
+			  <% end %>
+			  <tr><td colspan="4">
+			  	<h3 align="center"><a href="/guide/rules/stewards">Stewards Page in the /Guide</a></h3>
+			  </td></tr>
+				</table>
+
+
+			</div>
+		</div>
+		
+</div>
+
+	<div class="column width960" style="margin-bottom:10px;">
+
+		<div class="module width960">
+
+			<a onclick="jQuery('#welcoming').toggle();"><img src="/images/shared/associations/icon/shoat-32.png" class="icon32" align="right" /></a>
+			<h2>Shoats To Welcome</h2>
+
+			<table id="welcoming" style="display:none;">
+			<% @players_to_welcome.each_with_index do |player, i| %>
+    		<%= '<tr>' if i % 4 == 0 %>
+    			<td width="70" align="center" valign="top"><%= avatar_link_to_user :user => player, :size => "small" %></td>
+    			<td>
+          <div id="welcome_<%= player.login %>" class="small">
+        	<b><%= link_to player.login, user_path(player) %></b>
+        	<%= player.total_datapoints %> <img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints" class="menu_img_no_border" /><br/>
+        	Started: <%= player.created_at.strftime("%h %e %y") %> <br />
+        	Played: <% if not player.last_active.nil? %><%= player.last_active.strftime("%h %e  %y") %><% end %><br/>
+	        <%= link_to_remote 'Mark as Welcomed?', :url => { :controller => 'users', :action => 'welcome', :id => player.login }, :method => 'post' %></div>
+	        <br/>
+  			  </td>
+		    <%= '</tr>' if (i+1) % 4 == 0 %>
+			<% end %>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="column width960">
+
+		<div class="column width700">
+
+			<div class="module width700">
+			
+				<h2>Recent Steward Forum Posts</h2>
+
+<!-- #fixme Justin needs to fix this to display nicer -->
+
+<table class="forum_post_list_latest" style="margin-top: 18px;" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="forum_post_list_header" width="148">
+      <b>Author</b>
+    </td>
+    <td class="forum_post_list_header">
+      <b>Thread</b>
+    </td>
+  </tr>
+  <% @privateposts.each_with_index do |post, index| %>
+    <% next if post.topic.nil? %>
+    <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+      <td class="forum_post_list_user <%= cycle('forum_post_user_even', 'forum_post_user_odd', :name => 'post_user') %>" valign="top">
+          <a name='post_<%= index %>'></a>
+          <%= avatar_link_to_user :user => post.user, :size => 'small', :class => 'avatar48' %>
+          <%= link_to( h(post.user.login), user_path(post.user) ) %>
+      </td>
+      <td class="forum_post_list_content <%= cycle('forum_post_content_even', 'forum_post_content_odd', :name => 'post_content') %>" valign="top"><p>
+        Posted in <%= link_to post.topic.title, :controller => "topics", :action => "show", :forum_id => post.topic.forum.url_name, :id => post.topic.url_name %> <%= time_ago_in_words(post.updated_at) %> ago
+      </p></td>
+    </tr>
+  <% end %>
+</table>
+
+			</div>
+
+		</div>
+		
+		<a href="/forums/shoat-patrol"><img src="/images/forums/shoat_patrol.png" alt="Shoat Patrol Forum" width="177" height="72" border="0" class="img_no_border" /></a>
+
+			<div class="height20"></div>
+
+			<div class="module width700">
+				<h2>Recent Soul Marks</h2>
+
+				<% @soul_marks.each do |mark| %>
+          <% if mark.player.nil? %>
+            <div class="wrapper">Player Deleted</div>
+            <div class="height10"></div>
+          <% else %>
+              <div class="wrapper">
+                <p>
+                  <%= avatar_link_to_user :user => mark.player, :size => 'small', :class => 'avatar48' %> Player <a href="/users/<%= mark.player.login %>"><%= mark.player.login %></a> tagged by <a href="/users/<%= mark.admin.login %>"><%= mark.admin.login %></a>, 
+                  <%= time_ago_in_words(mark.updated_at) %> ago:
+              </p>
+                <p><blockquote><%= strip_tags mark.comment %></blockquote></p>
+              </div>
+              <div class="height10"></div>
+          <% end %>
+        <% end %>
+
+			</div>
+
+			<div class="height20"></div>
+
+			<div class="module width700" style="margin-bottom:10px;">
+			<a onclick="jQuery('#recent_stewardings').toggle();"><img src="/images/shared/icons/ping-32.png" class="icon32" align="right" /></a>
+
+				<h2>Recent Stewardings</h2>
+
+<ul id="recent_stewardings" style="display:none;">
+  <% @stewardings.each do |stewing| 
+    unless stewing.stewardable.nil? %>
+      <li>
+        <%= link_to stewing.user.login, user_path(stewing.user) %>
+        <%= stewing.verbed_action %>
+        the <%= stewing.stewardable.type.to_s.downcase %> 
+        "<%= if stewing.stewardable.type==User 
+          link_to(stewing.stewardable.login, user_path(stewing.stewardable)) 
+        else
+          link_to(stewing.stewardable.title, forum_topic_path(stewing.stewardable.forum, stewing.stewardable)) 
+        end %>"
+        <%= " #{time_ago_in_words(stewing.created_at)} ago" %>
+     	</li>
+    <% end 
+  end %>
+</ul>
+
+			</div>
+			
+
+	</div>
+
+	</div>
+	
+</div>

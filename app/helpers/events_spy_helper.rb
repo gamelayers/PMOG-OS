@@ -1,0 +1,2 @@
+module EventsSpyHelper
+end

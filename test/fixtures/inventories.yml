@@ -1,0 +1,135 @@
+thomas_hoggins_inv:
+  st_nicks: "0"
+  portals: "0"
+  mines: "0"
+  updated_at: 2009-02-06 22:04:29
+  pings: "0"
+  armor: "0"
+  datapoints: "0"
+  lightposts: "0"
+  owner_id: 99a0566e-b03f-11dd-8b0d-0017f2d41804
+  crates: "0"
+  grenades: "0"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "0"
+  owner_type: User
+alex_inv:
+  st_nicks: "0"
+  portals: "0"
+  mines: "0"
+  updated_at: 2009-02-06 22:04:29
+  pings: "0"
+  armor: "0"
+  datapoints: "0"
+  lightposts: "0"
+  owner_id: f6183ed2-b028-11dd-ad1f-0017f2d41804
+  crates: "0"
+  grenades: "0"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "0"
+  owner_type: User
+k41d3n_inv:
+  st_nicks: "10"
+  portals: "25"
+  mines: "10"
+  updated_at: 2009-02-06 22:04:29
+  pings: "0"
+  armor: "10"
+  datapoints: "0"
+  lightposts: "30"
+  owner_id: 243df398-de87-11dc-b0f2-001b63928f8d
+  crates: "10"
+  grenades: "0"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "0"
+  owner_type: User
+marc_inv: 
+  st_nicks: "10"
+  portals: "25"
+  mines: "10"
+  updated_at: 2009-02-06 22:04:29
+  pings: "100"
+  armor: "10"
+  datapoints: "0"
+  lightposts: "30"
+  owner_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  crates: "10"
+  grenades: "10"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "10"
+  owner_type: User
+justin_inv:
+  st_nicks: "10"
+  portals: "25"
+  mines: "10"
+  updated_at: 2009-02-06 22:04:29
+  pings: 
+  armor: "10"
+  datapoints: "0"
+  lightposts: "30"
+  owner_id: 6f15b9e8-cdfe-11dd-8896-0017f2d41804
+  crates: "10"
+  grenades: "10"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "10"
+  owner_type: User
+suttree_inv: 
+  st_nicks: "10"
+  portals: "25"
+  mines: "10"
+  updated_at: 2009-02-06 22:04:29
+  pings: "100"
+  armor: "10"
+  datapoints: "0"
+  lightposts: "30"
+  owner_id: d780f502-5a13-11dc-a067-0017f232d58f
+  crates: "10"
+  grenades: "10"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "10"
+  owner_type: User
+pmog_inv: 
+  st_nicks: "10"
+  portals: "25"
+  mines: "10"
+  updated_at: 2009-02-06 22:04:29
+  pings: 
+  armor: "10"
+  datapoints: "0"
+  lightposts: "30"
+  owner_id: 63e5a03c-de72-11dc-9796-001b63928f8d
+  crates: "10"
+  grenades: "10"
+  created_at: 2009-02-06 22:04:28
+  watchdogs: "10"
+  owner_type: User
+sample_exploding_crate_inv: 
+  st_nicks: 
+  portals: 
+  mines: 
+  updated_at: 2009-02-06 22:04:29
+  pings: 
+  armor: 
+  datapoints: "200"
+  lightposts: 
+  owner_id: f9b23456-b507-11dd-ac2e-0017f2d41804
+  crates: 
+  grenades: 
+  created_at: 2009-02-06 22:04:29
+  watchdogs: 
+  owner_type: Crate
+sample_puzzle_crate_inv: 
+  st_nicks: 
+  portals: 
+  mines: 
+  updated_at: 2009-02-06 22:04:29
+  pings: 
+  armor: 
+  datapoints: "200"
+  lightposts: 
+  owner_id: 661f2e72-b66c-11dd-a089-0017f2d41804
+  crates: 
+  grenades: 
+  created_at: 2009-02-06 22:04:29
+  watchdogs: 
+  owner_type: Crate

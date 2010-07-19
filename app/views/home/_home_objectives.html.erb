@@ -1,0 +1,130 @@
+<h2>Objectives</h2>
+          <div class="width240 noPad" id="profileObjectives">
+<div id="objectivesOuter" class="sliderObj_wrapper">
+  <div id="objectivesInner" class="sliderObj" style="margin-top: -10px;">
+<ul class="stripeMe" style="margin: 5px -15px 0px -15px;">
+
+  <% if (current_user.total_datapoints.to_i < 1) %>
+  <li>
+    <h3>Download the toolbar or Login</h3>
+    <p><img src="/images/shared/icons/tnnlogo-64.png" alt="DP Card" width="64" height="32" class="rightTight"/>To play The Nethernet you'll need our Firefox toolbar. If you see this Objective and you've downloaded the toolbar, just sign in and start playing!</p>
+    <p><a href="http://thenethernet.com/xpi/pmog.xpi">Download the toolbar</a></p>
+  </li>
+  <% end %>
+
+    <% if (current_user.primary_association=='shoat') %>
+  <li>
+    <h3>Choose a Class</h3>
+    <p><img src="/images/shared/associations/icon/shoat-32.png" alt="Shoat head" width="32" height="32" class="rightTight"/>If you haven't chosen a Class yet, now is the time to do it! Pick your favorite among all 6, you can change it at any time.</p>
+    <p><a href="/users/<%=current_user.login%>/edit?section=1#Class">Choose Your Class</a></p>
+  </li>
+  <% end %>
+
+
+<% if ENV["RAILS_ENV"] == "development" %>
+<% elsif ENV["RAILS_ENV"] == "production" %>
+<% if not Mission.find_by_url_name('welcome_to_the_nethernet').nil? and not Mission.find_by_url_name('welcome_to_the_nethernet').users.include? current_user %>
+    <li>
+      <h3>Take the Welcome Mission</h3>
+      <p><img src="/images/shared/tools/icon/lightpost-32.png" alt="Lightpost" width="32" height="32" class="rightTight"/>Take this mission and get to know The Nethernet.</p>
+      <p><a href="/missions/welcome_to_the_nethernet">Welcome to The Nethernet!</a></p>
+    </li>
+  <% end %>
+<% end %>
+
+  <% if (current_user.ability_uses.uses :giftcard) == 0 %>
+  <li>
+    <h3>Play a DP Card!</h3>
+    <p><img src="/images/shared/icons/dp_card-32.png" alt="DP Card" width="32" height="32" class="rightTight"/>Awsm! If you love a site or just want to be nice to passers-by, put down a DP Card. Start with Google!</p>
+    <p><a href="http://google.com">Put a DP Card on Google</a></p>
+  </li>
+  <% end %>
+
+
+  <% if (current_user.tool_uses.uses :mines) == 0 %>
+  <li>
+    <h3>Lay a Mine!</h3>
+    <p><img src="/images/shared/tools/icon/mine-32.png" alt="Mine" width="32" height="32" class="rightTight"/>Attack! Mine Google and you're sure to catch someone.</p>
+    <p><a href="http://google.com">Go mine Google</a></p>
+  </li>
+  <% end %>
+
+
+    <% if (current_user.total_datapoints.to_i < 200) %>
+  <li>
+    <h3>Earn Datapoints</h3>
+    <p><img src="/images/shared/icons/datapoint-32.png" alt="Datapoints" width="32" height="32" class="rightTight"/>For each top level domain that you browse, you'll earn 3 datapoints. If you're encumbered with Armor, you'll only earn 2. Surf the web and earn datapoints!</p>
+    <p><a href="/guide/rules/datapoints">Learn about Datapoints</a></p>
+  </li>
+  <% end %>
+
+<% if @chosen_mission %>
+  <li>
+    <h3>Take the Daily Mission</h3>
+    <p>Today's chosen Mission is <a href="/missions/<%= @chosen_mission.url_name %>" id="choseMissionLink"><%= @chosen_mission.name %></a> by <a href='/users/<%= @chosen_mission.user.login %>'><%= @chosen_mission.user.login %></a>.</p>
+    <script type="text/javascript" charset="utf-8">
+    $("#choseMissionLink").track({
+      category : "Welcome",
+      action   : "Mission",
+      label    : "Chosen"
+    });
+    </script>
+  </li>
+<% end %>
+
+  <% if current_user.missions.count == 0 %>
+  <li>
+
+    <h3>Make a Mission</h3>
+    <img src="/images/shared/tools/icon/lightpost-32.png" alt="Lightpost" width="32" height="32" class="rightTight"/>
+    <p>Missions are a collection of sites that you lead other players through. Your mission can be about your favorite blogs, or a subject that you know about. For every player who takes your mission, you'll earn between 4 and 12 Datapoints.</p>
+    <p><a href="/missions/new">Make A Mission</a></p>
+  </li>
+  <% end %>
+
+  <% if current_user.posts.count == 0 %>
+  <li>
+
+    <h3>Visit the Forums</h3>
+    <img src="/images/shared/icons/contacts-32.png" alt="Contacts" width="32" height="32" class="rightTight"/>
+    <p>Post to the Forums and get to know The Nethernet.</p>
+    <p><a href="URL">Visit the Forums</a></p>
+  </li>
+  <% end %>
+
+  <% if current_user.buddies.cached_contacts_count('acquaintances') == 0 %>
+  <li>
+    <h3>Make a Contact</h3>
+    <img src="/images/shared/acquaintance_make.png" alt="Make Contact" width="32" height="32"     class="rightTight"/>
+    <p>Get to know other players and make them your contact. You can wait until they mine or crate you to decide if they're an Ally or a Rival.</p>
+    <p><a href="/users">Look at the other players</a></p>
+  </li>
+  <% end %>
+
+
+
+  <% if current_user.buddies.cached_contacts_count('allies') == 0 %>
+  <li>
+    <h3>Make an Ally</h3>
+    <img src="/images/shared/ally_make.png" alt="Make Ally" width="32" height="32"     class="rightTight"/>
+    <p>Did another player leave you a crate? If a player is your Ally, you'll earn Pings when they loot your crate. Quite a bonus!</p>
+    <p><a href="/guide/rules/allies">Learn about Allies</a></p>
+  </li>
+  <% end %>
+
+  <% if current_user.buddies.cached_contacts_count('rivals') == 0 %>
+  <li>
+    <h3>Make a Rival</h3>
+    <img src="/images/shared/rival_make.png" alt="Make Rival" width="32" height="32"     class="rightTight"/>
+    <p>Been mined? Don't take it lying down! Add the player who mined you as a Rival and you'll earn Pings when they trip your mine or St. Nick. Payback!</p>
+    <p><a href="/guide/rules/rivals">Learn about Rivals</a></p>
+  </li>
+  <% end %>
+
+
+</ul>
+  </div>
+<div class="sliderObj_menu"></div>
+
+</div>
+          </div>

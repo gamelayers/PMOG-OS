@@ -1,0 +1,48 @@
+<!-- Creates a list of checkboxes for boolean user preferences -->
+<div id="content_flash"></div>
+  <ul>
+    <% Preference.preferences.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each {|pref| %>
+      <% next if pref[1][:text] == 'Extension Skin'  %>
+      <% if pref[1][:group] == 'content' %>
+      <li>
+        <% if pref[1][:type] == 'boolean' %>
+          <%= get_preference_checkbox(pref[1][:text], current_user.id, pref[1][:text]) %>
+        <% end %>
+        
+        <% if ['integer', 'level', 'text'].include?(pref[1][:type]) -%>
+          <select class="pref-input" name="preference[<%= current_user.id + "-" + pref[1][:text] %>]" id="<%= pref[1][:text].gsub(' ', '_') %>">
+          <%= options_for_select(pref[1][:choices].collect {|i| [ i, i ] }, current_user.preferences.get(pref[1][:text]).value) %>
+          </select>
+        <% end %>
+         <strong><%= pref[1][:text] %> content</strong>
+
+  <% unless pref[1][:description].nil? %>
+    <br />
+    <small><%= pref[1][:description] %></small>
+  <% end %>
+  </li>
+  <% end %>
+  <% } %> 
+  </ul>
+
+<script>
+  jQuery('.pref-input').bind("change",function() {
+    var elm = this;
+    var val;
+    if (elm.type === "checkbox") {
+      if (elm.checked === true) {
+        val = "on";
+      } else {
+        val = "off"
+      }
+    } else {
+      val = elm.value;
+    }
+    jQuery.ajax({
+      url: '/privacy/boolean_prefs?' + jQuery(this).attr("name") + '=' + val,
+      type: 'PUT',
+      dataType: 'script',
+      data:'',
+    });    
+  });
+</script>

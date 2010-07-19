@@ -1,0 +1,4 @@
+@tool_count.each do |t|
+  page.replace_html "level_#{t[0]}", t[1]
+  page.visual_effect :highlight, "level_#{t[0]}", :duration => 2.0
+end

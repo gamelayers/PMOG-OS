@@ -1,0 +1,374 @@
+.pmog_hud_window {
+  z-index  : 20000;
+  position : absolute;
+  display  : none;
+}
+
+.pmog_window {
+  z-index  : 10000;
+  position : absolute;
+  display  : none;
+}
+
+/******************************************
+ * PMOG Hud Windows
+ *****************************************
+.pmog_hud_window {
+  background-color: #efefef;
+  border: 1px solid #ccc;
+}
+
+.pmog_tags_window input {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 200px;
+}
+
+.pmog_tags_window .button {
+  width: auto;
+}
+*/
+/******************************************
+ * PMOG Item Found Window (Crate Style)
+ ******************************************
+.pmog_crate_window {
+  color : #ffffff;
+  text-align : left;
+  margin : auto;
+}
+
+.pmog_crate_background {
+  border : 1px solid #000;
+  background-color : #233F80;
+  opacity : 0.95;
+  height : 70px;
+  width: 110%;
+}
+
+.pmog_crate_icon {
+  width: 50px;
+  height: 50px;
+  background-image : url(../../images/notifier/crate_thumb.png);
+  position : relative;
+  z-index : 2;
+  margin: 0 0 0 10px;
+  top : -60px;
+}
+
+.pmog_crate_message {
+  margin : 10px 0 0 70px;
+  display : block;
+  position : relative;
+  z-index : 3;
+  top : -120px;
+}
+
+.pmog_crate_subject {
+  font-size : 1.5em;
+  line-height : 1.5em;
+}
+
+.pmog_crate_body {
+  font-size : 1.0em;
+  line-height : 1.2em;
+}
+*/
+/******************************************
+ * PMOG Mine Tripped
+ ******************************************
+.pmog_mine_window {
+  color : #000;
+  text-align : left;
+  margin : auto;
+}
+
+.pmog_mine_background {
+  border : 1px solid #000;
+  background-color : #C00;
+  opacity : 0.95;
+  height : 70px;
+  width: 110%;
+}
+
+.pmog_mine_icon {
+  width: 200px;
+  height: 100px;
+  background-image : url('../../images/notifier/mine_thumb.png');
+  position : relative;
+  z-index : 2;
+  margin: 0 0 0 10px;
+  top : -100px;
+}
+
+.pmog_mine_message {
+  margin : 10px 0 0 220px;
+  background-color: #fff;
+  display : block;
+  position : relative;
+  z-index : 3;
+  top : -200px;
+}
+
+.pmog_mine_subject {
+  font-size : 1.5em;
+  line-height : 1.5em;
+}
+
+.pmog_mine_body {
+  font-size : 1.0em;
+  line-height : 1.2em;
+}
+*/
+/*real stuff*/
+
+.pmog_button_close{
+float:right;
+margin-left:10px;
+border-left:1px solid black;
+border-bottom:1px solid black;
+}
+
+.pmog_tool_icon{
+float:right;
+margin-right:5px;
+}
+
+.pmog_single_tool_icon{
+float:left;
+margin-left:5px;
+}
+
+.pmog_user_images{
+margin-top:5px;
+margin-right:5px;
+}
+
+.pmog_user_images img{
+padding:5px;
+}
+
+.pmog_text{
+float:right;
+}
+
+.pmog_text_explain{
+float:right;
+padding:3px;
+margin-right:10px;
+font-size:10px;
+}
+
+.pmog_single_user_image{
+float:right;
+padding-right:7px;
+padding-top:7px;
+}
+
+.pmog_single_user_text{
+float:left;
+width:250px;
+padding:7px;
+}
+
+.pmog_link_home{
+float:left;
+margin-left:5px;
+}
+
+.pmog_single_mine{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#c00;
+background-image:url(bgmine.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:305px;
+min-height:70px;
+border:1px solid black;
+}
+
+.pmog_single_mine a{
+color:yellow;
+}
+
+.pmog_single_mine a:hover{
+text-decoration:none;
+}
+
+.pmog_initial_mine{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#c00;
+background-image:url(bgmine.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:560px;
+min-height:18px;
+border:1px solid black;
+}
+
+.pmog_initial_mine a{
+color:yellow;
+}
+
+.pmog_initial_mine a:hover{
+text-decoration:none;
+}
+
+.pmog_expanded_mine{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#c00;
+background-image:url(bgmine.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:560px;
+min-height:70px;
+border:1px solid black;
+}
+
+.pmog_expanded_mine a{
+color:yellow;
+}
+
+.pmog_expanded_mine a:hover{
+text-decoration:none;
+}
+
+.pmog_single_crate{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#00a100;
+background-image:url(bgcrate.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:305px;
+min-height:70px;
+border:1px solid black;
+}
+
+.pmog_single_crate a{
+color:yellow;
+}
+
+.pmog_single_crate a:hover{
+text-decoration:none;
+}
+
+.pmog_initial_crate{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#00a100;
+background-image:url(bgcrate.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:560px;
+min-height:18px;
+border:1px solid black;
+}
+
+.pmog_initial_crate a{
+color:yellow;
+}
+
+.pmog_initial_crate a:hover{
+text-decoration:none;
+}
+
+.pmog_expanded_crate{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#00a100;
+background-image:url(bgcrate.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:560px;
+min-height:70px;
+border:1px solid black;
+}
+
+.pmog_expanded_crate a{
+color:yellow;
+}
+
+.pmog_expanded_crate a:hover{
+text-decoration:none;
+}
+
+.pmog_single_portal{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#01349d;
+background-image:url(bgportal.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:305px;
+min-height:70px;
+border:1px solid black;
+}
+
+.pmog_single_portal a{
+color:yellow;
+}
+
+.pmog_single_portal a:hover{
+text-decoration:none;
+}
+
+.pmog_initial_portal{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#01349d;
+background-image:url(bgportal.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:560px;
+min-height:18px;
+border:1px solid black;
+}
+
+.pmog_initial_portal a{
+color:yellow;
+}
+
+.pmog_initial_portal a:hover{
+text-decoration:none;
+}
+
+.pmog_expanded_portal{
+text-align:right;
+font-family:Lucida Grande, sans-serif;
+font-size:11px;
+color:white;
+background-color:#01349d;
+background-image:url(bgportal.png);
+background-position:top left;
+background-repeat:no-repeat;
+width:560px;
+min-height:70px;
+border:1px solid black;
+}
+
+.pmog_expanded_portal a{
+color:yellow;
+}
+
+.pmog_expanded_portal a:hover{
+text-decoration:none;
+}

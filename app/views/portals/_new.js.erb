@@ -1,0 +1,29 @@
+<div class="portal_make">
+  <div class="portal_make_close">
+    <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                        pmog_m.setAttribute('action', 'close');
+                        pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                        pmog_m.dispatchEvent(pmog_e);return false;"><img src="<%= host %>/images/ext/portal_make_close.jpg" width="39" height="39" alt="Close" /></a>
+  </div>
+  <br style="clear:both;" />
+  <div class="portal_make_form">
+    <form name="deploy_portal" method="post" action="">
+      Portal Title:<br />
+      <input type="text" size="20" name="portal[title]" class="portal_make_text" id="portal_title"/>
+      <br /><br /> Destination url:<br/>
+      <input type="text" value="" size="20" name="portal[destination]" class="portal_make_text" id="portal_destination"/>
+      <br />Not Safe For Work? <input type="checkbox" name="portal[nsfw]" id="portal_nsfw" value="0">
+      <br /><br />
+      <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                          pmog_m.setAttribute('portal_title', ''+ document.deploy_portal.portal_title.value + '');
+                          pmog_m.setAttribute('portal_uri', ''+ document.deploy_portal.portal_destination.value + '');
+                          pmog_m.setAttribute('portal_nsfw', document.deploy_portal.portal_nsfw.checked);
+                          pmog_m.setAttribute('method', 'post');
+                          pmog_m.setAttribute('action', 'deploy_portal');
+                          pmog_m.setAttribute('server_url', '/locations/<%= @location.id %>/portals.json');
+                          pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                          pmog_m.setAttribute('extra_attributes', 'portal_title,portal_uri,portal_nsfw');
+                          pmog_m.dispatchEvent(pmog_e);return false;" class="portal_make_deploy">&nbsp;</a>
+    </form>
+  </div>
+</div>

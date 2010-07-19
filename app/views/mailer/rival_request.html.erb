@@ -1,0 +1,21 @@
+Hello <%= @buddy.email -%>!
+
+A fellow player on The Nethernet, <%= @user.login %> has declared you their rival!
+
+You can view their profile here:
+
+http://thenethernet.com/users/<%= @user.login %>
+
+They bite their thumb at you!  You may respond accordingly here:
+
+http://thenethernet.com/acquaintances/<%= @buddy.login %>
+
+Thank you kindly for playing,
+
+-The Nethernet Team
+
+
+
+Note: to unsubscribe from The Nethernet email notifications, please click the following link:
+
+http://thenethernet.com/unsubscribe?email=<%= @buddy.email %>

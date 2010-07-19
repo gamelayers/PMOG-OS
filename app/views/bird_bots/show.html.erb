@@ -1,0 +1,93 @@
+<h1><%=h @bird_bot.name.titleize %></h1>
+
+<% if @bird_bot.assets.size > 0 %>
+	<p><img src="<%= @bird_bot.assets[0].public_filename :medium %>" /></p>
+<% end %>
+
+<p>
+	<span id="subscriptions">
+		<p>
+			Subscribers:
+			<% @bird_bot.users.each do |u| %>
+				<%= link_to h(u.login), user_path(u) %>, 
+			<% end %>
+			<% if @bird_bot.users.blank? %>
+				<i>No subscribers yet...</i>
+			<% end %>
+		</p>
+		<% if logged_in? %>
+			<% if @bird_bot.users.include? current_user %>
+				<%= link_to_remote "Unsubscribe from this bird bot", :update => :subscriptions, :url => { :controller => "bird_bots", :action => :unsubscribe, :id => @bird_bot.id } %>
+			<% else %>
+				<%= link_to_remote "Subscribe to this bird bot", :update => :subscriptions, :url => { :controller => "bird_bots", :action => :subscribe, :id => @bird_bot.id } %>
+			<% end %>
+		<% else %>
+			<%= link_to "Login to subscribe to this bird bot", new_session_path %>
+		<% end %>
+	</span>
+</p>
+<p>Description: <%=h @bird_bot.description %></p>
+<p>First words: <%=h @bird_bot.first_words %></p>
+
+<%= render :partial => "tags/tags", :locals => { :taggable => @bird_bot, :type => "bird_bot" } %>
+
+<p>
+	Brainz:
+	<ul>
+		<% if @bird_bot.feed.blank? %>
+			<li>No brainz :(</li>
+		<% else %>
+			<li>
+				<%=h @bird_bot.feed.url %>
+				<%= link_to_remote "Edit", :update => "more_brainz", :url => edit_bird_bot_feed_path(@bird_bot, @bird_bot.feed), :method => :get %>
+				<%= link_to "Delete", bird_bot_feed_path(@bird_bot, @bird_bot.feed), :confirm => "Are you sure?", :method => :delete %>
+			</li>
+		<% end %>
+	</ul>
+</p>
+
+<p>
+	Locations:
+	<ul>
+	<% @bird_bot.locations.each do |l| %>
+		<li>
+			<%=h l.url %>
+			<%= link_to_remote "Edit", :update => "more_locations", :url => edit_bird_bot_location_path(@bird_bot, l), :method => :get %>
+			<%= link_to "Delete", bird_bot_location_path(@bird_bot, l), :confirm => "Are you sure?", :method => :delete %>
+		</li>
+	<% end %>
+	<% if @bird_bot.locations.blank? %>
+		<li>No locations :(</li>
+	<% end %>
+	</ul>
+</p>
+
+<p>
+	Messages:
+	<ul>
+		<% @bird_bot.latest_messages.each do |m| %>
+			<li>
+				<%=h link_to m.title, m.syndication_id %>
+				<br/>
+				<%=h m.body %>
+			</li>
+		<% end %>
+	</ul>
+</p>
+
+<% if logged_in? and current_user == @bird_bot.user %>
+	<p>
+		<% if @bird_bot.feed.nil? %>
+			<%= link_to_remote "Brainz", :update => "more_brainz", :url => new_bird_bot_feed_path(@bird_bot), :method => :get %>
+			|
+		<% end %>
+		<%= link_to_remote "Locations", :update => "more_locations", :url => new_bird_bot_location_path(@bird_bot), :method => :get %>
+		
+		<div id='spinner' style="display:none;">Loading...</div>
+		<div id='more_locations'></div>
+		<div id='more_brainz'></div>
+	</p>
+
+	<%= link_to 'Edit', edit_bird_bot_path(@bird_bot) %> |
+	<%= link_to 'Back', bird_bots_path %>
+<% end %>

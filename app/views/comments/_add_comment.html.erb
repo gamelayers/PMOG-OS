@@ -1,0 +1,22 @@
+<!-- 
+	01/18/2008 Marc Adams <marc@gamelayers.com
+	Displays and allows entry of comments for an acts_as_commentable implementor 
+-->
+
+	<!-- This is the form to allow comments to be added -->
+	<% form_for :commentable, commentable, 
+				   	   :url => comments_path() do |f| 
+	%>
+
+		<%= f.hidden_field :id %>
+		<%= f.hidden_field :class %>
+				
+		<div id="length_alert"></div>
+		<p>
+			<%= text_area 'comment', 'body', "rows" => 6, :class => "input" %>
+		</p>
+		<%= submit_tag 'Comment', :class => "input" %>
+		<p id='comment_spinner' style="display: none;">
+			Œ<img src='/images/shared/elements/indicator.gif' height='16' width='16' border='0' valign='middle' align='left' />
+		</p>
+	<% end %>

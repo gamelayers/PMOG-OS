@@ -1,0 +1,51 @@
+<table class="list noPage stripeMe contactsTable">
+<tbody>
+
+  <% if buddies.empty? %>
+      <tr>
+        <td class="avatar">
+    <div class="name">
+      <br />
+      <h4>None yet.</h4>
+    </div>
+    <% if @user == current_user %>
+      <div class="name">
+					<ul>
+          <li><a href="/users">Search</a> for Players</li>
+          <li><a href="/guide/rules/recruit">Recruit Additional Players</a></li>
+          <li><a href="/acquaintances/<%=current_user.login%>/#contactsFind">Find Your Contacts</a> from other networks</li>
+          </ul>
+      </div>
+    <% end %>
+    <br style="clear:both;" />
+		</td>
+		</tr>
+ <% else %>
+  
+    <% buddies.each do |buddy| %>
+      <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+        <td class="avatar">
+          <div class="avatarAction">
+            <%= avatar_link_to_user :user => buddy, :size => 'small', :alt => buddy, :title => buddy, :class => 'avatar48' %>
+            <div class="avatarPop">
+              <div class="avatarPopIn">
+                <div class="avatarOver">
+                  <a href="/users/<%= buddy.login %>"><img class="avatar48 poptip" src="<%= avatar_path_for_user(:user => buddy, :size => "small") %>" alt="<%= buddy.login %>" title="<%= buddy.login %>" width="48" height="48" /></a>
+                </div>
+                <%= render :partial => "/shared/avatar_actions", :locals => {:user => buddy, :filter => "none"} %>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="meta">
+          <p>
+            <strong><a href="/users/<%= buddy.login %>" class="poptip" title="<%= buddy.motto.nil? ? 'o hai' : buddy.motto %>"><%= buddy.login %></a></strong>
+            <br />
+            <%= buddy.user_level.primary_class.titleize %> - Level <%= buddy.current_level %>
+          </p>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</tbody>
+</table>

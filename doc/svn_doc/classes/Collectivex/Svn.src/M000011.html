@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>last_trunk (Collectivex::Svn)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File script/svn/svn.rb, line 163</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_trunk</span>
+      <span class="ruby-identifier">l</span> = <span class="ruby-value">`svn propget svn:trunk .`</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">l</span> = <span class="ruby-identifier">first_rev</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">l</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

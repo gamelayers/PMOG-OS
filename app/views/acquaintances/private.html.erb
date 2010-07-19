@@ -1,0 +1,25 @@
+  <div class="privacy">
+
+  <img src="/images/profile/private.png" width="300" height="353">
+	<h1><%= @user.login %> does not see fit to share their connections with you.</h1>
+	<p>We must have some boundaries, I shouldn't wonder."</p>
+
+  <p>
+
+  	<% if @user.prev %>
+
+    	<a href="/users/<%= @user.prev.login -%>"><img src="/images/profile/previous_user_arrow.png" class="img_no_border" /></a> 
+
+  	<% end %>
+
+  	<strong>&nbsp; Browse Users &nbsp;</strong>
+
+  	<% if @user.next %>
+
+  		<a href="/users/<%= @user.next.login %>"><img src="/images/profile/next_user_arrow.png" class="img_no_border" /></a>
+
+  	<% end %>
+
+  </p>
+
+  </div>

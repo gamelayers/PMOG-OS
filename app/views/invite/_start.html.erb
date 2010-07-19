@@ -1,0 +1,15 @@
+<h1>
+  Inviting your friends from <%=@title%>
+</h1>
+<p>
+  <%=@title%> now uses a Delegated Authentication policy to share information regarding your account. The Nethernet will not save any information that <%=@title%> sends us, and will never see a copy of your <%=@title%> password.
+</p>
+<p>
+  Click the link below to log in and share your contacts list with us.
+</p>
+<p>
+  &nbsp;
+</p>
+<p>
+  <a href="<%= @request_url %>">Authenticate with <%= @title %></a> | <%= link_to_remote("Back", :url => { :controller => "invite", :action => "landing_view" }  ) %>
+</p>

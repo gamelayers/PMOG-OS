@@ -1,0 +1,78 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'prototip' %>
+<%= javascript_include_tag 'prototip' %>
+<% end %>
+
+<script type="text/javascript" language="javascript">
+//<![CDATA[
+document.observe('dom:loaded', function(){
+  $$('a[name]').each(function(element){
+    new Tip(element, element.name, { showOn: 'mouseover' });
+  });
+});
+//]]
+</script>
+<p align='right'>
+  <%= will_paginate @portals %>
+  <%= submit_tag 'Delete Checked', :confirm => 'Are you sure you want to delete all the checked items?' %>
+</p>
+
+<p class='user_table_list'>  
+  <table border='1' cellpadding='5'>
+    <tr>
+      <td bgcolor="white">User</td>
+      <%= '<td bgcolor="white">See all by</td>' if @searcheduser.nil? -%>
+      <td bgcolor="white">Hint</td>
+      <td bgcolor="white">Url</td>
+      <td bgcolor="white">Destination</td>
+      <td bgcolor="white">Rating</td>
+      <td bgcolor="white"><img src="/images/missions/flag_red.png" alt="NSFW" title="NSFW" width="16" height="16" border="0" />?</td>
+      <td bgcolor="white">Charges</td>
+      <td bgcolor="white" nowrap><img src="/images/shared/icons/abundant_portal-16.png" alt="Abundant" title="Abundant" border="0" width="16" height="16" />?</td>
+      <td bgcolor="white">Created</td>
+      <td bgcolor="white">&nbsp;</td>
+      <td bgcolor="white"><%= check_box_tag 'checkall', 1, false, :onclick => 'checkedAll();' %> </td>
+    </tr>
+    <% @portals.each do |portal| %>
+    <tr>
+      <td bgcolor="white"><%= avatar_link_to_user :user => portal.user, :size => 'small' %></td>
+      <% if @searcheduser.nil? %>
+      <td bgcolor="white"><div  style='font-size: 9pt;'><%= link_to portal.user.login, :action => 'search', :q => portal.user.login, :criteria => 'user' %></div></td>
+      <% end -%>
+      <td bgcolor="white"><span style='font-size: 9pt;'><%= portal.title.to_s %></span></td>
+      <td bgcolor="white" NOWRAP><a href='<%= portal.location.url %>' target='_new'  style='font-size: 9pt;' name="<%= portal.location.url %>"><%= truncate(portal.location.url,30,'...') %></a></td>
+      <td bgcolor="white" NOWRAP><a href='<%= portal.destination.url %>' target='_new' style='font-size: 9pt;' name="<%= portal.destination.url %>"><%= truncate(portal.destination.url,30, '...') %></a></font></td>
+      <td bgcolor="white" NOWRAP>
+        <% portal.average_rating.times do %>
+        <img src="<%= host %>/images/ext/star_on.png" height="10" width="10" alt="gold star" />
+        <% end %>
+        <% (5 - portal.average_rating).times do %>
+        <img src="<%= host %>/images/ext/star_off.png" height="10" width="10" alt="empty star" />
+        <% end %>
+      </td>
+      <% if portal.nsfw? %>
+	      <td bgcolor="white"><img src="/images/missions/flag_red.png" alt="NSFW" title="NSFW" width="16" height="16" border="0" /></td>
+	    <% else %>
+	    	<td bgcolor="white"> </td>
+	   	<% end %>
+      <td bgcolor="white"><%= portal.charges %></td>
+      <% if portal.abundant %>
+      	<td bgcolor="white"><div  style='font-size: 9pt;'><img src="/images/shared/icons/abundant_portal-16.png" alt="Abundant" title="Abundant" border="0" width="16" height="16" /></font></td>
+      <% else %>
+      	<td bgcolor="white"> </td>
+      <% end %>
+      <td bgcolor="white"><div  style='font-size: 9pt;'><%= portal.created_at %></div></td>
+      <td bgcolor="white"><div  style='font-size: 7pt;'><%= link_to '<img src="/images/shared/icons/close_window-16.png" alt="Destroy" title="Destroy" width="16" height="16" class="icon16" />', portal_path(portal), :confirm => 'Are you sure?', :method => :delete %></div></td>
+      <td bgcolor="white"><%= check_box_tag 'delete_these[]', portal.id %> </td>
+    </tr>
+    <% end %>
+  </table>
+</p>
+
+<br/>
+
+<p align='right'>
+  <%= will_paginate @portals %>
+</p>
+
+<br/>

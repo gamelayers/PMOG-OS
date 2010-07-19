@@ -1,0 +1,127 @@
+<% content_for :head do %>
+<%= auto_discovery_link_tag(:rss, formatted_missions_url(:format => "rss"), { :title => "Latest missions on PMOG" }) %>
+
+<%= stylesheet_link_tag '/css/supplemental-missions' %>
+<%= stylesheet_link_tag "/css/ui.tabs.css", "/css/jquery.rating.css" %>
+
+<%= javascript_include_tag 'jquery.tooltip' %>
+<%= javascript_include_tag 'jquery.event.hover-1.0' %>
+
+<script type="text/javascript">
+jQuery(function(){
+	jQuery(".tip").tooltip({track:false,delay:0,showURL:false,showBody:" - ",fixPNG:true,opacity:0.95,left:-100,fade:"toggle",duration:200});
+
+	//DO mission table fx
+	jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});
+	jQuery("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+	jQuery("ol.stripeMe li:even").addClass("whiteEven");
+	jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});
+});
+</script>
+
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+	<div class="main" id="missions_lists_header">
+		<%= render :partial => 'index_header' %>
+	</div>
+</div>
+<% end %>
+
+<% content_for :search do %>
+	<%= render :partial => 'missions/search_form' %>
+	<% end %>
+
+	<div id="copy">
+
+		<div class="column width960">
+
+			<div class="column width700">
+
+				<div class="missions_top_menu">
+
+					<div class="missions_top_menu_wrapper">
+
+						<div class="missions_top_menu_item"><%= link_to_remote "Latest", :url => { :controller => 'missions', :action => 'latest' }, :html => { :onclick => "jQuery('#missions_sub_menu').hide();jQuery('#missions_yours').hide();jQuery('#missions_associations').hide();" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="column width20">
+						</div>
+
+						<div class="missions_top_menu_item"><%= link_to_remote "Top-Rated", :url => { :controller => 'missions', :action => 'highest_rated' }, :html => { :onclick => "jQuery('#missions_sub_menu').hide();jQuery('#missions_yours').hide();    jQuery('table.stripeMe tr:nth-child(odd)').addClass('whiteEven');" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="column width20">
+						</div>
+
+						<div class="missions_top_menu_item">
+							<% if logged_in? %>
+							<%= link_to_remote "Yours", :url => { :controller => 'missions', :action => 'user_missions' }, :html => { :onclick => "jQuery('#missions_sub_menu').show();jQuery('#missions_yours').show();return false;"}, :loading => "jQuery('#loading').show();", :complete => "jQuery('#loading').hide();" %>
+							<% else %>
+							<% end %>
+						</div>
+
+						<div class="column width20">
+						</div>
+
+						<div class="missions_top_menu_item"> <%= link_to_remote "Nethernet", :url => { :controller => 'missions', :action => 'pmog_missions' }, :html => { :onclick => "jQuery('#missions_sub_menu').hide();jQuery('#missions_yours').hide();" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+					</div>
+
+				</div>
+
+				<div class="missions_sub_menu" id="missions_sub_menu" style="display:none;">
+
+					<div id="missions_yours" style="display:none;" class="missions_yours">
+
+						<div class="missions_sub_menu_item"><%= link_to_remote "Taken", :url => { :controller => 'missions', :action => 'user_missions', :id => "taken" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="missions_sub_menu_item"><%= link_to_remote "Made", :url => { :controller => 'missions', :action => 'user_missions', :id => "generated" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="missions_sub_menu_item"><%= link_to_remote "Drafts", :url => { :controller => 'missions', :action => 'user_missions', :id => "drafts" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="missions_sub_menu_item"><%= link_to_remote "Queued", :url => { :controller => 'missions', :action => 'user_missions', :id => "queued" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="missions_sub_menu_item"><%= link_to_remote "Favorites", :url => { :controller => 'missions', :action => 'user_missions', :id => "favorites" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+						<div class="missions_sub_menu_item"><%= link_to_remote "Contacts", :url => { :controller => 'missions', :action => 'user_missions', :id => "acquaintances" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+					</div>
+
+				</div>
+
+				<!--			  <div id="loading" style="display:none;"><center><img src="/images/ajax-loader.gif" class="no_img_border" /></center></div>-->
+
+				<div id="missions_lists" class="missions_lists">
+					<%= render :partial => 'association_list' %>
+				</div>
+
+			</div>
+
+			<div class="column width240">
+				<div class="height20"></div>				
+
+				<div class="module width240">
+					<div class="imageTop">
+
+						<div class="ImageTop" style="background-image:url(/images/shared/dressing/missions-100.png); width:100px;height:141px; margin: 10px 0 -10px;" title="Missions Globe"></div></div>
+
+						<h2 style="position: absolute;">All About Missions!</h2>
+						<p style="margin: 10px 0 -5px 0;"><br/>
+							<a href="/guide/rules/starting_pathmaker">A "How To"</a><br/>
+							<a href="/guide/rules/missions">About Missions</a><br/>
+							<a href='/missions/top'>Good Missions</a><br/>
+							<a href="/guide/support">Support</a></p>
+							<form method="link" action="/missions/new"><input type="submit" value="Make Your Own Mission!" name="make_a_mission"/></form>
+
+						</div>
+
+						<div class="imageTop">
+							<div class="ImageTop" style="background-image:url(/images/shared/dressing/pathmakershoat-240.png); width:240px;height:575px;" title="Teach A Shoat to Make a Mission"></div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+

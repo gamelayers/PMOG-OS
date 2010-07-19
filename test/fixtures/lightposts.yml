@@ -1,0 +1,19 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: lightposts
+#
+#  id          :string(36)    primary key
+#  user_id     :string(36)    
+#  created_at  :datetime      
+#  updated_at  :datetime      
+#  location_id :string(36)    
+#  description :text          
+#
+
+one:
+  location_id: 09eb0024-f437-11dc-b7f8-0016cb88feaa
+  id: 1f45fd54-6965-11dd-9c0b-0016cb88feaa
+  description: "suttree's lightpost on yeah.com"
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+    

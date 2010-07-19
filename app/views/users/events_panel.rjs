@@ -1,0 +1,1 @@
+page.replace_html "events_#{@panel}", { :partial => "/users/show_events_list", :locals => {:panel => @panel, :events => @events}}

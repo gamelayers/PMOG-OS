@@ -1,0 +1,8 @@
+<% @mission.branches.each do |lightpost| %>
+	<p><a href="http://del.icio.us/post" onclick="window.open('http://del.icio.us/post?v=4&noui&jump=close&url=<%= lightpost.location.url %>&title=<%= lightpost.location.url %>,+found+on+a+PMOG+Mission+(<%= @mission.name %>)', 'delicious','toolbar=no,width=700,height=400'); return false;" title='Add to del.icio.us' alt='Add to del.icio.us'><img src="/images/layouts/icon_delicious.png" height="16" width="16" class="img_no_border"></a>
+	<a href='<%= lightpost.location.url %>'><%= truncate(lightpost.location.url, 35) %></a>
+  <% if logged_in? and @mission.users.include? current_user %>
+    <br/>
+    <%=h lightpost.description %></p>
+  <% end %>
+<% end %>

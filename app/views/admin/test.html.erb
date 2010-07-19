@@ -1,0 +1,85 @@
+<h1>Test</h1>
+
+<p>
+  <b>PMOG Visits</b>
+  <%= session[:pmog_visits] %>
+</p>
+
+<p>
+	<b>request.env[ 'HTTP_HOST' ]</b>
+	<%= request.env[ 'HTTP_HOST' ] %>
+</p>
+
+<p>
+  <b>request.env</b>
+  <pre>
+    Disabled. <%#= request.env.inspect %>
+  </pre>
+</p>
+  
+<p>
+	<h2 class="caps">CSRF Token Tag</h2>
+	<small>
+		(enable protect_from_forgery in application.rb to test this)
+	</small>
+	<%= token_tag %>
+	<br/>
+	name: <%= request_forgery_protection_token.inspect %>
+	<br/>
+	value: <%= form_authenticity_token %>
+</p>
+
+<p>
+	<h2 class="caps">Tracked Query String</h2>
+	<%#= Url.extract_and_normalise_from_env(request.env[ 'QUERY_STRING' ]) %>
+</p>
+
+<p>
+	<h2 class="caps">Session</h2>
+	<%#= session[:mission_id].inspect %>
+	Disabled
+	<br/>
+	--
+</p>
+
+<p>
+	<h2 class="caps">Last seen</h2>
+	<%= @last_seen %>
+</p>
+
+<p>
+	<h2 class="caps">Host</h2>
+	<%= request.env[ 'HTTP_HOST' ] %>
+</p>
+
+<p>
+	<h2 class="caps">Misc</h2>
+	<%= current_user.assets[0].public_filename( 'tiny' ) rescue nil %>
+</p>
+
+<p>
+	<h2 class="caps">Request</h2>
+	<%= request.env[ 'REQUEST_PATH' ] %>
+</p>
+
+<p>
+	<h2 class="caps">Query String</h2>
+	<%= request.env[ 'QUERY_STRING' ] %>
+</p>
+
+<p>
+	<h2 class="caps">HTTP_IF_MODIFIED_SINCE</h2>
+	<%= request.env[ 'HTTP_IF_MODIFIED_SINCE' ] %>
+	<br/>
+	<small><i>Why doesn't Safari send this? It's not a huge problem, as we only need Firefox to support this and it does.</i></small>
+</p>
+
+<p>
+	<h2 class="caps">Request</h2>
+	<%= request.inspect %>
+</p>
+
+<p>
+	<h2 class="caps">Session</h2>
+	<%= session.inspect %>
+</p>

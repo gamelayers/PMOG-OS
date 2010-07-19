@@ -1,0 +1,39 @@
+= Acts As Dismissible
+
+Allows you to create messages in the user interface, which the users can dismiss once read.
+The plugin stores the reference to the dismissed message in a cookie.
+
+= Usage Examples
+
+  # Add a dismissible message to the view:
+
+<% dismissible_message('site_welcome') do -%>
+<p> Hello and welcome to our site. I hope you enjoy your stay. Feel free to look around.</p>
+<% end -%>
+
+  # Produces:
+  <div class="dismissible_message" id="hide_dismissible_site_welcome">
+    <p> Hello and welcome to our site. I hope you enjoy your stay. Feel free to look around.</p>
+    <p>
+      <a class="dismissible_link" href="#" onclick="document.cookie = 'hide_dismissible_site_welcome = 1; expires= Sun, Jan 17 2038 11:14:06 UTC; path=/';document.getElementById('hide_dismissible_site_welcome').style.display = 'none'; return false;">Don't show this again.</a>
+    </p>
+  </div>
+  
+  # Add A custom message
+  <% dismissible_message('site_welcome', { :message => "Do not show this again" }) do -%>
+  <p> Hello and welcome to our site. I hope you enjoy your stay. Feel free to look around.</p>
+  <% end -%>
+  
+  # Only display this message if a previous dismissible message was dismissed.
+  <% dismissible_message('cookie_two', { :message => "Do not show this again", :follows => "cookie_one" }) do -%>
+  <p>Why did you dismiss the last message?</p>
+  <% end -%>
+  
+= Authors
+
+  # Mark Daggett
+
+= Extra Credit
+
+The cookie implementation for this plugin is based off ideas from Court3 and DanP.
+Rick Olson also helped clean up some of this code to make it more succinct. 

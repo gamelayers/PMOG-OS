@@ -1,0 +1,55 @@
+<div id="navAUser" class="">
+  <ul class="font12px">
+  <!-- <li><a href="#" onclick="jQuery('#queries').toggle('slow');"><img src="/images/shared/icons/tags.png" alt="Queries" title="Queries" width="16" height="16" border="0" /></a></li> -->
+  <li><a href="/logged_exceptions"><img src="/images/ext/sound_off.png" alt="Logged Exceptions" title="Logged Exceptions" width="16" height="16" border="0" /></a></li>
+  <li><a href="/suttree"><img src="/images/shared/icons/bacon-16.png" alt="Suttree Overview" title="Suttree Overview" width="16" height="16" border="0" /></a></li>
+  <li class="sep">[</li>
+  <% if request.env[ 'HTTP_HOST' ] == "dev.thenethernet.com" %>
+    <li><a href="http://localhost:3000<%= request.env[ 'REQUEST_PATH' ] %>">local</a></li>
+    <li class="sep">|</li>
+    <li><b>DEV</b></li>
+    <li class="sep">|</li>
+    <li><a href="http://thenethernet.com<%= request.env[ 'REQUEST_PATH' ] %>">www</a></li>
+  <% elsif request.env[ 'HTTP_HOST' ] == "thenethernet.com" %>
+    <li><a href="http://0.0.0.0:3000<%= request.env[ 'REQUEST_PATH' ] %>">local</a></li>
+    <li class="sep">|</li>
+    <li><a href="http://dev.thenethernet.com<%= request.env[ 'REQUEST_PATH' ] %>">dev</a></li>
+    <li class="sep">|</li>
+    <li><b>WWW</b></li>
+  <% else %>
+    <li><b>LOCAL</b></li>
+    <li class="sep">|</li>
+    <li><a href="http://dev.thenethernet.com<%= request.env[ 'REQUEST_PATH' ] %>">dev</a></li>
+    <li class="sep">|</li>
+    <li><a href="http://thenethernet.com<%= request.env[ 'REQUEST_PATH' ] %>">www</a></li>
+  <% end %>
+  <li class="sep">]</li>
+
+  <li><a href="/admin/stats"><img src="/images/shared/icons/globe.png" alt="Stats" title="Stats" width="16" height="16" border="0" class="img_no_border" /></a></li>
+  <li><a href="/forums/stewards"><img src="/images/icons/roles/steward-16.png" alt="Stewards" title="Stewards" width="16" height="16" border="0" /></a></li>
+  <li class="sep">|</li>
+
+  <li><a href='/admin'><img src="/images/icons/roles/trustee-16.png" alt="Admin Overview" title="Admin Overview" width="16" height="16" border="0" /></a></li>
+  <li><a href="/game_settings"><img src="/images/shared/icons/gameplay-16.png" alt="game settings" title="Game Settings" width="16" height="16" border="0" /></a></li>
+  <li class="sep">|</li>
+  <li><a href="/pmog_classes"><img src="/images/shared/icons/associations-16.png" alt="Classes" title="Classes" width="16" height="16" border="0" /></a></li>
+  <li><a href="/tools"><img src="/images/shared/icons/bukkit-16.png" alt="Tools" title="Tools" width="16" height="16" border="0" /></a></li>
+  <li><a href="/upgrades"><img src="/images/shared/icons/exploding_crate-16.png" alt="Upgrades" title="Upgrades" width="16" height="16" border="0" /></a></li>
+  <li><a href="/abilities"><img src="/images/shared/icons/dodge-16.png" alt="Abilities" title="Abilities" width="16" height="16" border="0" /></a></li>
+  <li><a href="/admin/pings"><img src="/images/shared/icons/ping-16.png" alt="Pings" title="Pings" width="16" height="16" border="0" /></a></li>
+  <li class="sep">|</li>
+  <li><a href="/portals"><img src="/images/shared/icons/portal-16.png" alt="Portals" title="Portals" width="16" height="16" border="0" /></a></li>
+  <li><a href="/mines"><img src="/images/shared/icons/mine-16.png" alt="Mines" title="Mines" width="16" height="16" border="0" /></a></li>
+  <li><a href="/crates"><img src="/images/shared/icons/crate-16.png" alt="Crates" title="Crates" width="16" height="16" border="0" /></a></li>
+  <li><a href="/watchdogs"><img src="/images/shared/icons/watchdog-16.png" alt="Crates" title="Crates" width="16" height="16" border="0" /></a></li>
+  <li><a href="/giftcards"><img src="/images/shared/icons/dp_card-16.png" alt="DP Cards" title="DP Cards" width="16" height="16" border="0" /></a></li>
+
+  <li class="sep">|</li>
+  <li><a href="http://news.thenethernet.com"><img src="/images/shared/icons/news-16.png" alt="News" title="News" width="16" height="16" border="0" /></a> <a href="http://news.thenethernet.com/wp-admin"><img src="/images/shared/icons/login-16.png" alt="Edit News" title="Edit News" width="16" height="16" border="0" /></a></li>
+  <li class="sep">|</li>
+  <li><a href="/admin/change_user_password"><img src="/images/shared/icons/pause-20.png" alt="password change" title="Password Change" width="17" height="12" border="0" /></a></li>
+  <li><a href="/suspects"><img src="/images/shared/icons/skull.png" alt="Suspects" title="Suspects" width="16" height="16" border="0" class="img_no_border" /></a></li>
+  <li class="sep">|</li>
+  <li><a href="#" onclick="jQuery('#navAUser').toggle('slow');return false;"><img src="/images/shared/icons/close_window-16.png" alt="Close" title="Close Admin Bar" width="16" height="16" border="0" /></a></li>
+  </ul>
+</div>

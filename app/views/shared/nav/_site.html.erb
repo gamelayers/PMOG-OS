@@ -1,0 +1,113 @@
+      <div id="navSite">
+
+    <ul class="sf-menu">
+<% if logged_in? %>
+      <li>
+        <a href="/users/<%= current_user.login %>">You</a>
+        <ul class="submenu">
+	        <li class="sep"><a href="/users/<%= current_user.login %>"><strong>Your Profile</strong></a></li>
+					<li><a href="/users/<%= current_user.login %>/edit">Edit Your Settings</a></li>
+	        <li class="sep"><a href="/users/<%= current_user.login %>/messages"><strong>PMail</strong></a></li>
+	        <li><a href="/users/<%= current_user.login %>/messages/system">Notices</a></li>
+          <li class="sep"><a href="/missions"><strong>Missions</strong></a></li>
+
+          <li><a href="/missions/user_missions/queued">Queued</a></li>
+          <li><a href="/users/<%= current_user.login %>/missions/favorites">Favorites</a></li>
+          <li><a href="/users/<%= current_user.login %>/missions/generated">Generated</a></li>
+          <li class="sep"><a href="/acquaintances/<%= current_user.login %>"><strong>Contacts</strong></a></li>
+          <li><a href="/acquaintances/<%= current_user.login %>#contactsAllies">Allies</a></li>
+          <li><a href="/acquaintances/<%= current_user.login %>#contactsRivals">Rivals</a></li>
+          <li><a href="/acquaintances/<%= current_user.login %>/#contactsInvite">Invite</a></li>
+          <li class="sep"><a href="/users">Search Players</a></li>
+         
+       <li class="btm"><!-- --></li>
+        </ul>
+      </li>
+<% end %>
+
+      <li>
+        <a href="/events">Explore</a>
+        <ul class="submenu">
+          <li><a href="/events">Events</a></li>
+          <li><a href="/shoppe">Shoppe</a></li>
+          <li><a href="/awsm-attack">Awsm-Attack</a></li>
+          <li><a href="/guide/rules/levels">Levels</a></li>
+          <li><a href="/leaderboard">Leaderboards</a></li>
+
+          <li class="sep"><strong><a href="http://news.thenethernet.com">Community</a></strong></li>
+          <li><a href="http://news.thenethernet.com/category/features/now">NoW</a></li>
+          <li><a href="http://news.thenethernet.com/category/features">Weekly Features</a></li>
+          <li><a href="http://news.thenethernet.com/category/special-happenings">Special Happenings</a></li>
+
+          <li class="btm"><!-- --></li>
+        </ul>
+      </li>
+
+			<li>
+				<a href="/posts/latest">Forums</a>
+        <ul class="submenu">
+	        <li class="sep"><a href="/forums"><strong>Forums Home</strong></a></li>
+        	<li><a href="/forums/the-nethernet-news">TNN News</a></li>
+        	<li><a href="/forums/social-tools">Community Tools</a></li>
+        	<li><a href="/forums/shoat-sanctuary">Shoat Sanctuary</a></li>
+        	<li><a href="/forums/help-support-bug-reports">Help & Support</a></li>
+        	<li><a href="/forums/gameplay">Gameplay</a></li>
+        	<li><a href="/forums/straturgy">Straturgy</a></li>
+        	<li><a href="/forums/trading">Trading</a></li>
+        	<li><a href="/forums/forum-games">Forum Games</a></li>
+	        <li><a href="/posts/latest"><strong>Latest Posts</strong></a></li>
+        	<li class="btm"><!-- --></li>
+      	</ul>
+      </li>
+
+      <li>
+        <a href="/missions">Missions</a>
+        <ul class="submenu">
+<% if logged_in? %>
+          <li class="sep"><a href="/missions/user_missions/queued">Queued</a></li>
+
+          <li><a href="/users/<%= current_user.login %>/missions/favorites">Favorites</a></li>
+          <li><a href="/users/<%= current_user.login %>/missions/generated">Generated</a></li>
+<% end %>
+          <li class="sep"><strong><a href="/missions">ALL</a></strong></li>
+          <li><a href="/missions">New</a></li>
+          <li><a href="/missions/top">Top-Rated</a></li>
+
+<% if logged_in? %>
+          <li class="sep"><strong><a href="/missions/new">Create</a></strong></li>
+<% end %>
+          <li class="btm"><!-- --></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/guide">Guide</a>
+        <ul class="submenu">
+          <li class="sep"><a href="/guide">How to Play</a></li>
+          <li><a href="/guide/arsenal">Arsenal</a></li>
+          <li><a href="/guide/rules">Rules</a></li>
+          <li><a href="/guide/rules/levels">Levels</a></li>
+          <li><a href="/guide/support/install">Toolbar Help</a></li>
+<% if !logged_in? %>
+          <li><a href="/guide/support/login">Login Help</a></li>
+<% end %>
+
+          <li class="sep"><strong><a href="/guide/support">Help & Support</a></strong></li>
+          <li><a href="/about/contact">Get Help</a></li>
+<% if logged_in? %>
+          <li><a href="/about/contact">Report Abuse</a></li>
+          <li><a href="/about/contact">Give Feedback</a></li>
+          <li><a href="/about/contact">Document a Bug</a></li>
+          <li><a href="http://news.thenethernet.com/category/maintenance/" target="_blank">Maintenance</a></li>
+<% else %>
+          <li><a href="/about/contact">Recover Account</a></li>
+          <li><a href="/about/contact">Reset Password</a></li>
+<% end %>
+          <li class="btm"><!-- --></li>
+        </ul>
+      </li>
+    </ul>
+
+    <a href="/events"><img src="/images/shared/clear.png" alt="events" width="40" height="40" border="0" /></a>
+    
+    </div>
+    

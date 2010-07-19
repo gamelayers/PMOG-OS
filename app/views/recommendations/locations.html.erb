@@ -1,0 +1,24 @@
+<h1>Recommendations</h1>
+<h5>Where PMOG thinks you should go next!</h5>
+
+<br/>
+<br/>
+
+<table>
+  <tr>
+    <th>Score</th>
+    <th>Url</th>
+  </tr>
+  <% @locations.each do |l| %>
+    <tr>
+      <td>
+        <%= l[0].to_i %>
+      </td>
+      <td>
+        <% url = Location.caches(:find, :with => l[1]).url %>
+        <img src='http://www.google.com/s2/favicons?domain=<%= Url.domain(url) %>' height='16' width='16' />
+        <a href='<%= url %>' target='_new'><%= url %></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

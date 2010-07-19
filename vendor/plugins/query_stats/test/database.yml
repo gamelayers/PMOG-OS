@@ -1,0 +1,9 @@
+sqlite3:
+  adapter: sqlite3
+  dbfile: ":memory:"
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: root
+  :password:
+  :database: plugin_test

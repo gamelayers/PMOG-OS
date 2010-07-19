@@ -1,0 +1,25 @@
+<div class="pmog_action">
+  <div class="pmog_action_link"><a href="<%= host %>">PMOG</a></div>
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+  <img src="<%= host %>/images/ext/mine.png" width="15" height="13" class="pmog_action_margin">
+  <div class="pmog_action_text">
+    <% if @minefield %>
+      <div style="font-size:13px;text-align:center;">you've deployed a test mine! hurrah!
+      <br/>
+      <a href='/learn/mines'>Now trip this mine to see what happens!</a></div>
+    <% elsif @deployed_mine %>
+      mine laid! how uncouth!
+    <% elsif @protected_by_pmog %>
+      ha - we don't think so!
+    <% elsif @too_many_mines %>
+      that's enough mines, thank you!
+    <% elsif @st_nick %>
+      <%= @st_nick.attachee.login %> foiled your attempt to deploy a mine here with a St Nick!
+    <% elsif @out_of_mines %>
+      you need to purchase more mines!
+    <% else %>
+      failed to deploy mine :(
+    <% end %>
+  </div>
+</div>
+<br style="clear:both;" />

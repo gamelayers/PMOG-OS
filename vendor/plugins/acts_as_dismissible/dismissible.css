@@ -1,0 +1,38 @@
+/***************************************************
+ * Acts As Dismissible Styles
+ ***************************************************/
+.dismissible_message {
+	width:100%;
+  border-right: 1px solid #BCA902;
+  border-bottom: 1px solid #BCA902;
+  border-top: 1px solid #EAE69D;
+  border-left: 1px solid #EAE69D;
+  background-color: #FEF49C;
+  color: #000;
+  margin: auto;
+  margin-top: 1.0em;
+  margin-bottom: 1.0em;
+  width: 50em;
+  padding: 0.5em;
+}
+
+.dismissible_message p{
+  margin: 0;
+  padding: 0.1em;
+}
+
+.dismissible_link {
+  margin: 0.5em 0 0 0 !important;
+  padding:0 !important;
+  font-weight: normal;
+  font-size: 0.9em;
+  clear: both;
+  display: block;
+  text-align: right;
+  text-decoration: underline !important;
+  border: none !important;
+}
+
+.dismissible_link:hover {
+  color: #BCA902;
+}

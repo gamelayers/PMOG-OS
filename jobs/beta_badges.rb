@@ -1,0 +1,1 @@
+Badge.award 'beta_user'

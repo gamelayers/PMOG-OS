@@ -1,0 +1,34 @@
+
+Now we have a Firefox extension anyone can download.  The GUID is pmog@gamelayers.com.  Here's the .xpi:
+
+http://pmog.com/firefox/pmog.xpi
+
+There's a longer help page for semi-guided install as well:
+
+http://pmog.com/help/install_firefox
+
+= Posting Patches =
+
+To push an upgrade to our users, we need to:
+
+0. in /trunk/public/firefox move pmog.xpi to be pmog-version.xpi for archiving
+1. edit /trunk/config/xpi.yml with the new version number
+2. from /trunk run rake pmog:xpi:hud
+3. from /trunk run rake pmog:xpi:stage
+4. edit /trunk/app/views/about/versions.html.erb to reflect the update
+5. cap production deploy
+6. post xpi to addons.mozilla
+7. write about something new and wonderful that we released on news.pmog.com
+
+PLEASE NOTE:
+
+There exists a second update.rdf, at /trunk/public/update.rdf.  This file is in stasis for PMOG players of mid-2007, still using pmog@bud.com.  The moment we want to activate these players, we can increment that <em:version> with new URLs and they will receive a notice.
+
+So:
+
+/trunk/public/update.rdf - testers with pmog@bud.com
+/trunk/public/firefox/update.rdf - testers with pmog@gamelayers.com
+
+edit /trunk/public/firefox/update.rdf to incrementally share improvements with our current testers!
+
+Cheers - justin@bud.com

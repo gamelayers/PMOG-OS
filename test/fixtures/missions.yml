@@ -1,0 +1,113 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: missions
+#
+#  id              :string(36)    default(""), not null, primary key
+#  name            :string(255)   
+#  url_name        :string(255)   
+#  description     :text          not null
+#  branches_count  :integer(11)   default(0)
+#  created_at      :datetime      
+#  updated_at      :datetime      
+#  user_id         :string(36)    
+#  association     :string(255)   
+#  average_rating  :integer(11)   default(0)
+#  nsfw            :boolean(1)    
+#  pmog_mission    :boolean(1)    
+#  is_active       :boolean(1)    
+#  total_ratings   :integer(11)   default(0)
+#  minimum_level   :integer(11)   default(1)
+#  cached_tag_list :string(255)   
+#
+
+--- 
+mission_f6a8d738-eaf5-11dc-a561-001b63928f8d: 
+  nsfw: false
+  name: ewfwef
+  updated_at: 2008-03-05 20:51:44 Z
+  association: 
+  branches_count: 0
+  id: f6a8d738-eaf5-11dc-a561-001b63928f8d
+  pmog_mission: false
+  description: wefewf
+  user_id: 6286120e-e952-11dc-8dba-001b63928f8d
+  url_name: ewfwef
+  average_rating: 0
+  minimum_level: 1
+  created_at: 2008-03-05 20:51:44 Z
+mission_8302ddf0-eaf6-11dc-a561-001b63928f8d: 
+  nsfw: false
+  name: wercw
+  updated_at: 2008-03-05 20:55:39 Z
+  association: 
+  branches_count: 0
+  id: 8302ddf0-eaf6-11dc-a561-001b63928f8d
+  pmog_mission: false
+  description: sdf
+  user_id: 6286120e-e952-11dc-8dba-001b63928f8d
+  url_name: wercw
+  average_rating: 0
+  minimum_level: 1
+  created_at: 2008-03-05 20:55:39 Z
+  is_active: 1
+pmog_only_mission: 
+  is_active: 1
+  nsfw: false
+  name: Pmog Only Mission
+  updated_at: 2008-03-05 20:55:39 Z
+  association: 
+  branches_count: 0
+  id: 8302ddf0-eaf6-11dc-a561-001b63928f8f
+  pmog_mission: true
+  description: sdf
+  user_id: 6286120e-e952-11dc-8dba-001b63928f8d
+  url_name: wercw
+  average_rating: 0
+  minimum_level: 1
+  created_at: 2008-03-05 20:55:39 Z
+mission_with_long_text:
+  is_active: 1
+  nsfw: false
+  name: Mission with Long Text
+  association: 
+  branches_count: 0
+  is_active: true
+  id: 4ec19502-f9df-11dc-a940-0016cb88feaa
+  pmog_mission: false
+  description: "Sed ut perspiciatis"
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  url_name: mission_with_long_text
+  average_rating: 5
+  minimum_level: 1
+a_pmogeon_preview:
+  id: <%= UUID.timestamp_create().to_s %>
+  is_active: 1
+  pmog_mission: true
+  name: A Pmogean Preview
+  description: A Pmogean Preview
+  association: Shoat
+  url_name: a_pmogeon_preview
+  user_id: 6286120e-e952-11dc-8dba-001b63928f8d
+  average_rating: 5
+  minimum_level: 1
+  total_ratings: 12
+  nsfw: false  
+  updated_at: 2008-03-05 20:51:44 Z
+  branches_count: 0
+  created_at: 2008-03-05 20:51:44 Z
+how_to_get_help_on_pmog_fast:
+  id: <%= UUID.timestamp_create().to_s %>
+  is_active: 1
+  pmog_mission: true
+  name: How To Get Help On PMOG Fast
+  description: How To Get Help On PMOG Fast
+  association: Shoat
+  url_name: how_to_get_help_on_pmog_fast
+  user_id: 6286120e-e952-11dc-8dba-001b63928f8d
+  average_rating: 5
+  minimum_level: 1
+  nsfw: false  
+  updated_at: 2008-03-05 20:51:44 Z
+  branches_count: 0
+  created_at: 2008-03-05 20:51:44 Z

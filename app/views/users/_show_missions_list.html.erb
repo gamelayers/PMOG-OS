@@ -1,0 +1,58 @@
+<table class="list<%= panel=='created' ? ' noPage ' : ' ' %>stripeMe blueMe missions" id="missions_<%=panel%>_table">
+  <tbody>
+    <% if missions.nil? or missions.empty? %>
+      <br />
+      <h3 align="center">Nothing to see here, yet.</h3>
+    <% else %>
+      <% missions.each do |mission| %>
+        <% next unless mission.respond_to?(:url_name) %>
+        <tr class="<%= cycle("whiteEven", "whiteOdd") -%>">
+          <td class="mission">
+            <div class="details">
+            <!-- disabling this until we figure out what the image will be-->
+            <div class="image">
+              <a href="/missions/<%= mission.url_name %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => mission.user, :size => "small") %>" alt="the avatar of the player who made <%= mission.name %>" title="the avatar of the player who made <%= mission.name %>" /></a>
+            </div>
+              <div class="meta">
+                <h3><%= link_to_mission(mission) %></h3>
+                <%= render :partial => 'ratings/rating_small', :locals => { :rateable => mission, :type => "Mission" } %>
+                <% if mission.is_nsfw? %>
+                	<img src="/images/missions/flag_red.png" class="img_no_border" alt="flag_red" /> (NSFW)
+                <% end %>
+                <% if mission.puzzle %>
+		              <img src="<%= Upgrade.cached_single('puzzle_post').icon_image %>"/> (Puzzle)
+    		        <% end %>
+                <br /><a href="/users/<%= mission.user.login %>"><%= mission.user.login %></a> created this Mission <span class="interim"><%= time_ago_in_words(mission.created_at) %> ago, and <%= mission.users.size %> player(s) have taken it</span> 
+              </div>
+              <div class="desc">
+                <p><%= mission.description %></p>
+              </div>
+            </div>
+
+  <%# had to remove Lance's 2009 February list-based styling for these buttons %>
+
+            <div class="action">
+              <div class="hidden">
+                <%= take_button(mission) %>
+                <% if mission.users.include? current_user %>
+                  <%= favorite_button('index', mission) %>
+                <% else %>
+                  <%= queue_button('index', mission) %>
+                <% end %>
+                <% if not logged_in? %>
+                  <%= link_to("Sign In", "/session/new", :class => "button_sign_in", :title => "You must be logged in to take this mission!") %>
+                <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% if panel=='generated' && @user.missions.count != 0 %>
+<div class="bottomNav">
+  <a href="/users/<%= @user.login %>/missions/generated">Visit <%= @user.login %>'s Created Missions</a>
+</div>
+<% end %>
+

@@ -1,0 +1,110 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell parent"><A href="/tools"><span class="l"></span><span class="c">Edit Tools</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c">Editing <%= @tool.name %></span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+					<h1>Editing <%= @tool.name %></h1>
+<h3>(return to <a href="/tools">edit all tools</a> or <a href="/guide/tools">guide/tools</a>)</h3>
+
+<% form_for(:tool, :url => tool_path, :html => { :method => :put } ) do |f| %>
+  <br/>
+  <p>
+    Level Requirement:
+    <br/>
+    <%= f.text_field :level %>
+    <h5>Important note: no check is actually implemented for most tool events</h5>
+    <br/><br/>
+  </p>
+	<p>
+		Short description:
+		<br/>
+		<%= f.text_area :short_description, :rows => 5 %>
+		<script type="text/javascript">
+		  $( 'tool_short_description' ).focus();
+		</script>
+	</p>
+	<p>
+		Long description
+		<br/>
+		<%= f.text_area :long_description, :rows => 10 %>
+	</p>
+	<p>
+		Icon image path
+		<br/>
+		<%= f.text_field :icon_image %>
+		<img src="<%= @tool.icon_image %>" alt="<%= @tool.icon_image %>">
+
+	</p>
+	<p>
+		Small image path
+		<br/>
+		<%= f.text_field :small_image %>
+		<img src="<%= @tool.small_image %>" alt="<%= @tool.small_image %>">
+
+	</p>
+	<p>
+		Medium image path
+		<br/>
+		<%= f.text_field :medium_image %>
+		<img src="<%= @tool.medium_image %>" alt="<%= @tool.medium_image %>">
+
+	</p>
+	<p>
+		Large image path
+		<br/>
+		<%= f.text_field :large_image %>
+		<img src="<%= @tool.large_image %>" alt="<%= @tool.large_image %>">
+
+	</p>
+	<p>
+		Charges
+		<br/>
+		<%= f.text_field :charges %>
+	</p>
+	<p>
+		Cost <%= dp_icon %>
+		<br/>
+		<%= f.text_field :cost %>
+	</p>
+	<p>
+		Association Cost <%= dp_icon %>
+		<br/>
+		<%= f.text_field :association_cost %>
+	</p>
+
+	<p>
+		Damage
+		<br/>
+		<%= f.text_field :damage %>
+	</p>
+	
+		<p>
+		Classpoints <%= cp_icon %>
+		<br/>
+		<%= f.text_field :classpoints %>
+	</p>
+	
+	<p>
+		<%= submit_tag "Update" %>
+	</p>
+<% end %>
+</div>
+
+						</div>
+											
+					</div>
+				
+				</div>
+			
+			</div>
+

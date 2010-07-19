@@ -1,0 +1,101 @@
+<% content_for :head do %>
+
+<script type="text/javascript">
+// initialise plugins
+jQuery(function(){
+jQuery('ul.sf-menu').superfish();
+});
+
+// DO form mouseovers, etc.
+$(document).ready(function(){
+
+// DO form extensions
+$('.extendThis').hide();
+$('.signupElement').hover(
+function(){$(this).find('.extendThis').fadeIn(200);},
+function(){$(this).find('.extendThis').hide();}
+);
+$('.signupInput').focus(
+function(){$(this).parent().find('.extendThis').fadeIn(200);$(this).parent().addClass('backYellow');}
+);
+$('.signupInput').blur(
+function(){$(this).parent().find('.extendThis').hide();$(this).parent().removeClass('backYellow');}
+);
+});
+
+</script>
+<% end %>
+
+<div id="copy">
+
+ <div class="column width960">
+
+  <div class="column width700">
+
+  <div class="module width700">
+
+    <% if @account_locked %>
+     <p>
+      <b>For security reasons, your account has been locked. Please <a href='/about/contact'>contact us</a> to resolve this issue.</b>
+     </p>
+    <% elsif @account_limited %>
+     <p>
+      <b>For security reasons, we ask that you wait a short time before trying to login again.</b>
+     </p>
+    <% end %>
+
+    <div id="textbox" style="width:35%;">
+     <% form_tag session_path, :id => "login" do %>
+     <p>
+      <label for="login">Login</label><br />
+      <input id="login" name="login" type="text" style="border:1px solid #a9a9a9;color:black;" />
+     </p>
+
+     <script type="text/javascript">
+      $( 'login' ).focus();
+     </script>
+
+     <p>
+       <label for="password">Password</label><br/>
+       <input id="password" name="password" type="password" style="border:1px solid #a9a9a9;" />
+     </p>
+
+     <p>
+       <%= submit_tag 'Log in' %> (<a href="/sessions/find">Forgot Password?</a>)
+     </p>
+     <% end %>
+     <p>
+      <a href='#' onclick="jQuery('#textbox').hide();jQuery('#textbox_openid').show();$( 'openid_url' ).focus();">OpenID login</a>
+     </p>
+    </div>
+
+    <div id="textbox_openid" style="width:35%;display:none;">
+     <% form_tag openid_path do %>
+      <p><label for="login">OpenID</label><br/>
+     <%= text_field_tag 'openid_url' %></p>
+
+      <p><%= submit_tag 'Login' %></p>
+     <% end %>
+     <p>
+      <a href='#' onclick="jQuery('#textbox_openid').hide();jQuery('#textbox').show();$( 'login' ).focus();">Username and password login</a>
+     </p>
+    </div>
+
+    </div>
+
+   </div>
+
+   <div class="column width240">
+
+  <div class="module width240 signUp">
+
+    <h1>Create your Character<br/>&amp; Join the Game.</h1>
+
+    <%= render :partial => '/shared/landing/signup' %>
+
+  </div>
+
+   </div>
+
+ </div>
+</div>

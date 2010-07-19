@@ -1,0 +1,77 @@
+--- 
+misc_actions_001: 
+  name: Portal Transportation
+  updated_at: 2009-03-21 00:46:37
+  misc: 
+  cost: 
+  history: 
+  short_description: 
+  level: 
+  pmog_class_id: "2"
+  classpoints: "1"
+  large_image: 
+  id: 598b2830-f930-11dd-bdff-0017f2d41804
+  value: "0"
+  long_description: 
+  small_image: 
+  url_name: portal_transportation
+  created_at: 2009-02-12 18:09:54
+  medium_image: 
+  icon_image: 
+misc_actions_002: 
+  name: Jaunt
+  updated_at: 2009-03-21 00:46:37
+  misc: 
+  cost: 
+  history: 
+  short_description: Jaunt to a random portal
+  level: 
+  pmog_class_id: "2"
+  classpoints: "0"
+  large_image: 
+  id: 5a8e0b3a-f930-11dd-bdff-0017f2d41804
+  value: "0"
+  long_description: 
+  small_image: 
+  url_name: jaunt
+  created_at: 2009-02-12 18:09:56
+  medium_image: 
+  icon_image: 
+misc_actions_003: 
+  name: A player took your mission
+  updated_at: 2009-03-31 22:41:32
+  misc: 
+  cost: 
+  history: 
+  short_description: Pathmakers recieve 10 CP for each player that takes their missions
+  level: 
+  pmog_class_id: 
+  classpoints: "10"
+  large_image: 
+  id: 157293d8-1e45-11de-be82-0017f2d41804
+  value: "0"
+  long_description: 
+  small_image: 
+  url_name: mission_taken
+  created_at: 2009-03-31 22:41:32
+  medium_image: 
+  icon_image: 
+misc_actions_004: 
+  name: Mission Published
+  updated_at: 2009-04-20 23:39:48
+  misc: 
+  cost: 
+  history: 
+  short_description: 
+  level: 
+  pmog_class_id: "4"
+  classpoints: "150"
+  large_image: 
+  id: 891f9190-2e04-11de-960c-0017f2d41804
+  value: "0"
+  long_description: 
+  small_image: 
+  url_name: mission_published
+  created_at: 2009-04-20 23:39:48
+  medium_image: 
+  icon_image: 

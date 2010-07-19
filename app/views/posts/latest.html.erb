@@ -1,0 +1,133 @@
+<% content_for :head do %>
+    <link href="/posts/latest.rss" rel="alternate" title="Subscribe to 'PMOG Latest Posts'" type="application/rss+xml"/>
+    <%= stylesheet_link_tag '/css/supplemental-forums' %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+    <div id="breadcrumbs">
+        <div class="main">Latest Posts in the Forums</div>
+    </div>
+<% end %>
+
+<% content_for :search do %>
+    <%= render :partial => 'forums/search_form' %>
+<% end %>
+
+<div id="copy">
+
+	<div class="column width960">
+
+  	<div class="column width700">
+
+    	<div class="module width700">
+
+      	<div id="post_list">
+        	<table class="stripeMe" cellpadding="0" cellspacing="0">
+          	<% @posts.each_with_index do |post, index| %>
+            <% next if post.topic.nil? %>
+            <tr class="divider">
+            	<td class="avatar" rowspan="2">
+                <% if post.user.nil? %>
+              		<b>User Deleted</b><br/><br/>
+                <% else %>
+                 	<!-- #fixme this popup shows up for users who are not logged in -->
+                  <div class="avatarAction">
+                  	<%= avatar_link_to_user :user => post.user, :size => 'small', :align => "left", :class => 'avatar48' %>
+                    <div class="avatarPop">
+                    	<div class="avatarPopIn">
+                      	<div class="avatarOver">
+                        	<a href="/users/<%= post.user.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => post.user, :size => "small") %>" alt="<%= post.user.login %>" title="<%= post.user.login %>"/></a>
+                        </div>
+                        <%= render :partial => "/shared/avatar_actions", :locals => {:user => post.user, :filter => "none"} %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </td>
+
+              <td style="margin-top: 10px;" colspan="2">
+	              <a name='post_<%= index %>'></a>
+                <a name='<%= post.id %>'></a>
+                <% if post.user.nil? %>
+  	              <b>User Deleted</b>
+                <% else %>
+
+                  <p style="padding: 10px 0 0; margin: 0;">
+                  <strong><%= link_to( h(post.user.login), user_path(post.user) ) %>
+                  in  <%= link_to post.topic.title, :controller => "topics", :action => "show", :forum_id => post.topic.forum.url_name, :id => post.topic.url_name %>,</strong>
+    	            <%= time_ago_in_words(post.updated_at) %> ago:</p>
+                  </p>
+     	          </td>
+              </tr>
+              <tr style="margin-bottom: 10px;">
+                <td width="130px">
+	                <p>
+                  <%= post.user.user_level.primary_class.titleize %> -
+                  Level <%= post.user.current_level %>
+                  <br/>
+                  <% if post.user.cached_has_role? 'site_admin' %>
+  	                Trustee<br/>
+                  <% elsif post.user.cached_has_role? 'steward' %>
+                    Steward<br/>
+    	            <% elsif post.user.cached_has_role? 'npc' %>
+                    Character<br/>
+                  <% end %>
+                    Posts: <%= post.user.posts_count %>
+                  </p>
+
+      	          <% if post.user.login == 'pmog' %>
+        	          <p><i>Original account deleted</i></p>
+                  <% end %>
+                <% end %>
+                <br/>
+               </td>
+
+               <td class="divider">
+          	     <div class="talkArrow">
+            	     <div class="wrapper">
+              	     <p><%= strip_tags post.body[0..200] %> <%= link_to "[...]", "#{forum_topic_path(post.topic.forum, post.topic)}?page=#{post.page}##{post.id}" %> 
+                   </div>
+                 </div>
+               </td>
+             </tr>
+             <% end %>
+          </table>
+        </div>
+
+			</div>
+    </div>
+
+    <div class="column width240">
+	    <div class="module width240">
+  	  
+        <h3><a href="/forums">Visit the Forums</a></h3>
+        
+        <ul>
+        <% @forums.each do |forum| %>
+        	<% next if forum.inactive && ( !logged_in? || !site_admin? ) %>
+					<li><%= link_to h(forum.title), forum_path(forum) %></li>
+        <% end %>
+        </ul>
+
+        <p><a href="/forums">The Forums</a> are a great place to see what is happening around The Nethernet.</p>
+
+        <p>Also, check out:</p>
+
+        <ul>
+	        <li><a href="/awsm-attack">Awsm-Attack</a>ed sites</li>
+          <li><a href="/events">Events Stream</a></li>
+          <li><a href="/leaderboard">Leaderboards</a></li>
+          <li><a href="http://news.thenethernet.com">Community News</a></li>
+         </ul>
+    	  </div>
+			<div class="height20"></div>
+				<div class="imageTop">
+    	    <div class="ImageTop" style="background-image:url(/images/shared/dressing/forumsart.png); width:240px;height:960px;" title="St. Nick Wrecking a Mine">
+    	  	</div>
+
+      </div>
+		</div>
+	</div>
+</div>
+
+	

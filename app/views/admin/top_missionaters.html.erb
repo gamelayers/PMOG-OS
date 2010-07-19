@@ -1,0 +1,48 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Top Mission Makers</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+	<%#= render :partial => '/missions/search_form' %>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h2>Top Missionaters</h2>
+<h5>A Passel of Champion Pathmakers</h5>
+<br/>
+
+<table class="leaderboardTable">
+	<tr>
+		<th>User</th>
+		<th>Signup Date</th>
+		<th>Missions</th>
+		<th>Number of takers</th>
+	</tr>
+			<% @users.each do |u| %>
+	<tr>
+		<td><%= link_to u.login, user_path(u) %></td>
+  	<td><%= u.created_at %></td>
+		<td><%= u.missions.size %></td>
+		<td><%= u.missions.total_mission_takers.to_s %></td>
+	</tr>
+			<% end %>
+</table>
+	
+	
+						</div>
+											
+					</div>
+				
+				</div>
+			
+			</div>

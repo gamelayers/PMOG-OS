@@ -1,0 +1,189 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag '/css/supplemental-iconifiedlists.css' %>
+
+<% end %>
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Stats</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>TNN Stats</h1>
+<h5>with great power comes eye-popping oversight</h5>
+<ul>
+<li><b>Registered Players:</b> <%= number_with_delimiter(User.caches(:count)) %></li>
+<li><b>Total Missions:</b> <%= number_with_delimiter(Mission.caches(:count)) %></li>
+<li><a href="http://74.201.255.112">TNN IRC Stats</a>, including <a href="http://74.201.255.112/?m=g">Graphs</a> or type /list from within irc.thenethernet.com</li>
+<li><a href="/suttree">DB Dashboard</a> | <a href="/awsm-attack">awsm-attack</a> | <a href="/events">Events</a></li>
+</ul>
+
+<h2>Growth</h2>
+
+<ul class="events_list_ul">
+<li class="user_created"><a href="/stats/view?chart=signups">Signups per day</a></li>
+<li class="connection_approved"><a href="http://thenethernet.com/stats/view?chart=invites">Invited Signups per day</a></li>
+<li class="user_created"><a href="/stats/view?chart=signups_accumulator">Accumulated Signups</a></li>
+<li><a href="/stats/view?chart=levels">Levels falloff</a></li>
+<li><a href='/stats/view?chart=reactive_users_per_day'>Reactive Players</a> [<a href="http://hospital.pmog.com/browse/METRICS-21">Metrics-21</a>]
+<li>Funnel: home page, signup, download</li>
+</ul>
+
+<h2>Socializing</h2>
+
+<ul class="events_list_ul">
+<li class="pmail_sent"><a href='/stats/view?chart=number_of_players_sending_pmail_per_day'># of players sending a PMail per day</a></li>
+<li class="connection_approved">% of players with 0 contacts, with 1 contact, with 5 contacts, 10 contacts</li>
+<li><a href='/stats/view?chart=number_of_user_ratings_per_day'># of player ratings per day</a></li>
+<li><a href='/stats/view?chart=number_of_mission_ratings_per_day'># of mission ratings per day</a></li>
+<li class="pmail_sent">
+  <a href='/stats/view?chart=messages_sent_all_time'># PMail Messages Sent Per Day</a>
+  (<a href='/stats/view?chart=messages_sent_this_week'>this week</a>, <a href='/stats/view?chart=messages_sent_last_week'>last week</a>)
+</li>
+<li class="comment_created"># of players on PMOG chat each day (pending <a href="http://74.201.255.112">IRC stats</a>)</li>
+<li class="comment_created"># of players active in the forums</li>
+</ul>
+
+<h2>Engagement</h2>
+
+<ul class="events_list_ul">
+<li><a href='/stats/view?chart=connected_active_reactive_per_day'>Connected/Active/Reactive Trends</a></li>
+<li>Active Players: <a href='/stats/view?chart=active_users_per_day'># of players who use any tool per day</a> [<a href="http://hospital.pmog.com/browse/METRICS-20">Metrics-20</a>]</li>
+<li>Reactive Players: <a href='/stats/view?chart=reactive_users_per_day'># of players who react to any tool per day</a> [<a href="http://hospital.pmog.com/browse/METRICS-21">Metrics-21</a>]</li>
+<li>Connected Players: <a href='/stats/view?chart=connected_users_per_hour'>Per Hour</a> and <a href="/stats/view?chart=connected_users_per_day">Per Day</a> and <a href='/stats/view?chart=percentage_connected_users_per_day'>% Per Day</a></li>
+<li>return rate: what % of people who signed up 1 week ago logged in today? 30 days ago? 90 days ago?</li>
+<li class="mission_completed"><a href='/stats/view?chart=number_of_players_creating_missions_per_day'># of players who created a mission</a></li>
+<li>tools used per day:</li>
+</ul>
+
+<table><tr><th>Active:</th><th>Reactive:</th></tr>
+<td>
+<ul class="events_list_ul">
+<li class="portal_deployed"><a href='/stats/view?chart=number_of_users_drawing_portals_per_day'># of players who drew a portal, per day</a></li>
+<li class="portal_deployed"><a href='/stats/view?chart=number_of_portals_drawn_per_day'># of portals drawn, per day</a></li>
+<li class="mine_deployed"><a href='/stats/view?chart=number_of_users_laying_mines_per_day'># of players who laid a mine</a></li>
+<li class="mine_deployed"><a href='/stats/view?chart=number_of_mines_deployed_per_day'># of mines laid</a></li>
+<li class="giftcard_stashed"><a href='/stats/view?chart=number_of_players_laying_giftcards_per_day'># of players who left a DP card</a></li>
+<li class="giftcard_stashed"><a href='/stats/view?chart=number_of_giftcards_deployed_per_day'># of DP Cards left</a></li>
+<li class="crate_stashed"><a href='/stats/view?chart=number_of_users_stashing_crates_per_day'># of players who stashed a crate</a></li>
+<li class="crate_stashed"><a href="/stats/view?chart=number_of_crates_stashed_per_day"># crates stashed</a></li>
+<li class="mission_completed"><a href='/stats/view?chart=number_of_players_creating_missions_per_day'># of players who created a mission</a></li>
+<li class="mission_completed"><a href='/stats/view?chart=number_of_missions_created_per_day'>Missions Created Per Day</a></li>
+<li class="st_nick_activated"><a href='/stats/view?chart=number_of_players_attaching_st_nicks_per_day'># of players attaching St. Nicks</a></li>
+<li class="st_nick_activated"><a href='/stats/view?chart=number_of_st_nicks_attached_per_day'># St. Nicks attached</a></li>
+<li class="mine_deflected"># of players losing Armor</li>
+<li class="grenade_deployed"><a href='/stats/view?chart=number_of_players_deploying_grenades_per_day'># of players throwing Grenades</a></li>
+<li class="grenade_deployed"><a href='/stats/view?chart=number_of_grenades_deployed_per_day'># of Grenades thrown</a></li>
+<li class="watchdog_deployed"><a href='/stats/view?chart=number_of_players_deploying_watchdogs_per_day'># of players deploying a Watchdog</a></li>
+<li class="watchdog_deployed"><a href='/stats/view?chart=number_of_watchdogs_deployed_per_day'># of Watchdogs deployed<a></li>
+</ul>
+</td>
+
+<td>
+<ul class="events_list_ul">
+  <li class="portal_deployed"><a href='/stats/view?chart=number_of_players_taking_portals_per_day'># of players who took a portal</a></li>
+<li class="portal_deployed"><s><a href="/stats/portals_taken_per_day"># of Portals Taken</a></s> OLD-STYLE GRAPH</li>
+<li class="mine_deployed"># of players who tripped a mine</li>
+<li class="mine_deployed"><a href="/stats/view?chart=mines_triggered_all_time">Mines Asploded</a></li>
+<li class="giftcard_looted"># of players taking gift cards</li>
+<li class="giftcard_looted"># of gift cards taken</li>
+<li class="crate_looted"># of players looting crates</li>
+<li class="crate_looted"><a href="/stats/view?chart=crates_looted_all_time">Crates Looted</a></li>
+<li class="mission_completed"><a href='/stats/view?chart=number_of_players_completing_missions_per_day'># of players who completed a mission</a></li>
+<li class="mission_completed"><a href="/stats/view?chart=missions_completed_all_time">Missions Completed</a></li>
+<li class="st_nick_activated"># of players triggering St. Nicks</li>
+<li class="st_nick_activated"># of St. Nicks triggered</li>
+<li class="mine_deflected"># of Armors depleted</li>
+<li class="grenade_deployed"># of players receiving Grenades</li>
+<li class="grenade_deployed"># of Grenades received</li>
+<li class="watchdog_deployed"># of players triggering a Watchdog</li>
+<li class="watchdog_deployed"># of Watchdogs triggered</li>
+</ul>
+
+</td></tr></table>
+<h1>External Stats</h1>
+
+<h3>The Feed</h3>
+
+<ul>
+<li><a href="http://friendfeed.com/gamelayers">GameLayers on Friendfeed</a> (<a href="http://friendfeed.com/gamelayers?format=atom">RSS</a>) - pulling in twitter, news/blog/comments search into one stream</li>
+</ul>
+
+<h3>Twitter</h3>
+
+<ul>
+<li>Search Twitter for <a href="http://search.twitter.com/search?q=&ands=pmog&phrase=&ors=&nots=pmogevents">pmog minus @pmogevents</a> and <a href="http://search.twitter.com/search?q=&ands=nethernet&phrase=&ors=&nots=pmogevents+antiprivacy">Nethernet minus @pmogevents minus @antiprivacy</a> or <a href="http://search.twitter.com/search?q=&ors=thenethernet+nethernet&nots=pmogevents">both nethernet and thenethernet</a></li>
+
+<li><a href="http://www.twitscoop.com/twits/search?q=pmog">twitscoop 3 day graph</a></li>
+
+<li>SiteVolume.com: <a href="http://www.sitevolume.com/index.php?site=Twitter&search_phrases=thenethernet,rocketon,wellohorld,webwars">comparing TNN, RocketOn, WelloHorld, WebWars on Twitter</a></li>
+
+<li>What links are clicked from our twitter stream? <a href="http://cli.gs">cli.gs</a> [Login Required: pmog/st4ts]</li>
+<li>What links are clicked from our twitter stream now, really? <a href="http://bit.ly">bit.ly</a> [Login Required: thenethernet/tw1tt3r]</li>
+</ul>
+
+<h3>Google</h3>
+
+<ul>
+
+<li>Google News Search for <a href="http://news.google.com/news?hl=en&um=1&tab=wn&scoring=d&q=pmog+-piedmont&btnG=Search+News">PMOG</a> and <a href="http://news.google.com/news?hl=en&um=1&tab=wn&scoring=d&q=nethernet&btnG=Search+News">Nethernet</a></li>
+
+<li>Google Blog Search for <a href="http://blogsearch.google.com/blogsearch?hl=en&ie=UTF-8&q=pmog+-piedmont+-news.pmog.com&scoring=d">PMOG</a> and <a href="http://blogsearch.google.com/blogsearch?hl=en&scoring=d&ie=UTF-8&q=nethernet&btnG=Search+Blogs">Nethernet</a></li>
+
+<li><a href="http://www.google.com/trends?q=pmog&ctab=0">PMOG on Google Trends</a>: <a href="http://www.google.com/trends?q=pmog&ctab=0&geo=all&date=ytd&sort=0">Within the Last 12 months only</a></li>
+
+<li>[Login Required] <a href="https://www.google.com/analytics/reporting/dashboard?id=1626866&scid=939728">Google Analytics</a>: <a href="https://www.google.com/analytics/reporting/user_defined?id=1626866">User-Defined</a> and <a href="https://www.google.com/analytics/reporting/top_content?id=1626866&pdr=20081105-20081205&cmp=average#lts=1228561882833">Top Content</a> and <a href="https://www.google.com/analytics/reporting/events?reset=1&id=1626866">Event Tracking</a></li>
+
+<li>[Login Required] <a href="https://www.google.com/adsense/home">Google AdSense</a>: <a href="https://www.google.com/adsense/report/overview?timePeriod=alltime">All Time</a></li>
+
+</ul>
+
+<b>More</b>
+
+<ul>
+
+<li>Backtype Alerts - search blog comments about <a href="http://www.backtype.com/comments?q=pmog">PMOG</a> and <a href="http://www.backtype.com/comments?q=nethernet">Nethernet</a></li>
+
+<li><a href="https://addons.mozilla.org/en-US/firefox/addon/6336">The Nethernet on AMO</a> and [Login Required] <a href="https://addons.mozilla.org/en-US/statistics/addon/6336">Stastics Dashboard</a></li>
+
+<li><a href="http://dataopedia.com/pmog-com">Dataopedia on PMOG.com</a></li>
+<li><a href="http://dataopedia.com/thenethernet-com">Dataopedia on TheNethernet.com</a></li>
+
+<li><a href="http://www.quarkbase.com/show/pmog.com">Quarkbase on PMOG.com</a></li><li><a href="http://www.quarkbase.com/show/thenethernet.com">Quarkbase on thenethernet.com</a></li>
+
+<li>Compete: <a href="http://siteanalytics.compete.com/pmog.com/?metric=uv">pmog.com</a> and <a href="http://siteanalytics.compete.com/pmog.com/?metric=uv">thenethernet.com</a></li>
+
+<li>QuantCast: <a href="http://www.quantcast.com/pmog.com">pmog.com</a> and <a href="http://www.quantcast.com/thenethernet.com">thenethernet.com</a></li>
+
+<li>Alexa: <a href="http://www.alexa.com/data/details/traffic_details/pmog.com">pmog.com</a> and <a href="http://www.alexa.com/data/details/traffic_details/thenethernet.com">thenethernet.com</a></li>
+
+</ul>
+
+						</div>
+											
+					</div>
+				
+					<div class="column width240">
+					<div class="module width240">
+					<h2>Quick Links:</h2>
+					
+					<ul class="events_list_ul">
+					<li class="user_created"><a href="/stats/view?chart=signups">Signups per day</a></li>
+					<li class="connection_approved"><a href="http://thenethernet.com/stats/view?chart=invites">Invited Signups per day</a></li>
+					<li class="pmail_sent"><a href='/stats/view?chart=number_of_players_sending_pmail_per_day'># of players sending a PMail per day</a></li>
+					<li>Twitter: <a href="http://search.twitter.com/search?q=&ors=thenethernet+nethernet&nots=pmogevents">Nethernet</a></li>
+					</ul>
+					</div>
+					</div>
+				
+				</div>
+			
+			</div>

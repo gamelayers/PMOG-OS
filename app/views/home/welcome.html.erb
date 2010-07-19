@@ -1,0 +1,70 @@
+<% content_for :head do %>
+
+<script type="text/javascript">
+// initialise plugins
+jQuery(function(){
+  jQuery('ul.sf-menu').superfish();
+  initForm();
+});
+
+</script>
+<% end %>
+
+<% content_for :body do %>
+class="user"
+<% end %>
+
+<% content_for :alertbox do %>
+<div id="modalDialog">
+  <%#= render :partial => 'after_signup_dialog' %>
+</div>
+<% end %>
+
+<div id="copy">
+
+  <div class="column width960">
+
+    <%#= render :partial => 'events_spy/show_event_spy', :locals => { :model => @model } %>
+
+    <!-- COMIC -->
+    <div class="column width700">
+
+      <div id="comicstripRSS">
+
+        <div class="comicRSS" id="RSS1"><img src="/images/shared/RSScomic_01.png" alt="" longdesc="" width="20" height="434"/></div>
+        <div class="comicRSS" id="RSS2"><img src="/images/shared/RSScomic_02.gif" alt="" longdesc="" width="125" height="242"/></div>
+        <div class="comicRSS" id="RSS3"><img src="/images/shared/RSScomic_03.gif" alt="" longdesc="" width="216" height="242"/></div>
+        <div class="comicRSS" id="RSS4"><img src="/images/shared/RSScomic_04.gif" alt="RSSComic_04" longdesc="And if you don't have time to play, you're still earning points!"width="195" height="242"/></div>
+        <div class="comicRSS" id="RSS5"><img src="/images/shared/RSScomic_05.gif" alt="RRScomic_05" longdesc="" width="138" height="242"/></div>
+        <div class="comicRSS" id="RSS6"><img src="/images/shared/RSScomic_06.gif" alt="RRScomic_06" longdesc="" width="125" height="192"/></div>
+        <div class="comicRSS" id="RSS7"><img src="/images/shared/RSScomic_07.gif" alt="RRScomic_07" longdesc="" width="268" height="192"/></div>
+        <div class="comicRSS" id="RSS8"><img src="/images/shared/RSScomic_08.gif" alt="RRScomic_08" longdesc="" width="145" height="192"/></div>
+        <div class="comicRSS" id="RSS9"><img src="/images/shared/RSScomic_09.gif" alt="RRScomic_09" longdesc="" width="138" height="192"/></div>
+      </div>
+      <div class="height20"></div>
+      <%= render :partial => '/shared/landing/spread' %>
+    </div>
+    <!-- SIGNUP -->
+
+    <div class="column width240">
+
+      <div id="signupForm" class="module width240 signUp">
+
+        <h2>Play The Nethernet</h2>
+        <p class="subhead">Create your Character<br/>Join the Game.</p>
+        <span id="signupFormPartial">
+          <%= render :partial => '/shared/landing/signup' %>
+        </span>
+
+      </div>
+
+      <!-- /SIGN UP -->
+      <div class="height20"></div>
+      <!-- SYSTEM REQUIREMENTS -->
+      <%= render :partial => '/shared/landing/donate' %>
+      <div class="height20"></div>
+      <%= render :partial => '/shared/landing/sysreq' %>
+    </div>
+  </div>
+</div>
+<!-- /FULL COLUMN -->

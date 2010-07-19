@@ -1,0 +1,2 @@
+module RivalsHelper
+end

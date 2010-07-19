@@ -1,0 +1,67 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/rules" %>
+		<div class="cell child"><span class="l"></span><span class="c">Pings</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+					<h1>Pings</h1>
+<h5>Measuring Social Exchange.</h5>
+<br />
+
+<p>Pings <%= ping_icon %> are a social currency that you earn by interacting with other players.  Therefore, the more Pings you have, the more obvious it is you've been being social with your fellow Netizens. Since Pings are only required for more advanced tools, you have some time to start earning Pings before you will need to spend them.</p>
+
+<p>You can earn Pings in a number of ways:</p>
+
+<ul>
+<li>Adding someone to your Contacts/Allies/Rivals list for the first time:
+<%= Ping.value("Make Contact") %> <%= ping_icon %></li>
+<li>Giving a gift to an Ally (Crate, DP Card):
+<%= Ping.value("Aid Ally") %> <%= ping_icon %></li>
+<li>Damaging or foiling a Rival (Grenade, Mine, St. Nick, Watchdog):
+<%= Ping.value("Damage Rival") %> <%= ping_icon %></li>
+<li>Rating a Mission or Portal:
+<%= Ping.value("Rating") %> <%= ping_icon %></li>
+<li>Posting a Reply in the Forums, Sending PMail, Reviewing a Mission:
+<%= Ping.value("Reply") %> <%= ping_icon %></li>
+<li>Starting a new Topic in the Forums:
+<%= Ping.value("New Post") %> <%= ping_icon %></li>
+<li>Someone takes your Mission:
+<%= Ping.value('Mission Taken').to_i %> <%= ping_icon %></li>
+<li>New Players that <a href="/guide/rules/recruit">you recruit</a>:
+<%= GameSetting.value('Invite Pings').to_i %> <%= ping_icon %></li>
+</ul>
+
+<p>Pings are spent to <a href="/guide/upgrades">upgrade tools</a> and have a higher-level good time.</p>
+
+<%if site_admin? %>
+<p>Since you're a site admin, you can see the <a href="/admin/pings">pings admin page</a>.</p>
+<% end %>
+
+						</div>
+					</div>
+					<div class="column width240">
+					
+						<div class="imageTop">
+						<div class="imageTopImage" style="background-image:url(/images/shared/dressing/shoatpings-315.png);width:						315px;height:500px;" title="Shoat and a Pinging Bell"></div></div>
+				   </div>
+				
+				</div>
+				
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/rules" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+		</div>
+

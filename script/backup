@@ -1,0 +1,15 @@
+#! /bin/sh
+
+# Backup the website
+tar zcvf /data/pmog/backups/pmog.`date +%Y-%m-%d`.tar.gz /data/pmog/current/*
+
+# Backup the images separately
+tar zcvf /data/pmog/backups/pmog_image_assets.`date +%Y-%m-%d`.tar.gz /data/pmog/shared/system/image_assets/
+
+# Backup database to S3 and keep a local copy.
+cd /data/pmog/current/ && rake pmog:backup_to_s3 RAILS_ENV=production > /dev/null 2>&1
+
+# Delete any old backups
+/usr/bin/find /data/pmog/backups/*.gz -mtime +7 -exec rm {} \;
+/usr/bin/find /data/pmog/backups/*.gz.* -mtime +7 -exec rm {} \;
+/usr/bin/find /tmp/pmog.db.production.* -exec rm {} \;

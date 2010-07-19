@@ -1,0 +1,31 @@
+<div id="copy">
+<div class="column width960">
+<div class="column width700">
+<div class="module width700">
+
+<h1>C3PU Usage on <%= current_slice %></h1>
+<h4><a href='/suttree'>24hr suttree</a> | <a href='/suttree/c3pu'>c3pu</a>| <a href='/suttree/rpm'>rpm</a></h4>
+
+<br/>
+
+<b>App server (gl00-s0013):</b>
+<iframe src='http://nagios.utility.gl00.engineyard.com/pnp/index.php?host=gl00-s00013&srv=CPU%20Load' height="250px" width="100%"> </iframe>
+
+<b>DB master (gl00-s00000):</b>
+<iframe src='http://nagios.utility.gl00.engineyard.com/pnp/index.php?host=gl00-s00001&srv=CPU%20Load' height="250px" width="100%"> </iframe>
+
+<b>DB slave (gl00-s00001):</b>
+<iframe src='http://nagios.utility.gl00.engineyard.com/pnp/index.php?host=gl00-s00000&srv=CPU%20Load' height="250px" width="100%"> </iframe>
+
+<b>Utility (gl00-s00025):</b>
+<iframe src='http://nagios.utility.gl00.engineyard.com/pnp/index.php?host=gl00-s00025&srv=CPU%20Load' height="250px" width="100%"> </iframe>
+
+<b>IRC (gl00-s00026):</b>
+<iframe src='http://nagios.utility.gl00.engineyard.com/pnp/index.php?host=gl00-s00026&srv=CPU%20Load' height="250px" width="100%"> </iframe>
+
+<b>Staging DB (gl00-s00003):</b>
+<iframe src='http://nagios.utility.gl00.engineyard.com/pnp/index.php?host=gl00-s00003&srv=CPU%20Load' height="250px" width="100%"> </iframe>
+
+</div>
+</div>
+</div>

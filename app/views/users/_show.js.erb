@@ -1,0 +1,6 @@
+<div>
+	<h2 class="caps"><%= user.login %></h2>
+	<%= avatar_link_to_user :user => user, :size => 'medium', :only_path => false %>
+	<br/>
+	<%= link_to_user :user => user, :include_meta_data => true, :only_path => false %>
+</div>

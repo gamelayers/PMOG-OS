@@ -1,0 +1,22 @@
+<h1>Recommendations</h1>
+<h5>Find a friend, Billy No-Mates</h5>
+
+<br/>
+<br/>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Score</th>
+  </tr>
+<% @users.each do |u| %>
+  <tr>
+    <td>
+      <%= avatar_link_to_user :user => User.find_by_login(u[1]), :size => 'small' %>
+    </td>
+    <td>
+      <%= u[0] %>
+    </td>
+  </tr>
+<% end %>
+</table>

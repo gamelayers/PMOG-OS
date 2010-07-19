@@ -1,0 +1,328 @@
+<% content_for :meta_description do %><%= @mission.description %>  <% end %>
+
+<% content_for :breadcrumbs do %>
+    <div id="breadcrumbs">
+        <%= render :partial => "shared/breadcrumbs/missions" %>
+    </div>
+<% end %>
+
+<div id="copy">
+
+<div class="column width960">
+
+<div class="column width700">
+
+    <div class="module width700">
+
+        <h1><%= @mission.name %>
+            <% if @mission.is_nsfw? %> <img src="/images/missions/flag_red.png" class="img_no_border" alt="flag_red"/>
+                (NSFW) <%= render :partial => 'shared/nsfw_tip' %>
+            <% end %>
+            <% if @mission.puzzle %>
+              <img src="<%= Upgrade.cached_single('puzzle_post').icon_image %>"/> (Puzzle)
+            <% end %>
+        </h1>
+        <div id="ratings" class="rating_mission">
+      <span id="show_rating">
+      <%= render :partial => 'ratings/rating', :locals => { :rateable => @mission, :type => "Mission" } %>
+      </span>
+        </div>
+
+        <b>
+            <%= avatar_link_to_user :user => @mission.user, :size => 'tiny', :align => 'left' %>
+            by <%= link_to(@mission.user.login, user_path(@mission.user.login)) %>
+            , <%= time_ago_in_words(@mission.created_at) %> ago
+            <% if @mission.user == current_user or site_admin? %>
+                , <%= link_to "Edit Mission", edit_mission_path(@mission.url_name) %>
+                <% end %>
+            <% unless logged_in? and @mission.ratings.find_by_user_id(current_user.id) or not @mission.users.include? current_user or @mission.user == current_user %>
+                , <a href="#ratings">Review this Mission</a>
+            <% end %>
+        </b>
+
+        <div class="height20"></div>
+
+        <!-- Buttons should go here -->
+        <div class="clear">
+
+            <%# If the user is logged in, we can show a take button with a link for the mission %>
+            <% if logged_in? %>
+
+                <%# We check to see if the mission is NSFW and if the user doesn't want NSFW. If so we render the NSFW image %>
+                <% if @mission.is_nsfw? and not current_user.allow_nsfw? %>
+
+                    <a href="/users/<%= current_user.login %>/edit/" class="mission_lock_nsfw">Locked
+                        <span class="red">NSFW</span></a>
+
+                    <%# We check to see if the mission is NSFW and if the user does want NSFW. If so we render the take NSFW mission image %>
+                <% elsif @mission.is_nsfw? and current_user.allow_nsfw? %>
+
+                    <%# img src="/images/missions/show_layout/buttons/take_broken.png" width="230" height="55" alt="PMOG Missions are Under Construction" style="margin-bottom:10px;" / %>
+                    <% if logged_in? and @mission.minimum_level > current_user.current_level %>
+                        <p>You need to
+                            gain <%= pluralize(@mission.minimum_level - current_user.current_level, 'level') %> before
+                            you can take this mission</p>
+                    <% else %>
+                        <a href="<%= take_mission_path(@mission.url_name) %>" class="mission_take_nsfw">Take
+                            <span class="red">NSFW</span></a>
+                    <% end %>
+                    <%# Otherwise the mission isn't NSFW so we show the standard take mission image %>
+                <% else %>
+
+                    <%# img src="/images/missions/show_layout/buttons/take_broken.png" width="230" height="55" alt="PMOG Missions are Under Construction" style="margin-bottom:10px;" / %>
+
+                    <% if logged_in? and @mission.minimum_level > current_user.current_level %>
+                        <p>You need to
+                            gain <%= pluralize(@mission.minimum_level - current_user.current_level, 'level') %> before
+                            you can take this mission</p>
+                    <% else %>
+                        <a href="<%= take_mission_path(@mission.url_name) %>" class="mission_take_button">Take</a>
+                    <% end %>
+                <% end %>
+
+                <%# Otherwise, they aren't logged in and cannot take the mission regardless of its NSFW disposition and they should be shown
+      a disabled image %>
+            <% else %>
+
+                <a href="/users/new/" class="mission_lock_signup">Locked <span class="red">Sign-Up</span></a>
+
+            <% end %>
+
+            <% if @mission.users.include? current_user %>
+
+                <%# Only show this if the current user has taken the mission %>
+                <%= favorite_button("show", @mission) %>
+
+                <%# Show the NSFW button if the mission isn't marked NSFW already and the user hasn't voted this to be NSFW %>
+                <%# if @mission.nsfw == false and !@mission.voted_by_user?(current_user) %>
+                <%#= render :partial => 'vote' %>
+                <%# end %>
+
+            <% else %>
+
+                <%# Don't show the queue button to the mission author %>
+                <% unless current_user == @mission.user %>
+                    <%= queue_button("show", @mission) %>
+                <% end %>
+
+            <% end %>
+
+            <div class="shareThis" style="text-decoration: none !important;">
+                <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#tabs=web%2Cpost%2Cemail&amp;charset=utf-8&amp;services=facebook%2Cdigg%2Cdelicious%2Cstumbleupon%2Cfriendfeed%2Cwindows_live%2Cyahoo_bmarks%2Cgoogle_bmarks&amp;style=rotate&amp;publisher=7e3d2720-3285-432a-8442-be48a6acae6e&amp;headerbg=%23c9c9c9&amp;inactivebg=%231b5790&amp;inactivefg=%23ffffff&amp;linkfg=%231b5790&amp;popup=true&amp;offsetLeft=10"></script>
+            </div>
+
+        </div>
+
+        <div class="height20"></div>
+        <h2> Mission Description</h2>
+
+        <p><%= @mission.description %></p>
+
+        <p class="small"> <%= link_to(@mission.user.login, user_path(@mission.user.login)) %>,
+            level <%= @mission.user.current_level %>, created this mission for level <%= @mission.minimum_level %>
+            players and above.</p>
+
+    </div>
+
+    <%# unless @mission.related.empty? %>
+        <!-- <div class="column width20"></div>
+        <div class="module width700">
+            <h2>Related Missions</h2>
+            <table>
+                <%# @mission.related.each do |mission| %>
+                    <tr>
+                        <td class="avatar" width="60" valign="top">
+                            <%#= avatar_link_to_user :user => mission.user, :size => 'small', :align => 'left' %>
+                        </td>
+                        <td valign="top">
+                            <b><%#= link_to mission.name, mission_path(mission.url_name) %></b><br/>
+                            <%#= render :partial => 'current_rating_small', :locals => { :mission => mission } %>
+                            <br/>
+                            by <%#= link_to mission.user.login, user_path(mission.user) %>,
+                            a <%#= mission.user.user_level.primary_class.titleize %> -
+                            Level <%#= mission.user.current_level %>
+                            </p>
+                        </td>
+                    </tr>
+                <%# end %>
+            </table>
+        </div> -->
+    <%# end %>
+
+    <% if @mission.users.include? current_user %>
+        <div class="column width20"></div>
+        <div class="module width700">
+
+            <% unless not @mission.users.include? current_user or @mission.user == current_user %>
+         <span id="show_rate">
+          <%= render :partial => 'ratings/rate', :locals => { :rateable => @mission, :type => "Mission" } %>
+         </span>
+            <% end %>
+            <div class="height20"></div>
+
+            <h2>Review the Mission:</h2>
+
+            <%= render :partial => "comments/add_comment", :locals => { :commentable => @mission, :type => "mission" } %>
+            <br/>
+
+        </div>
+
+    <% end %>
+
+    <div class="column width20"></div>
+    <div class="module width700">
+        <h2>Comments about this Mission</h2>
+
+        <%= render :partial => "comments/list_comments", :locals => { :comments => @comments } %>
+    </div>
+
+
+    <% if logged_in? %>
+        <div class="column width20"></div>
+        <div class="module width700">
+
+            <a name="share"></a>
+            <% if logged_in?
+                form_tag mission_path(@mission) + '/share' do %>
+
+                    <h2>Share This Mission</h2>
+
+                    <p>Spend 2 <%= dp_icon %> to send notice of this Mission to someone you know.
+                        Input their email address or The Nethernet username below;
+                        if they're already a player, they'll get an in-game message.
+                        If they don't play The Nethernet yet, they'll get an email invitation to take this mission.</p>
+
+                    <p class="small">Please enter <b>one email address per line</b> or <b>one username per line</b> or
+                        our mail clerk will get confused</p>
+                    <textarea name="recipients" id="share_recipients" rows="6" cols="40" wrap="virtual"></textarea><br/>
+                    <div class="height10"></div>
+                    <%#= fetch_buddies_button("Add my Allies!", "allies") %>
+                    <%#= fetch_buddies_button("Add my Rivals!", "rivals") %>
+                    <%#= fetch_buddies_button("Add all my Contacts!", "acquaintances") %>
+                    <div class="height20"></div>
+                    <p>You can attach a reward to this Mission;
+                        pick a number of datapoints below,
+                        and each user who finishes the Mission at your invitation
+                        will win this number of datapoints from your stash!
+                        Zero is an okay number :-)</p>
+
+                    <p>Datapoints:
+                        <select name="reward_dps">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </p>
+
+                    <p><input type="submit" name="share_mission" value="Share the Mission!"/></p>
+
+                <% end
+                   end %>
+        </div>
+    <% end %>
+
+</div>
+
+<div class="column width240">
+    <div class="module width240">
+        <h2><img src="/images/shared/icons/tags.png" alt="Mission Tags"/> Mission Tags</h2>
+
+        <div class="mission_sidebar_content" id="tags">
+            <%= render :partial => 'tags' %>
+        </div>
+    </div>
+</div>
+
+<% if @mission.users.include? current_user or site_admin? %>
+
+    <div class="column width20"></div>
+    <div class="module width240">
+        <h2><img src="/images/shared/tools/icon/lightpost-16.png" alt="Mission Lightposts"/> Mission Lightposts</h2>
+
+        <div><%= render :partial => "reveal_links" %></div>
+
+    </div>
+<% end %>
+<div class="column width20"></div>
+
+<div class="module width240">
+  <h2><img src="/images/shared/icons/skull.png" alt="Players"/>  <%= @mission.users.size %> Players have taken this Mission</h2>
+
+ <% if @mission_users.length <= 0 %>
+ <%# We don't want to show this to users if the mission is NSFW and they don't want NSFW content %>
+   <% unless @mission.is_nsfw? and not current_user.allow_nsfw? %>
+     <%= link_to 'Be the first to take this mission!', { :controller => :missions, :action => :take, :id => @mission.url_name } %>
+   <% end %>
+  <% else %>
+    <div class="people_mission">
+
+      <% @mission_users.each do |user| %>
+        <div class="person">
+          <h5><a href="/users/<%= user.login %>"><%= user.login %></a></h5>
+           <%= avatar_link_to_user :user => user, :size => 'tiny' %>
+        </div>
+      <% end %>
+
+      <br style="clear:both;"/>
+
+      <p><%= will_paginate @mission_users, :param_name => :user_page, :class => 'user_profile_pagination', :page_links => false %></p>
+
+      <% if @mission.fans.size > 0 %>
+        <br clear="all"/>
+
+         <p><strong><%= @mission.fans.size %></strong>
+          <% if @mission.fans.size == 1 %>
+            player calls
+          <% else %>
+            players call
+          <% end %>
+          this mission a Favorite.
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
+<% if site_admin? or steward? %>
+
+<div class="column width20"></div>
+
+  <div class="module width240">
+
+    <h2>Admin</h2>
+
+      <% unless @mission.is_nsfw? %>
+      <%# This allows site admins to immediately flag a mission as NSFW %>
+      <div id="toggle_nsfw">
+        <%= link_to_remote "<img src=\"/images/missions/flag_red.png\" class=\"img_no_border\" title=\"Mark this as Not Safe For Work\" />", :url => {:controller => 'missions',
+        :action => 'toggle_nsfw', :id => @mission.url_name}, :with => "'nsfw=true'" %>
+        Mark this mission NSFW Immediately
+      </div>
+      <% end %>
+
+      <br/>
+      <%# End Admin NSFW function %>
+
+      <% if @mission.is_active? %>
+      <div id="unpublish_mission">
+        <%= link_to_remote "Unpublish this mission", :url => {:controller => 'missions', :action => 'unpublish', :id => @mission.url_name} %>
+      </div>
+      <% else %>
+        This mission is unpublished.
+      <% end %>
+
+  </div>
+
+</div>
+
+</div>
+<% end %>

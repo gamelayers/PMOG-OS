@@ -1,0 +1,38 @@
+<div class="learntoplay_contain">
+
+  <div class="learntoplay_text_contain">
+
+    <img src="/images/learn/shared/section_top.png" width="464" height="7" alt="" />
+
+    <div class="learntoplay_text_padding">
+
+      <h1 class="learntoplay_text_h">Using Armor</h1>
+
+      Protect yourself as you surf the web! Armor is an appropriate way to protect yourself from the ravages of Mines.  Each piece of armor can protect you from three mines before it breaks.<br /><br />
+
+      <% if current_user.is_armored? %>
+        <h3 class="learntoplay_text_h">Well done!</h3>
+
+        You are protected. You can keep an eye on your Armor in the toolbar, and make sure your&nbsp; <img src="/images/learn/armor/armor.png" alt="Armor" />&nbsp; is on!<br /><br />
+        
+        <h4>Now, click below to learn about portals.</h4>
+
+  		  <a href="/learn/portals" class="learntoplay_portals_next" style="margin-top:5px;">&nbsp;</a>
+        
+      <% else %>
+        
+        <h3 class="learntoplay_text_h">Give It a Try</h3>
+      
+        Click the Armor icon on your toolbar:&nbsp; <img src="/images/learn/armor/armor.png" alt="Test your armor now!" class="user_button_set_img">from (<b>Off</b>) to (<b>On</b>) and then <a href='/learn/armor'>reload this page!</a>
+        
+      <% end %>
+
+    </div>
+
+    <img src="/images/learn/shared/section_bottom.png" width="464" height="7" alt="" />
+
+  </div>
+
+  <img src="/images/learn/armor/bedouin.png" width="174" height="426" alt="Learn Armor!" class="learntoplay_association" />
+
+</div>

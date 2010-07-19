@@ -1,0 +1,55 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Suspects</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+					<div class="module width960">
+
+ <p>These are players who have pinged the server more than <%= GameSetting.value('Suspect Limit') %> times in a day.  View the current <a href="/suspensions/">Suspensions</a> on The Nethernet.</p>
+ 
+<p align='right'>
+	<%= will_paginate @suspects %>
+</p>
+
+<p class='user_table_list'>  
+  <table class="leaderboardTable" >
+		<tr>
+			<th colspan="2">User</th>
+			<th>Visits</th>
+			<th>Remote Addr</th>
+			<th>Created</th>
+			<th>Updated</th>
+			<th>Suspend?</th>
+		</tr>
+		<% @suspects.each do |suspect| %>
+			<tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+				<td><%= avatar_link_to_user :user => suspect.user, :size => 'small' %></td>
+				<td cellpadding="6"><a href="/users/<%= suspect.user.login %>"><%= suspect.user.login %></a></td>
+				<td cellpadding="6"><%= number_with_delimiter(suspect.visits) %></td>
+				<td><a href='http://whois.domaintools.com/<%= suspect.remote_addr %>' target='_new'><%= suspect.remote_addr %></a></td>
+				<td><p><%= suspect.created_at.to_s(:db) %></p></td>
+				<td><p><%= suspect.updated_at.to_s(:db) %></p></td>
+				<td cellpadding="6"><p><a href="/suspensions/form/<%= suspect.user.login %>">Suspend</a>?</p></td>
+			</tr>
+		<% end %>
+  </table>
+</p>
+
+<br/>
+
+<p align='right'>
+	<%= will_paginate @suspects %>
+</p>
+
+<br/>
+											
+					</div>
+				
+				</div>
+			
+			</div>

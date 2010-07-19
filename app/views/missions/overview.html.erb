@@ -1,0 +1,113 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag '/css/supplemental-missions' %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+	<%= render :partial => "shared/breadcrumbs/mission_generator" %>
+	<div class="cell child"><span class="l"></span><span class="c"><%= @mission.name %></span><span class="r"></span></div>
+</div>
+<% end %>
+
+<% content_for :search do %>
+	<%= render :partial => 'missions/search_form' %>
+	<% end %>
+
+	<div id="copy">
+
+		<div class="column width960">
+
+			<div class="column width700">
+
+				<div class="module width700">
+
+					<h2>Create A Mission :: Step 4- Publish Your Mission</h2>
+					<h4 style="margin-top:-7px;">Time to share your work with the world.</h4>
+
+					<%= render :partial => 'generator_progress' %>
+
+					<div class="height20"></div>
+					<h2 style="margin-bottom: 0px;">Please take a last look at these details before publishing.</h2>
+					<p>If you need to change something, please <%= link_to "edit your mission", edit_mission_path(@mission.url_name) %>.</p>
+
+					<table width="100%">
+
+						<tr>
+
+							<td>
+
+								<h3 style="margin-bottom: 0px;">Mission Name:</h3>
+								<p style="background-color:#FFF; padding: 5px;"><%= @mission.name %></p>
+								<h3 style="margin-bottom: 0px;">Mission Description:</h3>
+								<p style="background-color:#FFF; padding: 5px;"><%= @mission.description %></p>
+								<h3 style="margin-bottom: 0px;"><img src="/images/shared/tools/icon/lightpost-16.png" alt="Lightposts" class="icon16" title="Lightposts" />Mission Lightposts:</h3>
+								<p style="background-color:#FFF; padding: 5px 5px 10px;">
+									<% @mission.branches.each do |lightpost| %>
+									<% img = lightpost.tested? ? "/images/missions/accept.png" : "/images/missions/cancel.png" %>
+									<%= image_tag img, :align => "absmiddle" %> <a href='<%= lightpost.location.url %>'><%= truncate(lightpost.location.url, 35) %></a>
+									<br />
+									<%= lightpost.description %><br />
+									<% end %>
+								</p>
+
+								<h3>Is it all good?</h3>
+
+                <% form_for(:mission, :url => publish_mission_path(:mission => @mission.url_name), :html => {:id => "mission_form"} ) do |f| %>
+                  <%= submit_tag "Publish this mission", :disable_with => "Please wait...", :class => "input generator_submit" %>
+                <% end %>
+
+							</td>
+							<!-- Getting rid of this inside the left Column
+								<td width="260" valign="top">
+									<% if @mission.is_active == true %>
+									<h3 class="generator_publish_h3">Already Published!</h3>
+									<p class="generator_publish_p">
+										Try as you might, you can't publish this bad boy twice.
+									</p>
+									<% else %>
+									<h3 class="generator_publish_h3">Good to Go?</h3>
+									<p class="generator_publish_p">
+										It's time to shine! If you're happy with all the mission details, you can now publish the mission. If you don't want to publish it now, we'll save it as a draft and you can come back to it later on.
+									</p>
+
+									<% form_for(:mission, :url => publish_mission_path(:mission => @mission.url_name), :html => {:id => "mission_form"} ) do |f| %>
+									<%= submit_tag "Publish this mission", :disable_with => "Please wait...", :class => "input generator_submit" %>
+									<% end %>
+									<br />
+
+									<p class="generator_publish_p">
+										After you publish, you can Share and Promote your Mission from its new home on the web.
+									</p>
+									<% end %>
+								</td> -->
+							</tr>
+						</table>
+
+
+					</div>
+				</div>
+
+				<div class="column width240">
+					<div class="imageTop">
+
+						<div class="ImageTop" style="background-image:url(/images/shared/dressing/missionpublish-227.png); width:227px;height:174px;" title="Let it free"></div>
+
+					</div>
+
+					<div class="module width240">
+						<h2>Good to Go?</h2>
+						<p>
+							It's time to shine! If you're happy with all the mission details, you can now publish the mission. If you don't want to publish it now, we'll save it as a draft and you can come back to it later on.
+						</p>
+
+            <% form_for(:mission, :url => publish_mission_path(:mission => @mission.url_name), :html => {:id => "mission_form"} ) do |f| %>
+              <%= submit_tag "Publish this mission", :disable_with => "Please wait...", :class => "input generator_submit" %>
+            <% end %>
+
+						<br/>
+						<p class="generator_publish_p">
+							After you publish, you can Share and Promote your Mission from its new home on the web.
+						</p>
+					</div>					
+				</div>
+			</div>

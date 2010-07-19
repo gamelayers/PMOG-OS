@@ -1,0 +1,53 @@
+<!--
+01/20/2008 Marc Adams <marc@gamelayers.com
+Displays comments for a commentable object as an orded list.
+-->
+<% if logged_in? %>
+<!-- Begin comment listing section --><span id='comments'><% if comments.length <= 0 %>
+    <h3 align="center">Complete this mission and be the first to review it!</h3><% else %>
+    <table>
+        <% comments.each do |comment| %>
+        <tr>
+		    	<td class="avatar" valign="top">
+	      	<div class="avatarAction">
+            <%= avatar_link_to_user :user => comment.user, :size => 'small' %>
+            <div class="avatarPop">
+              <div class="avatarPopIn">
+                <div class="avatarOver">
+                  <a href="/users/<%= comment.user.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => comment.user, :size => "small") %>" alt="<%= comment.user.login %>" title="<%= comment.user.login %>" /></a>
+                </div>
+                <%= render :partial => "/shared/avatar_actions", :locals => {:user => comment.user, :filter => "none"} %>
+              </div>
+            </div>
+          </div>
+          </td>
+          <td valign="top" width="130px">
+	          <p>
+            <strong><%= link_to comment.user.login, user_path(comment.user.login) %></strong>
+    	        <br />
+      	      <%= comment.user.user_level.primary_class.titleize %> - Level <%= comment.user.current_level %></p>
+       	    					</td>
+          <td class="wrapper">
+	       <div class="talkArrow">
+		    <div class="wrapper">
+	          <%= format(comment.comment) %>
+	        </div>
+	        <div class="smallReply"><p>Commented <%= time_ago_in_words(comment.created_at) %> ago
+  	        <% if site_admin? or steward? %> | Admin: <%= link_to 'Delete', 
+                    "/comments/#{comment.id}/destroy",
+                    :confirm => 'Really delete this comment? This CANNOT be undone.',
+                    :method => :delete
+                  %>
+            <% end -%>
+			</p></div>
+			</div>
+          </td>
+        </tr>
+        <% end %>
+    </table>
+    <% end %>
+    <%= will_paginate comments, :class => 'user_profile_pagination' %>
+</span>
+<% else %>
+<h3 align="center">You must be logged in to read comments.</h3>
+<% end %>

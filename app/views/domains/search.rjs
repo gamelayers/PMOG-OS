@@ -1,0 +1,2 @@
+page.replace_html "search_results", :partial => "search_results"
+page.visual_effect :highlight, "search_results", :duration => 2.0

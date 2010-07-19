@@ -1,0 +1,63 @@
+<script type="text/javascript" src="/javascripts/cropper/lib/prototype.js" language="javascript"></script>
+<script type="text/javascript" src="/javascripts/cropper/lib/scriptaculous.js?load=builder,dragdrop" language="javascript"></script>
+<script type="text/javascript" src="/javascripts/cropper/cropper.js" language="javascript"></script>
+
+<%= stylesheet_link_tag 'cropper' %>
+
+<script type="text/javascript" charset="utf-8">
+	function onEndCrop( coords, dimensions ) {
+		$( 'crop_x1' ).value = coords.x1;
+		$( 'crop_y1' ).value = coords.y1;
+		$( 'crop_x2' ).value = coords.x2;
+		$( 'crop_y2' ).value = coords.y2;
+		$( 'width' ).value = dimensions.width;
+		$( 'height' ).value = dimensions.height;
+	}
+</script>
+
+<script type="text/javascript" language="javascript">
+	Event.observe( window, 'load', function() {
+		new Cropper.ImgWithPreview(
+			'cropImage',
+			{ 
+				minWidth: 50,
+				minHeight: 50,
+				previewWrap: 'previewArea1',
+				ratioDim: {	x: 50,	y: 50 },
+				displayOnInit: true,
+				onEndCrop: onEndCrop
+			}
+		);
+	} );
+</script>
+
+<%= error_messages_for :asset %>
+
+<% form_for :asset, @asset, :url => { :controller => controller.controller_name, :action => "update", :id => @asset.id }, :html => { :method => :put }  do |f| %>
+	<div id="wrapper">
+		<div id="wrap">
+	    <img src="<%= @asset.public_filename %>" id="cropImage"/>
+		</div>
+
+		<div id="previewOuterWrap">
+			<h2 class="caps">Crop Preview</h2>
+
+			<div id="previewArea1" style="width: 128px; height: 128px; float: left; margin-right: 10px;border: 1px solid black;"></div>		
+			<div id="previewArea2" style="width: 32px; height: 32px;"></div>
+
+		</div>
+
+		<div id="results">
+			<input type="hidden" name="asset[crop_x1]" id="crop_x1" value="1"/>
+			<input type="hidden" name="asset[crop_y1]" id="crop_y1" value="1"/>
+			<input type="hidden" name="asset[crop_x2]" id="crop_x2" />
+			<input type="hidden" name="asset[crop_y2]" id="crop_y2" />
+			<input type="hidden" name="width" id="width" />
+			<input type="hidden" name="height" id="height" />
+		</div>
+		
+    <div class="buttons">
+      <%= submit_tag 'Crop', :name =>'crop', :id=>'crop' %>
+    </div>
+	</div>
+<% end %>

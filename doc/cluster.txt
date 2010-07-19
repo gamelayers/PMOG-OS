@@ -1,0 +1,63 @@
+== Engine Yard Cluster Setup ==
+
+New Env:
+  slice 13 on node 0 with 5120MB, 4 VCPU
+  slice 14 on node 1 with 5120MB, 4 VCPU
+  slice 15 on node 2 with 5120MB, 4 VCPU
+  slice 25 on node 1 with 1280MB, 1 VCPU (utility)
+
+New IRC Env:
+  slice 26 on node 2 with 1280MB, 1 VCPU (ircserver)
+
+Database master:
+  e0: mysql50-1-master (mysql-master) [] [0 (possible) web apps]
+    slice 0 on node 0 with 4096MB, 2 VCPUs
+
+Database replica:
+  e1: mysql50-1-replica (mysql-replica) [] [0 (possible) web apps]
+    slice 1 on node 1 with 4096MB, 2 VCPUs
+
+Database staging and metrics:
+  e3: mysql50-staging-1 (mysql-replica) [] [0 (possible) web apps]
+    slice 3 on node 2 with 4096MB, 2 VCPUs
+  Note that the gamelayers_db user on here has read only access to all databases, except pmog_staging.
+  Note that pmog_production is a replicated copy of the PMOG database.
+  Note also that pmog_jira is a replicated copy of the Jira database.
+
+We'll increase the mongrel count by up to 4x and also increase the memcached size by 3x or more.
+
+== Staging ==
+  Our staging server, dev.pmog.com, runs from our Staging slice (gl00-s00024)
+  - not much else happens on here
+
+== Utility ==
+  Our utility slice, gl00-s00025, shares /data with the production slice
+  Deploying to production will therefore update the code on utility
+
+== Backups ==
+  We backup the database, image assets and codebase daily
+  - they run from our Utility slice (gl00-s00025)
+  - via a cronjob that calls script/backup which in turn calls rake pmog:backup_to_s3
+  - recent backups are stored locally for a short period
+  - all backups are stored in Amazon S3
+
+== Background Jobs ==
+  Background jobs are long running processes that would otherwise tie up the production database, like badges and stats.
+    - Job run on our Utility slice (gl00-s00025)
+    - Jobs are submitted to BJ via a cron job
+    - Jobs run with a RAILS_ENV of cron, which mimics production.
+
+== Jira ==
+  Runs on our Utility slice (gl00-s00025)
+  - accessible via hospital.pmog.com:8080
+  - the data lives in a pmog_jira database on staging (gl00-s00003)
+  - the Jira app lives in /home/gamelayers/marc/jira
+
+== IRC ==
+  Players can chat on our own irc server at irc.pmog.com
+  - uses UnrealIRCD and Anope Services
+  - runs on our IRC slice (gl00-s00026)
+  - can be started by running start_irc.sh (see doc/start_irc.txt)
+
+== SSH ==
+  See doc/ssh_config.txt for the ssh details for each slice/server.

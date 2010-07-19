@@ -1,0 +1,163 @@
+<% content_for :head do %>
+    <link href="/users/<%= current_user.login %>/messages.rss" rel="alternate" title="Subscribe to" type="application/rss+xml"/>
+
+    <%= javascript_include_tag 'character_count' %>
+    <%= stylesheet_link_tag '/css/supplemental-forums' %>
+
+<% end %>
+
+<% content_for :breadcrumbs do %>
+    <div id="breadcrumbs">
+        <div class="main">Your Message Center</div>
+    </div>
+<% end %>
+
+<div id="copy">
+
+    <div class="column width960">
+
+        <div class="column width700">
+
+            <div class="module width700" id="messageInbox">
+
+                <h5 align="right"><a href="#" onclick="jQuery('#compose').toggle('slow');">+Send a Message</a></h5>
+
+                <div class="module width460 compose" id="compose" style="display:none;">
+                    <a href="#" onclick="jQuery('#composeHelp').toggle('slow');jQuery('#composeDetails').toggle('slow');"><img src="/images/shared/icons/help-16.png" alt="composeHelp" title="composeHelp" width="16" height="16" align="right" border="0"/></a>
+
+                    <div class="composeHelp" id="composeHelp" style="display:none;">
+                        <p>Use @name to send messages to other players:<br>
+                            <i>@eustace I rather enjoyed our surfing session the other evening.</i></p></div>
+
+                    <% form_for :message, :url => user_messages_path, :html => { :method => :post } do |f| %>
+                        <%= f.text_area :body, :rows => 3, :cols => 50, :class => "input", :name => "pmail_message", :id => "pmail_message" %>
+                        <%= submit_tag "Send", :class=> "input" %>
+                    <% end %>
+                    <div class="composeDetails" id="composeDetails" style="display:none;">
+                        <p><br/>
+                            Messages cost 1
+                            <img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoint" title="datapoint" class="img_no_border">
+                            to send, per recipient, Maximum 5 recipients.<br/>
+                            Sending a message earns you <%= Ping.value('Reply') %>
+                            <img src="/images/shared/icons/ping-16.png" width="16" height="16" border="0" alt="ping" title="ping" class="icon16">
+                        </p>
+                    </div>
+                </div>
+                <br clear="all"/>
+
+                <!-- <h3>Received | <a href='/users/<%#= current_user.login %>/messages/sent'>Sent</a></h3> -->
+                <%= selected_page(controller.action_name) %>
+
+                <div id="post_list">
+                    <table class="stripeMe" cellpadding="0" cellspacing="0">
+                        <% @messages.each_with_index do |message, index| %>
+                        <% usr = controller.action_name == 'sent' ? message.recipient : message.user %>
+                            <tr id="msgrow_<%= message.id %>" class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+                                <td class="avatar">
+                                    <% if usr.nil? %>
+                                        <b>User Deleted</b><br/><br/>
+                                    <% else %>
+                                        <% if usr.login == 'TheNethernet' %>
+                                            <div class="avatarAction">
+                                                <%= avatar_link_to_user :user => usr, :size => 'small', :align => "left" %>
+                                            </div>
+                                        <% else %>
+                                            <!-- #fixme this popup shows up for users who are not logged in -->
+                                            <div class="avatarAction">
+                                                <%= avatar_link_to_user :user => usr, :size => 'small', :align => "left" %>
+                                                <div class="avatarPop">
+                                                    <div class="avatarPopIn">
+                                                        <div class="avatarOver">
+                                                            <a href="/users/<%= usr.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => usr, :size => "small") %>" alt="<%= usr.login %>" title="<%= usr.login %>"/></a>
+                                                        </div>
+                                                        <%= render :partial => "/shared/avatar_actions", :locals => {:user => usr, :filter => "none"} %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                                </td>
+                                <td width="160">
+                                    <% if usr.nil? %>
+                                        <b>User Deleted</b><br/><br/>
+                                    <% else %>
+                                        <% if usr.login == 'TheNethernet' %>
+                                            <p>
+                                                <strong><%= link_to( h(usr.login), user_path(usr) ) %></strong><br/>
+                                                System<br/>
+                                        <% else %>
+                                            <p>
+                                                <strong><%= link_to( h(usr.login), user_path(usr) ) %></strong>
+                                                <br/>
+                                                <%= usr.user_level.primary_class.titleize %> -
+                                                Level <%= usr.current_level %>
+                                                <br/>
+                                                <% if usr.cached_has_role? 'site_admin' %>
+                                                    Trustee<br/>
+                                                <% elsif usr.cached_has_role? 'steward' %>
+                                                    Steward<br/>
+                                                <% elsif usr.cached_has_role? 'npc' %>
+                                                    Character<br/>
+                                                <% end %>
+                                            </p>
+                                        <% end %>
+
+                                        <p class="small">Sent <%= time_ago_in_words(message.created_at) %> ago<br/>
+
+                                            <a href="#" onclick="jQuery('#desc_<%= index %>').toggle();return false;">Reply</a>&nbsp;|&nbsp;
+                                            <%= link_to_remote( 'Delete', { :url => user_message_path(current_user, message), :method => :delete,
+                                                               :confirm => 'Really delete? This cannot be undone.',
+                                                               :success => "jQuery('#msgrow_#{message.id}').effect('puff');" } )
+                                            %>
+
+                                        </p>
+                                        <!--
+            <% if usr.login == 'pmog' %>
+                <p><i>Original account deleted</i></p>
+              <% end %>
+-->
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <a name="<%= message.id %>"> </a>
+                                    <span style="margin-top:10px;"><%= strip_message_recipient( format( message.body ) ) %></span>
+
+      <span id="desc_<%= index %>" style="display: none;">
+        <% remote_form_for :message, :url => user_messages_path, :complete => "jQuery('#desc_#{index}').hide();", :html => { :method => :post } do |f| %>
+          <%= f.text_area :body, :rows => 3, :cols => 40, :class => "input", :value => "@" + usr.login + " ", :name => "pmail_message", :id => "pmail_message_reply_#{message.id}" %>
+                    <p>
+                        <%= submit_tag "Send", :class => "input" %>
+                        or <a href="#" onclick="jQuery('#desc_<%= index %>').hide();return false;">Don't Reply</a></p>
+        <% end %>
+      </span>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </table>
+                </div>
+
+                <p align="right">
+                    <%= will_paginate @messages %>
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="column width240">
+            <div class="module width240">
+
+                <div class="imageTop">
+                    <div class="ImageTop" style="background-image:url(/images/shared/dressing/playermail-215.png); width:215px;height:100px;" title="A Mess O' Mail"></div>
+                </div>
+
+                <h2>Player Mail</h2>
+
+                <p>Use PMail to stay in touch with your Contacts, Rivals or Allies. Also, PMail keeps you up to date on game events in The Nethernet!</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

@@ -1,0 +1,6 @@
+<% mission.average_rating.times do %>
+	<img src="/images/missions/star_small_on.png" height="10" width="10" alt="gold star" />
+<% end %>
+<% (5 - mission.average_rating).times do %>
+	<img src="/images/missions/star_small_off.png" height="10" width="10" alt="empty star" />
+<% end %>

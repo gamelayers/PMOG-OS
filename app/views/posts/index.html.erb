@@ -1,0 +1,25 @@
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Body</th>
+  </tr>
+  
+<% for post in @posts %>
+  <tr <%= "bgcolor=\"red\"" if post.deleted_at? %> >
+    <td><%=h post.body %></td>
+    <td><%= link_to 'Show', forum_topic_post_path(post) %></td>
+    <td><%= link_to 'Edit', edit_forum_topic_post_path(post) if site_admin? or current_user == post.user  %></td>
+    <td>
+    	<% if post.deleted_at? %>
+			Destroy
+		<% else %>
+			<%= link_to 'Destroy', forum_topic_post_path(post), :action => 'destory', :confirm => 'Are you sure?', :method => :delete if site_admin? or current_user == post.user %></td>
+  		<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New post', new_forum_topic_post_path %>

@@ -1,0 +1,82 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+	  jQuery(function(){
+	    jQuery("ol.stripeMe li:even").addClass("whiteEven");
+  		jQuery("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+	  });
+	</script>
+  <%= stylesheet_link_tag "/css/ui.tabs.css", "/css/jquery.rating.css" %>
+  <script src="/javascripts/ui.tabs.js" type="text/javascript"></script>
+  <script src="/javascripts/ui.subtabs.js" type="text/javascript"></script>
+<% end %>
+
+<!-- <%= "Time now #{Time.now.to_s(:db)}" %> -->
+<% cache( :fragment => "awsmattack_#{params.to_s}", :ttl => 4.hours ) do %>
+
+  <!-- <%= "Cached at #{Time.now.to_s(:db)}" %> -->
+<div id="copy">
+		
+	<div class="column width960">
+    
+	  <center><img src="/images/awsm-attack/awsm-attack-banner.png" alt="Awsms and Attacks!" border="0" class="img_no_border" width="640" height="138" /></center>
+
+    <div class="module width960">
+
+
+  <!-- ATTACKS weekly top -->
+    <table class="list">
+      <tbody>
+        <tr>
+          <td colspan="2" class="head">
+            <h3 class="center">Please Note: some links here might be NSFW!
+            <%= render :partial => 'shared/nsfw_tip' %>
+            As always, surf carefully.</h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="head">
+            <h2 class="center">Top Awsm! over the last week</h2>
+          </td>
+          <td class="head">
+            <h2 class="center">Top Attack! over the last week</h2>
+          </td>
+        </tr>
+        <tr>
+          <td width="400">
+            <%= render :partial => 'awsmattacks_list', :locals => { :awsmattacks => @top_awsm_this_week } %>
+          </td>
+          <td width="400">
+            <%= render :partial => 'awsmattacks_list', :locals => { :awsmattacks => @top_attack_this_week } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  <!-- ATTACKS recent -->
+    <table class="list">
+      <tbody>
+        <tr>
+          <td class="head">
+            <h2 class="center">Most Recent Awsm!</h2>
+          </td>
+          <td class="head">
+            <h2 class="center">Most Recent Attack!</h2>
+          </td>
+        </tr>
+        <tr>
+          <td width="400">
+            <%= render :partial => 'awsm_recent', :locals => { :awsmattacks => @most_recent_awsm } %>
+          </td>
+          <td width="400">
+            <%= render :partial => 'attack_recent', :locals => { :awsmattacks => @most_recent_attack } %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+</div>
+
+</div>
+
+<% end %>

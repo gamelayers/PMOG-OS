@@ -1,0 +1,28 @@
+action_valid_type: 
+  id: 8b5a09c0-e947-11dc-a035-001b63928f8d
+  name: Stash a crate
+  description: Stash a crate
+  context: perform
+  created_at: 2008-03-03 17:30:40 Z
+  updated_at: 2008-03-03 17:32:22 Z
+action_invalid_type: 
+  id: 8b5a09c0-e947-11dc-a035-001b63928f93
+  name: Stash a crate
+  description: Stash a crate
+  context: milkmansays
+  created_at: 2008-03-03 17:30:40 Z
+  updated_at: 2008-03-03 17:32:22 Z
+receive: 
+  id: 8b5a09c0-e947-11dc-a035-001b63928f98
+  name: Loot a Crate
+  description: Loot a crate
+  context: receive
+  created_at: 2008-03-03 17:30:40 Z
+  updated_at: 2008-03-03 17:32:22 Z
+perform: 
+  id: 8b5a09c0-e947-11dc-a035-001b63928f9d
+  name: Stash a Crate
+  description: Stash a crate
+  context: perform
+  created_at: 2008-03-03 17:30:40 Z
+  updated_at: 2008-03-03 17:32:22 Z

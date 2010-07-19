@@ -1,0 +1,20 @@
+<h2>Change Your Primary Association <span class="small">temporary - until prefs page is built</span></h2>
+<div class="module width240" id="profileTemporary">
+<!--<p>PMOG has a number of Associations you can play with.  Are you the destructive sort?  Try being a Destroyer.  Are you a generous soul?  Be a Benefactor!</p>
+
+<p>Here you can select one of the six Associations to identify yourself with.  You can continue to score <a href="/guide/rules/levels/">levels</a> through earning <a href="/guide/rules/classpoints/">classpoints</a> for any of these as you play, but only your Primary Association will show up when other players glance at you.</p>
+-->
+<center>
+  <% form_tag "/users/#{@user.login}/set_primary_class" do %>
+    <select id="class" name="class" class="input">
+      <%= options_for_select(@classes, :selected => @user.user_level.primary_class) %>
+    </select>
+		  	
+	  <%= submit_tag 'Set Primary Association', :class => 'input tag_submit' %>
+  <% end %>
+</center>
+
+<br />
+<a href="/guide/classes/<%= @user.user_level.primary_class %>"><img src="<%= PmogClass.find_by_name(@user.user_level.primary_class.pluralize).small_image %>" width="50" height="50" align="left" hspace="10" alt="<%= @user.user_level.primary_class.titleize %>" class="img_no_border" /></a>
+<p class="user_table_list">You are currently a <a href="/guide/classes/<%= @user.user_level.primary_class %>"><%= @user.user_level.primary_class.titleize %></a>!  <%= PmogClass.find_by_name(@user.user_level.primary_class.pluralize).short_description %></p>
+					</div>

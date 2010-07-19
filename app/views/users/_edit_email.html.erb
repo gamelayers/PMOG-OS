@@ -1,0 +1,38 @@
+<a name="Email"></a>
+<h3><a href="#Email">Email updates &amp; Communications<span>How may we e-mail you?</span></a></h3>
+
+<div class="back" id="prefEmail">
+<p>Choose how The Nethernet corresponds to you via your email address.<br/>
+<% if current_user.email.nil? || current_user.email == '' %>
+<% else %>
+We have <%= current_user.email.gsub('@', ' AT ') %> in our files.
+<% end %>
+</p>
+<div id="email_flash"></div>
+<table id="emailPrefs">
+	<% Preference.preferences.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each do |pref| %>
+    <% if pref[1][:group] == "email" %>
+      <tr>
+        <td><small><%= pref[1][:text] %></small>&nbsp;&nbsp;&nbsp;</td>
+          <td><%= get_preference_checkbox(pref[1][:text], current_user.id, pref[1][:text]) %></td>        
+      </tr>
+    <% end %>
+	<% end %>
+</table>
+<br/>
+
+<p>Note: Some of these emails we are not sending yet; we still wish to register your preferences!</p>
+
+<script>
+  jQuery('#emailPrefs input[type=checkbox]').click(function() {
+    var elm = this;
+    jQuery.ajax({
+      url: '/privacy/update_email_prefs?' + jQuery(this).attr("name") + '=' + this.checked,
+      type: 'PUT',
+      dataType: 'script',
+      data:'',
+    });    
+  });
+</script>
+
+</div>

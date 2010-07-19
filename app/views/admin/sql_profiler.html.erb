@@ -1,0 +1,28 @@
+<h1>Sql Profiler</h1>
+
+<p>
+	<i>The top 100 most used queries</i>
+<p>
+
+<table border="1" cellpadding="2">
+	<tr>
+		<td><b>hits</b></td>
+		<td><b>#&nbsp;rows</b></td>
+		<td><b>query</b></td>
+		<td><b>trace</b></td>
+	</tr>
+	<% @sql_queries.each  do |sql| %>
+		<tr>
+			<td align='right' valign='top'><b><%= sql.count_all %></b></td>
+			<td align='right' valign='top'><b><%= sql.num_rows %></b></td>
+			<td valign='top'><small><%= sql.query %></small></td>
+			<td>
+				<small>
+					<small>
+						<%= sql.trace %>
+					</small>
+				</small>
+			</td>
+		</tr>
+	<% end %>
+</table>

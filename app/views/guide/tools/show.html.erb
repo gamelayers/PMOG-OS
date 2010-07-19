@@ -1,0 +1,52 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/arsenal" %>
+		<div class="cell parent"><a href="/guide/tools"><span class="l"></span><span class="c">Tools</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @tool.name.titleize %></span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960">
+			
+		<div class="module width960">
+
+			<div class="imageTop">
+					
+				<div class="ImageTop" style="background-image:url(/images/shared/tools/large/<%= @tool.url_name %>.png); width:287px;height:385px;" title="The Tool You're Looking Up"></div>
+			</div>
+       
+	    <h1><%= @tool.name.titleize %></h1>
+
+      <% unless @tool.url_name == 'skeleton_keys' %>
+  	    <h5> Available to Level <%= @tool.level %> <%= PmogClass.find(@tool.pmog_class_id).name %> </h5>
+      <% end %>
+  
+    	<p><%= @tool.short_description %></p>
+  
+	    <p><%= @tool.long_description %></p>
+    
+	    <h4><a href="/guide/rules/classpoints">Classpoints</a> Awarded for Use: <%= @tool.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></h4>
+
+    	<h4><%= @tool.name.titleize %> cost <%= @tool.cost.to_i %> <%= dp_icon %> to buy in the <a href="/shoppe">Shoppe</a>.</h4>
+
+	    <!--<h4>Total <%#= @tool.name.pluralize %> usage on The Nethernet: <%#= number_with_delimiter(@utool_uses, ",") %></h4>-->
+    
+	    <% if site_admin? %>
+		    <h5 align="right">Admin: <%= link_to "Edit " + @tool.name, edit_tool_path(@tool) %></h5>
+			<% end %>    
+
+		</div>
+											
+	</div>
+			
+	<div class="column width960">
+
+			<%= render :partial => "shared/guide/arsenal" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+	</div>
+
+

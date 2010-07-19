@@ -1,0 +1,57 @@
+# defaults:
+#   ttl: 1800
+#   readonly: false
+#   urlencode: false
+#   c_threshold: 10000
+#   compression: true
+#   debug: false
+#   namespace: tnn
+#   sessions: false
+#   fragments: false
+#   memory: 64
+#   raise_errors: true
+#   fast_hash: false
+#   fastest_hash: false
+#
+# production:
+#   #disabled: true
+#   memory: 64
+#   sessions: true
+#   fragments: true
+#   benchmarking: false
+#   servers: localhost:11211
+#   session_servers: localhost:11211
+defaults:
+  ttl: 1800
+  readonly: false
+  urlencode: false
+  c_threshold: 10000
+  compression: true
+  debug: false
+  namespace: app
+  sessions: false
+  session_servers: false
+  fragments: false
+  memory: 64
+  servers: localhost:11211
+  benchmarking: true
+  raise_errors: true
+  fast_hash: false
+  fastest_hash: false
+
+development:
+  disabled: true
+  sessions: false
+  fragments: false
+  servers: localhost:11211
+
+# turn off caching
+test:
+  disabled: true
+
+production:
+  memory: 256
+  sessions: true
+  benchmarking: false
+  servers:
+    - 10.177.33.67:11211

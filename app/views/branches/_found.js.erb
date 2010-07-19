@@ -1,0 +1,52 @@
+<div class="pmog_single_mission">
+
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @branches.first.id } %>
+  
+  <br style="clear:both;"/>
+  
+  <%= render :partial => 'shared/ext/progress_throbber', :locals => { :throbber_id => @branches.first.id } %>
+
+  <div class="pmog_mission_text1">
+  
+    You found a mission by <a href="<%= host %>/users/<%= @branches.first.mission.user.login %>" target="new"><%= @branches.first.mission.user.login %></a>:<br />
+    <span style="font-size:13px;"><strong><a href="<%= host %>/missions/<%= @branches.first.mission.url_name %>"><%= @branches.first.mission.name %></a></strong></span><br /><br />
+    
+    <b>Rated:</b>    
+    <% @branches.first.mission.average_rating.times do %>
+      <img src="<%= host %>/images/ext/star_medium_on.png" height="16" width="16" alt="gold star" />
+    <% end %>
+    <% (5 - @branches.first.mission.average_rating).times do %>
+      <img src="<%= host %>/images/ext/star_medium_off.png" height="16" width="16" alt="empty star" />
+    <% end %>
+
+  </div>
+
+  <div class="pmog_mission_text2">
+    
+    <a href="<%= host %>/missions/<%= @branches.first.mission.url_name %>/take" class="pmog_take_mission<%= "_nsfw" if @branches.first.mission.is_nsfw? %>">&nbsp;</a>
+    
+		<a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+	              pmog_m.setAttribute('server_url', '/queued_mission/create/<%= @branches.first.mission.url_name %>.json');
+	              pmog_m.setAttribute('method', 'put');
+	              pmog_m.setAttribute('action', 'submit');
+	              pmog_m.setAttribute('window_id', '<%= @branches.first.id %>');
+	              pmog_m.setAttribute('params', '{\'window_id\' : \'<%= @branches.first.id %>\'}');
+	              pmog_m.dispatchEvent(pmog_e);
+	              <%= render :partial => 'shared/ext/progress_throbber_trigger', :locals => { :throbber_id => @branches.first.id } %>
+	              return false;" href="#" class="pmog_mission_queue">&nbsp;</a>
+	      
+    <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+              pmog_m.setAttribute('server_url', '/missions/<%= @branches.first.mission.id %>/dismiss.json');
+              pmog_m.setAttribute('method', 'post');
+              pmog_m.setAttribute('action', 'submit_and_close');
+              pmog_m.setAttribute('window_id', '<%= @branches.first.id %>');
+              pmog_m.setAttribute('params', '{\'window_id\' : \'<%= @branches.first.id %>\'}');
+              pmog_m.dispatchEvent(pmog_e);
+              <%= render :partial => 'shared/ext/progress_throbber_trigger', :locals => { :throbber_id => @branches.first.id } %>
+              return false;" href="#" class="pmog_button_dismiss">&nbsp;</a>
+
+  </div>
+  
+  <br style="clear:both;">
+  
+</div>

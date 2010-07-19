@@ -1,0 +1,67 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/about" %>
+		<div class="cell child"><span class="l"></span><span class="c">Contact</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>Make Contact with The Nethernet</h1>
+<h5>Reach through the screen to another screen</h5>
+
+<div id="contact-form">
+	<form action="/about/contact_submit" method="get" accept-charset="utf-8">
+		<% if logged_in? %>
+			<input type="hidden" name="user_version" value="<%= current_user.last_version %>" id="user_version">
+			<input type="hidden" name="user_name" value="<%= current_user.login %>" id="user_name">
+		<% end %>
+    <div class="email-address">
+      <label>Email Address</label>
+      <input type="text" name="user_email" value="<%= current_user.email rescue nil %>" id="user_email">
+    </div>
+		<div class="regarding">
+			<label>Regarding</label>
+			<select name="message_regarding" id="message_regarding">
+				<option value="general_support">General Support</option>
+				<option value="account_recovery">Recover Account</option>
+				<option value="feedback">Give Feedback</option>
+				<option value="bug_submission">Submit a Bug</option>
+				<option value="abuse">Report Abuse</option>
+				<option value="dmca_claim">DMCA Claim</option>
+			</select>
+		</div>
+		<div class="email-body">
+			<label>Details</label>
+			<textarea name="message_details" rows="8" cols="40"></textarea>
+		</div>
+		<div class="send">
+			<input type="submit" value="Send &rarr;">
+		</div>
+	</form>
+</div>
+
+<p>We can also be mailed:<br /><br />
+
+            The Nethernet c/o GameLayers, Inc.<br />
+            76 2nd Street <br />
+            San Francisco, CA 94105<br />
+</p>
+
+						</div>
+					
+					</div>
+				
+    				<div class="column width240">
+				<%= render :partial => "shared/support_module" %>
+				</div>
+
+				</div>
+				
+		</div>

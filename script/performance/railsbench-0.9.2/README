@@ -1,0 +1,321 @@
+Railsbench is a small collection of ruby scripts which make measuring
+raw performance of rails apps a snap. All tests are run from the
+command prompt, making performance regression testing easy.
+
+In addition, a patch for the ruby garbage collector is provided, which
+can be used to reduce the amount of time spent doing garbage
+collection, trading memory for speed, as usual (see file GCPATCH for
+details). Applying the patch will enhance performance data obtained
+from the various scripts (and some won't run at all without the
+patch).
+
+This software was written and conceived by Stefan Kaes. The author can
+be reached via email: <skaes@gmx.net>. Please send comments, bug
+reports, patches or feature requests to this address.
+
+
+FILES
+
+  railsbench.rb
+                - defines classes RailsBenchmark and RailsBenchmarkWithActiveRecordStore
+                  switches:
+                  -gcXXX        : perform gc after XXX requests
+                  -log[=level]  : turn on rails logging (at given level)
+                  -nochache     : turn off rails caching
+                  -path         : print $: after loading rails and exit
+
+  config/bechmarks.yml
+                - specification of urls to benchmark
+                  install into $RAILS_ROOT/config using `railsbench install'
+                  (use railsbench install)
+
+  config/benchmarks.rb
+                - defines constant RAILSBENCH which is used by script perf_bench
+                  modify this to add custom argument processing and to put data
+                  into the session
+                  install to $RAILS_ROOT/config using `railsbench install'
+
+  perf_bench n options
+                - main ruby script to run a given benchmark
+                  switches (in addition to railsbench switches):
+                  -mix      : alternates urls in given benchmark
+
+  run_urls n options
+                - run a given benchmark (without benchmarking)
+                  useful for checking response codes, like so:
+
+                      run_urls 1 -bm=all | grep Status:
+
+                  switches as for perf_bench plus
+                  -warmup   : run all urls once before measuring
+                  -svlPV    : run test using SVL Ruby Performance Validator
+                  -svlMV    : run test using SVL Ruby Memory Validator
+
+  perf_run n [ option-string [ config-name ] ]
+                - run a given benchmark, store performance data in a file
+                  in directory $RAILS_PERF_DATA and print results
+
+  perf_diff n common-options option-string1 option-string2 [ config-name1 [ config-name2 ] ]
+                - run a given benchmark with two different sets of arguments
+                  store data into directory $RAILS_PERF_DATA and print
+                  comparison data
+
+  perf_loop n options
+                - used by perf_run and perf_diff
+                  calls perf_bench $RAILS_PERF_RUNS times
+
+  perf_times file
+                - analyse and print performance data
+
+  perf_comp [-narrow] [-skip_urls] file1 file2
+                - compare two performance data sets and print results
+                  -narrow    => produce narrow output
+                  -skip_urls => don't print url map (use with -narrow)
+
+  perf_html [-nocss] [-gc] [file]
+                - format output taken from perf_comp and produce a HTML table
+                  for inclusion in HTML pages. Reads from standard input.
+                  options:
+                    -noccs   suppress CSS output
+                    -notable suppress table output
+                    -gc      include gc statistics
+
+  perf_run_gc n [ option-string [ config-name ] ]
+                - run a given benchmark, store performance data in a file
+                  in directory $RAILS_PERF_DATA and print results
+                - requires Ruby GC patch
+
+  perf_times_gc file
+                - analyse and print garbage collection statistics, which you
+                  can produce by running perf_run_gc
+
+  perf_diff_gc n common-options option-string1 option-string2 [ config-name1 [ config-name2 ] ]
+                - run a given benchmark with two different sets of arguments
+                  store GC data into directory $RAILS_PERF_DATA and print
+                  GC stats comparison using perf_comp_gc
+                - requires Ruby GC patch
+
+  perf_comp_gc file1 file2
+                - compare two GC performance data sets and print results
+
+  perf_prof n [ option-string [ config-name ] ]
+                - run a given benchmark using ruby-prof for profiling,
+                  store profile data in a HTML file in directory $RAILS_PERF_DATA
+                  file name is computed from date and benchmark name as described above
+                  but has a .html extension instead of .txt
+
+  perf_plot [ options ] file1 file2 ...
+                - plot performance data from raw performance files using gruff
+                  see source for options
+
+  perf_table [ options ] file1 file2 ...
+                - produces a tabular overview of perf data from given raw data files
+                  see source for options
+
+
+ENVIRONMENT
+
+  RAILS_ROOT
+                - must be set to point to your rails app
+
+  RAILS_PERF_DATA
+                - performance data sets will be stored into this directory
+                  if not set, $HOME will be used
+
+  RAILS_PERF_RUNS
+                - the number of times perf_loop will run perf_bench on a single invocation
+                  if not set, 3 runs will be performed
+
+  RAILS_BENCHMARK_FILE
+                - perf_bench sends its output to this file
+
+
+INVOCATION
+
+  The gem version installs a driver script called 'railsbench' into
+  Ruby's bin directory. Individual commands can be called by prefixing
+  with railsbench. If you tire of typing railsbench all the time, you
+  can either define an alias (alias rb="railsbench"), or you can
+  include railsbench's script directory into your seach path. In this
+  case you need to run 'sudo railsbench postinstall' to make the
+  scripts executable.
+
+
+USAGE
+
+  The two main scripts are named perf_run and perf_diff.
+
+      perf_run 100
+
+  runs the list of urls named "default" specified in benchmkarks.yml
+  (see below), requesting each url $RAILS_PERF_RUNS * 100 times.
+
+     perf_run 100 "-bm=list -aws"
+
+  runs the benchmark named 'list' and passes the expanded second
+  argument to the rails app. By processing arguments inside your
+  environment.rb file, you can set performance affecting options. For
+  example, you could load action web service only if -aws is passed and
+  measure the performance effect of omitting it.
+
+  Benchmark data is stored in directory $RAILS_PERF_DATA, which should
+  be set in your environment. If not set, $HOME is used. By default,
+  data is stored in file $RAILS_PERF_DATA/perf_run.$BENCHMARK.txt, where
+  BENCHMARK will be set according to the -bm option.
+
+     perf_run 100 "-bm=index -mail" mail
+
+  will store benchmark data in file
+
+     $RAILS_PERF_DATA/`current-date´.index.mail.txt.
+
+  You can get nicely formatted output of benchmark data by running
+
+    perf_times file
+
+  Script perf_run will automatically print the obtained data after
+  finishing the run using perf_times.
+
+  Script perf_diff runs a list of urls with two different option lists. So
+
+    perf_diff 100 "-bm=blogs -mysql_session" "-mail=0" "-mail=1" cf1 cf2
+
+  would run benchmark 'blogs' twice, first as
+
+    perf_run 100 "-bm=blogs -mysql_session -mail=0" cf1
+
+  and then
+
+    perf_run 100 "-bm=blogs -mysql_session -mail=1" cf2
+
+  printing a comparison of the bechmark data obtained after finishing
+  the second run. cf1 and cf2 can be omitted, in which case data is
+  stored in $RAILS_PERF_DATA/perf_run1.$BENCHMARK.txt and
+  $RAILS_PERF_DATA/perf_run2.$BENCHMARK.txt.
+
+  Script perf_bench can also be invoked manually to run a given
+  benchmark like so:
+
+    perf_bench 100 -bm=blogs -mysql_session -mail=1 >/dev/null
+
+  Performance data is sent to $RAILS_BENCHMARK_FILE, HTML output ends up
+  on stdout. If RAILS_BENCHMARK_FILE is not set, performance data is
+  sent to stderr.
+
+  Scripts perf_run_gc and perf_times_gc can be used to analyse GC performance:
+
+    perf_run_gc 100 "-bm=all -lib=stable11" gc.log
+    perf_times_gc gc.log
+
+  It will produce output looking like this:
+
+  GC data file: d:/perfdata/xp/perf_run.uncached.gc.txt
+
+  collections            :        40
+  garbage total          :   8188429
+  gc time total (sec)    :         4.03
+  garbage per request    :      2047.11
+  requests per collection:       100.00
+
+                       mean  stddev%          min          max
+  gc time(ms):       101.38     10.0        93.00       125.00
+  heap slots :    400000.00      0.0    400000.00    400000.00
+  live       :    192914.31      0.2    191787.00    193197.00
+  freed      :    207085.69      0.2    206803.00    208213.00
+  freelist   :         0.00      0.0         0.00         0.00
+
+  Note that these numbers, especially requests per collection, are
+  only an approximation. This is due to the fact that perf_run_gc will
+  add one final garbage collection call at the end of the run. Of
+  course, higher number of iterations will produce more accurate
+  data. Also, if the benchmark lists several uris, garbage per request
+  will not give you meaningful information.
+
+
+CONFIGURATION
+
+  Benchmarks are configured through file benchmarks.yml. Example:
+
+    default:
+      index, query, alpha
+
+    index:
+      uri: /test/index
+      new_session: true
+
+    query:
+        uri: /test/list
+        method: post
+        post_data: search_string=tomatoes
+
+    alpha:
+        uri: /test/alphabetic
+        query_string: page=7&letter=A
+
+  defines 4 benchmarks:
+
+    "index"    will run (/test/index) using method GET
+    "query"    will run (/test/list) using method POST
+    "alpha"    will run (/test/alphabetic) using method GET
+    "default"  will run benchmarks "index", "query" and "alpha"
+
+  uri: is mandatory, query_params: and new_session: are optional.
+
+  Instead of
+
+      uri: /test/alphabetic
+      query_string: page=7
+
+  one could have written
+
+      uri: /test/alphabetic?page=7&letter=A
+
+  A single test session is created before running the benchmarks and
+  stored in the sesion container of your choice. The corresponding
+  _session_id value is sent with each request. If you specifiy
+  new_session: true, railsbench will not send the session_id value, so
+  Rails will create a new session per request for the given benchmark.
+
+  Session data can either be set on the benchmarker instance, or
+  specified in the benchmark config file like so:
+
+    list_user_5:
+      uri: /test/list
+      method: post
+      post_data: search_string=tomatoes
+      session_data:
+        user_id: 5
+
+  benchmarks.yml is loaded using ERB. This makes it possible to avoid
+  using primary keys in the config file:
+
+    list_user_stefan:
+      uri: /test/list
+      method: post
+      post_data: search_string=tomatoes
+      session_data:
+        user_id: <%= User.find_by_login('stefan').id %>
+
+  An inital benchmark configuration file can be generated using command
+  generate_benchmarks.
+
+     generate_benchmarks -exclude_controllers=application,admin \
+        -exclude_actions=edit,delete,destroy
+
+  will generate a benchmark configuration file containing definitions
+  for the following benchmarks:
+
+    a) an entry for each named route
+    b) an entry for each route generated from by the unnamed route definitions
+    c) an entry for each controller, combining all actions (named xyz_controller)
+    d) an entry combining all controllers (all_controllers), combining all
+       benchmarks generated by step c.
+
+  After generating the benchmark configuration file you will need to
+  edit the benchmarks and change the placeholders in urls to real
+  values; i.e., change something like /blog/edit/:id to /blog/edit/235.
+
+  generate_benchmarks can be used on an existing configuration file. It
+  will keep exisiting entries, which will be moved to the end of the
+  config file. Thus it can be used to quickly update the config file
+  after you've added/deleted or renamed controllers and/or actions.

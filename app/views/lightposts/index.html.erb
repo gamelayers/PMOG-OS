@@ -1,0 +1,128 @@
+<% content_for :head do %>
+<script type="text/javascript" charset="utf-8">
+  var lightposts = []
+<% @lightposts.each_with_index do |lightpost, index| -%>
+  lightposts.push("lightpost_<%= index %>_description")
+<% end -%>
+    jQuery('a.opener').click(function() {
+  function detail_view(){
+    for(var x= 0; x < lightposts.length; x++) {
+      jQuery(#lightposts[x]).show();
+    }
+    jQuery('#detailed_view').hide();
+    jQuery('#simplified_view').show();
+  }
+  function simple_view() {
+    for(var x= 0; x < lightposts.length; x++) {
+      jQuery(#lightposts[x]).hide();
+    }
+    jQuery('#detailed_view').show();
+    JQuery('#simplified_view').hide();
+  }
+</script>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<!--
+<h1><%= @user.login %>'s Lightposts</h1>
+<h5>You  lit them, we list them</h5>
+-->
+
+<table class="stripeMe">
+  <thead>
+    <tr>
+      <th class="no_wrap">
+        <!--<span id="detailed_view" style="float:right;margin-right:20px;"><%= link_to_function 'Show All Details', "detail_view();" %></span>
+        <span id="simplified_view" style="display:none;float:right;margin-right:20px;"><%= link_to_function 'Hide All Details', "simple_view();" %></span>-->
+        Url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @lightposts.each_with_index do |lightpost, index| %>
+      <% next if lightpost.location.nil? %>
+		  <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+        <td id="lightpost_<%= index %>" valign="top">
+         <%= render :partial => 'lightpost', :locals => { :lightpost => lightpost, :index => index }%>
+        </td>
+        <td id="lightpost_<%= index %>_description">
+          <p><strong>Description:</strong> <%= h lightpost.description || "no description" %></p>
+          <p><strong>Tags:</strong> <%= h lightpost.tags.to_s %><br/>
+          <%=h time_ago_in_words(lightpost.created_at) %> ago</p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br/>
+<br/>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <h3>Add A Lightpost</h3>
+  <% form_for :lightpost, :url => user_lightposts_path do |form| %>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "lightpost") %>">
+      <td>
+        URL:
+      </td>
+      <td>
+        <%= form.text_field :location %>
+      </td>
+    </tr>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "lightpost") %>">
+      <td>
+        Description:
+      </td>
+      <td>
+        <%= form.text_area :descriptions, :rows => 2 %>
+      </td>
+    </tr>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "lightpost") %>">
+      <td>
+        Tags:
+      </td>
+      <td>
+        <%= form.text_field :tags, :size => 10 %>
+        <%= submit_tag 'Create Lightpost', :disable_with => 'Saving...', :class => 'input_newuser' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+
+      </td>
+    </tr>
+  </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @lightposts, :class => 'lightposts_pagination' %>
+
+</div>
+</div>
+
+<div class="column width240">
+	<div class="module width240">
+		<h3><a href="/users/<%= @user.login %>"><%= @user.login %>'s Profile</a>: Lightposts</h3>
+		
+		<p><%= Tool.find_by_name("Lightposts").short_description %></p>
+		
+		<p><strong><a href="/guide/tools/lightposts">Lightposts in the Guide</a></strong></p>
+		<p><strong><a href="/missions/new">Create a Mission</a></strong></p>
+
+	</div>
+
+		<div class="column width20"></div>
+						<div class="imageTop">
+							<div class="ImageTop" style="background-image:url(/images/shared/tools/large/lightposts.png); width:240px;height:312px;" title="How Tall Am I, Daddy?"></div>
+						</div>
+
+</div>
+
+
+</div>

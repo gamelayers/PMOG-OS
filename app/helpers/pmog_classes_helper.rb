@@ -1,0 +1,2 @@
+module PmogClassesHelper
+end

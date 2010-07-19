@@ -1,0 +1,46 @@
+<div class="topLeadersHome">
+	<h2>Leaderboard View</h2>
+	<h4 style="margin-top: -7px;">Yesterday's Most Active by Class</h4>
+
+  <div class="height20"></div>
+
+		<% @classes.each do |pmog_class| %>
+		
+		<% unless @leaders[pmog_class.id].nil? %>
+			<table>
+
+			<tr><td colspan="2"><h3 style="margin: 10px 0 0;"><a href="/leaderboard/classes/<%= pmog_class.name.downcase %>">#1 <%= pmog_class.name.singularize %></a></h3></td></tr>
+			
+			<tr>
+				<td class="avatar" rowspan="2" valign="top">
+				<% if @leaders[pmog_class.id].user.nil? %>
+				<b>User Deleted</b><br/><br/>
+				<% else %>
+				<div class="avatarAction">
+					<%= avatar_link_to_user :user => @leaders[pmog_class.id].user, :size => 'small', :align => "left", :class => 'avatar48' %>
+					<div class="avatarPop">
+						<div class="avatarPopIn">
+							<div class="avatarOver">
+								<a href="/users/<%= @leaders[pmog_class.id].user.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => @leaders[pmog_class.id].user, :size => "small") %>" alt="<%= @leaders[pmog_class.id].user.login %>" title="<%= @leaders[pmog_class.id].user.login %>"/></a>
+							</div>
+							<%= render :partial => "/shared/avatar_actions", :locals => {:user => @leaders[pmog_class.id].user, :filter => "none"} %>
+						</div>
+					</div>
+				</div>
+				<% end %>
+			</td>
+			<td><p style="margin-bottom:0px !important;">
+				<strong><a href='/users/<%= @leaders[pmog_class.id].user.login %>'><%= @leaders[pmog_class.id].user.login %></a></strong><br />
+				Level <%= @leaders[pmog_class.id].user.current_level %> <%= @leaders[pmog_class.id].user.user_level.primary_class.titleize %><br />
+				Earned <%= number_with_delimiter(@leaders[pmog_class.id].points) %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" />
+			</p></td>
+			</tr>
+			</table>
+			<% end %>
+
+			<% end %>
+
+		</div>
+
+		<div class="bottomNav">View the <a href="/leaderboard/">Leaderboards</a></div>
+		

@@ -1,0 +1,12 @@
+<h1><%= @quest.name %></h1>
+<small>Level: <%= @quest.level %> Association: <%= @quest.association.titleize unless @quest.association.nil? %></small>
+<br /><br />
+<p><%= @quest.description %></p>
+
+<h2>Goals for this Quest</h2>
+<ul>
+<% @quest.goals.each do |goal| %>
+<li><span class="position-index"><%= goal.position %></span>. <%= goal.action.name %> <%= goal.count %> times</li>
+<% end %>
+</ul>
+<%= link_to "Add / Edit Goals", quest_goals_path(@quest) %>

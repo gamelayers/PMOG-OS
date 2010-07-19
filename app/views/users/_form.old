@@ -1,0 +1,70 @@
+
+		<%= error_messages_for :user %>
+
+	<% if controller.action_name == 'edit' or controller.action_name == 'update' %>
+		
+	  Current Password
+		<h5>You must enter your current password to make any changes to your profile</h5>
+  	<input id="current_password" class="input_newuser" type="password" size="30" name="current_password"/><br /><br />
+
+    <label for="forename">Forename</label>
+    <p><%= form.text_field :forename, :class => 'input_newuser' %></p>
+
+	  <script type="text/javascript">
+	    $( 'user_forename' ).focus();
+	  </script>
+	  <label for="surname">Surname</label>
+	  <p><%= form.text_field :surname, :class => 'input_newuser' %></p>
+		
+		<label for="gender">Gender</label>
+		<p><select id="gender" name="user[gender]" class="input_newuser">
+		  <option value="Female" <% if current_user.gender and current_user.gender.downcase == 'f' %>selected="selected"<% end %>>Female</option>
+		  <option value="Male" <% if current_user.gender and current_user.gender.downcase == 'm' %>selected="selected"<% end %>>Male</option>
+		</select></p>
+		
+		<label for="date_of_birth">Date of birth</label>
+		<%= content_tag(:div, date_select( :user, :date_of_birth, :start_year => 1910, :order => [:day, :month, :year], :include_blank => true, :class => 'input_newuser' ) ) %><br />
+		
+		<label for="country">Country</label>
+		<%= country_select( :user, :country, [ 'United Kingdom', 'United States' ], {}, { :class => 'input_newuser' } ) %>	
+		<br /><br />
+	  
+		<label for="motto">Motto</label>
+	  <%= form.text_field :motto, :class => 'input_newuser' %>
+		<h5>People will see your motto when the find traces of your PMOGging around.</h5>
+		<br />
+	  
+		<label for="url">Personal url</label>
+	  <%= form.text_field :url, :class => 'input_newuser' %>
+		<h5>This URL will be linked from your name on your public profile, unless you've hidden that from the privacy page linked at the bottom of this page.</h5>
+
+	<% else %>
+	<br />
+	
+    <label for="login">Login</label>
+    <%= form.text_field :login, :class => 'input_newuser', :size => 30 %><br />
+    <h5>How will you be known on PMOG? This can not be changed,<br />so choose wisely! (2-20 characters limit)</h5><br />
+	
+	  <script type="text/javascript">
+	    $( 'user_login' ).focus();
+	  </script>
+	<% end %>
+
+<label for="email">Email</label>
+<%= form.text_field :email, :class => 'input_newuser', :size => 30 %><br />
+<h5>So we can reach you with a new password, or a friend<br />request, and so forth.</h5><br />
+
+<label for="password">Password</label>
+<%= form.password_field :password, :class => 'input_newuser', :size => 30 %><br /><br />
+
+<label for="password_confirmation">Confirm Password</label>
+<%= form.password_field :password_confirmation, :class => 'input_newuser', :size => 30 %><br /><br />
+
+	<% if controller.action_name == 'edit' %>
+    <label for="identity_url">OpenID*</label>
+    <%= form.text_field :identity_url, :class => 'input_newuser' %><br />
+    <h5>*OpenID offers a signle login for many online services.  Here's <a href="http://openid.net/" target="_new">more information</a>; that link opens in a new tab/window.</h5>
+    <br />
+    <label for="user_time_zone">Default timezone</label>
+    <p><%= time_zone_select 'user', 'time_zone', TZInfo::Timezone.all.sort, :model => TZInfo::Timezone, :html => {:class => 'input_newuser'} %></p>
+	<% end %>

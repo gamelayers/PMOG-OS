@@ -1,0 +1,31 @@
+<div id="missionTags">
+  <table class="list" id="missionTagsTable">
+    <tbody>
+      <tr>
+        <td style="max-width: 240px;">
+          <div id="taglist" class="column2">
+            <%= render :partial => 'edit_tag', :collection => @mission.tags %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% if logged_in? %>
+  <div class="height5"></div>
+  <div class="form">
+    <% remote_form_for(:tag,
+    :url => add_tag_user_mission_path(:user_id => current_user.id, :id => @mission.url_name),
+    :method => :put,
+    :loading => "jQuery('#tag_spinner').show();",
+    :complete => "jQuery('#tag_spinner').hide(); jQuery('#tag-name').val('');") do |f| %>
+    <%= f.text_field :name, :id => 'tag-name', :class => 'input tag_box', :size => 28 %>
+    <div class="height10"></div>
+    <%= submit_tag 'Tag', :class => 'input tag_submit' %>
+    <% end %>
+  </div>
+  <span id="tag_error" class="sidebar_error" style="display: none;"></span>
+  <p id='tag_spinner' style="display: none;">
+    <img src='/images/shared/elements/indicator.gif' height='16' width='16' border='0' valign='middle' align='left' />
+  </p>
+  <% end %>
+</div>

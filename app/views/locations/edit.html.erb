@@ -1,0 +1,35 @@
+<%= error_messages_for :location %>
+
+<% if params[:bird_bot_id] %>
+
+	<% form_for(:location, :url => bird_bot_location_path, :html => { :method => :put } ) do |f| %>
+	  <%= f.hidden_field :location_id, :value => params[:id] %>
+	  <%= f.hidden_field :bird_bot_id, :value => params[:bird_bot_id] %>
+	  <p>
+	    <b>Location</b>
+	    <br/>
+	    <%= f.text_field :url, :size => 50 %>
+	    <script type="text/javascript">
+	      $( 'location_url' ).focus();
+	    </script>
+	    <%= submit_tag "Edit" %>
+	  </p>
+	<% end %>
+
+<% elsif params[:npc_id] %>
+
+	<% form_for(:location, :url => npc_location_path, :html => { :method => :put } ) do |f| %>
+	  <%= f.hidden_field :location_id, :value => params[:id] %>
+	  <%= f.hidden_field :npc_id, :value => params[:npc_id] %>
+	  <p>
+	    <b>Location</b>
+	    <br/>
+	    <%= f.text_field :url, :size => 50 %>
+	    <script type="text/javascript">
+	      $( 'location_url' ).focus();
+	    </script>
+	    <%= submit_tag "Edit" %>
+	  </p>
+	<% end %>
+
+<% end %>

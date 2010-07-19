@@ -1,0 +1,45 @@
+<img src="/images/profile/forum.png" class="profile_art">
+
+<div class="profile_content">
+	<% forum_type = ["generated", "subscribed"] %>
+  <div class="user_acquaintances_menu">
+    <ul>
+			<% for i in 0...forum_type.length %>
+      	<li <%= 'class="user_missions_selected"' if params[:forum_type] == forum_type[i] %>>
+					<%= link_to_remote "#{forum_type[i].capitalize} Topics", :url => {:controller => "users", :action => "show", :forum_type => forum_type[i]}, :method => :get, :loading => "jQuery('#forum_loading').show();",:complete => "jQuery('#forum_loading').hide();"%>
+				</li>
+			<% end %>
+    </ul>
+  </div>
+
+	<img src="/images/profile/content_boxes/top_left.png" class="user_profile_title_tab_side"><div class="user_profile_title_tab"><h4>Forum Activity</h4></div><img src="/images/profile/content_boxes/top_right.png" class="user_profile_title_tab_side">
+    
+    <br style="clear:both;" />
+
+		<img src="/images/profile/content_boxes/main_top.png" />
+
+		<div class="user_profile_content_tab">
+							<br style="clear:both;" />
+    <div id="forum_loading" style="display:none;"><center><img src="/images/ajax-loader.gif" class="no_img_border" /></center></div>
+			<% if @topics.empty? %>
+			  <br />
+				<h3 align="center">No <%= params[:forum_type] %> topics yet.</h3>
+			<% else %>
+				<ul class="profile_feed">
+					<% @topics.each do |topic| %>
+						<li>
+							<%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+						</li>
+					<% end %>
+				</ul>
+      <% end %>
+				<br style="clear:both;" />
+      <h4 align="center"><a href="/forums/">Visit the PMOG Forums</a></h4>
+				<br style="clear:both;" />
+		</div>
+
+		<img src="/images/profile/content_boxes/main_bottom.png" />
+		
+</div>
+
+<br style="clear:both;" />

@@ -1,0 +1,13 @@
+<ul>
+<% @badges.each do |badge| %>
+	<li><%= badge.name %> -
+		<%= in_place_select_editor_field(
+             :badges,
+             :group_id,
+             Badge.group_name(badge),
+			 badge.id,
+             {},
+             :select_options => options_from_collection_for_select(@groups, 'id', 'name', badge.group_id)) %>
+	</li>
+<% end %>
+</ul>

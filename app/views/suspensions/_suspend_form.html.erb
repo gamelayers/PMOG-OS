@@ -1,0 +1,35 @@
+<%#= calendar_date_select_includes 'silver' %>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'base/ui.datepicker.css' %>
+<% end %>
+<%= error_messages_for :suspension %>
+
+<% remote_form_for :suspension, :url => { :controller => 'suspensions', :action => "suspend", :id => user.login } do |f| -%>
+
+	<div class="form_row">
+		<label for="user_id">User:</label>
+		<%= user.login %>
+	</div>
+	<div class="form_row">
+		<label for="admin_id">Admin:</label>
+		<%= current_user.login %>
+		<%= f.hidden_field :admin_id, :value => current_user.id %>
+	</div>
+	<div class="form_row">
+		<label for="created_at">Start:</label>
+		<%= Time.now.to_s %>
+	</div>
+	<div class="form_row">
+		<label for="expires_at">Expires:</label>
+		<%#= calendar_date_select_tag "suspension[expires_at]", 24.hours.from_now, { :time => true, :popup => :force, :valid_date_check => 'if (date > new(Date)) return true; else return false;'}  %>
+    <input type="text" id="suspension_expires_at" name="suspension[expires_at]" />
+    <div id="datepicker"></div>
+	</div>
+	<div class="form_row">
+		<label for="reason">Reason:</label>
+		<%= f.text_area :reason, :cols => 20, :rows => 10, :class => "input" %>
+	</div>
+	<div class="form_row">
+		<%= f.submit "Submit", :disable_with => 'Submiting...' %> <%= link_to_function "Cancel", "jQuery('#suspend_form').slideToggle();" %>
+	</div>
+<% end -%>

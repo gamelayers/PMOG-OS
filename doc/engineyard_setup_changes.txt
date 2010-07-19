@@ -1,0 +1,20 @@
+= Steps we've taken with Engine Yard =
+
+  - Bought second slice
+  - Used memcahed
+  - Increased to 1Gb memory on each slice
+  - Moved badges to dev server
+  - Moved backups to dump to /data
+  - Added nice to crontabs
+  
+  * add to this as required
+  
+  - Disabled ruby-debug in codebase (can cause leaks)
+  - Switched from RMagick to Image Science
+  - Removed fair proxy balancer from all slices, as it can overload nginx when traffic is high
+  - Worked with atmos to sync slices and bring a third one online (SXSW 2008)
+  - Moved to new database slice as we were swamping the existing one.
+  
+  - Moved to a V10 cluster - 20th April 2008
+  - 3GB RAM on database slices
+  - MySQL innodb buffer increased from 512MB to 2048MB

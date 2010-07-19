@@ -1,0 +1,32 @@
+<div id="copy">
+<div class="column width960">
+<div class="module width960">
+<h2>Upload an Avatar</h2>
+<h5>To see and be a Seer</h5>
+
+<br />
+
+<%= error_messages_for :asset %>
+
+<div class="clear">
+  <h5>Your Current Avatar</h5>
+  <%= avatar_link_to_user :user => current_user, :size => 'medium' %>
+</div>
+
+<% form_for(:asset, :url => { :controller => controller.controller_name, :action => "create" }, :html => { :multipart => true, :method => :post }) do |f| %>
+<div class="height20"></div>  
+
+<h5>Select an image file from your computer:<br /><%= f.file_field :uploaded_data, :style => "font-size:18px;" %></h5>
+  
+  <p>Please no large images, we can only eat so much data!</p>
+  
+  <p><%= submit_tag "Create", :class => "input_create_avatar" %>   then you'll have a chance to zoom and crop, if you like.</p>
+
+<% end %>
+
+<h3>Uploaded content is subject to our <a href="/about/terms">Terms of Service</a> and will be covered under a Creative Commons Attribution license.</h3>
+
+</div>
+</div>
+</div>
+</div>

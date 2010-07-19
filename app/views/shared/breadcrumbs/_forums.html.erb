@@ -1,0 +1,5 @@
+	<div class="main"><%= link_to 'Forums', forums_path %></div>
+	<% if @topic %>
+	 <div class="cell parent"><span class="l"></span><span class="c"><%= link_to h(@forum.title), forum_path(@forum) %></span><span class="r"></span></div>
+	<% elsif @forum %>
+	<% end %>

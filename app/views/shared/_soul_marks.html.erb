@@ -1,0 +1,28 @@
+<div id="<%= user.login %>_soul_mark_contents">
+
+  <% form_remote_tag :url => "/admin/soul_mark/#{user.login}", :before => "jQuery('##{user.login}_soul_mark_spinner').show();" do %>
+    <div class="height20"></div>
+    <p><%= text_area_tag 'comment', nil, :size => "55x2", :class => "input" %></p>
+    <div class="height10"></div>
+    <p><%= submit_tag "Condemn!", :class => "input" %><%= render :partial => "shared/spinner", :locals => { :spinner_id => "#{user.login}_soul_mark_spinner" } %></p>
+  <% end %>
+
+  <% if user.soul_marks.empty? %>
+    <div class="wrapper"> Nothing to see here folks ... </div>
+  <% else %>
+    <% user.soul_marks.find(:all, :order => "created_at DESC").each do |mark| %>
+      <div class="height10"></div>
+      <div class="wrapper">
+        <p><%= strip_tags mark.comment %></p>
+        <p class="small">
+          by <a href="/users/<%= mark.admin.login %>"><%= mark.admin.login %></a>
+          - <%= time_ago_in_words(mark.updated_at) %> ago
+          <% if site_admin? %>
+          | <%= link_to_remote "delete", :url => "/admin/delete_soul_mark/#{mark.id}", :before => "jQuery('##{user.login}_#{mark.id}_soul_mark_spinner').show();" %><%= render :partial => "shared/spinner", :locals => { :spinner_id => "#{user.login}_#{mark.id}_soul_mark_spinner" } %>
+          <% end %>
+      </p>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

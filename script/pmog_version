@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby -wKU
+require File.dirname(__FILE__) + '/../config/boot'
+
+require RAILS_ROOT + "/lib/app_version.rb"
+
+def version
+  puts AppVersion.instance.version
+end
+
+def increment
+  AppVersion.instance.incremental
+  puts %x[svn ci #{AppVersion.instance.file_store} -m 'Updating to version #{AppVersion.instance.version}']
+end
+
+if $0 == __FILE__
+  case ARGV[0]
+  when "version"   then version
+  when "increment" then increment
+  end
+end

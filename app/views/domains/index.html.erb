@@ -1,0 +1,49 @@
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+					<h1>Domain Searching</h1>
+<h5>Where <i>have</i> you been?</h5>
+
+<p>
+  <div id='response'>
+    <% remote_form_for :domain, 
+                       :url => { :controller => "domains", :action => "search" },
+                       :loading => "jQuery('#spinner').show();",
+                       :complete => "jQuery('#spinner').hide();" do |f| %>
+
+      <table cellpadding="10" border="0">
+        <tr>
+          <td>
+            User: <input type='text' name='login' size="10" style="border:1px solid #909090;font-size:16px;" value="<%= current_user.login %>" />
+          </td>
+          <td>
+            Domain: <input id="domain" name="domain" size="10" type="text" style="border:1px solid #909090;font-size:16px;" value="" />
+            <script type="text/javascript">
+              $( 'domain' ).focus();
+            </script>
+          </td>
+          <td>
+            <input value="Search" name="" type="submit" id="input" style="border:1px solid #909090;cursor:pointer;font-size:16px;"/>
+            <%= render :partial => 'shared/spinner' %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</p>
+
+<p>
+  <div id='search_results'>
+    <%= render :partial => "search_results" %>
+  </div>
+</p>
+
+					</div>
+				</div>
+			</div>
+		</div>

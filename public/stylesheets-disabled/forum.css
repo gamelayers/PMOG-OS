@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/forums/header.png);
+background-position:525px 42px;
+background-repeat:no-repeat;
+}

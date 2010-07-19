@@ -1,0 +1,261 @@
+<% content_for :head do %>
+  <script>
+    jQuery(document).ready(function() {
+      
+      jQuery("li h4").click(function() {
+        jQuery('#div_' + this.parentNode.id).slideToggle('slow');
+      });
+            
+      jQuery("#sortable-goals").sortable({
+        placeholder: "ui-selected",
+        forcePlaceholderSize: true,
+        revert: true,
+        distance: 3,
+        handle: '.handle',
+        update: function() {
+          jQuery.ajax({
+            url: '/quests/<%= @quest.to_param %>/order',
+            type: 'PUT',
+            data: 'goals=' + jQuery("#sortable-goals").sortable("toArray"),
+            success: function() {
+      
+            }
+          });
+        },
+        stop: function() {
+          for(var i = 0; i < jQuery('.position-index').length; i++) {
+            jQuery('.position-index')[i].textContent = i + 1;
+          }
+          jQuery('.position-index').highlight("slow");
+        },
+      });
+      
+      var tooltipDefaults = {
+        className: "tooltip",
+        cornerRadius: 5,
+        orient: "above",
+        width: 200,
+        arrowInset: 6,        
+      }
+
+      jQuery("#goal_count").focus(function() {
+        jQuery(this).callout(jQuery.extend({}, tooltipDefaults, {
+          text: "The number of times to complete the above action (required)",
+          align: "left",
+        }))
+      });
+
+      jQuery("#goal_count").blur(function() {
+        jQuery(this).closeCallout();
+      });
+
+      jQuery("#goal_action_id").focus(function() {
+        jQuery(this).callout(jQuery.extend({}, tooltipDefaults, {
+          text: "The action that fulfills this goals requirement (required)",
+          align: "left",
+        }))
+      });
+
+      jQuery("#goal_action_id").blur(function() {
+        jQuery(this).closeCallout();
+      });
+
+      jQuery("#goal_location_id").focus(function() {
+        jQuery(this).callout(jQuery.extend({}, tooltipDefaults, {
+          text: "A specific URL that this goal must take place on (optional)",
+          align: "left",
+        }))
+      });
+
+      jQuery("#goal_location_id").blur(function() {
+        jQuery(this).closeCallout();
+      });
+
+      jQuery("#goal_description").focus(function() {
+        jQuery(this).callout(jQuery.extend({}, tooltipDefaults, {
+          text: "The message a player will see when they read the quest goals. (optional)",
+          align: "left",
+        }))
+      });
+
+      jQuery("#goal_description").blur(function() {
+        jQuery(this).closeCallout();
+      });      
+    });
+  </script>
+  
+  <% unless flash[:errors].nil? %>
+    <script type="text/javascript" charset="utf-8">
+    jQuery(document).ready(function() {
+      jQuery("#goal_<%= flash[:errors][0].split(' ')[0] %>").callout({
+        width: 175,
+        cornerRadius: 8,
+        className: "validationCallout",
+        content: "#validationError",
+        align: "right",
+        nudgeHorizontal: 10,
+        nudgeVertical: -4,
+        arrowHeight: 6
+      });
+      
+      jQuery("#goal_<%= flash[:errors][0].split(' ')[0] %>").css("border", "2px solid red");
+    });
+    </script>
+  <% end %>
+  
+  <style type="text/css" media="screen">
+  .goal-container {
+    padding: 5px;
+    background:transparent url(/images/missions/show_layout/section_bg.png) repeat scroll 0 0;
+  }
+  
+  .column-list {
+    list-style: none;
+    margin:0;
+    padding:0;
+    margin-right: 5px;
+  }
+
+  .ui-selected {
+    border: 2px dashed black;
+  }
+
+  .ui-selecting {
+    background-color: #eee;
+  }
+
+  select, textarea, input {
+  	border: 2px solid #999;
+  	font-family: tahoma, helvetica, sans-serif;
+  	font-style: normal;
+  	font-size: 14px;
+  	color: #454743;
+  	margin-bottom: 10px;
+  }
+
+  label {
+  	font-family: tahoma, helvetica, sans-serif;
+  	font-style: bold;
+  	font-size: 11px;
+  	color: #000000;
+  	width: 65px !important;
+  	margin-top: 0;
+  	padding: 0;
+  }
+
+  select:focus, input:focus, textarea:focus {
+  	border: 2px solid #10100D;
+  }
+  
+  .small {
+    display: block;
+    font-size: 9px;
+    color: #666;
+    margin: 0;
+    padding: 0;
+  }
+	
+	.tooltip {
+		color: White;
+		background-color: #10100D;
+		font-size: 10px;
+		padding: 5px;
+		border: none;
+		z-index: 10;
+	}
+	
+	.validationCallout { 
+		border: solid 2px #A00A06; 
+		padding:2px; 
+		background-color:#FFFFFF; 
+		color: #A00A06;
+		font-weight:bold;
+	}
+	
+	#validationSuccess { visibility:hidden; color:#009900; font-weight:bold; margin-right:10px;}
+	.validationCallout img { float:left; margin: 0 4px 4px 0; }
+  </style>
+<% end %>
+
+<div class="generator_control">
+
+  <img src="/images/missions/show_layout/tab_left.png" style="float:left;" />
+  
+  <div class="generator_control_tab">
+  
+    <img src="/images/shared/tools/icon/lightpost-16.png" alt="Add Lightposts" /> Add A Goal
+  
+  </div>
+  
+  <img src="/images/missions/show_layout/tab_right.png" style="float:left;" />
+  
+  <br style="clear:both;" />
+  
+  <img src="/images/missions/generator_layout/control_content_top.png" />
+  
+  <div class="generator_control_content">
+    
+  <div id="validationError" style="display:none;"><img src="/images/shared/icons/error.png" width="28" height="29" /><%= flash[:errors][0].strip unless flash[:errors].nil? %></div>
+  
+  <%= error_messages_for :goal %>
+  
+     <div>
+       <% form_for("goal", @goal, :url => { :controller => 'goals', :action => :create}) do |f| %>
+
+       <%= f.hidden_field :user_id, :value => current_user.id %>
+
+       <div>
+       <label><span style="color: red;">*</span> Action
+       </label>
+       <%= f.select(:action_id, Action.find(:all).collect{|a| [a.name, a.id]}) %>  
+       </div>
+
+       <div>
+       <label><span style="color: red;">*</span> Count
+       </label>
+       <%= f.text_field :count, :size => 4 %>
+       </div>
+
+       <div>
+       <label>URL
+       </label>
+       <%= f.text_field :location_id %>
+       </div>
+
+       <div>
+       <label>Message
+       </label>
+       <%= f.text_area :description, :rows => 6, :cols => 28, :class => "area" %>
+       </div>
+
+       <div>
+         <label>&nbsp;</label>
+       <%= f.submit 'Add', :disable_with => "Adding..." %>
+       </div>
+
+       <% end %>
+     </div>
+    <br style="clear:both;" />
+  
+  </div>
+  
+  <img src="/images/missions/generator_layout/control_content_bottom.png" />
+  
+</div>
+
+<div style="margin-left: 60px; margin-top: 20px; float: left;">
+  <% if @goals.length <= 0 %>
+  <h3>No goals for this quest just yet!</h3>
+  <% else %>
+  <h3>Goals for this Quest</h3>
+  <div id="goal-partial"> 
+    <ul id="sortable-goals" class="column-list">
+      <% @goals.each do |goal| %>
+      <%= render :partial => 'goals/goal', :locals => { :goal => goal } %>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<br style="clear:both;" />

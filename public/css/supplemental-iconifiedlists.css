@@ -1,0 +1,149 @@
+.events_list_ul ul{
+  padding-left: 10px;
+}
+
+.events_list_ul li{
+  list-style-type:none;
+  padding-left: 22px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-image: url("/images/shared/icons/gear-16.png");
+  background-repeat: no-repeat;
+  background-position: 0 center;
+  margin: 5px auto;
+  line-height: 14px !important;
+}
+
+li.forum_post_created {
+  background-image: url("/images/shared/icons/forums-16.png");
+}
+
+li.forum_topic_created {
+  background-image: url("/images/shared/icons/forums-16.png");
+}
+
+li.user_leveled {
+  background-image: url("/images/shared/icons/classpoint-16.png");
+}
+
+li.crate_stashed {
+  background-image: url("/images/shared/tools/icon/crate-16.png");
+}
+
+li.crate_stashed {
+  background-image: url("/images/shared/tools/icon/crate-16.png");
+}
+
+li.crate_looted {
+  background-image: url("/images/shared/tools/icon/crate-16.png");
+}
+
+li.giftcard_stashed {
+  background-image: url("/images/shared/icons/giftcard-16.png");
+}
+
+li.giftcard_looted {
+  background-image: url("/images/shared/icons/giftcard-16.png");
+}
+
+li.exploding_crate_detonated {
+  background-image: url("/images/shared/tools/icon/exploded_crate-16.png");
+}
+
+li.exploding_crate_deflected {
+  background-image: url("/images/shared/tools/icon/armor-16.png");
+}
+
+li.puzzle_crate_looted {
+  background-image: url("/images/shared/tools/icon/crate-16.png");
+}
+
+li.mine_deployed {
+  background-image: url("/images/shared/tools/icon/mine-16.png");
+}
+
+li.mine_tripped {
+  background-image: url("/images/shared/tools/icon/mine_explosion-16.png");
+}
+
+li.mine_deflected {
+  background-image: url("/images/shared/tools/icon/armor-16.png");
+}
+
+li.mine_dodged {
+  background-image: url("/images/shared/tools/icon/dodge-16.png");
+}
+
+li.portal_deployed {
+  background-image: url("/images/shared/tools/icon/portal-16.png");
+}
+
+li.portal_used {
+  background-image: url("/images/shared/tools/icon/portal-16.png");
+}
+
+li.grenade_deployed {
+  background-image: url("/images/shared/tools/icon/grenade-16.png");
+}
+
+li.grenade_tripped {
+  background-image: url("/images/shared/tools/icon/grenade-16.png");
+}
+
+li.watchdog_activated {
+  background-image: url("/images/shared/tools/icon/watchdog-16.png");
+}
+
+li.watchdog_deployed {
+  background-image: url("/images/shared/tools/icon/watchdog-16.png");
+}
+
+li.st_nick_activated {
+  background-image: url("/images/shared/tools/icon/st_nick-16.png");
+}
+
+li.mission_published {
+  background-image: url("/images/shared/tools/icon/lightpost-16.png");
+}
+
+li.mission_completed {
+  background-image: url("/images/shared/tools/icon/lightpost-16.png");
+}
+
+li.lightpost_deployed {
+  background-image: url("/images/shared/tools/icon/lightpost-16.png");
+}
+
+li.badge_unlocked {
+  background-image: url("/images/shared/icons/badge-16.png");
+}
+
+li.comment_created {
+  background-image: url("/images/shared/icons/contacts-16.png");
+}
+
+li.connection_approved {
+  background-image: url("/images/shared/icons/contacts-16.png");
+}
+
+li.connection_removed {
+  background-image: url("/images/shared/icons/contacts-16.png");
+}
+
+li.ally_added {
+  background-image: url("/images/shared/icons/contacts-16.png");
+}
+
+li.rival_added {
+  background-image: url("/images/shared/icons/contacts-16.png");
+}
+
+li.user_created {
+  background-image: url("/images/shared/associations/icon/shoat-16.png");
+}
+
+/* this event doesn't sync with the database or events list - it's for stats */
+li.pmail_sent {
+  background-image: url("/images/shared/icons/pmail-16.png");
+}
+

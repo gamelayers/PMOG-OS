@@ -1,0 +1,300 @@
+have_header: checking for sys/times.h... -------------------- yes
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"gcc -E -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <sys/times.h>
+/* end */
+
+--------------------
+
+have_func: checking for rb_os_allocated_objects()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_os_allocated_objects’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_os_allocated_objects; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_os_allocated_objects’
+Undefined symbols:
+  "_rb_os_allocated_objects", referenced from:
+      _t in ccJsx80r.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_os_allocated_objects(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_gc_allocated_size()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_gc_allocated_size’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_gc_allocated_size; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_gc_allocated_size’
+Undefined symbols:
+  "_rb_gc_allocated_size", referenced from:
+      _t in cc3CeGaP.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_gc_allocated_size(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_gc_collections()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_gc_collections’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_gc_collections; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_gc_collections’
+Undefined symbols:
+  "_rb_gc_collections", referenced from:
+      _t in cctFFip3.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_gc_collections(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_gc_time()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_gc_time’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_gc_time; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_gc_time’
+Undefined symbols:
+  "_rb_gc_time", referenced from:
+      _t in cc1WwHLT.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_gc_time(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_heap_total_mem()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_heap_total_mem’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_heap_total_mem; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_heap_total_mem’
+Undefined symbols:
+  "_rb_heap_total_mem", referenced from:
+      _t in ccrL01Qj.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_heap_total_mem(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_gc_heap_info()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_gc_heap_info’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_gc_heap_info; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_gc_heap_info’
+Undefined symbols:
+  "_rb_gc_heap_info", referenced from:
+      _t in cccixJWk.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_gc_heap_info(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_gc_malloc_allocations()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_gc_malloc_allocations’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_gc_malloc_allocations; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_gc_malloc_allocations’
+Undefined symbols:
+  "_rb_gc_malloc_allocations", referenced from:
+      _t in cczewzJ2.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_gc_malloc_allocations(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_gc_malloc_allocated_size()... -------------------- no
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_gc_malloc_allocated_size’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))rb_gc_malloc_allocated_size; return 0; }
+/* end */
+
+"gcc -o conftest -I. -I/usr/local/lib/ruby/1.8/i386-darwin9.6.0 -I.  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE    -O2 -g -Wall -Wno-parentheses -pipe -fno-common conftest.c  -L. -L/usr/local/lib -L. -L/usr/local/lib     -lruby-static  -lpthread -ldl -lobjc  "
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_gc_malloc_allocated_size’
+Undefined symbols:
+  "_rb_gc_malloc_allocated_size", referenced from:
+      _t in ccNs0Kfx.o
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { rb_gc_malloc_allocated_size(); return 0; }
+/* end */
+
+--------------------
+

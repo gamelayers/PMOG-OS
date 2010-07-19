@@ -1,0 +1,15 @@
+one: 
+  id: 8b5a09c0-e947-11dc-a035-001b63928f8d
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  name: A Test Quest
+  description: It even rhymes with test!
+  association: seer
+  created_at: 2008-03-03 17:30:40 Z
+  updated_at: 2008-03-03 17:32:22 Z
+two:
+  id: 8b5a09c0-e947-11dc-a035-001b63928f8e
+  name: A Test With an Invalid Association
+  description: It Shouldn't pass muster!
+  association: overseer
+  created_at: 2008-03-03 17:30:40 Z
+  updated_at: 2008-03-03 17:32:22 Z

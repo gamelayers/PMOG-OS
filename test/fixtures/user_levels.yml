@@ -1,0 +1,73 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+justins_levels:
+  user_id: 6f15b9e8-cdfe-11dd-8896-0017f2d41804
+  bedouin_cp: 0
+  benefactor_cp: 0
+  destroyer_cp: 0
+  pathmaker_cp: 0
+  seer_cp: 0
+  vigilante_cp: 0
+  primary_class: shoat
+
+
+hoggins_levels:
+  user_id: 99a0566e-b03f-11dd-8b0d-0017f2d41804
+  bedouin_cp: 0
+  benefactor_cp: 500000
+  destroyer_cp: 0
+  pathmaker_cp: 0
+  seer_cp: 0
+  vigilante_cp: 0
+  primary_class: shoat
+
+
+alexs_levels:
+  user_id: f6183ed2-b028-11dd-ad1f-0017f2d41804
+  bedouin_cp: 0
+  benefactor_cp: 0
+  destroyer_cp: 0
+  pathmaker_cp: 0
+  seer_cp: 0
+  vigilante_cp: 0
+  primary_class: benefactor
+
+marcs_levels:
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  bedouin_cp: 50000
+  benefactor_cp: 50000
+  destroyer_cp: 50000
+  pathmaker_cp: 50000
+  seer_cp: 50000
+  vigilante_cp: 50000
+  primary_class: destroyer
+  
+suttrees_levels:
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+  bedouin_cp: 200
+  benefactor_cp: 200
+  destroyer_cp: 200
+  pathmaker_cp: 200
+  seer_cp: 200
+  vigilante_cp:  200
+  primary_class: benefactor
+
+mission_creators_levels:
+  user_id: 6286120e-e952-11dc-8dba-001b63928f8d
+  bedouin_cp: 0
+  benefactor_cp: 0
+  destroyer_cp: 0
+  pathmaker_cp: 1000
+  seer_cp: 0
+  vigilante_cp: 0
+  primary_class: pathmaker
+
+pmogs_levels:
+  user_id: 63e5a03c-de72-11dc-9796-001b63928f8d
+  bedouin_cp: 0
+  benefactor_cp: 0
+  destroyer_cp: 0
+  pathmaker_cp: 0
+  seer_cp: 0
+  vigilante_cp: 0
+  primary_class: shoat

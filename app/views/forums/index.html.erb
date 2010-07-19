@@ -1,0 +1,107 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Forums</span></div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'forums/search_form' %>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width420">
+				
+					<div class="module width420">
+					
+					<h2>Welcome to the Forums on the Nethernet!</h2>
+					
+					<p>You have discovered a wonderfully interactive layer of the Nethernet. Play among the posts, learn, grow and become more connected with your fellow Netizens.</p>
+					
+					<h2>Getting Started</h2>
+					
+					<p>If this is your first visit to the Forums, head over to the <a href="/forums/shoat-sanctuary">Shoat Sanctuary</a>, our Newbie Forum, and introduce yourself!</p>
+					
+					<h2>Hot Topics</h2>
+					<p>
+					 <a href="/posts/latest">Latest Posts</a><br />
+					</div>
+					<img src="/images/shared/dressing/shoatforums-420.png" width="420" height="357" alt="Forums"/>
+				</div>
+
+				<div class="column width20"></div>
+
+				<div class="column width520">
+
+					<div class="module width520">
+  <!--<h2>The Forums</h2><div class="height20"></div>-->
+  <% @forums.each do |forum| %>
+
+      <% next if forum.inactive && ( !logged_in? || !site_admin? ) %>
+  
+  		<div class="forumsList">
+
+				<!--
+				<div class="forumsListNew">
+			  <% if forum.recently_updated_since(@last_seen) > 0 %>
+				  <img src="/images/forums/main_layout/newposts_yes.png">
+			  <% else %>
+				  <img src="/images/forums/main_layout/newposts_no.png">
+			  <% end %>
+			  </div>
+			  -->
+
+        <div class="forumsListTitle"
+        <h3><%= link_to h(forum.title), forum_path(forum) %></h3>
+        <%= '<p><b>(Trustees and stewards only)</b></p>' if forum.private? %>
+        </div>
+        
+        <div class="forumsListCounts">
+        <p>
+        <b>Threads:</b> <%= forum.topics_count %> 
+        <%# Removing this because it goes against the performance enhancements made to the forums | <b>Posts:</b> <%= forum.posts.count %>
+        </p>
+        </div>
+
+      <% if site_admin? %>
+      	<div class="forumsListAdmin">
+    			<% unless @forums.first.position == forum.position -%> 
+    		  	<%= link_to image_tag("/images/shared/icons/arrow_up.png", :alt => "up arrow", :class => "img_no_border"), move_forum_path(forum, :move => "move_higher") -%>  
+    	    <% end -%> 
+    	    <% unless forum.last? %> 
+  		    	<%= link_to image_tag("/images/shared/icons/arrow_down.png", :alt => "down arrow", :class => "img_no_border"), move_forum_path(forum, :move => "move_lower") -%> 
+  				<% end %>
+
+          <% if forum.inactive %>
+            <%= link_to "<img src='/images/shared/icons/unpause-20.png' alt='Forum Inactive, Click to Show' title='Forum Inactive, Click to Show'/>", url_for(:controller => :forums, :action => :toggle_inactive, :id => forum.url_name) %>
+          <% else %>
+            <%= link_to "<img src='/images/shared/icons/pause-20.png' alt='Forum Active, Click to Hide' title='Forum Active, Click to Hide'/>", url_for(:controller => :forums, :action => :toggle_inactive, :id => forum.url_name) %>
+          <% end %>
+  			</div>
+      <% end %>
+    
+    </div>
+
+		<p><%=h forum.description %></p>
+      
+  <% end %>
+
+  <h4><%= link_to '<p>+ New forum</p>', new_forum_path if site_admin? %></h4>
+
+    <h4><a href="/posts/latest">Latest Posts</a>   
+    <%= '| <a href="/forums/stewards">Steward Activity</a>' if site_admin? %></h4>
+
+
+</div>
+
+
+
+						</div>
+											
+					</div>
+
+			</div>
+
+		</div>

@@ -1,0 +1,37 @@
+<h1>Listing assets</h1>
+
+<table>
+  <tr>
+    <th>Filename</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th>Content type</th>
+    <th>Size</th>
+    <th>Attachable type</th>
+    <th>Attachable</th>
+    <th>Updated at</th>
+    <th>Created at</th>
+  </tr>
+  
+<% for asset in @assets %>
+  <tr>
+    <td><img src="<%= asset.public_filename :medium %>" /></td>
+    <td><%=h asset.width %></td>
+    <td><%=h asset.height %></td>
+    <td><%=h asset.content_type %></td>
+    <td><%=h asset.size %></td>
+    <td><%=h asset.attachable_type %></td>
+    <td><%=h asset.attachable_id %></td>
+    <td><%=h asset.updated_at %></td>
+    <td><%=h asset.created_at %></td>
+    <td><%= link_to 'Show', asset_path(asset) %></td>
+    <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
+    <td><%= link_to 'Destroy', asset_path(asset), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New asset', new_asset_path() %> |
+<%= link_to "Return to #{@attachable.class.name}", asset_attachable_path(@attachable) %>

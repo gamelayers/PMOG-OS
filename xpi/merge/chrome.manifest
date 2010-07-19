@@ -1,0 +1,26 @@
+# PMOG HUD BITS
+# content pmog pmog@gamelayers.com/chrome/content/ contentaccessible=yes
+# skin    pmog classic/1.0 pmog@gamelayers.com/chrome/skin/
+# locale  pmog en-US pmog@gamelayers.com/chrome/locale/en-US/
+# overlay chrome://browser/content/browser.xul chrome://pmog/content/overlay.xul
+# overlay chrome://global/content/customizeToolbar.xul         chrome://pmog/content/customizeToolbarOverlay.xul
+#
+# # PMOG CHAT BITS
+# content pmog_chat pmog_chat@gamelayers.com/chrome/content/
+# locale  pmog_chat en-US pmog_chat@gamelayers.com/chrome/locale/en-US/
+# skin  pmog_chat classic/1.0 pmog_chat@gamelayers.com/chrome/skin/
+# skin    pmog_chat-os classic/1.0 pmog_chat@gamelayers.com/chrome/skin/win/
+# overlay chrome://browser/content/browser.xul  chrome://pmog_chat/content/overlay.xul
+
+content pmog jar:pmog.jar!/pmog@gamelayers.com/chrome/content/ contentaccessible=yes
+skin    pmog classic/1.0 jar:pmog.jar!/pmog@gamelayers.com/chrome/skin/
+locale  pmog en-US jar:pmog.jar!/pmog@gamelayers.com/chrome/locale/en-US/
+overlay chrome://browser/content/browser.xul chrome://pmog/content/overlay.xul
+overlay chrome://global/content/customizeToolbar.xul         chrome://pmog/content/customizeToolbarOverlay.xul
+
+# PMOG CHAT BITS
+# content pmog_chat jar:pmog.jar!/pmog_chat@gamelayers.com/chrome/content/
+# locale  pmog_chat en-US jar:pmog.jar!/pmog_chat@gamelayers.com/chrome/locale/en-US/
+# skin  pmog_chat classic/1.0 jar:pmog.jar!/pmog_chat@gamelayers.com/chrome/skin/
+# skin    pmog_chat-os classic/1.0 jar:pmog.jar!/pmog_chat@gamelayers.com/chrome/skin/win/
+# overlay chrome://browser/content/browser.xul  chrome://pmog_chat/content/overlay.xul

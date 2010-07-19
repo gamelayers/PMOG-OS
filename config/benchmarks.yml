@@ -1,0 +1,1444 @@
+session_create:
+    uri:            /session/
+    action:         create
+    controller:     session
+
+session_create:
+    uri:            /session.:format/
+    action:         create
+    controller:     session
+
+new_session:
+    uri:            /session/new/
+    action:         new
+    controller:     session
+
+formatted_new_session:
+    uri:            /session/new.:format/
+    action:         new
+    controller:     session
+
+edit_session:
+    uri:            /session;edit/
+    action:         edit
+    controller:     session
+
+formatted_edit_session:
+    uri:            /session.:format;edit/
+    action:         edit
+    controller:     session
+
+session:
+    uri:            /session/
+    action:         show
+    controller:     session
+
+formatted_session:
+    uri:            /session.:format/
+    action:         show
+    controller:     session
+
+session_update:
+    uri:            /session/
+    action:         update
+    controller:     session
+
+session_update:
+    uri:            /session.:format/
+    action:         update
+    controller:     session
+
+openid_create:
+    uri:            /openid/
+    action:         create
+    controller:     openid
+
+openid_create:
+    uri:            /openid.:format/
+    action:         create
+    controller:     openid
+
+new_openid:
+    uri:            /openid/new/
+    action:         new
+    controller:     openid
+
+formatted_new_openid:
+    uri:            /openid/new.:format/
+    action:         new
+    controller:     openid
+
+edit_openid:
+    uri:            /openid;edit/
+    action:         edit
+    controller:     openid
+
+formatted_edit_openid:
+    uri:            /openid.:format;edit/
+    action:         edit
+    controller:     openid
+
+complete_openid:
+    uri:            /openid;complete/
+    action:         complete
+    controller:     openid
+
+formatted_complete_openid:
+    uri:            /openid.:format;complete/
+    action:         complete
+    controller:     openid
+
+openid:
+    uri:            /openid/
+    action:         show
+    controller:     openid
+
+formatted_openid:
+    uri:            /openid.:format/
+    action:         show
+    controller:     openid
+
+openid_update:
+    uri:            /openid/
+    action:         update
+    controller:     openid
+
+openid_update:
+    uri:            /openid.:format/
+    action:         update
+    controller:     openid
+
+users:
+    uri:            /users/
+    action:         index
+    controller:     users
+
+formatted_users:
+    uri:            /users.:format/
+    action:         index
+    controller:     users
+
+users_create:
+    uri:            /users/
+    action:         create
+    controller:     users
+
+users_create:
+    uri:            /users.:format/
+    action:         create
+    controller:     users
+
+new_user:
+    uri:            /users/new/
+    action:         new
+    controller:     users
+
+formatted_new_user:
+    uri:            /users/new.:format/
+    action:         new
+    controller:     users
+
+edit_user:
+    uri:            /users/:id;edit/
+    action:         edit
+    controller:     users
+
+formatted_edit_user:
+    uri:            /users/:id.:format;edit/
+    action:         edit
+    controller:     users
+
+user:
+    uri:            /users/:id/
+    action:         show
+    controller:     users
+
+formatted_user:
+    uri:            /users/:id.:format/
+    action:         show
+    controller:     users
+
+users_update:
+    uri:            /users/:id/
+    action:         update
+    controller:     users
+
+users_update:
+    uri:            /users/:id.:format/
+    action:         update
+    controller:     users
+
+user_assets:
+    uri:            /users/:user_id/assets/
+    action:         index
+    controller:     user_assets
+
+formatted_user_assets:
+    uri:            /users/:user_id/assets.:format/
+    action:         index
+    controller:     user_assets
+
+user_assets_create:
+    uri:            /users/:user_id/assets/
+    action:         create
+    controller:     user_assets
+
+user_assets_create:
+    uri:            /users/:user_id/assets.:format/
+    action:         create
+    controller:     user_assets
+
+new_user_asset:
+    uri:            /users/:user_id/assets/new/
+    action:         new
+    controller:     user_assets
+
+formatted_new_user_asset:
+    uri:            /users/:user_id/assets/new.:format/
+    action:         new
+    controller:     user_assets
+
+edit_user_asset:
+    uri:            /users/:user_id/assets/:id;edit/
+    action:         edit
+    controller:     user_assets
+
+formatted_edit_user_asset:
+    uri:            /users/:user_id/assets/:id.:format;edit/
+    action:         edit
+    controller:     user_assets
+
+user_asset:
+    uri:            /users/:user_id/assets/:id/
+    action:         show
+    controller:     user_assets
+
+formatted_user_asset:
+    uri:            /users/:user_id/assets/:id.:format/
+    action:         show
+    controller:     user_assets
+
+user_assets_update:
+    uri:            /users/:user_id/assets/:id/
+    action:         update
+    controller:     user_assets
+
+user_assets_update:
+    uri:            /users/:user_id/assets/:id.:format/
+    action:         update
+    controller:     user_assets
+
+missions:
+    uri:            /missions/
+    action:         index
+    controller:     missions
+
+formatted_missions:
+    uri:            /missions.:format/
+    action:         index
+    controller:     missions
+
+missions_create:
+    uri:            /missions/
+    action:         create
+    controller:     missions
+
+missions_create:
+    uri:            /missions.:format/
+    action:         create
+    controller:     missions
+
+new_mission:
+    uri:            /missions/new/
+    action:         new
+    controller:     missions
+
+formatted_new_mission:
+    uri:            /missions/new.:format/
+    action:         new
+    controller:     missions
+
+edit_mission:
+    uri:            /missions/:id;edit/
+    action:         edit
+    controller:     missions
+
+formatted_edit_mission:
+    uri:            /missions/:id.:format;edit/
+    action:         edit
+    controller:     missions
+
+mission:
+    uri:            /missions/:id/
+    action:         show
+    controller:     missions
+
+formatted_mission:
+    uri:            /missions/:id.:format/
+    action:         show
+    controller:     missions
+
+missions_update:
+    uri:            /missions/:id/
+    action:         update
+    controller:     missions
+
+missions_update:
+    uri:            /missions/:id.:format/
+    action:         update
+    controller:     missions
+
+branches:
+    uri:            /missions/:mission_id/branches/
+    action:         index
+    controller:     branches
+
+formatted_branches:
+    uri:            /missions/:mission_id/branches.:format/
+    action:         index
+    controller:     branches
+
+branches_create:
+    uri:            /missions/:mission_id/branches/
+    action:         create
+    controller:     branches
+
+branches_create:
+    uri:            /missions/:mission_id/branches.:format/
+    action:         create
+    controller:     branches
+
+new_branch:
+    uri:            /missions/:mission_id/branches/new/
+    action:         new
+    controller:     branches
+
+formatted_new_branch:
+    uri:            /missions/:mission_id/branches/new.:format/
+    action:         new
+    controller:     branches
+
+edit_branch:
+    uri:            /missions/:mission_id/branches/:id;edit/
+    action:         edit
+    controller:     branches
+
+formatted_edit_branch:
+    uri:            /missions/:mission_id/branches/:id.:format;edit/
+    action:         edit
+    controller:     branches
+
+branch:
+    uri:            /missions/:mission_id/branches/:id/
+    action:         show
+    controller:     branches
+
+formatted_branch:
+    uri:            /missions/:mission_id/branches/:id.:format/
+    action:         show
+    controller:     branches
+
+branches_update:
+    uri:            /missions/:mission_id/branches/:id/
+    action:         update
+    controller:     branches
+
+branches_update:
+    uri:            /missions/:mission_id/branches/:id.:format/
+    action:         update
+    controller:     branches
+
+bird_bots:
+    uri:            /bird_bots/
+    action:         index
+    controller:     bird_bots
+
+formatted_bird_bots:
+    uri:            /bird_bots.:format/
+    action:         index
+    controller:     bird_bots
+
+bird_bots_create:
+    uri:            /bird_bots/
+    action:         create
+    controller:     bird_bots
+
+bird_bots_create:
+    uri:            /bird_bots.:format/
+    action:         create
+    controller:     bird_bots
+
+new_bird_bot:
+    uri:            /bird_bots/new/
+    action:         new
+    controller:     bird_bots
+
+formatted_new_bird_bot:
+    uri:            /bird_bots/new.:format/
+    action:         new
+    controller:     bird_bots
+
+edit_bird_bot:
+    uri:            /bird_bots/:id;edit/
+    action:         edit
+    controller:     bird_bots
+
+formatted_edit_bird_bot:
+    uri:            /bird_bots/:id.:format;edit/
+    action:         edit
+    controller:     bird_bots
+
+bird_bot:
+    uri:            /bird_bots/:id/
+    action:         show
+    controller:     bird_bots
+
+formatted_bird_bot:
+    uri:            /bird_bots/:id.:format/
+    action:         show
+    controller:     bird_bots
+
+bird_bots_update:
+    uri:            /bird_bots/:id/
+    action:         update
+    controller:     bird_bots
+
+bird_bots_update:
+    uri:            /bird_bots/:id.:format/
+    action:         update
+    controller:     bird_bots
+
+bird_bot_assets:
+    uri:            /bird_bots/:bird_bot_id/assets/
+    action:         index
+    controller:     bird_bot_assets
+
+formatted_bird_bot_assets:
+    uri:            /bird_bots/:bird_bot_id/assets.:format/
+    action:         index
+    controller:     bird_bot_assets
+
+bird_bot_assets_create:
+    uri:            /bird_bots/:bird_bot_id/assets/
+    action:         create
+    controller:     bird_bot_assets
+
+bird_bot_assets_create:
+    uri:            /bird_bots/:bird_bot_id/assets.:format/
+    action:         create
+    controller:     bird_bot_assets
+
+new_bird_bot_asset:
+    uri:            /bird_bots/:bird_bot_id/assets/new/
+    action:         new
+    controller:     bird_bot_assets
+
+formatted_new_bird_bot_asset:
+    uri:            /bird_bots/:bird_bot_id/assets/new.:format/
+    action:         new
+    controller:     bird_bot_assets
+
+edit_bird_bot_asset:
+    uri:            /bird_bots/:bird_bot_id/assets/:id;edit/
+    action:         edit
+    controller:     bird_bot_assets
+
+formatted_edit_bird_bot_asset:
+    uri:            /bird_bots/:bird_bot_id/assets/:id.:format;edit/
+    action:         edit
+    controller:     bird_bot_assets
+
+bird_bot_asset:
+    uri:            /bird_bots/:bird_bot_id/assets/:id/
+    action:         show
+    controller:     bird_bot_assets
+
+formatted_bird_bot_asset:
+    uri:            /bird_bots/:bird_bot_id/assets/:id.:format/
+    action:         show
+    controller:     bird_bot_assets
+
+bird_bot_assets_update:
+    uri:            /bird_bots/:bird_bot_id/assets/:id/
+    action:         update
+    controller:     bird_bot_assets
+
+bird_bot_assets_update:
+    uri:            /bird_bots/:bird_bot_id/assets/:id.:format/
+    action:         update
+    controller:     bird_bot_assets
+
+bird_bot_feeds:
+    uri:            /bird_bots/:bird_bot_id/feeds/
+    action:         index
+    controller:     feeds
+
+formatted_bird_bot_feeds:
+    uri:            /bird_bots/:bird_bot_id/feeds.:format/
+    action:         index
+    controller:     feeds
+
+feeds_create:
+    uri:            /bird_bots/:bird_bot_id/feeds/
+    action:         create
+    controller:     feeds
+
+feeds_create:
+    uri:            /bird_bots/:bird_bot_id/feeds.:format/
+    action:         create
+    controller:     feeds
+
+bird_bot_new_feed:
+    uri:            /bird_bots/:bird_bot_id/feeds/new/
+    action:         new
+    controller:     feeds
+
+formatted_bird_bot_new_feed:
+    uri:            /bird_bots/:bird_bot_id/feeds/new.:format/
+    action:         new
+    controller:     feeds
+
+bird_bot_edit_feed:
+    uri:            /bird_bots/:bird_bot_id/feeds/:id;edit/
+    action:         edit
+    controller:     feeds
+
+formatted_bird_bot_edit_feed:
+    uri:            /bird_bots/:bird_bot_id/feeds/:id.:format;edit/
+    action:         edit
+    controller:     feeds
+
+bird_bot_feed:
+    uri:            /bird_bots/:bird_bot_id/feeds/:id/
+    action:         show
+    controller:     feeds
+
+formatted_bird_bot_feed:
+    uri:            /bird_bots/:bird_bot_id/feeds/:id.:format/
+    action:         show
+    controller:     feeds
+
+feeds_update:
+    uri:            /bird_bots/:bird_bot_id/feeds/:id/
+    action:         update
+    controller:     feeds
+
+feeds_update:
+    uri:            /bird_bots/:bird_bot_id/feeds/:id.:format/
+    action:         update
+    controller:     feeds
+
+bird_bot_locations:
+    uri:            /bird_bots/:bird_bot_id/locations/
+    action:         index
+    controller:     locations
+
+formatted_bird_bot_locations:
+    uri:            /bird_bots/:bird_bot_id/locations.:format/
+    action:         index
+    controller:     locations
+
+locations_create:
+    uri:            /bird_bots/:bird_bot_id/locations/
+    action:         create
+    controller:     locations
+
+locations_create:
+    uri:            /bird_bots/:bird_bot_id/locations.:format/
+    action:         create
+    controller:     locations
+
+bird_bot_new_location:
+    uri:            /bird_bots/:bird_bot_id/locations/new/
+    action:         new
+    controller:     locations
+
+formatted_bird_bot_new_location:
+    uri:            /bird_bots/:bird_bot_id/locations/new.:format/
+    action:         new
+    controller:     locations
+
+bird_bot_edit_location:
+    uri:            /bird_bots/:bird_bot_id/locations/:id;edit/
+    action:         edit
+    controller:     locations
+
+formatted_bird_bot_edit_location:
+    uri:            /bird_bots/:bird_bot_id/locations/:id.:format;edit/
+    action:         edit
+    controller:     locations
+
+bird_bot_location:
+    uri:            /bird_bots/:bird_bot_id/locations/:id/
+    action:         show
+    controller:     locations
+
+formatted_bird_bot_location:
+    uri:            /bird_bots/:bird_bot_id/locations/:id.:format/
+    action:         show
+    controller:     locations
+
+locations_update:
+    uri:            /bird_bots/:bird_bot_id/locations/:id/
+    action:         update
+    controller:     locations
+
+locations_update:
+    uri:            /bird_bots/:bird_bot_id/locations/:id.:format/
+    action:         update
+    controller:     locations
+
+npcs:
+    uri:            /npcs/
+    action:         index
+    controller:     npcs
+
+formatted_npcs:
+    uri:            /npcs.:format/
+    action:         index
+    controller:     npcs
+
+npcs_create:
+    uri:            /npcs/
+    action:         create
+    controller:     npcs
+
+npcs_create:
+    uri:            /npcs.:format/
+    action:         create
+    controller:     npcs
+
+new_npc:
+    uri:            /npcs/new/
+    action:         new
+    controller:     npcs
+
+formatted_new_npc:
+    uri:            /npcs/new.:format/
+    action:         new
+    controller:     npcs
+
+edit_npc:
+    uri:            /npcs/:id;edit/
+    action:         edit
+    controller:     npcs
+
+formatted_edit_npc:
+    uri:            /npcs/:id.:format;edit/
+    action:         edit
+    controller:     npcs
+
+npc:
+    uri:            /npcs/:id/
+    action:         show
+    controller:     npcs
+
+formatted_npc:
+    uri:            /npcs/:id.:format/
+    action:         show
+    controller:     npcs
+
+npcs_update:
+    uri:            /npcs/:id/
+    action:         update
+    controller:     npcs
+
+npcs_update:
+    uri:            /npcs/:id.:format/
+    action:         update
+    controller:     npcs
+
+npc_assets:
+    uri:            /npcs/:npc_id/assets/
+    action:         index
+    controller:     npc_assets
+
+formatted_npc_assets:
+    uri:            /npcs/:npc_id/assets.:format/
+    action:         index
+    controller:     npc_assets
+
+npc_assets_create:
+    uri:            /npcs/:npc_id/assets/
+    action:         create
+    controller:     npc_assets
+
+npc_assets_create:
+    uri:            /npcs/:npc_id/assets.:format/
+    action:         create
+    controller:     npc_assets
+
+new_npc_asset:
+    uri:            /npcs/:npc_id/assets/new/
+    action:         new
+    controller:     npc_assets
+
+formatted_new_npc_asset:
+    uri:            /npcs/:npc_id/assets/new.:format/
+    action:         new
+    controller:     npc_assets
+
+edit_npc_asset:
+    uri:            /npcs/:npc_id/assets/:id;edit/
+    action:         edit
+    controller:     npc_assets
+
+formatted_edit_npc_asset:
+    uri:            /npcs/:npc_id/assets/:id.:format;edit/
+    action:         edit
+    controller:     npc_assets
+
+npc_asset:
+    uri:            /npcs/:npc_id/assets/:id/
+    action:         show
+    controller:     npc_assets
+
+formatted_npc_asset:
+    uri:            /npcs/:npc_id/assets/:id.:format/
+    action:         show
+    controller:     npc_assets
+
+npc_assets_update:
+    uri:            /npcs/:npc_id/assets/:id/
+    action:         update
+    controller:     npc_assets
+
+npc_assets_update:
+    uri:            /npcs/:npc_id/assets/:id.:format/
+    action:         update
+    controller:     npc_assets
+
+npc_feeds:
+    uri:            /npcs/:npc_id/feeds/
+    action:         index
+    controller:     feeds
+
+formatted_npc_feeds:
+    uri:            /npcs/:npc_id/feeds.:format/
+    action:         index
+    controller:     feeds
+
+feeds_create:
+    uri:            /npcs/:npc_id/feeds/
+    action:         create
+    controller:     feeds
+
+feeds_create:
+    uri:            /npcs/:npc_id/feeds.:format/
+    action:         create
+    controller:     feeds
+
+npc_new_feed:
+    uri:            /npcs/:npc_id/feeds/new/
+    action:         new
+    controller:     feeds
+
+formatted_npc_new_feed:
+    uri:            /npcs/:npc_id/feeds/new.:format/
+    action:         new
+    controller:     feeds
+
+npc_edit_feed:
+    uri:            /npcs/:npc_id/feeds/:id;edit/
+    action:         edit
+    controller:     feeds
+
+formatted_npc_edit_feed:
+    uri:            /npcs/:npc_id/feeds/:id.:format;edit/
+    action:         edit
+    controller:     feeds
+
+npc_feed:
+    uri:            /npcs/:npc_id/feeds/:id/
+    action:         show
+    controller:     feeds
+
+formatted_npc_feed:
+    uri:            /npcs/:npc_id/feeds/:id.:format/
+    action:         show
+    controller:     feeds
+
+feeds_update:
+    uri:            /npcs/:npc_id/feeds/:id/
+    action:         update
+    controller:     feeds
+
+feeds_update:
+    uri:            /npcs/:npc_id/feeds/:id.:format/
+    action:         update
+    controller:     feeds
+
+npc_locations:
+    uri:            /npcs/:npc_id/locations/
+    action:         index
+    controller:     locations
+
+formatted_npc_locations:
+    uri:            /npcs/:npc_id/locations.:format/
+    action:         index
+    controller:     locations
+
+locations_create:
+    uri:            /npcs/:npc_id/locations/
+    action:         create
+    controller:     locations
+
+locations_create:
+    uri:            /npcs/:npc_id/locations.:format/
+    action:         create
+    controller:     locations
+
+npc_new_location:
+    uri:            /npcs/:npc_id/locations/new/
+    action:         new
+    controller:     locations
+
+formatted_npc_new_location:
+    uri:            /npcs/:npc_id/locations/new.:format/
+    action:         new
+    controller:     locations
+
+npc_edit_location:
+    uri:            /npcs/:npc_id/locations/:id;edit/
+    action:         edit
+    controller:     locations
+
+formatted_npc_edit_location:
+    uri:            /npcs/:npc_id/locations/:id.:format;edit/
+    action:         edit
+    controller:     locations
+
+npc_location:
+    uri:            /npcs/:npc_id/locations/:id/
+    action:         show
+    controller:     locations
+
+formatted_npc_location:
+    uri:            /npcs/:npc_id/locations/:id.:format/
+    action:         show
+    controller:     locations
+
+locations_update:
+    uri:            /npcs/:npc_id/locations/:id/
+    action:         update
+    controller:     locations
+
+locations_update:
+    uri:            /npcs/:npc_id/locations/:id.:format/
+    action:         update
+    controller:     locations
+
+_wsdl:
+    uri:            /:controller/service.wsdl/
+    action:         wsdl
+    controller:     
+
+users_index:
+    uri:            /
+    action:         index
+    controller:     users
+
+logged_exceptions_:
+    uri:            /logged_exceptions/:action/:id/
+    action:         
+    controller:     logged_exceptions
+
+_:
+    uri:            /:controller/:action/:id.:format/
+    action:         
+    controller:     
+
+admin_render_404:
+    uri:            /admin/render_404
+    action:         render_404
+    controller:     admin
+
+admin_filter_parameters:
+    uri:            /admin/filter_parameters
+    action:         filter_parameters
+    controller:     admin
+
+admin_rescue_action_in_public:
+    uri:            /admin/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     admin
+
+admin_wsdl:
+    uri:            /admin/service.wsdl
+    action:         wsdl
+    controller:     admin
+
+admin_local_request?:
+    uri:            /admin/local_request%3F
+    action:         local_request?
+    controller:     admin
+
+admin_log_exception:
+    uri:            /admin/log_exception
+    action:         log_exception
+    controller:     admin
+
+assets_new:
+    uri:            /assets/new
+    action:         new
+    controller:     assets
+
+assets_edit:
+    uri:            /assets/edit
+    action:         edit
+    controller:     assets
+
+assets_assets:
+    uri:            /assets/assets
+    action:         assets
+    controller:     assets
+
+assets_render_404:
+    uri:            /assets/render_404
+    action:         render_404
+    controller:     assets
+
+assets_filter_parameters:
+    uri:            /assets/filter_parameters
+    action:         filter_parameters
+    controller:     assets
+
+assets_rescue_action_in_public:
+    uri:            /assets/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     assets
+
+assets_create:
+    uri:            /assets/create
+    action:         create
+    controller:     assets
+
+assets_show:
+    uri:            /assets/show
+    action:         show
+    controller:     assets
+
+assets_index:
+    uri:            /assets
+    action:         index
+    controller:     assets
+
+assets_wsdl:
+    uri:            /assets/service.wsdl
+    action:         wsdl
+    controller:     assets
+
+assets_local_request?:
+    uri:            /assets/local_request%3F
+    action:         local_request?
+    controller:     assets
+
+assets_log_exception:
+    uri:            /assets/log_exception
+    action:         log_exception
+    controller:     assets
+
+assets_update:
+    uri:            /assets/update
+    action:         update
+    controller:     assets
+
+bench_list:
+    uri:            /bench/list
+    action:         list
+    controller:     bench
+
+bench_render_404:
+    uri:            /bench/render_404
+    action:         render_404
+    controller:     bench
+
+bench_filter_parameters:
+    uri:            /bench/filter_parameters
+    action:         filter_parameters
+    controller:     bench
+
+bench_rescue_action_in_public:
+    uri:            /bench/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     bench
+
+bench_index:
+    uri:            /bench
+    action:         index
+    controller:     bench
+
+bench_wsdl:
+    uri:            /bench/service.wsdl
+    action:         wsdl
+    controller:     bench
+
+bench_local_request?:
+    uri:            /bench/local_request%3F
+    action:         local_request?
+    controller:     bench
+
+bench_log_exception:
+    uri:            /bench/log_exception
+    action:         log_exception
+    controller:     bench
+
+bird_bot_assets_assets:
+    uri:            /bird_bot_assets/assets
+    action:         assets
+    controller:     bird_bot_assets
+
+bird_bot_assets_render_404:
+    uri:            /bird_bot_assets/render_404
+    action:         render_404
+    controller:     bird_bot_assets
+
+bird_bot_assets_filter_parameters:
+    uri:            /bird_bot_assets/filter_parameters
+    action:         filter_parameters
+    controller:     bird_bot_assets
+
+bird_bot_assets_rescue_action_in_public:
+    uri:            /bird_bot_assets/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     bird_bot_assets
+
+bird_bot_assets_wsdl:
+    uri:            /bird_bot_assets/service.wsdl
+    action:         wsdl
+    controller:     bird_bot_assets
+
+bird_bot_assets_local_request?:
+    uri:            /bird_bot_assets/local_request%3F
+    action:         local_request?
+    controller:     bird_bot_assets
+
+bird_bot_assets_log_exception:
+    uri:            /bird_bot_assets/log_exception
+    action:         log_exception
+    controller:     bird_bot_assets
+
+bird_bots_render_404:
+    uri:            /bird_bots/render_404
+    action:         render_404
+    controller:     bird_bots
+
+bird_bots_filter_parameters:
+    uri:            /bird_bots/filter_parameters
+    action:         filter_parameters
+    controller:     bird_bots
+
+bird_bots_rescue_action_in_public:
+    uri:            /bird_bots/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     bird_bots
+
+bird_bots_wsdl:
+    uri:            /bird_bots/service.wsdl
+    action:         wsdl
+    controller:     bird_bots
+
+bird_bots_local_request?:
+    uri:            /bird_bots/local_request%3F
+    action:         local_request?
+    controller:     bird_bots
+
+bird_bots_log_exception:
+    uri:            /bird_bots/log_exception
+    action:         log_exception
+    controller:     bird_bots
+
+bird_bots_unsubscribe:
+    uri:            /bird_bots/unsubscribe
+    action:         unsubscribe
+    controller:     bird_bots
+
+bird_bots_subscribe:
+    uri:            /bird_bots/subscribe
+    action:         subscribe
+    controller:     bird_bots
+
+branches_render_404:
+    uri:            /branches/render_404
+    action:         render_404
+    controller:     branches
+
+branches_filter_parameters:
+    uri:            /branches/filter_parameters
+    action:         filter_parameters
+    controller:     branches
+
+branches_rescue_action_in_public:
+    uri:            /branches/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     branches
+
+branches_wsdl:
+    uri:            /branches/service.wsdl
+    action:         wsdl
+    controller:     branches
+
+branches_local_request?:
+    uri:            /branches/local_request%3F
+    action:         local_request?
+    controller:     branches
+
+branches_log_exception:
+    uri:            /branches/log_exception
+    action:         log_exception
+    controller:     branches
+
+feeds_render_404:
+    uri:            /feeds/render_404
+    action:         render_404
+    controller:     feeds
+
+feeds_filter_parameters:
+    uri:            /feeds/filter_parameters
+    action:         filter_parameters
+    controller:     feeds
+
+feeds_rescue_action_in_public:
+    uri:            /feeds/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     feeds
+
+feeds_wsdl:
+    uri:            /feeds/service.wsdl
+    action:         wsdl
+    controller:     feeds
+
+feeds_local_request?:
+    uri:            /feeds/local_request%3F
+    action:         local_request?
+    controller:     feeds
+
+feeds_log_exception:
+    uri:            /feeds/log_exception
+    action:         log_exception
+    controller:     feeds
+
+locations_render_404:
+    uri:            /locations/render_404
+    action:         render_404
+    controller:     locations
+
+locations_filter_parameters:
+    uri:            /locations/filter_parameters
+    action:         filter_parameters
+    controller:     locations
+
+locations_rescue_action_in_public:
+    uri:            /locations/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     locations
+
+locations_wsdl:
+    uri:            /locations/service.wsdl
+    action:         wsdl
+    controller:     locations
+
+locations_local_request?:
+    uri:            /locations/local_request%3F
+    action:         local_request?
+    controller:     locations
+
+locations_log_exception:
+    uri:            /locations/log_exception
+    action:         log_exception
+    controller:     locations
+
+missions_render_404:
+    uri:            /missions/render_404
+    action:         render_404
+    controller:     missions
+
+missions_filter_parameters:
+    uri:            /missions/filter_parameters
+    action:         filter_parameters
+    controller:     missions
+
+missions_rescue_action_in_public:
+    uri:            /missions/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     missions
+
+missions_wsdl:
+    uri:            /missions/service.wsdl
+    action:         wsdl
+    controller:     missions
+
+missions_local_request?:
+    uri:            /missions/local_request%3F
+    action:         local_request?
+    controller:     missions
+
+missions_log_exception:
+    uri:            /missions/log_exception
+    action:         log_exception
+    controller:     missions
+
+npc_assets_assets:
+    uri:            /npc_assets/assets
+    action:         assets
+    controller:     npc_assets
+
+npc_assets_render_404:
+    uri:            /npc_assets/render_404
+    action:         render_404
+    controller:     npc_assets
+
+npc_assets_filter_parameters:
+    uri:            /npc_assets/filter_parameters
+    action:         filter_parameters
+    controller:     npc_assets
+
+npc_assets_rescue_action_in_public:
+    uri:            /npc_assets/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     npc_assets
+
+npc_assets_wsdl:
+    uri:            /npc_assets/service.wsdl
+    action:         wsdl
+    controller:     npc_assets
+
+npc_assets_local_request?:
+    uri:            /npc_assets/local_request%3F
+    action:         local_request?
+    controller:     npc_assets
+
+npc_assets_log_exception:
+    uri:            /npc_assets/log_exception
+    action:         log_exception
+    controller:     npc_assets
+
+npcs_render_404:
+    uri:            /npcs/render_404
+    action:         render_404
+    controller:     npcs
+
+npcs_filter_parameters:
+    uri:            /npcs/filter_parameters
+    action:         filter_parameters
+    controller:     npcs
+
+npcs_rescue_action_in_public:
+    uri:            /npcs/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     npcs
+
+npcs_wsdl:
+    uri:            /npcs/service.wsdl
+    action:         wsdl
+    controller:     npcs
+
+npcs_local_request?:
+    uri:            /npcs/local_request%3F
+    action:         local_request?
+    controller:     npcs
+
+npcs_log_exception:
+    uri:            /npcs/log_exception
+    action:         log_exception
+    controller:     npcs
+
+npcs_unsubscribe:
+    uri:            /npcs/unsubscribe
+    action:         unsubscribe
+    controller:     npcs
+
+npcs_subscribe:
+    uri:            /npcs/subscribe
+    action:         subscribe
+    controller:     npcs
+
+openid_render_404:
+    uri:            /openid/render_404
+    action:         render_404
+    controller:     openid
+
+openid_filter_parameters:
+    uri:            /openid/filter_parameters
+    action:         filter_parameters
+    controller:     openid
+
+openid_rescue_action_in_public:
+    uri:            /openid/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     openid
+
+openid_wsdl:
+    uri:            /openid/service.wsdl
+    action:         wsdl
+    controller:     openid
+
+openid_local_request?:
+    uri:            /openid/local_request%3F
+    action:         local_request?
+    controller:     openid
+
+openid_log_exception:
+    uri:            /openid/log_exception
+    action:         log_exception
+    controller:     openid
+
+session_render_404:
+    uri:            /session/render_404
+    action:         render_404
+    controller:     session
+
+session_password_reset:
+    uri:            /session/password_reset
+    action:         password_reset
+    controller:     session
+
+session_filter_parameters:
+    uri:            /session/filter_parameters
+    action:         filter_parameters
+    controller:     session
+
+session_rescue_action_in_public:
+    uri:            /session/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     session
+
+session_wsdl:
+    uri:            /session/service.wsdl
+    action:         wsdl
+    controller:     session
+
+session_local_request?:
+    uri:            /session/local_request%3F
+    action:         local_request?
+    controller:     session
+
+session_log_exception:
+    uri:            /session/log_exception
+    action:         log_exception
+    controller:     session
+
+user_assets_assets:
+    uri:            /user_assets/assets
+    action:         assets
+    controller:     user_assets
+
+user_assets_render_404:
+    uri:            /user_assets/render_404
+    action:         render_404
+    controller:     user_assets
+
+user_assets_filter_parameters:
+    uri:            /user_assets/filter_parameters
+    action:         filter_parameters
+    controller:     user_assets
+
+user_assets_rescue_action_in_public:
+    uri:            /user_assets/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     user_assets
+
+user_assets_wsdl:
+    uri:            /user_assets/service.wsdl
+    action:         wsdl
+    controller:     user_assets
+
+user_assets_local_request?:
+    uri:            /user_assets/local_request%3F
+    action:         local_request?
+    controller:     user_assets
+
+user_assets_log_exception:
+    uri:            /user_assets/log_exception
+    action:         log_exception
+    controller:     user_assets
+
+users_render_404:
+    uri:            /users/render_404
+    action:         render_404
+    controller:     users
+
+users_filter_parameters:
+    uri:            /users/filter_parameters
+    action:         filter_parameters
+    controller:     users
+
+users_rescue_action_in_public:
+    uri:            /users/rescue_action_in_public
+    action:         rescue_action_in_public
+    controller:     users
+
+users_wsdl:
+    uri:            /users/service.wsdl
+    action:         wsdl
+    controller:     users
+
+users_local_request?:
+    uri:            /users/local_request%3F
+    action:         local_request?
+    controller:     users
+
+users_log_exception:
+    uri:            /users/log_exception
+    action:         log_exception
+    controller:     users
+
+_controller:
+    _wsdl, _
+
+admin_controller:
+    admin_render_404, admin_filter_parameters, admin_rescue_action_in_public, admin_wsdl, admin_local_request?, admin_log_exception
+
+assets_controller:
+    assets_new, assets_edit, assets_assets, assets_render_404, assets_filter_parameters, assets_rescue_action_in_public, assets_create, assets_show, assets_index, assets_wsdl, assets_local_request?, assets_log_exception, assets_update
+
+bench_controller:
+    bench_list, bench_render_404, bench_filter_parameters, bench_rescue_action_in_public, bench_index, bench_wsdl, bench_local_request?, bench_log_exception
+
+bird_bot_assets_controller:
+    bird_bot_assets, formatted_bird_bot_assets, bird_bot_assets_create, new_bird_bot_asset, formatted_new_bird_bot_asset, edit_bird_bot_asset, formatted_edit_bird_bot_asset, bird_bot_asset, formatted_bird_bot_asset, bird_bot_assets_update, bird_bot_assets_assets, bird_bot_assets_render_404, bird_bot_assets_filter_parameters, bird_bot_assets_rescue_action_in_public, bird_bot_assets_wsdl, bird_bot_assets_local_request?, bird_bot_assets_log_exception
+
+bird_bots_controller:
+    bird_bots, formatted_bird_bots, bird_bots_create, new_bird_bot, formatted_new_bird_bot, edit_bird_bot, formatted_edit_bird_bot, bird_bot, formatted_bird_bot, bird_bots_update, bird_bots_render_404, bird_bots_filter_parameters, bird_bots_rescue_action_in_public, bird_bots_wsdl, bird_bots_local_request?, bird_bots_log_exception, bird_bots_unsubscribe, bird_bots_subscribe
+
+branches_controller:
+    branches, formatted_branches, branches_create, new_branch, formatted_new_branch, edit_branch, formatted_edit_branch, branch, formatted_branch, branches_update, branches_render_404, branches_filter_parameters, branches_rescue_action_in_public, branches_wsdl, branches_local_request?, branches_log_exception
+
+feeds_controller:
+    bird_bot_feeds, formatted_bird_bot_feeds, feeds_create, bird_bot_new_feed, formatted_bird_bot_new_feed, bird_bot_edit_feed, formatted_bird_bot_edit_feed, bird_bot_feed, formatted_bird_bot_feed, feeds_update, npc_feeds, formatted_npc_feeds, npc_new_feed, formatted_npc_new_feed, npc_edit_feed, formatted_npc_edit_feed, npc_feed, formatted_npc_feed, feeds_render_404, feeds_filter_parameters, feeds_rescue_action_in_public, feeds_wsdl, feeds_local_request?, feeds_log_exception
+
+locations_controller:
+    bird_bot_locations, formatted_bird_bot_locations, locations_create, bird_bot_new_location, formatted_bird_bot_new_location, bird_bot_edit_location, formatted_bird_bot_edit_location, bird_bot_location, formatted_bird_bot_location, locations_update, npc_locations, formatted_npc_locations, npc_new_location, formatted_npc_new_location, npc_edit_location, formatted_npc_edit_location, npc_location, formatted_npc_location, locations_render_404, locations_filter_parameters, locations_rescue_action_in_public, locations_wsdl, locations_local_request?, locations_log_exception
+
+logged_exceptions_controller:
+    logged_exceptions_
+
+missions_controller:
+    missions, formatted_missions, missions_create, new_mission, formatted_new_mission, edit_mission, formatted_edit_mission, mission, formatted_mission, missions_update, missions_render_404, missions_filter_parameters, missions_rescue_action_in_public, missions_wsdl, missions_local_request?, missions_log_exception
+
+npc_assets_controller:
+    npc_assets, formatted_npc_assets, npc_assets_create, new_npc_asset, formatted_new_npc_asset, edit_npc_asset, formatted_edit_npc_asset, npc_asset, formatted_npc_asset, npc_assets_update, npc_assets_assets, npc_assets_render_404, npc_assets_filter_parameters, npc_assets_rescue_action_in_public, npc_assets_wsdl, npc_assets_local_request?, npc_assets_log_exception
+
+npcs_controller:
+    npcs, formatted_npcs, npcs_create, new_npc, formatted_new_npc, edit_npc, formatted_edit_npc, npc, formatted_npc, npcs_update, npcs_render_404, npcs_filter_parameters, npcs_rescue_action_in_public, npcs_wsdl, npcs_local_request?, npcs_log_exception, npcs_unsubscribe, npcs_subscribe
+
+openid_controller:
+    openid_create, new_openid, formatted_new_openid, edit_openid, formatted_edit_openid, complete_openid, formatted_complete_openid, openid, formatted_openid, openid_update, openid_render_404, openid_filter_parameters, openid_rescue_action_in_public, openid_wsdl, openid_local_request?, openid_log_exception
+
+session_controller:
+    session_create, new_session, formatted_new_session, edit_session, formatted_edit_session, session, formatted_session, session_update, session_render_404, session_password_reset, session_filter_parameters, session_rescue_action_in_public, session_wsdl, session_local_request?, session_log_exception
+
+user_assets_controller:
+    user_assets, formatted_user_assets, user_assets_create, new_user_asset, formatted_new_user_asset, edit_user_asset, formatted_edit_user_asset, user_asset, formatted_user_asset, user_assets_update, user_assets_assets, user_assets_render_404, user_assets_filter_parameters, user_assets_rescue_action_in_public, user_assets_wsdl, user_assets_local_request?, user_assets_log_exception
+
+users_controller:
+    users, formatted_users, users_create, new_user, formatted_new_user, edit_user, formatted_edit_user, user, formatted_user, users_update, users_index, users_render_404, users_filter_parameters, users_rescue_action_in_public, users_wsdl, users_local_request?, users_log_exception
+
+all_controllers:
+    session_controller, openid_controller, users_controller, user_assets_controller, missions_controller, branches_controller, bird_bots_controller, bird_bot_assets_controller, feeds_controller, locations_controller, npcs_controller, npc_assets_controller, _controller, logged_exceptions_controller, admin_controller, assets_controller, bench_controller
+
+default:
+    uri:            /
+
+basic:
+    users, user, missions, npcs, bird_bots, new_session

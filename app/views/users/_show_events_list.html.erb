@@ -1,0 +1,20 @@
+    <table class="stripeMe list eventslist<% panel=='players'?' noPage':''%>">
+    <tbody>
+    <% if events.nil? or events.empty? %>
+      <br />
+      <h3 align="center">Nothing to see here, yet.</h3>
+    <% else %>
+      <% events.each do |event| %>
+        <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+        <td class="icon event_list"><img class="icon32 <%= event.context %>" src="/images/shared/clear.png" alt="" title="" /></td>
+        <td class="copy"><%= render :partial => "events/event", :locals => { :event => event } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+    </table>
+    <% if panel == 'players' %>
+    <div class="bottomNav">
+      <a href="/users/<%= @user.login %>/events">Visit <%= @user.login %>'s Events</a>
+    </div>
+    <% end %>

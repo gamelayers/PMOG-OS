@@ -1,0 +1,63 @@
+<img src="/images/profile/generator.png" class="profile_art">
+
+<div class="profile_content">
+
+<% mission_types = ["taken", "generated", "drafts", "queued", "favorites"] %>
+<% params[:mission_type] = "taken" if params[:mission_type].nil? %>
+<div class="user_missions_menu">
+<ul>
+<% for i in 0...mission_types.length %>
+<% if mission_types[i] == "drafts" or mission_types[i] == "queued" and current_user != @user and !site_admin? %>
+<% next %>
+<% else %>
+<li <%= 'class="user_missions_selected"' if params[:mission_type] == mission_types[i] %>>
+<%= link_to_remote mission_types[i].capitalize, :url => {:controller => "users", :action => "show", :mission_page => 1, :mission_type => mission_types[i]}, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();"%>
+</li>
+<% end %>
+<% end %>
+
+</ul>
+</div>
+
+<img src="/images/profile/content_boxes/top_left.png" class="user_profile_title_tab_side"><div class="user_profile_title_tab"><h4>Missions</h4></div><img src="/images/profile/content_boxes/top_right.png" class="user_profile_title_tab_side">
+
+<br style="clear:both;" />
+
+<img src="/images/profile/content_boxes/main_top.png" />
+
+<div class="user_profile_content_tab">
+<div id="loading" style="display:none;"><center><img src="/images/ajax-loader.gif" class="no_img_border" /></center></div>
+<span class="user_profile_entries_info"><%= page_entries_info @missions %></span>
+<br style="clear:both;" />
+<ul class="profile_feed" id="mission_list">
+<% @missions.each do |mission| %>
+<li id="mission_<%= mission.id %>">
+<%= link_to_mission(mission) %>
+<%# if mission.user == current_user or site_admin? %>
+<%#= link_to_remote image_tag("/images/shared/elements/del_16.gif", :class => "img_no_border", :title => "delete #{mission.name}", :align => "absmiddle"), :confirm => 'Are you sure?', 
+:url     => { :controller => "missions", 
+:action => "destroy", 
+:id => mission.url_name 
+}, 
+:method  => :delete %>
+<%# end %>
+</li>
+<% end %>
+</ul>
+
+<%#= will_paginate @missions, :param_name => :missions_page, :class => 'user_profile_pagination' %>
+<% if params[:mission_type] == "generated" %>
+<br />
+<div style="text-align:center;font-size:11px;">
+<% if logged_in? %>
+<a href="/users/<%= @user.login %>/missions/created.rss"><img src="/images/users/rss_missions.png" class="img_no_border" width="12" height="12" alt="RSS Missions Feed" /> RSS</a>
+<% end %>
+</div>
+<% end %>
+</div>
+
+<img src="/images/profile/content_boxes/main_bottom.png" />
+
+</div><!--profile content-->
+
+<br style="clear:both;" />

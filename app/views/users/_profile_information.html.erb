@@ -1,0 +1,54 @@
+  <% if @user.forename and @user.surname and @user.gender and @user.age and @user.country %>
+
+		<% if @user.url and ! @user.url.empty? %>
+		
+			<a href='<%= Url.normalise(@user.url) %>' class="fn url"><strong><%=h @user.forename.titleize %> <%=h @user.surname.titleize %></strong></a> 
+		
+		<% else %>
+		
+			<span class="fn"><strong><%=h @user.forename.titleize %> <%=h @user.surname.titleize %></strong></span> 
+		
+		<% end %>
+		
+		<br />
+		
+		<%= @user.gender.upcase == "M" ? "male" : "female" %>, <%=h @user.age %>, <span class="adr"><span class="country-name"><%=h @user.country %></span></span><br /> 
+    
+    Registered: <%=h time_ago_in_words(@user.created_at) %>
+    
+<% else %>
+
+	<strong><%=h @user.login %></strong> is keeping his or her particulars a secret.
+
+<% end %>
+
+<% if (@user.forename.nil? or @user.forename.empty?) and (@user.surname.nil? or @user.surname.empty?) %>
+
+  <% if @user.url and ! @user.url.empty? %>
+    
+    	<a href='<%= Url.normalise(@user.url) %>' class="fn url"><strong>Web Site</strong></a> 
+    	
+    	<br /><br />
+    	
+  <% end %>
+
+<% end %>
+
+<!--
+<b>Order</b><br />
+
+<a href="/guide/classes/pathmakers/"><img src="/images/shared/associations/icon/pathmaker-16.png" alt="Pathmakers" border="0" width="16" height="16" class="img_no_border" /></a> <a href="/guide/classes/pathmakers/">Pathmaker</a> Level <%= @user.levels[:pathmaker] %><br />
+
+<a href="/guide/classes/bedouins/"><img src="/images/shared/associations/icon/bedouin-16.png" alt="Bedouins" border="0" width="16" height="16" class="img_no_border" /></a> <a href="/guide/classes/bedouins/">Bedouin</a> Level <%= @user.levels[:bedouin] %><br />
+
+<a href="/guide/classes/benefactors/"><img src="/images/shared/associations/icon/benefactor-16.png" alt="Benefactors" border="0" width="16" height="16" class="img_no_border" /></a> <a href="/guide/classes/benefactors/">Benefactor</a> Level <%= @user.levels[:benefactor] %><br />
+<br /><br />
+
+<b>Chaos</b><br />
+
+<a href="/guide/classes/destroyers/"><img src="/images/shared/associations/icon/destroyer-16.png" alt="destroyers" border="0" width="16" height="16" class="img_no_border" /></a> <a href="/guide/classes/destroyers/">Destroyer</a> Level <%= @user.levels[:destroyer] %><br />
+<a href="/guide/classes/seers/"><img src="/images/shared/associations/icon/seer-16.png" alt="seers" border="0" width="16" height="16" class="img_no_border" /></a> <a href="/guide/classes/seers/">Seer</a> Level <%= @user.levels[:seer] %><br />
+<a href="/guide/classes/vigilantes/"><img src="/images/shared/associations/icon/vigilante-16.png" alt="vigilantes" border="0" width="16" height="16" class="img_no_border" /></a> <a href="/guide/classes/vigilantes/">Vigilante</a> Level <%= @user.levels[:vigilante] %><br />
+
+<br style="clear:both;" /><br /><br />
+-->

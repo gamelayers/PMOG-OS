@@ -1,0 +1,61 @@
+		<div id="copy">
+		
+			<div class="column width960">
+			
+				<div class="column width700">
+
+					<div class="module width700">
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/support" %>
+		<div class="cell child"><span class="l"></span><span class="c">Chat</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<h1>PMOG Help</h1>
+<h5>How to: Create New Firefox Profile</h5>
+<br />
+<div class="help">
+
+<p>Sometimes in upgrading from Firefox 2 to Firefox 3 the information Firefox carries over becomes corrupt or unusable; this also happens at times without an upgrade occurring for a number of other reasons.  In these cases, creating a new Firefox profile is a necessary process to get playing PMOG again.</p>
+
+<p>What creating a new Firefox profile should resolve:
+1. Persistent login issues -- being unable to log in even after multiple password resets.
+2. Always having a toolbar which displays "The Tubes is Clogged, Please Try Again Later."
+3. Having issues with no overlays appearing, or no tools correctly activating/deploying.
+4. Other problems as recommended by the Player Support Liaison.</p>
+
+<p>What creating a new Firefox profile will not resolve:
+1. Any issue regarding the website.
+2. General "slowness."
+3. Issues covered in the Support FAQ which have other workarounds (For example, having NoScript installed).</p>
+
+<p>Please note: Creating a new Firefox profile will result in a clean slate for Firefox.  Your bookmarks, extensions, and all other manually entered/chosen preferences will be erased and set back to the default.  Only create a new Firefox profile as a last resort.</p>
+
+<p>Getting started -- These instructions are geared towards Firefox 3; however, they should still be similar for Firefox 2</p>
+
+<p>First, start by creating a list of all your currently installed extensions you'd like to re-download after creating your new profile.  Then, save your bookmarks, if you'd like to migrate them over to your new profile.</p>
+
+<p>Next, install this extension into your current Firefox profile (note, clicking this link will take you to a third party's website; verify you are downloading Profile Switcher for Firefox): <a href="http://nic-nac-project.de/~kaosmos/index-en.html#profname"> Profile Switcher Extension </a>.</p>
+
+<p>Restart Firefox.</p>
+
+<p>Then, with the extension installed click the following Menus from within Firefox: File > Open Profile Manager.</p>
+
+<p>Then, in the new window which will appear, select "Create Profile" and check "Don't ask at Startup" then click "Start Firefox."</p>
+
+<p>It's that easy.  You now have a new Firefox profile.</p>
+
+<p>Start by installing PMOG and only PMOG first and ensuring your issue has been resolved.  If it hasn't contact help at pmog dot com for more assistance.</p>
+
+<p>Alternatively, more advanced users of Firefox/Flock can use <a href="http://kb.mozillazine.org/Profile_Manager">the following guide from Mozilla</a>, ensuring to follow the proper directions for their respective operating system.</p>
+
+				</div>
+
+				</div>
+
+			</div>
+
+			<%= render :partial => "shared/guide/support_block" %>
+
+		</div>

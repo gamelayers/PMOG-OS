@@ -1,0 +1,31 @@
+<% content_for :body do %>
+  class="user"
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960">
+
+		<div class="column width700">
+
+			<div class="module width700">
+			
+<div id="account_suspended">
+	<h2>Account Suspended</h2>
+	<img src="/images/profile/private.png" alt="Suspended!" title="Suspended!" align="left" border="0" hspace="40" />
+</div>
+
+	<p><%= distance_of_time_in_words(Time.now, current_user.suspended_until) %> Remaining</p>
+	
+	<p>Suspended on: <%= current_user.suspended_on.to_s(:db) %><br/>
+	
+	<p>Suspended Until: <%= current_user.suspended_until.to_s(:db) %></p>
+	
+	<p>Reason for Suspension: <%= current_user.suspended_reason %></p>
+	
+	<p>If you believe you are seeing this notice in error, or have questions regarding your suspension, please e-mail accounts@thenethernet.com.</p>
+
+</div>
+</div>
+</div>
+</div>

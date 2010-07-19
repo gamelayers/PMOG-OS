@@ -1,0 +1,12 @@
+<h1>Editing deleted_account</h1>
+
+<%= error_messages_for :deleted_account %>
+
+<% form_for(@deleted_account) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @deleted_account %> |
+<%= link_to 'Back', deleted_accounts_path %>

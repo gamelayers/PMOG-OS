@@ -1,0 +1,16 @@
+<!-- #fixme can we integrate Lance's stylesheet work here?
+
+<input type="text" size="30" name="search" id="siteSearchInput"/>
+<button type="submit" name="searchSubmit" id="siteSearchSubmit">Search</button>
+
+-->
+
+<div id="search">
+
+	<form action="/users/search" method="post">
+		<%= token_tag %>
+		<input name="q" type="text" class="input" value="<%=h params[:q] %>">
+    <input type="submit" class="input" value="Search Players" />
+	</form>
+
+</div>

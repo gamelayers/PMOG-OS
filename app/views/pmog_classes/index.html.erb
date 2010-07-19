@@ -1,0 +1,72 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Edit Classes</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>Edit Classes<small>(<a href="/guide/classes">view guide/classes</a>)</small></h1>
+
+<ul>
+	<% @pmog_classes.each do |pmog_class| %>
+	<li>
+		<h2><img src="<%= pmog_class.icon_image %>" class="icon16" alt="<%= pmog_class.icon_image %>" /> <%= pmog_class.name.titleize %> - (<a href="/guide/classes/<%= pmog_class.name %>">guide</a> | <%= link_to "edit", edit_pmog_class_path(pmog_class) %>)</h2>
+		<p>
+			<b>short_description:</b><br>
+			<%= pmog_class.short_description %>
+		</p>
+		<p>
+			<b>long_description:</b><br>
+			<%= pmog_class.long_description %>
+			<br clear="all" />
+		</p>
+		<p>
+			<b>icon_image:</b> <a href="<%= pmog_class.icon_image %>"><%= pmog_class.icon_image %></a>
+			<img src="<%= pmog_class.icon_image %>" width="10" height="10" alt="<%= pmog_class.icon_image %>" />
+		</p>
+		<p>
+			<b>small_image:</b> <a href="<%= pmog_class.small_image %>"><%= pmog_class.small_image %></a>
+			<img src="<%= pmog_class.small_image %>" width="10" height="10" alt="<%= pmog_class.small_image %>" />
+		</p>
+		<p>
+			<b>medium_image:</b> <a href="<%= pmog_class.medium_image %>"><%= pmog_class.medium_image %></a>
+			<img src="<%= pmog_class.medium_image %>" width="10" height="10" alt="<%= pmog_class.medium_image %>" />
+		</p>		
+		<p>
+			<b>large_image: </b><a href="<%= pmog_class.large_image %>"><%= pmog_class.large_image %></a>
+			<img src="<%= pmog_class.large_image %>" width="10" height="10" alt="<%= pmog_class.large_image %>" />
+		</p>
+	</li><br clear="all"/>
+	<% end %>
+</ul>
+
+
+						</div>
+											
+					</div>
+				
+				</div>
+
+    				<div class="column width240">
+				</div>
+
+			
+			</div>
+
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/classes" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+

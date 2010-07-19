@@ -1,0 +1,18 @@
+<ol class='stripeMe awsm'>
+  <% if awsmattacks.nil? || awsmattacks.empty? %>
+    No Awsm Attacks to see here!
+  <% else %>
+    <% awsmattacks.each do |a| %>
+      <li>
+        <div>
+          <a href='<%= a.location.url %>'>
+            <img class='favicon' src='http://www.google.com/s2/favicons?domain=<%= Url.domain(a.location.url) %>' height='16' width='16' />
+            <%= a.location.url.to_s[7..50] %>
+          </a>
+          <br />
+          <span><%= pluralize(a.count, 'time') if a.respond_to? 'count' %></span>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ol>

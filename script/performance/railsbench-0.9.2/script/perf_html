@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+
+unless ARGV.include?('-nocss')
+puts <<'END'
+<style type="text/css">
+<!--
+.perf_header, .perf_data, .perf_name { font-size:70%; padding-left:5px; padding-right:5px; }
+.perf_header { text-align:center; vertical-align:top; font-weight:bold;}
+.i { font-style:italic; }
+.b { font-weight:bold; }
+.c1 { background:#fff3df; }
+.c2 { background:#dfedff; }
+.factor { background:#efe0ef; }
+.factor_red_alert { background:#CC303B; }
+.factor_red { background:#FF6060; }
+.factor_reddish { background:#FFA766; }
+.factor_green_alert { background:#0B8900; }
+.factor_green { background:#6AB788; }
+.factor_greenish { background:#7FFFB0; }
+.name { background:#dfdfdf; }
+.perf_name   { text-align:left;   }
+.perf_data   { text-align:right;  }
+-->
+</style>
+END
+end
+
+def factor_class(v)
+  return 'factor' unless ARGV.include?('-colorize')
+  if v <= 0.85
+    'factor_red_alert'
+  elsif v <= 0.90
+    'factor_red'
+  elsif v <= 0.95
+    'factor_reddish'
+  elsif v >= 1.15
+    'factor_green_alert'
+  elsif v >= 1.10
+    'factor_green'
+  elsif v >= 1.05
+    'factor_greenish'
+  else
+    'factor'
+  end
+end
+
+unless ARGV.include?('-notable')
+  puts "<table cellspacing=1px>"
+  $stdin.each_line do |l|
+    case l
+      when /^garbage collection/
+      unless ARGV.include?('-gc')
+        puts "</table>"
+        exit
+      end
+      puts "<tr></tr><tr></tr>"
+      puts "<tr>"
+      puts "<th class='perf_header name' style='text-align:left'>GC statistics</th>"
+      puts "<th class='perf_header c1'>c1 total</th><th class='perf_header c2'>c2 total</th>"
+      puts "<th class='perf_header c1'>c1 #gc</th><th class='perf_header c2'>c2 #gc</th>"
+      puts "<th class='perf_header c1'>c1 gc%</th><th class='perf_header c2'>c2 #gc%</th>"
+      puts "<th class='perf_header factor'>c1/c2</th>"
+      puts "</tr>"
+      when /^page/
+      puts "<tr>"
+      puts "<th class='perf_header name' style='text-align:left;'>page</th>"
+      puts "<th class='perf_header c1'>c1 total</th><th class='perf_header c2'>c2 total</th>"
+      puts "<th class='perf_header c1'>c1 r/s</th><th class='perf_header c2'>c2 r/s</th>"
+      puts "<th class='perf_header c1'>c1 ms/r</th><th class='perf_header c2'>c2 ms/r</th>"
+      puts "<th class='perf_header factor'>c1/c2</th>"
+      puts "</tr>"
+    end
+    case l
+    when %r{^([A-Za-z0-9./?=_ ]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)\s+$}
+      puts "<tr>"
+      puts "<td class='perf_name name#{" i" if $1.strip == "all requests"}'>#{$1}</td>"
+      puts "<td class='perf_data c1'>#{$2}</td><td class='perf_data c2'>#{$3}</td>"
+      puts "<td class='perf_data c1'>#{$4}</td><td class='perf_data c2'>#{$5}</td>"
+      puts "<td class='perf_data c1'>#{$6}</td><td class='perf_data c2'>#{$7}</td>"
+      puts "<td class='perf_data #{factor_class($8.to_f)}'>#{$8}</td>"
+      puts "</tr>"
+    end
+  end
+  puts "</table>"
+end
+
+__END__
+
+#    Copyright (C) 2005, 2006, 2007  Stefan Kaes
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA

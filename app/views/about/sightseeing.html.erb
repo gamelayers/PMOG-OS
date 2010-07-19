@@ -1,0 +1,93 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/about" %>
+		<div class="cell child"><span class="l"></span><span class="c">Versions</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<%= javascript_include_tag 'lightbox' %>
+<%= stylesheet_link_tag 'lightbox' %>
+
+<h1>Pmogean Sightseeing</h1>
+<h5>Wherein you'll find a glimpse of perpetual online play.</h5>
+
+<br/>
+
+<h2>What is PMOG?</h2>
+
+<p>PMOG transforms our web surfing into ongoing social play. With a Firefox plug-in, players can bomb each other, wage war over web sites, and lead other users on web missions.</p>
+
+<p>PMOG is free to play, after a user downloads the <a href="/help/install/">PMOG Firefox extension</a>.</p>
+
+<h2>How do I play?</h2>
+
+<!--<p align="center"><img src="/images/about/getalook.png" width="200" height="100" border="0" alt="Take a Screenshot Tour of PMOG" /></p>-->
+
+<center>
+<table border="0" cellpadding="0" cellspacing="20">
+  <tr>
+    <td valign="top" align="center">
+      <h3>Earn Datapoints <img src="/images/shared/icons/datapoint-16.png" width="16" height="16" alt="datapoints"> for Surfing the Web</h3>
+      <h4>Every URL is worth at least 2 <img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints"></h4><br />
+      <a href="/images/about/surfing-lg.jpg" title="Earn Datapoints for Surfing the Web" rel="lightbox[PMOGTour]"><img src="/images/about/surfing-lg.jpg" width="240" height="162" border="0"></a>
+    </td>
+    <td valign="top" align="center">
+      <h3>Spend Datapoints at the Shoppe</h3>
+      <h4>To buy a wide range of Tools</h4><br />
+      <a href="/images/about/shoppe-lg.jpg" title="Spend Datapoint at the Shoppe" rel="lightbox[PMOGTour]"><img src="/images/about/shoppe-lg.jpg" alt="Visit the Shoppe" width="240" height="162" border="0"></a>
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top" align="center">
+      <h3>Prank Your Friends Across the Web</h3>
+      <h4>Using Mines that steal Datapoints</h4><br />
+      <a href="/images/about/mines-lg.jpg" title="Prank Your Friends Across the Web" rel="lightbox[PMOGTour]"><img src="/images/about/mines-lg.jpg" alt="Mine exploded!" width="240" height="162" border="0"></a>
+    </td>
+    <td valign="top" align="center">
+      <h3>Leave Gifts on Web Sites</h3>
+      <h4>Using Crates to hold Tools or currency</h4>
+      <br />
+      <a href="/images/about/crates-lg.jpg" title="Leave Gifts on Web Sites" rel="lightbox[PMOGTour]"><img src="/images/about/crates-lg.jpg" alt="Open a Crate" width="240" height="162" border="0"></a>
+    </td>
+  </tr>
+
+  <tr>
+    <td valign="top" align="center">
+      <h3>Make or Follow Paths Online</h3>
+      <h4>Missions!</h4><br />
+      <a href="/images/about/missions-lg.jpg" title="Make or Follow Paths Online" rel="lightbox[PMOGTour]"><img src="/images/about/missions-lg.jpg" alt="Take a Mission!" width="240" height="162" border="0"></a>
+    </td>
+    <td valign="top" align="center">
+      <h3>Develop a Rich User Profile</h3>
+      <h4>Passively, just by surfing the web.</h4><br />
+      <a href="/images/about/profile-lg.jpg" title="Develop a Rich User Profile" rel="lightbox[PMOGTour]"><img src="/images/about/profile-lg.jpg" alt="Visit the Shoppe" width="240" height="162" border="0"></a>
+    </td>
+  </tr>
+
+</table>
+</center>
+
+						</div>
+					
+					</div>
+				
+				</div>
+				
+			<div class="column width960">
+			
+				<%= render :partial => "shared/about" %>
+				
+				<%= render :partial => "shared/guide/guide_module" %>
+				
+			</div>
+
+		</div>

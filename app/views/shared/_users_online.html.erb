@@ -1,0 +1,3 @@
+<% User.online_now.each do |u| %>
+	<%= link_to h(u.login), user_path(u) %> 
+<% end %>

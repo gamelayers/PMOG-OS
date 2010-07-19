@@ -1,0 +1,8 @@
+<!-- <div class="stars"> -->
+<% if ! @suspended and ! (current_user == @user) and ! @user.ratings.caches(:find_by_user_id, :with => current_user.id, :ttl => 1.week) %>
+  <%= render :partial => 'ratings/rate', :locals => { :rateable => @user, :type => 'User' } %>
+<% else %>
+  <%= render :partial => 'ratings/rating', :locals => { :rateable => @user, :type => 'User' } %>
+<% end %> 
+<!-- </div> -->
+<br />

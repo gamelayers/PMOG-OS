@@ -1,0 +1,189 @@
+<% content_for :head do %>
+<%= auto_discovery_link_tag( :rss, 'http://thenethernet.com/events.rss', { :title => "Recent events on PMOG" } ) %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+	<div class="main"><a href="[MAIN PAGE]">Events Stream</a></div>
+
+</div>
+<% end %>
+
+<div id="copy">
+
+	<div class="column width960">
+
+		<div class="column width700">
+
+			<div class="module width700">
+
+				<!--<h1>A Listing of Events in PMOG, the last <%= (@events.total_pages * @events.per_page).to_i %> at least.</h1>
+					<h5>What has happened?</h5>-->
+
+
+					<!--<a href="/awsm-attack/"><img src="/images/awsm-attack/awsm-attack-button.png" alt="awsm! attack!" align="right" width="124" height="127" class="img_no_border" /></a>-->
+
+					<!-- EVENTS Everyone's -->				
+					<div id="eventsEveryones">
+
+						<table class="stripeMe list eventslist">
+							<tbody>
+								<% @events.each do |event| %>
+								<tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+									<td class="icon event_list"><img class="icon32 <%= event.context %>" src="/images/shared/clear.png" width="32" height="32" alt="<%= event.context %>" title="<%= event.context.titleize %>" /></td>
+									<td class="copy">
+										<%= show_event(event) %>
+									</td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+
+					</div>
+
+					<br/>
+
+					<p align='right'>
+						<%= will_paginate @events %>
+					</p>
+
+					<br/>
+
+				</div>
+
+			</div>
+
+			<div class="column width240">
+				<div class="module width240">
+					<h3>Events in the Nethernet</h3>
+
+					<p>This is a great place to see what is happening around The Nethernet.</p>
+
+					<p>Follow links from events at your own risk - some might be <a href="/guide/rules/nsfw">NSFW</a>!<%= render :partial => 'shared/nsfw_tip' %></p>
+
+					<p>Also, check out:</p>
+
+					<ul>
+						<li><a href="/awsm-attack">Awsm-Attack</a>ed sites</li>
+						<li><a href="/posts/latest">Recent Forum Posts</a></li>
+						<li><a href="/leaderboard">Leaderboards</a></li>
+						<li><a href="http://news.thenethernet.com">Community News</a></li>
+					</ul>
+
+				</div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="imageTop">
+					<div class="ImageTop" style="background-image:url(/images/shared/dressing/benefactress-240.png); width:240px;height:447px;" title="Benefactress"></div>
+				</div>
+
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+				<div class="column height20"></div>
+
+				<div class="imageTop">
+					<div class="ImageTop" style="background-image:url(/images/shared/dressing/child-240.png); width:240px;height:312px;" title="How Tall Am I, Daddy?"></div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>

@@ -1,0 +1,2 @@
+module QuestHelper
+end

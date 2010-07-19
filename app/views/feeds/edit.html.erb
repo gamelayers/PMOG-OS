@@ -1,0 +1,35 @@
+<%= error_messages_for :feed %>
+
+<% if params[:bird_bot_id] %>
+
+	<% form_for(:feed, :url => bird_bot_feed_path, :html => { :method => :put } ) do |f| %>
+	  <%= f.hidden_field :feed_id, :value => params[:id] %>
+	  <%= f.hidden_field :bird_bot_id, :value => params[:bird_bot_id] %>
+	  <p>
+	    <b>Feed url</b>
+	    <br/>
+	    <%= f.text_field :url, :size => 50 %>
+	    <script type="text/javascript">
+	      $( 'feed_url' ).focus();
+	    </script>
+	    <%= submit_tag "Edit" %>
+	  </p>
+	<% end %>
+	
+<% elsif params[:npc_id] %>
+
+	<% form_for(:feed, :url => npc_feed_path, :html => { :method => :put } ) do |f| %>
+	  <%= f.hidden_field :feed_id, :value => params[:id] %>
+	  <%= f.hidden_field :npc_id, :value => params[:npc_id] %>
+	  <p>
+	    <b>Feed url</b>
+	    <br/>
+	    <%= f.text_field :url, :size => 50 %>
+	    <script type="text/javascript">
+	      $( 'feed_url' ).focus();
+	    </script>
+	    <%= submit_tag "Edit" %>
+	  </p>
+	<% end %>
+
+<% end %>

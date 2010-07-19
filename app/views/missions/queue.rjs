@@ -1,0 +1,3 @@
+page.replace_html "queue_button_#{@mission.id}", queue_button(@view, @mission)
+page << "jQuery('#action_flash_#{@mission.id}').text('#{flash[:notice]}').show().fadeOut(4000)"
+flash.discard

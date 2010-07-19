@@ -1,0 +1,39 @@
+non_public_topic: 
+  id: acf8318c-dce0-11dd-8767-001b63343339
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  forum_id: 607826b4-dce0-11dd-8767-001b63343339
+  title: Non public topic
+  description: A topic in the non public forum
+  url_name: non-public-topic
+  created_at: 2007-12-07 23:17:35
+  updated_at: 2007-12-07 23:17:35
+  is_active: 1
+  locked: 0
+  pinned: 0
+  public: 0
+pmog_only_topic:
+  id: ccf8318c-dce0-11dd-8767-001b63343339
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  forum_id: 707826b4-dce0-11dd-8767-001b63343339
+  title: PMOG Only topic
+  description: A topic in the pmog only forum
+  url_name: pmog-only-topic
+  created_at: 2007-12-08 23:17:35
+  updated_at: 2007-12-08 23:17:35
+  is_active: 1
+  locked: 0
+  pinned: 0
+  public: 1
+forum_games_topic:
+  id: bcf8318c-dce0-11dd-8767-001b63343339
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  forum_id: 52eb97a0-019a-11dd-adc1-001b63928f8d
+  title: Forum games topic
+  description: A topic in the forum games forum
+  url_name: forum-games-topic
+  created_at: 2007-12-07 23:17:35
+  updated_at: 2007-12-07 23:17:35
+  is_active: 1
+  locked: 0
+  pinned: 0
+  public: 1

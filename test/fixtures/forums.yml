@@ -1,0 +1,92 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: forums
+#
+#  id           :string(36)    primary key
+#  title        :string(255)   
+#  description  :text          
+#  url_name     :string(255)   
+#  created_at   :datetime      
+#  updated_at   :datetime      
+#  position     :integer(11)   
+#  pmog_only    :boolean(1)    not null
+#  topics_count :integer(11)   default(0), not null
+#  public       :boolean(1)    default(TRUE)
+#
+
+--- 
+misadventures: 
+  pmog_only: false
+  updated_at: 2008-04-03 20:38:20 Z
+  title: PMOG Misadventures
+  id: 1318157c-019a-11dd-adc1-001b63928f8d
+  description: Broken bits of play! oh No! File your bug report here - include as much context as you can find.
+  url_name: pmog-misadventures
+  position: 1
+  created_at: 2008-04-03 16:21:54 Z
+straturgy: 
+  pmog_only: false
+  updated_at: 2008-04-03 20:38:20 Z
+  title: Straturgy
+  id: 1f2cd488-019a-11dd-adc1-001b63928f8d
+  description: things you do when you're getting things done.
+  url_name: straturgy
+  position: 2
+  created_at: 2008-04-03 16:22:15 Z
+gameplay: 
+  pmog_only: false
+  updated_at: 2008-04-03 17:24:33 Z
+  title: Gameplay
+  id: 2bc0c236-019a-11dd-adc1-001b63928f8d
+  description: Questions, suggestions, salutations regarding that most interesting of subjects
+  url_name: gameplay
+  position: 3
+  created_at: 2008-04-03 16:22:36 Z
+social_tools: 
+  pmog_only: false
+  updated_at: 2008-04-03 18:34:21 Z
+  title: Social Tools
+  id: 37303d90-019a-11dd-adc1-001b63928f8d
+  description: How do you do?
+  url_name: social-tools
+  position: 4
+  created_at: 2008-04-03 16:22:55 Z
+trading: 
+  pmog_only: false
+  updated_at: 2008-04-03 18:34:21 Z
+  title: Trading
+  id: 4505d4b6-019a-11dd-adc1-001b63928f8d
+  description: Come here to barter for tools. Trade a few crates for a mine; trade portals for lightposts!
+  url_name: trading
+  position: 5
+  created_at: 2008-04-03 16:23:18 Z
+games: 
+  pmog_only: false
+  updated_at: 2008-04-03 17:24:31 Z
+  title: Forum Games
+  id: 52eb97a0-019a-11dd-adc1-001b63928f8d
+  description: Want to play some games over the forum posts? Post your challenges here for fellow Passive-ists! Use this forum rather than the Gameplay forum, please.
+  url_name: forum-games
+  position: 6
+  created_at: 2008-04-03 16:23:41 Z
+non_public: 
+  public: false
+  pmog_only: false
+  updated_at: 2008-04-03 17:24:31 Z
+  title: Non Public
+  id: 607826b4-dce0-11dd-8767-001b63343339
+  description: This forum is not public
+  url_name: non-public
+  position: 7
+  created_at: 2009-01-06 16:23:41 Z
+pmog_only: 
+  public: true
+  pmog_only: true
+  updated_at: 2008-04-04 17:24:31 Z
+  title: PMOG Only
+  id: 707826b4-dce0-11dd-8767-001b63343339
+  description: This forum is pmog only
+  url_name: pmog-only
+  position: 8
+  created_at: 2009-01-07 16:23:41 Z

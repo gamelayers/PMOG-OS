@@ -1,0 +1,17 @@
+<%= @inviter.login %> (<%= @inviter.email %>) thinks you should sign up for The Nethernet and start playing with the web.
+
+<% unless @message.nil? %>
+  <%= @inviter.login %> says: <%= @message %>
+<% end %>
+
+Visit http://thenethernet.com/join/<%= @inviter.login %> where you can sign up to start playing.
+
+--
+
+The Nethernet is a casual online game that you can play in your Firefox or Flock browser. The Nethernet lets you play, create and explore vast new layers of the internet: lay traps, create connections between sites, and gift friends with just a click of a button! Turn your web browsing into an adventure!
+
+Download the Firefox Toolbar from : http://thenethernet.com/xpi/pmog.xpi
+
+Check out <%= @inviter.login %>'s game by visiting : http://thenethernet.com/users/<%= @inviter.login %>
+
+

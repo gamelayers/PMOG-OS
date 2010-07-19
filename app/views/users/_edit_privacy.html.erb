@@ -1,0 +1,55 @@
+<script language="JavaScript" type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery("input[type=radio].select-all").click(function() {
+      jQuery("input[type=radio][value=" + jQuery(this).attr('value') + "]").each(function() {
+  	    this.checked = true;
+  	  });
+    });
+  });
+</script>
+
+<h3><a href="javascript:;">Privacy<span>Let us know what to show and what to hide.</span></a></h3>
+
+<div class="back" id="prefPrivacy">
+<p>Use the form below to choose what content and information of yours can be seen by wandering eyes.</p>
+
+
+<% form_for :preference, @preference, :url => { :controller => 'privacy', :action => 'update_privacy'}, :html => {:id => 'privacy_form'} do |f| %>
+  <table border="0" cellpadding="0" cellspacing="10" id="privacy_table" class="formTable stripeMe">
+    <tr>
+      <th>&nbsp;</th>
+      <% Preference.levels.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each { |level| %>
+        <th>
+          <%= level[1][:text] %>
+        </th>
+      <% } %>
+    </tr>
+    <tr class="oddpost">
+      <td align="right"><strong>Select All</strong></td>
+      <% Preference.levels.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each { |level| %>
+        <td align="center"><input type="radio" class="select-all" name="level" value="<%= level[1][:text] %>" /></td>
+      <% } %>
+    </tr>
+  
+    <% Preference.preferences.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each do |option| %>
+    <% if option[1][:group] == "privacy" %>
+      <tr>
+        <td align="right">
+          <%= option[1][:text] %>
+        </td>
+            <% Preference.levels.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each do |level| %>
+        <td align="center">
+          <%= get_privacy(option[1][:text], level[1][:text], current_user.id) %>
+        </td>
+      <% end%>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <div class="formElement">
+  <div class="button">
+  <%= submit_tag "Save Changes", "class" => "input" %>
+  </div>
+  </div>
+<% end %>
+</div>

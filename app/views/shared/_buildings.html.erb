@@ -1,0 +1,29 @@
+<div id="cityscape">
+  <div id="buildings">
+    <div id="buildingsFloat">
+      <!-- Building images MUST BE 440px high, or else they go floaty! -->
+      <a href="http://boingboing.net/" class="building-link" title="BoingBoing"><img src="/images/shared/buildings/bngbng.png" alt="bngbng"/></a>
+      <a href="http://search.twitter.com/search?q=&ors=thenethernet+nethernet&nots=pmogevents" class="building-link" title="Twitter"><img src="/images/shared/buildings/twitr.png" alt="twitr"/></a>
+      <a href="http://xkcd.com/" class="building-link" title="XKCD"><img src="/images/shared/buildings/xkcd.png" alt="xkcd"/></a>
+      <a href="http://search.yahoo.com/search?p=the+nethernet&fr=yfp-t-501&toggle=1&cop=mss&ei=UTF-8" class="building-link" title="Yahoo"><img src="/images/shared/buildings/yhoo.png" alt="yhoo"/></a>
+      <a href="http://www.youtube.com/results?search_type=&search_query=nethernet&aq=f" class="building-link" title="Youtube"><img src="/images/shared/buildings/ytube.png" alt="ytube"/></a>
+      <a href="http://en.wikipedia.org/wiki/The_Nethernet" class="building-link" title="Wikipedia"><img src="/images/shared/buildings/wikipedia.png" alt="Wkipdia"/></a>
+      <a href="http://penny-arcade.com/" class="building-link" title="Penny Arcade"><img src="/images/shared/buildings/pennyarcade.png" alt="pnnyrcd"/></a>
+      <a href="http://dopplr.com/" class="building-link" title="Dopplr"><img src="/images/shared/buildings/dplr.png" alt="dplr"/></a>
+      <a href="http://www.deviantart.com/#order=9&q=nethernet" class="building-link" title="Deviant Art"><img src="/images/shared/buildings/dvtart.png" alt="dvtart"/></a>
+      <a href="http://www.facebook.com/pages/The-Nethernet/54935963385" class="building-link" title="Facebook Page"><img src="/images/shared/buildings/fcebook.png" alt="fcebook"/></a>
+      <a href="http://thenethernet.wikia.com/" class="building-link" title="Wikia"><img src="/images/shared/buildings/wikia.png" alt="Wkia"/></a>
+      <a href="http://icanhascheezburger.com/" class="building-link" title="i can has cheezburger"><img src="/images/shared/buildings/chzebrgr.png" alt="chzebrgr"/></a>
+      <a href="http://technorati.com/blogs/news.thenethernet.com" class="building-link" title="Technorati"><img src="/images/shared/buildings/technorati.png" alt="tchnorti"/></a>
+      <a href="http://www.google.com/search?hl=en&as_q=the+nethernet&as_epq=&as_oq=&as_eq=&num=50" class="building-link" title="Google"><img src="/images/shared/buildings/ggle.png" alt="ggle"/></a>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $(".building-link").track({
+    category : "Everywhere",
+    action   : "Buildings",
+    label    : function(element) { return $(element).attr("title"); }
+  }).attr("target", "_blank");
+
+</script>

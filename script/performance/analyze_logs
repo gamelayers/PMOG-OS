@@ -1,0 +1,2 @@
+# From http://snippets.dzone.com/posts/show/4440
+cat $1 | awk '/Completed/ { print "[" $3 "] - " $0 }' | sort -nr

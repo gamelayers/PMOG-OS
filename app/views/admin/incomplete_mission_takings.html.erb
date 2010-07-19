@@ -1,0 +1,43 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Incomplete Missions</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h2>Missions Incomplete/Complete Count</h2>
+<p>
+	The following table lists out missions that have a record of being taken but not of being completed. For troubleshooting reference I also include the count of completed takers
+</p>
+<p>
+	The current criteria for being considered incomplete is if a player started taking the mission and hasn't completed it within <%= distance_of_time_in_words_to_now(@timeframe) %>. That is to say, if there is a record of taking a mission between now and an hour ago, we won't count it, but anything older than <%= distance_of_time_in_words_to_now(@timeframe) %> is considered an incomplete mission.
+</p>
+<table class="forum_main">
+	<tr>
+		<th><h2>Mission&nbsp;&nbsp;</h2></th>
+		<th><h2>Incomplete&nbsp;&nbsp;</h2></th>
+		<th><h2>Complete&nbsp;&nbsp;</h2></th>
+	</tr>
+	<% @missions.each do |mission| %>
+	<tr>
+		<td><%= link_to mission.name, mission_path(mission.url_name) %></td>
+		<td class="stats_cell"><%= mission.takers.size %></td>
+		<td class="stats_cell"><%= mission.users.size %></td>
+	</tr>
+	<% end %>
+</table>
+
+					</div>
+				
+				</div>
+			
+			</div>
+
+		</div>

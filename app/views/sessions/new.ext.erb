@@ -1,0 +1,43 @@
+<p>
+  Please log into PMOG to adjust your preferences.
+</p>
+<div id="textbox">
+  <% form_tag session_path(:format => :ext) do %>
+  <p>
+    <label for="login">Login</label><br />
+     <input id="login" name="login" type="text" style="border:1px solid #a9a9a9;color:black;" />
+  </p>
+
+  <script type="text/javascript">
+    $( 'login' ).focus();
+  </script>
+
+  <p>
+    <label for="password">Password</label><br/>
+    <input id="password" name="password" type="password" style="border:1px solid #a9a9a9;" />
+  </p>
+
+  <p>
+    <%= submit_tag 'Log in' %> (<%= link_to "Forgotten your password?", { :controller => "sessions", "action" => "find" }, { :target => "_top" } %>)
+  </p>
+  <% end %>
+  <p>
+    <a href='#' onclick="jQuery('#textbox').hide();jQuery('#textbox_openid').show();$( 'openid_url' ).focus();">OpenID login</a>
+  </p>
+</div>
+
+<div id="textbox_openid" style="display:none;">
+  <% form_tag openid_path(:format => :ext) do %>
+    <p><label for="login">OpenID</label><br/>
+    <%= text_field_tag 'openid_url' %></p>
+
+    <p><%= submit_tag 'Login' %></p>
+  <% end %>
+  <p>
+    <a href='#' onclick="jQuery('#textbox_openid').hide();jQuery('#textbox').show();$( 'login' ).focus();">Username and password login</a>
+  </p>
+</div>
+
+<br />
+<br />
+<br />

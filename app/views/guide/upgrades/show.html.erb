@@ -1,0 +1,50 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/arsenal" %>
+		<div class="cell parent"><a href="/guide/upgrades"><span class="l"></span><span class="c">Upgrades</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @upgrade.name.titleize %></span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960">
+
+		<div class="module width960">
+		
+			<div class="imageTop">
+					<img src="<%= @upgrade.large_image %>" 
+         class="codex_image_large" 
+         title="<%= @upgrade.name %>" 
+         alt="<%= @upgrade.name %>" />
+      </div>
+       
+	    <h1><%= @upgrade.name.titleize %></h1>
+	    <h5> Available to Level <%= @upgrade.level %> <%= PmogClass.find(@upgrade.pmog_class_id).name %> </h5>
+
+	    <p><%= @upgrade.short_description %></p>
+  
+ 	   <p><%= @upgrade.long_description %></p>
+  
+  	  <h4><a href="/guide/rules/classpoints">Classpoints</a> Awarded for Use: <%= @upgrade.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></h4>
+    
+    	<h4><%= @upgrade.name %> cost <%= @upgrade.dp_cost.to_i %> <%= dp_icon %> and <%= @upgrade.ping_cost.to_i %> <%= ping_icon %> for each upgrade.</h4>
+    	    	    
+    	<!--<h4>Total <%#= @upgrade.name.pluralize %> usage on The Nethernet: <%#= number_with_delimiter(@upgrade_uses, ",") %></h4>-->
+    
+	    <% if site_admin? %>
+		    <h5 align="right">Admin: <%= link_to "Edit " + @upgrade.name, edit_upgrade_path(@upgrade) %></h5>
+			<% end %>    
+		</div>
+											
+	</div>
+
+	<div class="column width960">
+			
+		<%= render :partial => "shared/guide/arsenal" %>
+				
+		<%= render :partial => "shared/guide/guide_module" %>
+			
+	</div>
+
+

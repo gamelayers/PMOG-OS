@@ -1,0 +1,46 @@
+<% form_remote_tag :url => { :controller => "invite", :action => "parse_auto_invite" } do %>
+
+<div class="invitations">
+<h4 class="contacts">Invite your Friends</h4>
+<p>You have <%= session[:unregistered_emails].size %> contacts who aren't on The Nethernet yet.</p>
+
+  <fieldset id="groupUnregisteredContacts">
+  <div class="inviteEmails">
+
+    <table class="stripeMe">
+    <tbody>
+
+      <% session[:unregistered_emails].each do |email| %>
+
+      <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+        <td>
+          <input type="checkbox" name="emails[<%=email%>]" id="send_to_<%=email%>" />
+        </td>
+        <td width="100%">
+          <label for="send_to_<%=email%>"> <%=email%></label>
+        </td>
+      </tr>
+
+      <% end %>
+
+    </tbody>
+    </table>
+
+  </div>
+  </fieldset>
+
+  <p><a rel="groupUnregisteredContacts" href=".select_all">Select All</a> | <a rel="groupUnregisteredContacts" href=".select_none">Select None</a></p>
+
+  <p><input type="checkbox" name="addPersonalNote" id="addPersonalNote" /><label for="addPersonalNote">Include a personal note</label></p>
+
+  <textarea id="personalNote" cols="20" rows="5"></textarea>
+
+</div>
+
+<div class="formElement">
+<div class="buttonLg">
+  <%= submit_tag 'Send Invites' %>
+</div>
+</div>
+
+<% end %>

@@ -1,0 +1,34 @@
+<% if site_admin? %>
+
+  <div id="profileAdmin">
+    <div class="name">
+      
+      <% unless @user.beta_key.nil? %>
+	      <p class="bottom">Invited By: <a href="/users/<%= @user.beta_key.user.login %>"><%= @user.beta_key.user.login %></a></p>
+      <% else %>
+  	    <p><%= @user.login %> was not invited by another player</p>
+      <% end %>
+      <br/>
+
+			<div id="invite_listing">
+      <p class="bottom"><b><%= @user.login %> invited these players:</b></p>
+      <% pending_invite_counter = 0 %>
+      <% @user.beta_keys.each do |key| %>
+        <% if key.invitee.nil? %>
+          <% pending_invite_counter += 1 %>
+          <% next %>
+        <% end %>
+        <p class="bottom"><a href="/users/<%= key.invitee.login %>"><%= key.invitee.login %></a> - Level <%= key.invitee.current_level %> <%= key.invitee.primary_association.titleize %></p>
+      <% end %>
+      <% if pending_invite_counter == @user.beta_keys.size %>
+      <p>[No players successfully invited]</p>
+      <% end %>
+      </div>
+      <br/>
+
+			<p class="bottom"><%= @user.login %> has successfully invited <%= @user.beta_keys.size - pending_invite_counter%> player(s)</p>
+			
+      <%#= @user.beta_keys.count(:all, :joins => "INNER JOIN beta_users ON beta_users.beta_key_id = beta_keys.id") %>
+    </div>
+  </div>
+<% end %>

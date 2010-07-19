@@ -1,0 +1,79 @@
+ResourceFu
+==========
+
+ResourceFu is a collection of hacks from various plugins that I've
+developed to make using nested and polymorphic resources simpler in 
+my projects.
+
+Refactoring all of the hacks into a cohesive unit is still a 
+work-in-progress so bear with me.
+
+The first part that I've pulled in is:
+
+Inferencing url helper methods:
+===============================
+
+Assuming this routes.rb setup:
+
+map.resources :artists do |artist|
+	artist.resources :albums do |album|
+		album.resources :songs
+	end
+end
+
+The standard resource helpers generated for 'albums' require that you 
+always specify the artist_id:
+
+album_path(@artist, @album)
+
+And, if you want to have additional parameters (such as a :page number when
+paginating) you can't use the positional arguments form (above) when
+calling the url helper, you have to use a hash for everything:
+
+album_path(:artist_id => @artist, :id => @album, :page => 2)
+
+Also, the standard resource helpers fill in the route by processing your 
+positional arguments from left-to-right.
+
+album_path(@album) == album_path(:artist_id => @album) # ACK!
+
+ResourceFu changes the way url helpers behave - and it does it in a way
+that avoids costly per-request evals and/or route re-recognition.
+
+With ResourceFu your positional arguments are 'anchored' on the right of the 
+route: which means that if your route has three segments and you only supply
+two positional arguments, the url helper assumes you are supplying the *last* 
+two segments.
+
+Using the above example of artists, albums and songs:
+
+song_path(@album, @song) == song_path(:album_id => @album, :id => @song)
+
+However, the route for song_path is still missing a critical piece of 
+information, namely the artist_id.  
+
+ResourceFu tries to 'guess' that value with a simple convention:
+
+Any route segments that are missing are filled in by looking for instance
+variables with a relevant name.  So in the example:
+
+song_path(@album, @song)
+
+ResourceFu will try to set the :artist_id param by first looking for an 
+instance variable called @artist and then falling back to looking for an 
+instance variable called @artist_id.
+
+In album_controller.rb:
+
+def show
+  @artist_id = params[:artist_id] # or fetch the actual Artist if you want
+  @album = Album.find(params[:id], :conditions => {:artist_id => @artist_id})
+	@album.songs.each do |song|
+		song_path(song) #=> /artists/@artist_id/albums/@album.id/songs/song.id
+	end
+end
+
+Finally, if you want additional, non-route-segment params, you *don't* have
+to completely switch to the hash-argument style for route helpers:
+
+song_path(@artist, @album, @song, :page => 2, :per_page => 20)

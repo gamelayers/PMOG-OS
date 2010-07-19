@@ -1,0 +1,7 @@
+page.replace_html "suspension_link"     , show_suspension_link
+page.replace_html "interaction_controls", :partial => "users/interaction_controls"
+page.replace_html "acquaint_controls"   , :partial => "users/acquaint_controls"
+page.replace_html "suspended_stamp"     , :partial => "users/suspended_stamp"
+page.replace_html "profile_tags"        , :partial => 'users/tags'
+page.replace_html "flash_msg"           , :partial => "shared/flash", :locals => { :flash => flash }
+flash.discard

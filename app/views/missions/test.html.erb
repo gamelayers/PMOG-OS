@@ -1,0 +1,91 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag '/css/supplemental-missions' %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+	<%= render :partial => "shared/breadcrumbs/mission_generator" %>
+	<div class="cell child"><span class="l"></span><span class="c"><%= @mission.name %></span><span class="r"></span></div>
+</div>
+<% end %>
+
+<% content_for :search do %>
+	<%= render :partial => 'missions/search_form' %>
+	<% end %>
+
+	<div id="copy">
+
+		<div class="column width960">
+
+			<div class="column width700">
+
+				<div class="module width700">
+					<h2>Create A Mission :: Step 3- Test Your Mission</h2>
+					<h4 style="margin-top:-7px;">See how it performs in the wilds.</h4>
+
+					<%= render :partial => 'generator_progress' %>
+
+					<div class="height20"></div>
+
+					<% if !@mission.is_tested? %>
+
+					<h3>The Moment of Truth</h3>
+
+					<p>
+						In order to publish your Mission for all to enjoy, we're going to ask you to take it first. If you can take your Mission and complete it all the way through successfully, then we'll know others can too!
+					</p>
+
+					<p>
+						Click the button below to launch the Mission!  If your Mission is successful, you'll be directed back here to continue on.  Otherwise you can come back and edit your Mission if you get stuck. We'll save your progress up to this point!
+					</p>
+
+					<br />
+					<p align="center">
+						<%= link_to "<img src='/images/missions/generator_layout/button_test_mission.png' alt='Take This Mission' border='0' width='550' height='89' class='img_no_border' >", { :controller => :missions, :action => :take, :id => @mission.url_name } %>
+						<h3 align="center">Encountering Problems?  <%= link_to "Edit Your Mission", edit_mission_path(@mission.url_name) %></h3>
+					</p>
+					<% else %>
+
+					<h3>Congratulations!</h3>
+
+					<p>
+						You tested this Mission successfully!  It's ready to publish!
+					</p>
+
+					<p>
+						If you want to test the Mission again, <%= link_to "click here", { :controller => :missions,
+							:action => :take, :id => @mission.url_name } %>
+						</p>
+						<br />
+						<h3>Well, what are you waiting for?</h3>
+						<p>
+							Your Mission is good to go. It's time to share it with the rest of The Nethernet!
+						</p>
+
+						<p>
+							<%= link_to "Go to step 4, publish!", overview_path(:mission => @mission.url_name) %>
+						</p>
+
+						<% end %>
+
+					</div>
+				</div>
+
+				<div class="column width240">
+					<div class="imageTop">
+
+						<div class="ImageTop" style="background-image:url(/images/shared/dressing/pathmakerdoc-233.png); width:233px;height:275px;" title="Test It"></div>
+					</div>
+					<div class="height20"></div>
+					<div class="module width240 dosdonts">
+						<h2>Mission Check-list</h2>
+						<h3>Keep your Mission from breaking</h3>
+						<ul>
+							<li>Using sites that redirect will cause your Mission will break. Meaning it won't be visible to your mission takers. :( </li>
+							<li>Sites that require logins will redirect users to sad, broken mission places.</li>
+						</ul>
+						<p>If you need to change something, feel free - <%= link_to "Edit Your Mission", edit_mission_path(@mission.url_name) %>.</p>
+
+					</div>
+				</div>
+			</div>

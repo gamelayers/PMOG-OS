@@ -1,0 +1,29 @@
+<% if logged_in? and current_user.id != @user.id %>
+
+	<% if current_user.buddies.allied_with? @user %>
+
+		You have chosen <%= @user.login %> for PMOG alliances!<br />
+
+	<% elsif ! current_user.buddies.rivaled_with? @user %>
+
+		<img src="/images/profile/add_ally.png"> <%= link_to "Ally with #{@user.login}", { :controller => 'acquaintances', :action =>'add', :id => @user.login, :type => 'ally' }, { :title => 'add ally'} %><br />
+
+	<% end %>
+	
+	<% if current_user.buddies.rivaled_with? @user %>
+
+		You have chosen <%= @user.login %> for PMOG rivalry!<br />
+
+	<% elsif ! current_user.buddies.allied_with? @user %>
+
+		<img src="/images/profile/add_rival.png"> <%= link_to "Rival #{@user.login}", { :controller => 'acquaintances', :action =>'add', :id => @user.login, :type => 'rival' }, { :title => 'add rival'} %><br />
+
+	<% end %>
+
+<% end %>
+
+<% if current_user.id == @user.id %>
+
+	<a href="/acquaintances/<%= @user.login -%>">Edit allies and rivals</a>
+
+<% end %>

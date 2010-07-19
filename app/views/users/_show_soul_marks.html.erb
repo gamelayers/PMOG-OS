@@ -1,0 +1,11 @@
+<% if site_admin? or steward? %><!--adding a second check, just in case -->
+  <div id="profileAdmin">
+    <div class="name">
+      <h4>Soul Marks</h4>
+      <h5>santa joe is coming to town</h5>
+
+      <%= render :partial => '/shared/soul_marks', :locals => {:user => @user} %>
+
+    </div>
+  </div>
+<% end %>

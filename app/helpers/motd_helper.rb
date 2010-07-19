@@ -1,0 +1,2 @@
+module MotdHelper
+end

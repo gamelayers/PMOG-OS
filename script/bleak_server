@@ -1,0 +1,1 @@
+RAILS_ENV=production BLEAK_HOUSE=true ruby-bleak-house -I /opt/local/lib/ruby/vendor_ruby/1.8/ ./script/server

@@ -1,0 +1,45 @@
+DistributedAssets
+=================
+
+This simple plugin allows for simple distributed assets (images, javascripts,
+and stylesheets) across a variety of hosts. It was heavily inspired and
+re-uses code from Ezra Zygmuntowicz[1].
+
+While in standard Rails you can do
+
+  # config/environments/production.rb
+  config.action_controller.asset_host = "http://assets.domain.com"
+
+and have your assets served from assets.domain.com instead of your
+application's main server, DistributedAssets will give you the ability to use
+
+  # config/environments/production.rb
+  config.action_controller.asset_host = %w(
+    http://assets1.domain.com
+    http://assets2.domain.com
+    http://assets3.domain.com
+    http://assets4.domain.com
+  )
+
+and have your assets served from 4 asset servers in a distributed manner.
+
+This doesn't necessarily mean that these asset servers need to be separate
+machines or even separate processes on the same machine. Since browsers tend
+to only open 2 concurrent connections[2] to any given hostname, you're
+effectively spreading the load by simply making a single webserver available
+under a variety of (virtual) hostnames.
+
+DistributedAssets will make sure that every asset will be served from the
+exact hostname every single time so that browser caching works well with your
+asset URLs. It will also completely transparently hook into any of the Rails
+asset tag helpers, since it patches
+ActionView::Helpers::AssetTagHelper#compute_public_path. Therefore no changes
+to your code are required to make use of the newly acquired distributed
+goodness.
+
+Website:
+http://trac.poocs.net/plugins/wiki/DistributedAssets
+
+
+[1] http://brainspl.at/articles/2006/12/29/speed-up-page-loads
+[2] http://www.die.net/musings/page_load_time/

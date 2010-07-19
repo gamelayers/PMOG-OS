@@ -1,0 +1,16 @@
+<% number_to_word = %w[one two three four five] %>                                                                                                                        
+ 
+<% if logged_in? or @type == 'Mission' %> 
+  <% rateable.calculate_average_rating if @type == 'User' && ! rateable.average_rating %> 
+    <% rateable.average_rating.times do %> 
+	    <img src="/images/missions/star_medium_on.png" height="13" width="13" alt="gold star" />
+    <% end %> 
+
+ 	  <% (5 - rateable.average_rating).times do %> 
+	    <img src="/images/missions/star_medium_off.png" height="13" width="13" alt="empty star" />
+    <% end %>
+
+    <% if @type == 'Mission' %>
+	    <h5><%= pluralize rateable.ratings.count, 'player' %> rated this <%= rateable.class.to_s.downcase %>.</h5>
+    <% end %>
+<% end %>

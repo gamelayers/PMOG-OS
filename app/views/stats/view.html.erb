@@ -1,0 +1,14 @@
+<% content_for :body do %>
+  class="user"
+<% end %>
+
+<% cache( "stats_" + Digest::MD5.hexdigest(params.to_s), :ttl => 12.hours ) do %>
+  <!--
+  <% @charts.each do |chart| %>
+  	[<%= link_to chart, "/stats/view?chart=#{chart}" %>]     
+  <% end %>
+  -->
+  <div style="width: 800px; height: 600px; border: 5px solid #FEF49C; padding: 10px;cursor: move;" id="open_flash_chart">
+  	<%= @graph %>
+  </div>
+<% end %>

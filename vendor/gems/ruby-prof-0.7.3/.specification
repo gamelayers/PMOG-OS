@@ -1,0 +1,115 @@
+--- !ruby/object:Gem::Specification 
+name: ruby-prof
+version: !ruby/object:Gem::Version 
+  version: 0.7.3
+platform: ruby
+authors: 
+- Shugo Maeda and Charlie Savage
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-12-09 00:00:00 +00:00
+default_executable: ruby-prof
+dependencies: []
+
+description: ruby-prof is a fast code profiler for Ruby. It is a C extension and therefore is many times faster than the standard Ruby profiler. It supports both flat and graph profiles.  For each method, graph profiles show how long the method ran, which methods called it and which  methods it called. RubyProf generate both text and html and can output it to standard out or to a file.
+email: shugo@ruby-lang.org and cfis@savagexi.com
+executables: 
+- ruby-prof
+extensions: 
+- ext/extconf.rb
+extra_rdoc_files: []
+
+files: 
+- Rakefile
+- README
+- LICENSE
+- CHANGES
+- bin/ruby-prof
+- examples/flat.txt
+- examples/graph.html
+- examples/graph.txt
+- ext/extconf.rb
+- ext/measure_allocations.h
+- ext/measure_cpu_time.h
+- ext/measure_gc_runs.h
+- ext/measure_gc_time.h
+- ext/measure_memory.h
+- ext/measure_process_time.h
+- ext/measure_wall_time.h
+- ext/mingw
+- ext/ruby_prof.c
+- ext/ruby_prof.h
+- ext/vc
+- ext/version.h
+- ext/mingw/Rakefile
+- ext/mingw/build.rake
+- ext/vc/ruby_prof.sln
+- ext/vc/ruby_prof.vcproj
+- lib/ruby-prof
+- lib/ruby-prof/abstract_printer.rb
+- lib/ruby-prof/aggregate_call_info.rb
+- lib/ruby-prof/call_info.rb
+- lib/ruby-prof/call_tree_printer.rb
+- lib/ruby-prof/flat_printer.rb
+- lib/ruby-prof/graph_html_printer.rb
+- lib/ruby-prof/graph_printer.rb
+- lib/ruby-prof/method_info.rb
+- lib/ruby-prof/task.rb
+- lib/ruby-prof/test.rb
+- lib/ruby-prof.rb
+- lib/unprof.rb
+- rails/environment
+- rails/environment/profile.rb
+- rails/example
+- rails/example/example_test.rb
+- rails/profile_test_helper.rb
+- test/aggregate_test.rb
+- test/basic_test.rb
+- test/duplicate_names_test.rb
+- test/exceptions_test.rb
+- test/exclude_threads_test.rb
+- test/line_number_test.rb
+- test/measurement_test.rb
+- test/module_test.rb
+- test/no_method_class_test.rb
+- test/prime.rb
+- test/prime_test.rb
+- test/printers_test.rb
+- test/recursive_test.rb
+- test/singleton_test.rb
+- test/stack_test.rb
+- test/start_stop_test.rb
+- test/test_suite.rb
+- test/thread_test.rb
+- test/unique_call_path_test.rb
+has_rdoc: true
+homepage: http://rubyforge.org/projects/ruby-prof/
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: 1.8.4
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: ruby-prof
+rubygems_version: 1.2.0
+signing_key: 
+specification_version: 2
+summary: Fast Ruby profiler
+test_files: 
+- test/test_suite.rb

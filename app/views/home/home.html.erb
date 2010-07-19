@@ -1,0 +1,110 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:rss, "/users/#{current_user.login}.rss") %>
+  <%= javascript_include_tag 'ui.subtabs' %>
+
+  <script type="text/javascript">
+  jQuery(function(){
+    jQuery('.subtabs > ul').subtabs({fx:{opacity:'toggle',duration:200}});
+
+    //DO mission table fx
+    jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});
+    jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});
+
+  //DO objectives slider
+
+  var sliderObjHeight = "175px"; //SET THE MINIMUM HEIGHT
+
+  $('#profileObjectives .sliderObj_menu').hide(); //HIDE "MORE" IF NO MORE TO SEE
+  if ($('#objectivesInner').height() >= 176) {
+    $('#profileObjectives .sliderObj_menu').show();
+  }
+
+    $('.sliderObj').each(function () {
+          var current = $(this);
+          current.attr("box_h", current.height());
+        }
+     );
+
+    $(".sliderObj").css("height", sliderObjHeight);
+    $(".sliderObj_menu").html('<a href="javascript:;">More</a>');
+    $(".sliderObj_menu a").click(function() { openSliderObj() })
+  function openSliderObj(){
+    var open_height = $(".sliderObj").attr("box_h") + "px";
+    $(".sliderObj").animate({"height": open_height}, {duration: "slow" });
+    $(".sliderObj_menu").html('<a href="javascript:;">Less</a>');
+    $(".sliderObj_menu a").click(function() { closeSliderObj() })
+  }
+  function closeSliderObj(){
+    $(".sliderObj").animate({"height": sliderObjHeight}, {duration: "slow" });
+    $(".sliderObj_menu").html('<a href="javascript:;">More</a>');
+    $(".sliderObj_menu a").click(function() { openSliderObj() })
+  }
+
+  });
+  </script>
+<% end %>
+
+<% content_for :body do %>
+  class="user"
+<% end %>
+
+<div id="copy">
+  <div id="homePage" class="column width960">
+    <div class="welcomeHeadline">
+      <h2>Welcome home, <%= current_user.login %></h2>
+    </div>
+
+    <div class="module width300">
+      <%= render :partial => 'home_news' %>
+      <div class="height20"></div>
+      <%= render :partial => 'home_donate' %>
+    </div>
+
+    <div class="width20"></div>
+
+    <div class="module width380">
+      <%= render :partial => 'home_events' %>
+    </div>
+
+    <div class="width20"></div>
+
+    <%= render :partial => 'home_profile' %>
+
+  </div>
+
+  <div class="module width470" style="margin-top: -20px;">
+    <%= render :partial => 'home_missions' %>
+  </div>
+
+  <div class="column width20"></div>
+
+  <div class="module width470" style="margin-top: -20px;">
+    <%= render :partial => 'home_forums' %>
+  </div>
+
+  <div class="height20"></div>
+  <br clear="all" />
+
+  <% if current_user.current_level.to_i < 5 %>
+    <div class="module width310">
+      <%= render :partial => 'home_objectives' %>
+    </div>
+  <% else %>
+  <div class="module width310">
+    <%= render :partial => 'home_referrals' %>
+  </div>
+  <% end %>
+
+  <div class="column width20"></div>
+
+  <div class="module width310">
+    <%= render :partial => 'home_shoppe' %>
+  </div>
+
+  <!-- <div class="column width20"></div> -->
+
+  <div class="module width310Right">
+    <%= render :partial => 'home_leaderboards' %>
+</div>
+
+</div>

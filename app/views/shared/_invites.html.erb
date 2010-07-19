@@ -1,0 +1,19 @@
+<% if logged_in? %>
+  <span id="response">
+    <% if flash[:notice] %>
+      <small><%= flash[:notice] %></small>
+    <% end %>
+    <% remote_form_for :user, 
+                       :url => { :controller => "users", :action => "email_invite" },
+                       :update => 'response',
+                       :loading => "jQuery('#spinner').show();",
+                       :complete => "jQuery('#spinner').hide();" do |f| %>
+      <% 2.times do %>
+          <input id="friend_email" name="recipient" size="20" type="text" style="border:1px solid #909090;font-size:10px;" value="" />
+          <input value="Invite!" name="" type="submit" id="input" style="border:1px solid #909090;font-size:10px;" />
+          <br/>
+        <% end %>
+    <% end %>
+    <%= render :partial => "shared/spinner" %>
+  </span>
+<% end %>

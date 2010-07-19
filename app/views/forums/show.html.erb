@@ -1,0 +1,143 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag '/css/supplemental-forums' %>
+  <%= auto_discovery_link_tag(:rss, formatted_forum_url(:format => "rss")) %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/forums" %>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'forums/search_form' %>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h2><%=h @forum.title %> (<%= pluralize @forum.topics_count, 'Topics' %>) <% if logged_in? %><span><a href="#addnew">+add new</a></span><% end %></h2>
+
+<div id="topic_list">
+<table class="stripeMe">
+  <tr>
+    <th>
+      Topic
+    </th>
+    <th>
+      Last Post
+    </th>
+    <th>
+      Replies
+    </th>
+  </tr>
+  <% @topics.each do |topic| %>
+  <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+    <td>
+      <div class="forum_topic_status">
+    	  <% if topic.is_locked? and not topic.is_pinned? %>
+          <img src="/images/forums/topic_lock.png" title="Read Only Thread" />
+        <% elsif topic.is_pinned? %>
+          <img src="/images/forums/topic_pin.png" title="Pinned" />
+        <% elsif topic.recently_updated_since(@last_seen) > 0 %>
+          <img src="/images/forums/threads_layout/newposts_yes.png" title="New posts since your last visit" />
+        <% else %>
+          <img src="/images/forums/threads_layout/newposts_no.png" title="No new posts since your last visit" />
+        <% end %>
+      </div>
+      <p>
+     	<strong><%= link_to h(topic.title), forum_topic_path(topic) %></strong></p>
+      <% unless topic.posts.last.nil? %>
+        <p class="small">Created by
+        <% if topic.user.nil? %>
+        	<a href="/users/<%= topic.posts.first.user.login %>"><%= topic.posts.first.user.login %></a>
+      	<% else %>
+        	<a href="/users/<%= topic.user.login %>"><%= topic.user.login %></a>
+      	<% end %>
+      	on <%= topic.created_at %>
+      </p>
+      <% end %>
+    </td>
+  	<% unless topic.posts.last.nil? %>
+    <td>
+    	<p>
+    	  <%= strip_tags topic.posts.last.body[0..120]  %><%= link_to '[...]', forum_topic_path(topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %></p>
+    	  <p class="small">by <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a> on 
+    	  <%= topic.updated_at %>
+    	</p>
+    </td>
+    <% end %>
+    <td align="center"><p><%= topic.posts_count - 1 %></p></td>
+  </tr>
+  <% end %>
+</table>
+</div>
+
+<%= will_paginate @topics, :class => 'forum_pagination' %>
+
+<% if @forum.topics.empty? %>  
+  <p>No topics</p>
+<% end %>
+
+<% if logged_in? %>
+	
+	<% if @forum.pmog_only and not site_admin? %>
+		
+		<h4>This forum is for the The Nethernet admins only. You can reply to threads once they're created</h4>
+	
+	<% else %>
+    
+</div>
+<div class="height20"></div>  
+
+  <a name="addnew"></a>
+            
+      <h2>Create a New Topic</h2>
+  <div class="module width700">    
+      <% form_for(:topic, :url => forum_topics_path) do |f| %>
+
+				<label for="title">Topic Title:</label><br/>
+				<%= f.text_field :title, :size => 30, :class => "input signupInput", :maxlength => "64" %>
+
+				<br/>
+        <br/>
+				<label for="firstpost">First Post:</label><br/>
+				<%= f.text_area :description, :rows => 10, :cols => 50, :class => "input" -%>
+
+				<br/>
+				<br/>
+				<div class="button">
+				<%= submit_tag 'Create Topic', :class => "buttonSignUp input forum_thread_submit" %>
+				</div>
+				
+      <% end %>
+            
+  <% end %>
+
+<% end %>
+
+<!--<%= link_to 'Back', forums_path %>-->
+
+						</div>
+											
+					</div>
+				
+				<div class="column width240">
+					<div class="module width240">
+						<h3>About This Forum:</h3>
+						
+						<p><%=h @forum.description %></p>
+
+			      <p align="right"><%= link_to 'Admin: Edit', edit_forum_path(@forum) if site_admin? %></p>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>

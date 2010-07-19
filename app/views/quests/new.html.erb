@@ -1,0 +1,9 @@
+<%= error_messages_for :quest %>
+
+<% form_for @quest do |f| -%>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description %>
+  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end -%>

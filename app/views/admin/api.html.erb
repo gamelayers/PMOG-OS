@@ -1,0 +1,308 @@
+<!-- this needs some serious rewriting before it will work again
+2 major changes render this page dead:
+-url_name instead of name in the tools table (minor refactor)
+-new version of inventories on crates (means the backing logic isn't there anymore)
+
+so when you want this page functional again then send me a message, i'll do the refactoring then
+
+-alex
+
+
+
+
+
+<h1>API Test</h1>
+
+<p>
+	<i>Everything defaults to www.suttree.com on here</i>
+</p>
+
+<h2 class="caps">Login</h2>
+
+<form action="/session.js" method="post">
+	<%= token_tag %>
+	Login: <input type='text' name='login'>
+	<br/>
+	Password: <input type='password' name='password'>
+	&nbsp;
+  <input name="commit" type="submit" value="Login" />
+</form>
+
+<hr/>
+
+<h2 class="caps">Armor</h2>
+
+<% if current_user.is_armored? %>
+	<% form_for :armor, :url => "/users/#{current_user.login}/armor/unequip.js", :html => { :method => :put } do |f| %>
+			<%= submit_tag "Unequip yourself" %>
+	  </p>
+	<% end %>
+<% else %>
+	<% form_for :armor, :url => "/users/#{current_user.login}/armor/equip.js", :html => { :method => :put } do |f| %>
+			<%= submit_tag "Equip yourself" %>
+	  </p>
+	<% end %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Tagging</h2>
+
+<form action="/tags.js" method="post">
+	<%= token_tag %>
+  <p>
+		<input id="taggable_id" name="taggable[id]" type="hidden" value="<%= @location.id %>" />
+		<input id="taggable_class" name="taggable[class]" type="hidden" value="Location" />
+
+    <b>Add tag:</b>
+		<input id="tag" name="tag" size="30" type="text" value="" />
+    <input name="commit" type="submit" value="Tag" />
+  </p>
+</form>
+
+<hr/>
+
+<h2 class="caps">Tracking/location</h2>
+
+<% form_for :track, :url => "/track.js", :html => { :method => :get } do |f| %>
+  <p>
+    <b>Url to track:</b>
+		<input id="url" name="url" size="30" type="text" value="" />
+		<%= submit_tag "Track me" %>
+  </p>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">User profile</h2>
+
+<a href='/users/<%= current_user.login %>.js'>JSON view of your profile</a>
+
+<hr/>
+
+<h2 class="caps">User buddies</h2>
+
+<a href='/buddies/<%= current_user.login %>.js'>JSON view of your buddies</a>
+
+<hr/>
+
+<h2 class="caps">Mine a url</h2>
+
+<% form_for :mine, :url => location_mines_path(@location) do |f| %>
+	<%= submit_tag "Deploy a mine on #{@location.url}" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">List mines</h2>
+
+<a href='/locations/<%= @location.id %>/mines.js'>JSON list of mines on <%= @location.url %></a>
+
+<hr/>
+
+<h2 class="caps">Destroy a mine</h2>
+
+<%= link_to 'Destroy mine', location_mine_path('5830fb10-7a5e-11dc-8e2d-001b63343339'), :confirm => 'Are you sure?', :method => :delete %>
+
+<hr/>
+
+<h2 class="caps">Deploy a portal</h2>
+
+<% form_for :portal, :url => location_portals_path(@location) do |f| %>
+	Title: <%= f.text_field :title %>
+	<br/>
+	NSFW?: <%= f.text_field :nsfw %>
+	<br/>
+	Destination url: <%= f.text_field :destination %>
+	<%= submit_tag "Deploy a mine on #{@location.url}" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">List portals</h2>
+
+<a href='/locations/<%= @location.id %>/portals.js'>JSON list of portals on <%= @location.url %></a>
+
+<hr/>
+
+<h2 class="caps">Take a portal</h2>
+
+<a href='/locations/<%= @location.id %>/portals/<%= @portal.id %>/take.js'>Take this portal! (<%= @portal.charges %>)</a>... 
+
+and now <a href='/track.js?url=http://www.w00t.com'>ask for the rating overlay</a>
+
+<hr/>
+
+<h2 class="caps">Rate a portal</h2>
+
+<% form_for(:portal, :url => "/locations/#{@location.id}/portals/#{@portal.id}/rate.js", :html => { :method => :post }) do |f| %>
+	Rating (1-5): <input type='text' value='' name='portal[rating]'
+	<%= submit_tag "Rate this portal" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Destroy a portal</h2>
+
+<%= link_to 'Destroy portal', location_portal_path('20272f0a-7b0d-11dc-8e2d-001b63343339'), :confirm => 'Are you sure?', :method => :delete %>
+
+<hr/>
+
+<h2 class="caps">Deploy a crate</h2>
+
+<% form_for :crate, :url => location_crates_path(@location) do |f| %>
+	<%= submit_tag "Deploy a crate on #{@location.url}" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">List crates</h2>
+
+<a href='/locations/<%= @location.id %>/crates.js'>JSON list of crates on <%= @location.url %></a>
+
+<hr/>
+
+<h2 class="caps">Destroy a crate</h2>
+
+<%= link_to 'Destroy crate', location_crate_path(Crate.find(:first)), :confirm => 'Are you sure?', :method => :delete %>
+
+<hr/>
+
+<h2 class="caps">Deposit an item in a crate</h2>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/deposit", :html => { :method => :put } do |f| %>
+	Datapoints: <input type='text' name='crate[datapoints]' value='0'>
+	<br/>
+	<%= submit_tag "Deposit datapoints in the crate on #{@location.url}" %>
+<% end %>
+
+<br/>
+<br/>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/deposit", :html => { :method => :put } do |f| %>
+	Tool: <%= Tool.find(:first).name %>
+	<br/>
+	<%= f.hidden_field :tool, :value => Tool.find(:first).url_name %>
+	<%= submit_tag "Deposit tool in the crate on #{@location.url}" %>
+<% end %>
+
+<br/>
+<br/>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/deposit", :html => { :method => :put } do |f| %>
+	Tool: <%= Tool.find_by_name( 'armor' ).name %>
+	<br/>
+	<%= f.hidden_field :tool, :value => Tool.find_by_name( 'armor' ).name %>
+	<%= submit_tag "Remove armor from the crate on #{@location.url}" %>
+<% end %>
+
+<br/>
+<br/>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/deposit", :html => { :method => :put } do |f| %>
+	Tool: <%= Tool.find_by_name( 'mines' ).name %>
+	<br/>
+	<%= f.hidden_field :tool, :value => Tool.find_by_name( 'mines' ).name %>
+	<%= submit_tag "Remove mines from the crate on #{@location.url}" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Withdraw a single item from a crate</h2>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/withdraw", :html => { :method => :put } do |f| %>
+	Tool: <%= Tool.find(:first).name %>
+	<br/>
+	<%= f.hidden_field :tool_id, :value => Tool.find(:first).id %>
+	<%= submit_tag "Remove tool from the crate on #{@location.url}" %>
+<% end %>
+
+<br/>
+<br/>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/withdraw", :html => { :method => :put } do |f| %>
+	Datapoints:  <input type='text' name='crate[datapoints]' value='0'>
+	<br/>
+	<%#= f.hidden_field :inventory_id, :value => @crate.inventory.first.id %>
+	<%= submit_tag "Remove datapoints from the crate on #{@location.url}" %>
+<% end %>
+
+<hr>
+
+<h2 class="caps">Loot everything from a crate</h2>
+
+<% form_for :crate, :url => "/locations/#{@location.id}/crates/#{@crate.id}/loot", :html => { :method => :put } do |f| %>
+	<%= submit_tag "Loot everything from the crate on #{@location.url}" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Deploy a Lightpost</h2>
+
+<% form_for :lightpost, :url => location_lightposts_path(@location) do |f| %>
+	<%= f.hidden_field :location_id, :value => Location.find(:first).id %>
+	<%= submit_tag "Deploy a lightpost on #{@location.url}" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Attach a St Nick</h2>
+
+<% form_for :st_nick, :url => "/users/#{current_user.login}/st_nicks/attach.js", :html => { :method => :put } do |f| %>
+	<%= submit_tag "Attach a St. Nick to suttree" %>
+<% end %>
+
+<hr/>
+
+<% @preference = current_user.preferences.setting :sound %>
+<h2 class="caps">Set your sound preference <small><small><small>(current setting: <%= @preference %>)</small></small></small></h2>
+
+<% form_for :preference, :url => user_preferences_path(current_user), :html => { :method => :put } do |f| %>
+	<%= f.hidden_field :name, { :value => "sound" } %>
+	<% if @preference == "on" %>
+		Value: <%= f.text_field :value, { :value => "off" } %>
+	<% else %>
+		Value: <%= f.text_field :value, { :value => "on" } %>
+	<% end %>	
+	<br/>
+	<%= submit_tag "Set/toggle this preference" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Get your latest messages</h2>
+	
+<a href='/users/<%= current_user.login %>/messages.js'>Latest messages</a>
+
+<hr/>
+
+<h2 class="caps">Reply to a message</h2>
+
+<% @message = Message.find( :first, :conditions => "user_id IS NOT NULL", :include => :user ) %>
+<% form_for	:message,
+						:url => "/users/#{current_user.login}/messages/#{@message.id}/reply.js",
+						:html => { :method => :post, :style => "display: inline" } do |f| %>
+	<%= f.text_field :body, :class => "input", :value => "@" + @message.user.login + " " %>
+	<%= submit_tag "Message", :class => "input" %>
+<% end %>
+
+<hr/>
+
+<h2 class="caps">Log an exception via the API</h2>
+
+<form action="/exceptions.js" method="post">
+	<%= token_tag %>
+  Class name - <input type="text" name="exception[class_name]">
+	<br/>
+  Controller name - <input type="text" name="exception[controller_name]">
+	<br/>
+  Action name - <input type="text" name="exception[action_name]">
+	<br/>
+  Message - <input type="text" name="exception[message]">
+	<br/>
+  Backtrace - <input type="text" name="exception[backtrace]">
+	<br/>
+	<input type="submit">
+</form>
+
+</div>

@@ -1,0 +1,74 @@
+###########################################################################
+## Setting up Munin on EngineYard servers 01/01/2008 marc.adams@gmail.com #
+###########################################################################
+
+___________________________________________________________________________
+Preface:
+---------------------------------------------------------------------------
+This document outlines the steps necessary to configure Munin on the EngineYard servers. For the most part it is a straight forward process but where it deviates I will illuminate the dark areas.
+
+___________________________________________________________________________
+Getting started:
+---------------------------------------------------------------------------
+First we have to install Munin. The EngineYard servers are built on Gentoo linux. As with most other linux flavors, Gentoo has a built in package manager called Portage. So, to get started we have to start at the command prompt and tell Gentoo to install Munin:
+
+	sudo emerge munin
+
+You might get a message saying that the package is masked. You'll need to edit the portage package file to include the platform masking.
+
+	sudo vim /etc/portage/package.keywords
+
+Add the following to the end of the file:
+
+	net-analyzer/munin ~amd64
+
+Now re-run emerge:
+
+	sudo emerge munin
+
+This will probably take about 10 minutes to complete.
+
+___________________________________________________________________________
+Configuring Munin:
+---------------------------------------------------------------------------
+One thing about munin is that it wants to run as the user munin with the group munin. We could change permissions on the file structure of the pmog data but I found it easier to change the user that munin runs as to the pmog user and group. That being the case, you have to do a couple of things:
+
+1. Open up the munin-node.conf and change the user and group to pmog:
+
+	sudo vim /etc/munin/munin-node.conf
+
+Change munin to pmog:
+
+	user pmog
+	group pmog
+
+2. Change the permissions on the appropriate munin files and folders:
+
+For each of the directories listed below, run the following command:
+
+	sudo chown -R pmog:pmog /directory/to/chown
+
+Directories:
+
+	/etc/munin
+	/usr/libexec/munin
+	/var/log/munin
+	/var/lib/munin
+	/usr/bin/munin-cron
+
+With that complete, issue the restart command to the init.d/ process:
+
+	sudo /etc/init.d/munin-node restart
+
+___________________________________________________________________________
+Adding Plugins:
+---------------------------------------------------------------------------
+By default, munin doesn't include any plugins to the running environment. you have to add them manually. Munin comes with over 100 plugins but not all are compatible with the server. The easiest way to add them is to use a symbolic link. The plugins that you can add are located at /usr/libexec/munin/plugins. You want to link them to /etc/munin/plugins:
+
+ln -s /usr/libexec/munin/plugins/name_of_plugin_file /etc/munin/plugins/name_of_plugin_file
+
+After linking the plugins desired, restart munin so it can pick up the changes:
+
+	sudo /etc/init.d/munin-node restart
+
+Munin will run every 5 minutes by default so wait awhile and look at the output.

@@ -1,0 +1,116 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Beta Users and Email Invites</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+	<div id="search">
+<form action="/beta_users/search" method="post">
+		Search Invited Users:
+		<input name="q" type="text" value="<%=h params[:q] %>">
+		<input type="submit" value="Search" />
+	</div>
+</form>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="module width960">
+
+<!--<h1>Listing beta_users></h1>-->
+<h5><%= BetaUser.count %> total, <%= @invited_beta_users %> invited, <%= @signed_up_beta_users %> signed up</h5>
+
+<br>
+
+<!--	<%= token_tag %>
+	<h3 align="right"><a href="http://www.inviteshare.com/site.php?id=88">PMOG on InviteShare</a> | 
+</h3>
+<br/>-->
+
+<p align="right">
+	<%= will_paginate @beta_users %>
+</p>
+
+<table id='beta_users'>
+	<tr>
+		<td>
+			<b>Email</b>
+		</td>
+		<td>
+			<b>Status</b>
+		</td>
+		<td>
+			<b>Date added</b>
+		</td>
+		<!--
+		<td>
+			<b>Options</b>
+		</td>
+		-->
+	</tr>
+	<% @beta_users.each do |beta_user| %>
+		<tr>
+			<td><%= beta_user.email %></td>
+			<td>
+				<% if user = User.find( :first, :conditions => { :beta_key_id => beta_user.beta_key_id }, :include => :assets ) and not beta_user.beta_key_id.nil? %>
+					<%= avatar_link_to_user :user => user, :size => 'tiny' %>
+					<small>
+						<br/>
+						<%= link_to_user :user => user, :include_meta_data => false %>, <b>invited by <%= link_to beta_user.beta_key.user.login, user_path(beta_user.beta_key.user) %></b>
+					</small>
+				<% elsif beta_user.emailed == 1 %>
+					<i>Invite sent</i>
+					<%= link_to 'Resend invite', :controller => 'beta_users', :action => :resend_invite, :id => beta_user.id, :page => params[:page] %>
+					<br/>
+					<small><small>
+						<% unless beta_user.beta_key.nil? %>
+							<%= url_for :controller => "beta", :action => :signup, :id => beta_user.beta_key.key, :email => beta_user.email, :only_path => false, :escape => false %>
+						<% end %>
+					</small></small>
+				<% elsif user = User.find( :first, :conditions => { :email => beta_user.email } ) %>
+					<%= avatar_link_to_user :user => user, :size => 'tiny' %>
+					<small>
+						<%= link_to_user :user => user, :include_meta_data => false %>
+						<br/>
+						<b>Signed up without invite</b>
+					</small>
+				<% else %>
+					<%= link_to 'Send invite', :controller => 'beta_users', :action => :send_invite, :id => beta_user.id, :page => params[:page] %>
+				<% end %>
+			</td>
+	    <td>
+				<%= beta_user.created_at %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<br/>
+
+<p align="right">
+	<%= will_paginate @beta_users %>
+</p>
+
+<br/>
+
+<% form_for :beta_user, :url => { :controller => 'beta_users', :action => :admin_create } do |f| %>
+<h3>New Beta User Email: 
+<%= f.text_field :email %>
+		<%= submit_tag 'New b3ta user' %>
+</h3>
+<p><small>Enter an email address here, to add someone to the queue for the PMOG beta.  After submitting an address below, you should see their name appear above and you can then choose to immediately allow them access, or they will be entered into our ongoing queue.</small></p>
+
+<% end %>
+
+
+
+						</div>
+											
+					</div>
+				
+
+</div>

@@ -1,0 +1,77 @@
+<div class="block">
+	<h2 class="caps">Friends</h2>
+	<ul class="people">
+		<% if @user.buddies[0] %>
+			<% @user.buddies.accepted('friend').reverse.each do |buddy| %>
+				<li><a href='/users/<%= buddy.login %>'><%= buddy.login %></a> 
+				<% if @user.admirers.collect{ |a| a.id }.include? buddy.id %>
+					*
+				<% end %>
+				- <%= time_ago_in_words(buddy.last_login_at) %> ago</li>
+			<% end %>
+		<% end %>
+
+		<% if logged_in? and current_user != @user %>
+			<% if current_user.buddies.accepted( 'friend' ).include? Buddy.find(@user.id) %>
+				<p>You have chosen <%= @user.login %> for PMOG relatings!</p>
+			<% else %>
+				<p><%= link_to "Befriend #{@user.login}", { :controller => 'buddies', :action =>'add', :id => @user.id, :type => 'friend' }, { :title => 'add friend' } %></p>
+			<% end %>
+		<% end %>
+
+		<% if current_user == @user %>
+			<li><b><a href="/buddies/<%= @user.login %>">Edit Friends</a></b></li>
+		<% end %>
+	</ul>
+</div>
+
+<div class="block">
+	<h2 class="caps">Allies</h2>
+	<ul class="people">
+		<% if @user.buddies[0] %>
+			<% @user.buddies.accepted('ally').reverse.each do |buddy| %>
+				<li><a href='/users/<%= buddy.login %>'><%= buddy.login %></a> 
+				<% if @user.admirers.collect{ |a| a.id }.include? buddy.id %>
+					*
+				<% end %>
+				- <%= time_ago_in_words(buddy.last_login_at) %> ago</li>
+			<% end %>
+		<% end %>
+
+		<% if logged_in? and current_user != @user %>
+			<% if current_user.buddies.accepted( 'ally' ).include? Buddy.find(@user.id) %>
+				<p>You have chosen <%= @user.login %> for PMOG alliances!</p>
+			<% else %>
+				<p><%= link_to "Ally with #{@user.login}", { :controller => 'buddies', :action =>'add', :id => @user.id, :type => 'ally' }, { :title => 'add ally' } %></p>
+			<% end %>
+		<% end %>
+		<% if current_user == @user %>
+			<li><b><a href="/buddies/<%= @user.login %>">Edit Allies</a></b></li>
+		<% end %>
+	</ul>
+</div>
+
+<div class="block">
+	<h2 class="caps">Rivals</h2>
+	<ul class="people">
+		<% if @user.buddies[0] %>
+			<% @user.buddies.accepted('rival').reverse.each do |buddy| %>
+				<li><a href='/users/<%= buddy.login %>'><%= buddy.login %></a> 
+				<% if @user.admirers.collect{ |a| a.id }.include? buddy.id %>
+					*
+				<% end %>
+				- <%= time_ago_in_words(buddy.last_login_at) %> ago</li>
+			<% end %>
+		<% end %>
+
+		<% if logged_in? and current_user != @user %>
+			<% if current_user.buddies.accepted( 'rival' ).include? Buddy.find(@user.id) %>
+				<p>You have chosen <%= @user.login %> for PMOG rivalry!</p>
+			<% else %>
+				<p><%= link_to "Rival #{@user.login}", { :controller => 'buddies', :action =>'add', :id => @user.id, :type => 'rival' }, { :title => 'add rival'} %></p>
+			<% end %>
+		<% end %>
+		<% if current_user == @user %>
+			<li><b><a href="/buddies/<%= @user.login %>">Edit Rivals</a></b></li>
+		<% end %>
+	</ul>

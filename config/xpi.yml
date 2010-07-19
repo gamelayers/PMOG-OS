@@ -1,0 +1,25 @@
+hud:
+  export_folder: <%= "#{RAILS_ROOT}/exported_hud" %>
+  source_folder: <%= "#{RAILS_ROOT}/../pmog-hud" %>
+  uid: 'pmog@gamelayers.com'
+  name: "thenethernet"
+  version: '1.1.3'
+  description: "Interface for The Nethernet, a Multiplayer Online Game of the Web."
+hud_admin:
+  export_folder: <%= "#{RAILS_ROOT}/exported_hud_admin" %>
+  source_folder: <%= "#{RAILS_ROOT}/../pmog-hud-admin" %>
+  uid: 'pmog_admin@gamelayers.com'
+  name: "pmog_admin"
+  version: '0.5.21'
+  description: "Interface for PMOG, the Passively Multiplayer Online Game."
+pmog_chat:
+  export_folder: <%= "#{RAILS_ROOT}/exported_pmog_chat" %>
+  source_folder: <%= "#{RAILS_ROOT}/../pmog-chat" %>
+  uid: 'pmog_chat@gamelayers.com'
+  name: "pmog_chat"
+  version: '0.2'
+  description: "Chat with your TNN friends on your favorite websites."
+update_rdf:
+  source_folder: <%= "#{RAILS_ROOT}/public/firefox/update.rdf" %>
+css:
+  version: '0.6.3'

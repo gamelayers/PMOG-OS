@@ -1,0 +1,27 @@
+/* Diavlo */
+@font-face {
+  font-family: 'Diavlo Black';
+  src: url(/css/webfonts/Diavlo/Diavlo-Black.otf) format('opentype'); 
+}
+
+@font-face {
+  font-family: 'Diavlo Bold';
+  src: url(/css/webfonts/Diavlo/Diavlo-Bold.otf) format('opentype'); 
+}
+
+@font-face {
+  font-family: 'Diavlo Medium';
+  src: url(/css/webfonts/Diavlo/Diavlo-Medium.otf) format('opentype'); 
+}
+
+@font-face {
+  font-family: 'Diavlo Book';
+  src: url(/css/webfonts/Diavlo/Diavlo-Book.otf) format('opentype'); 
+}
+
+@font-face {
+  font-family: 'Diavlo Light';
+  src: url(/css/webfonts/Diavlo/Diavlo-Light.otf) format('opentype'); 
+}
+
+

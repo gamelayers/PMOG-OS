@@ -1,0 +1,110 @@
+.forum_topic_status img {
+	float: left;
+	height: 16px;
+	width:16px;
+	padding-right: 5px;
+}
+
+div#topic table {
+	width: 700px;
+}
+
+h2 span {
+	font-size: 14px;
+	font-weight: normal;
+}
+	
+div#topic_list table,
+div#post_list table {
+	width: 100%;
+}
+
+div#topic_list table th {
+  /*background: #2e2e2e;*/
+  font-family: 'Diavlo Medium', Georgia, serif;
+  font-size: 16px;
+  color: #2d2d2d;
+	padding: 5px 5px 5px 2px;
+  vertical-align: top;
+  align: left;
+  text-align: left;
+  border-bottom: 2px solid #666;
+}
+
+div#topic_list table td {
+	max-width: 470px; /*stop the noooooooooooooo!*/
+  vertical-align: top;
+  padding: 2px;
+}
+
+div#topic_list table td p {
+  margin-bottom: 2px;
+}
+
+div#topic_list table tbody {
+  border-bottom: 2px solid #4d4d4d;
+}
+
+
+
+div#post_list table td {
+	vertical-align: top;
+	max-width: 470px; /*stop the noooooooooooooo!*/
+}
+
+div#post_list table td p {
+/*	margin-bottom: 2px; */
+  margin: 5px auto 10px;
+}
+div.smallReply {
+/*	margin-bottom: 2px; */
+  margin: 5px 15px 10px !important;
+}
+div.smallReply p {
+  font-size: 11px !important;
+  color:#333;
+}
+
+div#post_list table td.avatar {
+  padding: 5px 0 0 5px;
+  width: 50px;
+  height: 50px;
+  vertical-align: top;
+}
+div#post_list table td.avatar img {
+  /*border: 1px solid #ff931e;*/
+}
+
+a.forum_thread_subscribe, a.forum_thread_unsubscribe {
+	display: block;
+	height: 25px;
+	width: 131px;
+	text-decoration: none !important;
+}
+
+a.forum_thread_subscribe {
+	background: url(/images/forums/threads_layout/subscribe2.png) 0 0 no-repeat;
+}
+
+a.forum_thread_unsubscribe {
+	background: url(/images/forums/threads_layout/unsubscribe2.png) 0 0 no-repeat;
+}
+
+a:hover.forum_thread_subscribe, a:hover.forum_thread_unsubscribe {
+	background-position: 0 -25px;
+}
+
+/* forums help */
+
+div.wrapper {
+ background-color: transparent;
+ background-image: url(/images/shared/back_module-white.png);
+ -moz-border-radius: 8px;
+ /*-moz-border-radius-bottomleft: 8px;
+ -moz-border-radius-bottomright: 8px;
+ -moz-border-radius-topright: 8px;*/
+ padding: 5px 5px 5px 13px;
+ max-width: 460px;
+ overflow: hidden;
+ margin:5px 5px 5px 13px;
+}

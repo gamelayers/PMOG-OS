@@ -1,0 +1,8 @@
+page.replace_html "#{@panel}", { :partial => "/users/show_#{@panel}" }
+
+page << 'jQuery(".subtabs > ul").subtabs({fx:{opacity:"toggle",duration:200}});'
+
+if @panel == "missions"
+  page << 'jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});'
+  page << 'jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});'
+end

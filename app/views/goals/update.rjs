@@ -1,0 +1,3 @@
+page << "jQuery('#note_#{@goal.id}').text('#{flash[:notice]}').fadeIn('slow').fadeOut(6000);"
+page << "jQuery('##{@goal.id} .goal-deets').text('#{@goal.action.name} #{@goal.count}')"
+flash.discard

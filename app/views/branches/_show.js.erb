@@ -1,0 +1,74 @@
+<div class="pmog_single_mission">
+
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @mission.id } %>
+  
+  <%= render :partial => 'shared/ext/progress_throbber', :locals => { :throbber_id => @branch.id } %>
+  <% if current_user == @mission.user %>
+    
+    <img src="<%= host %>/images/ext/missions/mission_testing.png" alt="Mission Lightpost" style="float:left;" />
+    
+  <% else %>
+  
+    <img src="<%= host %>/images/ext/missions/mission_lightpost.png" alt="Mission Lightpost" style="float:left;" />
+
+  <% end %>
+
+  <div class="pmog_mission_lightpost_text">
+	<% if current_user == @mission.user %>
+		<strong>Testing</strong> (<%= link_to("edit", edit_mission_url(@mission.url_name)) %>) <br />
+	<% end %>
+    Mission: <a href='<%= host %>/missions/<%= @mission.url_name %>' target='_new'><%= @mission.name %></a> by <a href='<%= host %>/users/<%= @mission.user.login %>' target='_new'><%= @mission.user.login %></a>
+    <br/>
+	
+	<% if site_admin? %>
+		Lightpost postion debug: # <%= @branch.position %>
+	<% end %>
+
+    <% if @branch.description.length > 500 and ! @show_long_description %>
+      <%= format( shorten( @branch.description, 500 ) ) %>
+      <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                  pmog_m.setAttribute('server_url', '<%= read_more_mission_branch_path(@mission, @branch) %>.json?_method=get');
+                  pmog_m.setAttribute('window_id', '<%= @mission.id %>');
+                  pmog_m.setAttribute('action', 'submit');
+                  <%= render :partial => 'shared/ext/progress_throbber_trigger', :locals => { :throbber_id => @branch.id } %>
+                  pmog_m.dispatchEvent(pmog_e);return false;" href="#">read more</a>
+  
+    <% else %>
+      <%= format(@branch.description) %>
+    <% end %>
+    <br/>
+
+    <%# Note that the links below aren't quoted, as there are some freaky looking urls out there %>
+    <% unless @previous.nil? %>
+      <a href=<%= white_list(@previous.location.url) %>>&laquo; previous</a>
+    <% end %>
+
+	<% unless @previous.nil? or @next.nil? %>
+		&nbsp;|&nbsp;
+	<% end %>
+
+    <% unless @next.nil? %>
+      <a href=<%= white_list(@next.location.url) %>>&raquo; next</a>
+    <% end %>
+
+    <% if @next.nil? %>
+      <div style="text-align:center;padding-top:15px;">
+        <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                            pmog_m.setAttribute('method', 'post');
+                            pmog_m.setAttribute('server_url', '/missions/<%= @mission.url_name %>/complete');
+                            pmog_m.setAttribute('window_id', '<%= @mission.id %>');
+                            pmog_m.setAttribute('action', 'complete_mission');
+                            pmog_m.dispatchEvent(pmog_e);return false;" class="pmog_complete_mission">&nbsp;</a>
+      </div>
+    <% end %>
+</div>
+
+<%# only mark the tested = true if the mission author is testing %>
+<% if current_user == @mission.user %>
+	<%# Assume that if the overlay is rendered, then the branch test is successful %>
+	<% @branch.tested = true 
+   	@branch.save 
+	%>
+<% end %>
+
+<br style="clear:both;">

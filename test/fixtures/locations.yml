@@ -1,0 +1,35 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: locations
+#
+#  id         :string(36)    default(""), not null, primary key
+#  url        :string(255)   
+#  created_at :datetime      
+#  updated_at :datetime      
+#
+
+thenethernet:
+  url: http://thenethernet.com
+  id: f76096c8a168a56af7c3c6baa89bede0c5f977c2
+yeah_com:
+  url: http://www.yeah.com
+  id: 19903cbe33ade00c3d89aabd3e5f7984b4f41ac1
+google_fr:
+  url: http://www.google.fr
+  id: af2a7060c2a4137948ebec96ed7f28bf350f1656
+google_com:
+  url: http://www.google.com
+  id: 215aa902b8ce39cc32f17a2035f9f1b396c96863
+ajaxload_info:
+  url: http://www.ajaxload.info
+  id: 7c9e125e2a1dab240922f63af31b5ae9a23dad8b
+skitch_com:
+  url: http://skitch.com/justinreach/eyg2/edit-your-profile-on-pmog
+  id: 47d6b9f4868a82b561c2b092bc566ec0a524af04
+del_icio_us:
+  url: http://del.icio.us/heavysixer
+  id: 619cef4c55ed386c1107ca79a384226c194b5c92
+localhost_loggedexceptions:
+  url: http://localhost:3000/logged_exceptions
+  id: 750a77abef402e06693cf9e94f19aab692d9ab39

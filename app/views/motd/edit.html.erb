@@ -1,0 +1,21 @@
+<h1>Editing MOTD</h1>
+
+<%= error_messages_for :motd %>
+
+<% form_for(:motd, :url => motd_path(@motd), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <b>Body</b><br />
+    <%= f.text_area :body %>
+		<br/>
+		<small>Some html allowed</small>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>

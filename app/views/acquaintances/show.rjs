@@ -1,0 +1,13 @@
+if(@filter != 'main')
+  page.replace_html "#{@panel}_#{@filter}", { :partial => "/acquaintances/contacts_list", :locals => {:buddies => @contacts, :filter => @filter} }
+else
+  page.replace_html "#{@panel}_main", { :partial => "/acquaintances/show_#{@panel}_panel" }
+  page << 'jQuery(".subtabs > ul").subtabs({fx:{opacity:"toggle",duration:200}});'
+end
+
+page << "$('.avatarPop').prev().append('<a href=\"javascript:;\" class=\"opener\"></a>');"
+page << "$('.avatarOver').append('<a href=\"javascript:;\" class=\"closer\"></a>');"
+page << "$('.avatarPop').hide();"
+page << "$('a.opener').click(function() {$(this).parent().next('.avatarPop').show(); return false;});"
+page << "$('a.closer').click(function() { $(this).parents('.avatarPop').hide(); return false;});"
+page << "$('.avatarPop').hover(function(){$(this).fadeIn(100);},function(){$(this).fadeOut(500);});"

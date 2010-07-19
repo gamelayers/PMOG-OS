@@ -1,0 +1,43 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/guide" %>
+		<div class="cell child"><span class="l"></span><span class="c">About</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="module width960">
+
+					<div class="imageTop">
+<div class="imageTopImage" style="background-image:url(/images/shared/dressing/missions-260.png);width:260px;height:192px;" title="Fare Thee Well"></div>
+					</div>
+					<div class="copyTop">
+
+	<p>The Nethernet is an infinite game built on individual network histories, transforming our web surfing into ongoing social play. With a game head-up display in Firefox, players can bomb each other, wage war over web sites, and lead other users on web missions. Ordinary web sites become caches for items and currency. The Nethernet fuses an Massively Multiplayer Online Game into our World Wide Web.</p>
+	
+	<p>The Nethernet is a PMOG, which stands for a Passively Multiplayer Online Game. Players play without playing; clicking around the internet turns into experience points and currency.</p>
+	
+	<p>This unconventional massively multiplayer online game merges your web life with an alternate, hidden reality. The mundane takes on a layer of fantastic achievement. Player behavior generates characters and alliances, triggers interactions in the environment, and earns the player points to spend online beefing up their inventory. Suddenly the internet is not a series of untouchable exhibits, but a hackable, rewarding environment.</p>
+		
+<% if site_admin? %>
+	<p>Only site admins can see this text and these links: <a href="/about/blank">blank</a> and <a href="/about/avatars">Avatar breakdown</a> and <a href="/about/icons">Icon readout</a>.</p>
+<% end %>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="column width960">
+
+				<%= render :partial => "shared/about" %>
+
+				<%= render :partial => "shared/guide/guide_module" %>
+
+			</div>	
+
+		</div>	
+	

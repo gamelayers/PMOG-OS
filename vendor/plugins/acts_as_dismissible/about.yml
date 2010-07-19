@@ -1,0 +1,8 @@
+author: heavysixer
+summary: Adds support for dismissible system messages to a rails application.
+homepage: http://locusfoc.us
+plugin: svn://svn.locusfoc.us/plugins/trunk/acts_as_dismissible/
+license: MIT
+version: 1.0
+rails_version: 1.0+
+ 

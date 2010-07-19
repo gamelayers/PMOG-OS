@@ -1,0 +1,5 @@
+= Badges =
+
+Badges are awarded nightly, but that must increase to as near realtime as possible.
+
+Because the process of awarding badges can consume a lot of RAM, we have moved the process off to our staging slice, with hooks in Badge.rb to connect to the production database and make use of that data. This seems to work well, but there may well be more optimisations to make in the future.

@@ -1,0 +1,11 @@
+Hello <%= @user.email -%> -
+
+You, or someone pretending to be you, requested that email notifications for allies, rivals and acquaintances no longer
+be sent to <%= @user.login %>.
+
+If that is the case, please click the link below to no longer receive these emails. Otherwise, ignore this email and you'll
+continue to receive notices.
+
+http://thenethernet.com/unsubscribe?req_id=<%= @unsubscribe_request.id %>
+
+-The Nethernet Team

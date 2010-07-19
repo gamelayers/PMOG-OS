@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/codex/bg_books.png);
+background-position:550px 12px;
+background-repeat:repeat-y;
+}
+
+.main_content {
+	width: 490px !important;
+	margin: 0pt !important;
+	padding-left: 40px;
+}
+
+h3 {
+	margin-bottom:10px;
+}
+
+li {
+	margin-bottom:14px;
+	line-height: 18px;
+}
+
+#contact-form {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+#contact-form div {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+#contact-form label {
+  float: left;
+  width: 130px;
+  margin-right: 10px;
+  border-bottom: 1px dashed #333;
+}
+
+#contact-form .send input {
+  margin-left: 140px;
+}
+
+ .recaptchatable .recaptcha_image_cell, #recaptcha_table {
+   background-color:#FF0000 !important; //reCaptcha widget background color
+ }
+ 
+ #recaptcha_table {
+   border-color: #FF0000 !important; //reCaptcha widget border color
+ }
+ 
+ #recaptcha_response_field {
+   border-color: #FF0000 !important; //Text input field border color
+   background-color:#FF0000 !important; //Text input field background color
+ }
+

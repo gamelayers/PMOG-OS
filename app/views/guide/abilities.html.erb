@@ -1,0 +1,79 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/arsenal" %>
+		<div class="cell child"><span class="l"></span><span class="c">Abilities</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="module width960">
+
+					<div class="imageTop">
+<div class="imageTopImage" style="background-image:url(/images/shared/dressing/abilities-200.png);width:200px;height:200px;" title="That's Quite An Ability!"></div>
+					</div>
+					<div class="copyTop">
+					
+					<h2>Abilities</h2>
+<p>Abilities are a part of your Arsenal that you can't buy in the Shoppe. An ability doesn't require you to have an item in order to use it. DP Cards, for instance, work just by leaving 10 datapoints on a site. Abilities use <a href="/guide/rules/datapoints">Datapoints</a> and <a href="/guide/rules/pings">Pings</a>. To see which Abilities you have access to, check out the <a href="/guide/rules/levels">Levels</a> chart.</p>
+
+<!--
+<table align="left">
+  <tr>
+    <td>
+
+    <h4>Total Ability Usage on The Nethernet: 
+    <a href="/guide/upgrades/giftcard">
+      <img src="/images/shared/tools/icon/giftcard-16.png"
+        title="DP card"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= AbilityUse.total( Ability.cached_single('giftcard') ) %></b> | 
+    <a href="/guide/upgrades/dodge">
+      <img src="/images/shared/tools/icon/dodge-16.png"
+        title="Dodge"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= AbilityUse.total( Ability.cached_single('dodge') ) %></b> |
+    <a href="/guide/upgrades/dodge">
+      <img src="/images/shared/tools/icon/disarm-16.png"
+        title="Disarm"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= AbilityUse.total( Ability.cached_single('disarm') ) %></b> |
+    <a href="/guide/upgrades/dodge">
+      <img src="/images/shared/tools/icon/skeleton_key-16.png"
+        title="Skeleton Key"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= AbilityUse.total( Ability.cached_single('create_skeleton_key') ) %></b> |
+    <a href="/guide/upgrades/dodge">
+      <img src="/images/shared/tools/icon/vengeance-16.png"
+        title="Vengeance"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= AbilityUse.total( Ability.cached_single('vengeance') ) %></b>
+   </h4>
+    
+    </td>
+  </tr>
+</table>
+-->
+<br />
+  
+
+
+</div>
+</div>
+</div>
+
+
+	<div class="column width960">
+			<%= render :partial => "shared/guide/abilities" %></div>
+		
+			<%= render :partial => "shared/guide/arsenal" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>

@@ -1,0 +1,34 @@
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<% tool = Tool.cached_single('crates') %>
+<img src="<%= tool.large_image %>" alt="<%= tool.large_image %>" style="float:right;margin:50px 20px 0 0;" >
+<h1>You Have Stashed a Crate</h1>
+<h5>Soon a player shall seize this bounty!</h5>
+<br />
+<h2>Crate contents</h2>
+
+<p><% @crate.contents.each do |k,v| %>
+	<% next if k == 'comment' %>
+	<b><%= k.titleize %></b>: <%= v %>
+	<br/>
+<% end %>
+		<% unless @crate.comments.nil? or @crate.comments.empty? %>  
+			<b>With the message:</b> "<%= @crate.comments %>"
+		<% end %>
+		<p />
+
+<p>Click here to return to <a href='<%= @location.url %>'><%= @location.url %></a></p>
+
+					</div>
+				
+				</div>
+			
+			</div>
+
+		</div>

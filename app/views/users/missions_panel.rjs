@@ -1,0 +1,5 @@
+page.replace_html "missions_#{params[:panel]}", { :partial => '/users/show_missions_list', :locals => { :panel => @panel, :missions => @missions } }
+
+page << 'jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});'
+page << 'jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});'
+

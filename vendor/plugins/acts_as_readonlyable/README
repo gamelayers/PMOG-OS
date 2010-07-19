@@ -1,0 +1,80 @@
+== Introduction
+
+ActsAsReadonlyable adds support of multiple read-only slave databases to ActiveRecord models. When a model is marked with acts_as_readonlyable, some of AR finders are overridden to run against a slave DB. The supported finders are find, find_by_sql, count_by_sql, find_[all_]by_*, and calculations.
+
+Finders can be forced to fall back to a default DB by passing the :readonly flag set to 'false'.
+
+== Disclaimer
+
+As our blog entry http://revolutiononrails.blogspot.com/2007/04/ActsAsReadonlyable-to-support-read-only.html points out, we wrote this plugin in preparation to using slave DBs but we are not going to have those until May 2007. So even though the code is covered with tests (see svn://rubyforge.org/var/svn/acts-as-with-ro/trunk/test/unit/read_write_model_test.rb), it has not been used outside of those. We would have a discovery period in May when the code is likely to be improved so for now you can use is at your own risk. Meanwhile, we would be happy to fix any issue revealed. Drop us a line at rails-trunk [ at ] revolution DOT com.
+
+Using this plugin should not be your first step in application optimization/scaling or even the second one. Before installing it make sure you understand the implication of leveraging multiple DBs (for example, the potential for cross DB joins).
+
+== Usage
+
+Add 'acts_as_readonlyable db_config_entry' to your models backed up by slave DBs. If you want to apply ActsAsReadonlyable to all models, add this or similar code at the end of config/environment.rb:
+
+class << ActiveRecord::Base
+  
+  def read_only_inherited(child)
+    child.acts_as_readonlyable :read_only
+    ar_inherited(child)
+  end
+  
+  alias_method :ar_inherited, :inherited
+  alias_method :inherited, :read_only_inherited
+
+end
+
+== Example
+
+=== Sample DB Config
+
+dbs:
+
+  database: master_db
+  host: master-host
+
+  read_only:
+    database: slave_db
+    host: slave-host
+
+
+Note: There is no need for more than one read-only database configuration in your database.yml since you can leverage traditional load balancing solutions for slaves. If you still want to use database.yml to spread the load, define multiple entries there and use acts_as_readonlyable [:first_read_only, :second_read_only].
+
+=== Sample Model
+
+class Fruit < ActiveRecord::Base
+  acts_as_readonlyable :read_only
+end
+
+=== Usage
+
+r = Fruit.find(:first)  # executes against the read_only db
+r.field = 'value'
+r.save!  # executes against the read_write db
+
+Fruit.count  # executes against the read_only db
+Fruit.count(:readonly => false)  # executes against the read_write db
+
+
+=== Transactional Tests Support
+
+Since there are two connections established, it breaks transactional tests that rely on the fact that all code lives within a single transaction/connection. To address that, the read only mode is disabled when there is no read-only database configuration entry defined in database.yml. In this case the warning is printed to the log file. 
+
+
+== Installation
+
+As plugin: 
+script/plugin install svn://rubyforge.org/var/svn/acts-as-with-ro/trunk/vendor/plugins/acts_as_readonlyable
+
+
+== License
+
+ActsAsReadonlyable released under the MIT license.
+
+
+== Support
+
+The plugin RubyForge page is http://rubyforge.org/projects/acts-as-with-ro
+

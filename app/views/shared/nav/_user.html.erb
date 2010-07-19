@@ -1,0 +1,35 @@
+<div id="navUser" class="module">
+<ul class="font12px">
+<% if logged_in? %>
+  <!--<a href="" class="blue">????-->
+  <li>Welcome <%= link_to "#{current_user.login}", user_path(current_user) %></li>
+  <li class="sep">|</li>
+  <li><a href="/users/<%= current_user.login %>/edit">Edit Your Profile</a></li>
+  <li class="sep">|</li>
+  <li><a href="/invite/invite_forward">Invite Friends</a></li>
+  <li class="sep">|</li>
+  <li><a href="http://news.thenethernet.com/category/releases">Toolbar Updates</a></li>
+  <li class="sep">|</li>
+  <li><%= link_to "Sign Out", session_path, :method => :delete %></li>
+
+<% else %><!--user logged in-->
+
+  <% form_tag session_path, { :id => "login" } do %>
+  <li><input type="text" id="userOff" name='loginOff' value="player name" class="input user_login_textbox" size="10" /></li>
+  <li><input type="text" id="passOff" name='passwordOff' value="password" class="input user_login_textbox" size="10" /></li>
+  <li><input type="text" id="userOn" class="hidden focus" name='login' value="" class="input user_login_textbox" size="10" /></li>
+  <li><input type="password" id="passOn" class="hidden" name='password' class="input user_login_textbox" size="10" /></li>
+  <li><input type="submit" value="login" class="input user_login_submit" /></li>
+  <li class="sep">|</li>
+  <li><%= link_to "OpenID", new_openid_path %></li>
+  <li class="sep">|</li>
+  <li><a href="/sessions/find">Forgot Password?</a></li>
+  <li class="sep">|</li>
+  <li><%= link_to "Sign up", new_user_path %></li>
+  <% end %><!--form-->
+
+<% end %><!--user logged in-->
+
+</ul>
+        </div>
+

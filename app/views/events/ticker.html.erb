@@ -1,0 +1,19 @@
+<h1><%= @user.login %>'s Events in PMOG.</h1>
+<h5>What has happened here, happened.</h5>
+
+<br>
+<% if logged_in? and show_content?(@user, current_user, Preference.preferences[:events][:text]) %> 
+<p class='user_table_list'>  
+  <ul>
+		<% @events.each do |event| %>
+			<li><%= render :partial => 'event', :locals => { :event => event } %></li>
+		<% end %>
+  </ul>
+</p>
+<% else %>
+	<h2>You don't have permission to look at <%= @user.login %>'s ticker!</h2>
+<% end %>
+
+<br/>
+
+<br/>

@@ -1,0 +1,219 @@
+<table margin-bottom="0"><tr><td><a href="/guide/classes/<%= @user.user_level.primary_class %>"><img src="/images/shared/associations/small/<%= @user.user_level.primary_class %>s.jpg" alt="<%= @user.user_level.primary_class %>" align="center" class="img_no_border" /></a> &nbsp;&nbsp;
+</td><td valign="center" align="left"><strong><%= @user.user_level.primary_class.titleize %><br />
+Level <%= @user.current_level %></strong><br />
+<%= @user.user_level.dp_status 'primary' %> <img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints" class="menu_img_no_border"> to next
+	<!-- <strong>Level <%#=h @user.current_level %><br /> -->
+  <!--	<a href="/guide/classes/<%#=h @user.primary_association %>s"><%#= @user.primary_association.titleize %></a>-->
+</td></tr></table>
+<br/ >
+
+<strong>Current Datapoints</strong><br />
+
+<img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints" title="datapoints" class="img_no_border"> <strong><%=h number_with_delimiter(@user.datapoints) %></strong><br /><br />
+
+<strong>Lifetime Datapoints</strong><br />
+<a href="/guide/rules/levels"><img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints" title="datapoints" class="img_no_border"></a> <strong><%=h number_with_delimiter(@user.total_datapoints) %></strong><br /><br />
+
+<strong>Current Pings</strong>&nbsp;<a href="/guide/rules/pings"><img src="/images/shared/elements/help.png" alt="Help on Pings" width="16" height="16" border="0" class="menu_img_no_border" /></a><br />
+<img src="/images/shared/elements/ping-16.png" width="16" height="16" border="0" alt="pings" class="img_no_border"><strong><%=h number_with_delimiter(@user.available_pings) %></strong><br /><br />
+
+<strong>Lifetime Pings</strong><br />
+<img src="/images/shared/elements/ping-16.png" width="16" height="16" border="0" alt="pings" class="img_no_border"><strong><%=h number_with_delimiter(@user.lifetime_pings) %></strong><br /><br />
+<br />
+
+<strong>Tools Inventory</strong>
+<br />
+
+<table class="inventory_table">
+  <tr>
+    <td width="22"><a href="/guide/tools/armor"><img src="/images/shared/tools/icon/armor-16.png" title="Armor" class="menu_img_no_border" /></a></td>  
+    <td><b><%= @user.inventory.armor %></b> Armor</td>
+  </tr>
+  <tr>
+    <td valign="top"><a href="/guide/tools/crates"><img src="/images/shared/tools/icon/crate-16.png" title="Crate" class="menu_img_no_border" /></a></td>
+    <td><b><%= @user.inventory.crates %></b> Crates</td>
+  </tr>
+  <tr>
+    <td valign="top"><a href="/guide/tools/lightposts"><img src="/images/shared/tools/icon/lightpost-16.png" title="Lightposts" class="menu_img_no_border" /></a></td>
+    <td><b><%= @user.inventory.lightposts %></b> Lightposts</td>
+  </tr>
+  <tr>  
+    <td valign="top"><a href="/guide/tools/mines"><img src="/images/shared/tools/icon/mine-16.png" title="Mines" class="menu_img_no_border" /></a></td>  
+    <td><b><%= @user.inventory.mines %></b> Mines</td>
+  </tr>
+  <tr>  
+    <td valign="top"><a href="/guide/tools/grenades"><img src="/images/shared/tools/icon/grenade-16.png" title="Grenades" class="menu_img_no_border" /></a></td>  
+    <td><b><%= @user.inventory.grenades %></b> Grenades</td>
+  </tr>
+	<tr>
+		<td valign="top"><a href="/guide/tools/portals"><img src="/images/shared/tools/icon/portal-16.png" title="Portals" class="menu_img_no_border" /></a></td>  
+    <td><b><%= @user.inventory.portals %></b> Portals</td>
+  </tr>
+  <tr>
+    <td valign="top"><a href="/guide/tools/st_nicks"><img src="/images/shared/tools/icon/st_nick-16.png" title="St. Nicks" class="menu_img_no_border" /></a></td>  
+    <td><b><%= @user.inventory.st_nicks %></b> St. Nicks</td>
+  </tr>
+  <tr>
+    <td valign="top"><a href="/guide/tools/watchdogs"><img src="/images/shared/tools/icon/watchdog-16.png" title="Watchdogs" class="menu_img_no_border" /></a></td>
+    <td><b><%= @user.inventory.watchdogs %></b> Watchdogs</td>
+  </tr>
+
+	<% if site_admin? %>
+		<tr>
+			<td colspan='2'>
+				<a href='/admin/inventory/<%= @user.login %>'>Edit inventory and datapoints</a>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<br />
+
+<strong>Order Levels</strong><br />
+  <table class="inventory_table" class="user_tools_usage">
+		<tr><td width="16"><a href="/guide/classes/bedouins"><img src="/images/shared/associations/icon/bedouin-16.png" alt="Bedouins" border="0" width="16" height="16" class="menu_img_no_border" /></a></td><td colspan="2"><strong>Bedouin Level <%= @user.levels[:bedouin] %> </strong></td></tr>
+		<tr><td></td><td><a href="/guide/rules/classpoints"><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></a> </td>
+		<td><b><%= @user.user_level.bedouin_cp %></b> earnt<br />
+		</td></tr>
+    <% if(@user.levels[:bedouin] < 20) %>
+    <tr>
+      <td></td><td></td>
+			<td><b><%= @user.user_level.cp_status 'bedouin' %></b> to next
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td><td width="22" valign="top"><a href="/guide/tools/armor"><img src="/images/shared/tools/icon/armor-16.png" title="Armor" class="menu_img_no_border" /></a></td>  
+      <td><b><%= @user.tool_uses.uses :armor %></b> worn</td>
+    </tr>
+    <tr>
+      <td></td><td width="22" valign="top"><a href="/guide/abilities/dodge"><img src="/images/shared/tools/icon/dodge-16.png" title="Dodge" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.ability_uses.uses :dodge %></b> dodges</td>
+    </tr>
+  </table>
+
+  <table class="inventory_table" class="user_tools_usage">
+		<tr><td width="16"><a href="/guide/classes/benefactors"><img src="/images/shared/associations/icon/benefactor-16.png" alt="Benefactors" border="0" width="16" height="16" class="menu_img_no_border" /></a></td>
+		<td colspan="2"><strong>Benefactor Level <%= @user.levels[:benefactor] %></strong></td></tr>
+		<tr><td></td><td><a href="/guide/rules/classpoints"><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></a> </td>
+		<td><b><%= @user.user_level.benefactor_cp %></b> earnt<br />
+		</td></tr>
+    <% if(@user.levels[:benefactor] < 20) %>
+    <tr>
+      <td></td><td></td>
+			<td><b><%= @user.user_level.cp_status 'benefactor' %></b> to next
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/abilities/giftcard"><img src="/images/shared/tools/icon/giftcard-16.png" title="DP Cards" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.ability_uses.uses :giftcard %></b> left</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/tools/crates"><img src="/images/shared/tools/icon/crate-16.png" title="Crate" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.tool_uses.uses :crates %></b> stashed</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/upgrades/puzzle_crate"><img src="/images/shared/tools/icon/puzzle_crate-16.png" title="Puzzle Crates" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.upgrade_uses.uses :puzzle_crate %></b> locked</td>
+    </tr>
+  </table>
+
+  <table class="inventory_table" class="user_tools_usage">
+		<tr><td width="16"><a href="/guide/classes/pathmakers"><img src="/images/shared/associations/icon/pathmaker-16.png" alt="Pathmakers" border="0" width="16" height="16" class="menu_img_no_border" /></a></td><td colspan="2"><strong>Pathmaker Level <%= @user.levels[:pathmaker] %></strong></td></tr>
+		<tr><td></td><td><a href="/guide/rules/classpoints"><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></a> </td>
+		<td><b><%= @user.user_level.pathmaker_cp %></b> earnt<br />
+		</td></tr>
+    <% if(@user.levels[:pathmaker] < 20) %>
+    <tr>
+      <td></td><td></td>
+			<td><b><%= @user.user_level.cp_status 'pathmaker' %></b> to next
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td><td valign="top" width="16"><a href="/guide/tools/lightposts"><img src="/images/shared/tools/icon/lightpost-16.png" title="Lightposts" class="menu_img_no_border" /></a></td>
+      <td align="left"><b><%= @user.tool_uses.uses :lightposts %></b> lit</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top" width="16"><a href="/guide/tools/lightposts"><img src="/images/shared/icons/explore-16.png" title="Lightposts" class="menu_img_no_border" /></a></td>
+      <td align="left"><b><%= @user.missions.count %></b> missions made</td>
+    </tr>
+  </table>
+<br />
+
+<strong>Chaos Levels</strong><br />
+
+  <table class="inventory_table" class="user_tools_usage">
+		<tr><td width="16"><a href="/guide/classes/destroyers"><img src="/images/shared/associations/icon/destroyer-16.png" alt="destroyers" border="0" width="16" height="16" class="menu_img_no_border" /></a></td><td colspan="2"><strong>Destroyer Level <%= @user.levels[:destroyer] %></strong></td></tr>
+		<tr><td></td><td><a href="/guide/rules/classpoints"><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></a> </td>
+		<td><b><%= @user.user_level.destroyer_cp %></b> earnt<br />
+		</td></tr>
+    <% if(@user.levels[:destroyer] < 20) %>
+    <tr>
+      <td></td><td></td>
+			<td><b><%= @user.user_level.cp_status 'destroyer' %></b> to next
+      </td>
+    </tr>
+    <% end %>
+    <tr>  
+      <td></td><td valign="top"><a href="/guide/tools/mines"><img src="/images/shared/tools/icon/mine-16.png" title="Mines" class="menu_img_no_border" /></a></td>  
+      <td><b><%= @user.tool_uses.uses :mines %></b> laid</td>
+    </tr>
+    <tr>  
+      <td></td><td valign="top"><a href="/guide/tools/grenades"><img src="/images/shared/tools/icon/grenade-16.png" title="Grenades" class="menu_img_no_border" /></a></td>  
+      <td><b><%= @user.tool_uses.uses :grenades %></b> thrown</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/upgrades/exploding_crate"><img src="/images/shared/tools/icon/exploding_crate-16.png" title="Exploding Crates" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.upgrade_uses.uses :exploding_crate %></b> trapped</td>
+    </tr>
+  </table>
+
+  <table class="inventory_table" class="user_tools_usage">
+		<tr><td width="16"><a href="/guide/classes/seers"><img src="/images/shared/associations/icon/seer-16.png" alt="seers" border="0" width="16" height="16" class="menu_img_no_border" /></a></td><td colspan="2"><strong>Seer Level <%= @user.levels[:seer] %></strong></td></tr>
+		<tr><td></td><td><a href="/guide/rules/classpoints"><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></a> </td>
+		<td><b><%= @user.user_level.seer_cp %></b> earnt<br />
+		</td></tr>
+    <% if(@user.levels[:seer] < 20) %>
+    <tr>
+      <td></td><td></td>
+			<td><b><%= @user.user_level.cp_status 'seer' %></b> to next
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/tools/portals"><img src="/images/shared/tools/icon/portal-16.png" title="Portals" class="menu_img_no_border" /></a></td>  
+      <td><b><%= @user.tool_uses.uses :portals %></b> deployed</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/upgrades/give_dp"><img src="/images/shared/tools/icon/abundant_portal-16.png" title="Abundant Portals" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.upgrade_uses.uses :give_dp %></b> made abundant</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/upgrades/give_dp"><img src="/images/shared/icons/contacts-16.png" title="People Transported" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.misc_action_uses.uses :portal_transportation %></b> people transported</td>
+    </tr>
+  </table>
+
+  <table class="inventory_table" class="user_tools_usage">
+		<tr><td width="16"><a href="/guide/classes/vigilantes"><img src="/images/shared/associations/icon/vigilante-16.png" alt="vigilantes" border="0" width="16" height="16" class="menu_img_no_border" /></a></td><td colspan="2"><strong>Vigilante Level <%= @user.levels[:vigilante] %></strong></td></tr>
+		<tr><td></td><td><a href="/guide/rules/classpoints"><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></a> </td>
+		<td><b><%= @user.user_level.vigilante_cp %></b> earnt<br />
+		</td></tr>
+    <% if(@user.levels[:vigilante] < 20) %>
+    <tr>
+      <td></td><td></td>
+			<td><b><%= @user.user_level.cp_status 'vigilante' %></b> to next
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/tools/st_nicks"><img src="/images/shared/tools/icon/st_nick-16.png" title="St. Nicks" class="menu_img_no_border" /></a></td>  
+      <td><b><%= @user.tool_uses.uses :st_nicks %></b> intervened</td>
+    </tr>
+    <tr>
+      <td></td><td valign="top"><a href="/guide/tools/watchdogs"><img src="/images/shared/tools/icon/watchdog-16.png" title="Watchdogs" class="menu_img_no_border" /></a></td>
+      <td><b><%= @user.tool_uses.uses :watchdogs %></b> unleashed</td>
+    </tr>
+  </table>
+<br />

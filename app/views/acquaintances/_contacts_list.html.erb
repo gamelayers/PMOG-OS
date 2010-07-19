@@ -1,0 +1,59 @@
+<table class="list">
+<tbody>
+<tr>
+<td>
+
+<table class="stripeMe contactsTable">
+<tbody>
+<% buddies.each_with_index do |buddy, index| %>
+  <% if index % 2 == 0 %><tr class='<%= cycle('whiteEven', 'whiteOdd') %>'><% end %>
+  <td class="avatar">
+  <div class="avatarAction">
+  <%= avatar_link_to_user :user => buddy, :size => 'small', :alt => buddy, :title => buddy, :class => 'avatar48' %>
+  <div class="avatarPop">
+  <div class="avatarPopIn">
+  <div class="avatarOver">
+  <a href="/users/<%= buddy.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => buddy, :size => "small") %>" alt="<%= buddy.login %>" title="<%= buddy.login %>" width="48" height="48" /></a>
+  </div>
+  <div class="avatarActions">
+  <%= render :partial => "/shared/avatar_actions", :locals => {:user => buddy, :filter => filter} %>
+  </div>
+  </div>
+  </div>
+  </div>
+  </td>
+  <td class="meta">
+  <p>
+  <strong><a href="/users/<%= buddy.login %>"><%= buddy.login %></a></strong>
+  <br />
+  <%= buddy.user_level.primary_class.titleize %> - Level <%= buddy.current_level %>
+  <br/>
+	<% if current_user.login == @user.login %>
+	  <a href='/acquaintances/remove/<%= buddy.login %>?type=acquaintance'>Remove?</a>
+	<% end %>
+  </p>
+  <span id="show_rating">
+  <%= render :partial => "contacts_actions", :locals => {:buddy => buddy} %>
+  </span>
+  </td>
+  
+  <% if (index + 1) % 2 == 0 && index > 0 %>
+    </tr>
+  <% else %>
+    <td class="icon">
+    <img class="icon32" src="/images/shared/clear.png" alt="space"/>
+    </td>
+    <td class="spacer"> </td>
+  <% end %>
+<% end %>
+</tbody>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+<div class="paginate">
+<%= will_paginate buddies, :renderer => 'RemoteLinkRenderer', :remote => { :loading => "jQuery('##{@panel}_panel_spinner').show();", :complete => "jQuery('##{@panel}_panel_spinner').hide();"}%>
+</div>

@@ -1,0 +1,8 @@
+<li id="draft_<%= edit_draft_missions.id %>">
+		<%= link_to edit_draft_missions.name, edit_mission_path(edit_draft_missions.url_name) %> <%= link_to_remote image_tag("/images/shared/elements/del_16.gif", :class => "img_no_border", :title => "delete #{edit_draft_missions.name}", :align => "absmiddle"), :confirm => 'Are you sure?', 
+																																																									    :url     => { :controller => "missions", 
+																																																										                :action => "destroy", 
+																																																										                :id => edit_draft_missions.url_name 
+																																																										              }, 
+																																																										  :method  => :delete %>
+</li>

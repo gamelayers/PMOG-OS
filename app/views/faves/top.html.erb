@@ -1,0 +1,12 @@
+<h3>Top Faves</h3>
+<h5>We loves it</h5>
+
+<ol>
+  <% @faves.each do |f| %>
+    <li>
+      <a href='<%= f.location.url %>'><%= truncate(f.location.url, 50) %></a>, <%= time_ago_in_words(f.created_at) %> ago.
+    </li>
+  <% end %>
+</ol>
+
+<%= will_paginate @faves, :class => 'lightposts_pagination' %>

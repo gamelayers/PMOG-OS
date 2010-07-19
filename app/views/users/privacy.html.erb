@@ -1,0 +1,79 @@
+<h1>Edit Privacy Settings</h1>
+<h5>Measure your presence on PMOG</h5>
+
+<%= avatar_link_to_user :user => @user, :size => 'medium' %>
+<br/>
+<%= error_messages_for :user %>
+
+<% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| %>
+
+  <%= render :partial => 'form', :object => f %>
+
+  <p><input value="Submit" name="" type="submit" id="input"/></p>
+<% end %>
+
+
+		<%= select :user, :privacy_level, [ [ 'Public', 'public' ], [ 'Friends', 'friends' ], [ 'Private', 'private' ] ], :class => "input" %></p>
+
+<form>
+	<%= token_tag %>
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tr><th>Feature</th><th>Public</th><th>Acquaintances</th><th>Allies</th><th>Private</th></tr>
+
+	<tr>
+	<td align="right">Profile Information</td>
+	<td>rails version: <%= radio_button :user, :privacy_level, :public %>
+	html version: <input type="radio" name="profile" onclick="check(this.value)" value="public" checked="checked"></td>
+	<td><input type="radio" name="profile" onclick="check(this.value)" value="acquaintances" checked="checked"></td>
+	<td><input type="radio" name="profile" onclick="check(this.value)" value="allies" checked="checked"></td>
+	<td><input type="radio" name="profile" onclick="check(this.value)" value="private" checked="checked"></td>
+	</tr>
+
+	<tr>
+	<td align="right">Acquaintances</td>
+	<td><input type="radio" name="acquaintances" onclick="check(this.value)" value="public" checked="checked"></td>
+	<td><input type="radio" name="aquaintances" onclick="check(this.value)" value="acquaintances" checked="checked"></td>
+	<td><input type="radio" name="aquaintances" onclick="check(this.value)" value="allies" checked="checked"></td>
+	<td><input type="radio" name="acquaintances" onclick="check(this.value)" value="private" checked="checked"></td>
+	</tr>
+
+	<tr>
+	<td align="right">Mission History</td>
+	<td><input type="radio" name="mission_history" onclick="check(this.value)" value="public" checked="checked"></td>
+	<td><input type="radio" name="mission_history" onclick="check(this.value)" value="acquaintances" checked="checked"></td>
+	<td><input type="radio" name="mission_history" onclick="check(this.value)" value="allies" checked="checked"></td>
+	<td><input type="radio" name="mission_history" onclick="check(this.value)" value="private" checked="checked"></td>
+	</tr>
+
+	<tr>
+	<td align="right">Badges</td>
+	<td><input type="radio" name="badges" onclick="check(this.value)" value="public" checked="checked"></td>
+	<td><input type="radio" name="badges" onclick="check(this.value)" value="acquaintances" checked="checked"></td>
+	<td><input type="radio" name="badges" onclick="check(this.value)" value="allies" checked="checked"></td>
+	<td><input type="radio" name="badges" onclick="check(this.value)" value="private" checked="checked"></td>
+	</tr>
+
+	<tr>
+	<td align="right">Tool Use</td>
+	<td><input type="radio" name="tool_use" onclick="check(this.value)" value="public" checked="checked"></td>
+	<td><input type="radio" name="tool_use" onclick="check(this.value)" value="acquaintances" checked="checked"></td>
+	<td><input type="radio" name="tool_use" onclick="check(this.value)" value="allies" checked="checked"></td>
+	<td><input type="radio" name="tool_use" onclick="check(this.value)" value="private" checked="checked"></td>
+	</tr>
+
+	</table>
+</form>
+
+
+
+<h3>other options</h3>
+
+<p>
+	<strong><%= link_to 'Delete My PMOG History', { :controller => "privacy", :action => "delete_history" }, :confirm => "Are you sure you want to delete your PMOG browsing history?" %></strong><br />
+	Deletes your browsing history over the last four weeks. We only keep 4 weeks worth of data, and that data is distinct domains only.
+</p>
+
+<p>
+	<strong><%= link_to 'Delete My Account', { :controller => "privacy", :action => "close_account" }, :confirm => "WARNING: This will delete your ENTIRE account!  Once deleted, your account CANNOT be retrieved.  Are you sure you want to delete your account?" %></strong><br />
+	Deletes all of your PMOG data from the system.
+</p>

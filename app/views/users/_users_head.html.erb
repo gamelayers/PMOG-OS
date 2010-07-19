@@ -1,0 +1,113 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:rss, "/users/#{@user.login}.rss") %>
+  <%= stylesheet_link_tag "/css/ui.tabs.css", "/css/jquery.rating.css" %>
+  
+  <%= javascript_include_tag 'ui.tabs' %>  
+  <%= javascript_include_tag 'ui.subtabs' %>
+  <%= javascript_include_tag 'jquery.dimensions' %>
+  <%= javascript_include_tag 'jquery.tooltip' %>
+  <%= javascript_include_tag 'jquery.event.hover-1.0' %>
+
+
+<script type="text/javascript">
+
+  function reloadPanel(area,name){
+    jQuery.ajax({
+      beforeSend: function(request) {jQuery('#'+area+'_panel_spinner').show();},
+      complete: function(request) {
+        jQuery('#'+area+'_panel_spinner').hide();
+        jQuery(".poptip").tooltip({track:false,delay:0,showURL:false,showBody:" - ",fixPNG:true,opacity:0.95,left:-100,fade:"toggle",duration:200,extraClass: "poptip"});
+      },
+      data:'',
+      dataType:'script',
+      type:'get',
+      url:'<%= host %>/users/'+area+'_panel/<%=@user.login%>?panel='+name});
+  }
+
+  // DO tabification
+  jQuery(function(){
+    jQuery('.tabs > ul').tabs({fx:{opacity:'toggle',duration:200}});
+    jQuery('.subtabs > ul').subtabs({fx:{opacity:'toggle',duration:200}});
+    jQuery(".tip").tooltip({track:false,delay:0,showURL:false,showBody:" - ",fixPNG:true,opacity:0.95,left:-100,fade:"toggle",duration:200});
+
+    //DO mission table fx
+    jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});
+    jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});
+
+    // DO main profile image fx
+    jQuery('a#profileOpener').click(function () {jQuery('#profilePop').show();});
+    jQuery('a#profileCloser').click(function () {jQuery('#profilePop').hide();});
+    jQuery('#profilePop').hover(function(){jQuery(this).fadeIn(100);},function(){jQuery(this).fadeOut(500);});
+
+    //DO badges slider
+    //SET THE MINIMUM HEIGHT
+    var sliderHeight = "175px";
+
+    //HIDE "SEE MORE" IF NO MORE TO SEE
+    //jQuery('#profileBadges .slider_menu').hide();
+
+    if (jQuery('#badgesInner').height() >= 176) {
+      //jQuery('#profileBadges .slider_menu').show();
+    }
+
+    jQuery('.slider').each(function () {
+      var current = jQuery(this);
+      current.attr("box_h", current.height());
+    });
+
+    jQuery(".slider").css("height", sliderHeight);
+    jQuery(".slider_menu").html('<a href="javascript:;">See More</a>');
+    jQuery(".slider_menu a").click(function() { openSlider(); });
+
+    function openSlider(){
+      var open_height = jQuery(".slider").attr("box_h") + "px";
+      jQuery(".slider").animate({"height": open_height}, {duration: "slow" });
+      jQuery(".slider_menu").html('<a href="javascript:;">See Less</a>');
+      jQuery(".slider_menu a").click(function() { closeSlider(); });
+    }
+
+    function closeSlider(){
+      jQuery(".slider").animate({"height": sliderHeight}, {duration: "slow" });
+      jQuery(".slider_menu").html('<a href="javascript:;">See More</a>');
+      jQuery(".slider_menu a").click(function() { openSlider(); });
+    }
+
+	//DO objectives slider
+	
+	var sliderObjHeight = "175px"; //SET THE MINIMUM HEIGHT
+
+  $('#profileObjectives .sliderObj_menu').hide(); //HIDE "MORE" IF NO MORE TO SEE
+	if ($('#objectivesInner').height() >= 176) {
+		$('#profileObjectives .sliderObj_menu').show();
+	}
+
+		$('.sliderObj').each(function () {
+					var current = $(this);
+					current.attr("box_h", current.height());
+				}
+		 );
+		
+		$(".sliderObj").css("height", sliderObjHeight);
+		$(".sliderObj_menu").html('<a href="javascript:;">More</a>');
+		$(".sliderObj_menu a").click(function() { openSliderObj() })
+	function openSliderObj(){
+		var open_height = $(".sliderObj").attr("box_h") + "px";
+		$(".sliderObj").animate({"height": open_height}, {duration: "slow" });
+		$(".sliderObj_menu").html('<a href="javascript:;">Less</a>');
+		$(".sliderObj_menu a").click(function() { closeSliderObj() })
+	}
+	function closeSliderObj(){
+		$(".sliderObj").animate({"height": sliderObjHeight}, {duration: "slow" });
+		$(".sliderObj_menu").html('<a href="javascript:;">More</a>');
+		$(".sliderObj_menu a").click(function() { openSliderObj() })
+	}
+
+});
+
+</script>
+
+<% end %>
+
+<% content_for :body do %>
+  class="user"
+<% end %>

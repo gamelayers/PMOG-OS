@@ -1,0 +1,43 @@
+/* unresolved */
+
+/* 
+
+- if we want to link someone to "change your class" - can we link to /users/justin/edit/#change_class
+?- dt dd dl style for /help/faq
+?- table for help/keycommands
+?- any class tag for images on individual codex character pages?
+- valign="top" on table on awsm attack on profile page
+- integrating the shoppe sidebar with inventory
+- do we have a differentiation for <small>
+
+- difference between:
+<style type="text/css" media="all">@import "/css/supplemental.css";</style> (Lance)
+<link href="/stylesheets/ui.tabs" media="screen" rel="stylesheet" type="text/css" /> (PMOG Rails)
+
+- how about yield + page_title? for things like histories, etc
+
+- vspace/hspace = 10 on all the thumb images ?
+
+- why ln 143 child_basics </span>
+
+<div class="cell parent"><a href="[PARENT PAGE]">Parent</a></span></div>
+<div class="cell child">Child</span></div>
+
+- these links "<a href="[DO ACTION]" class="image">" can't be rendered AFAIK with this link of link from rails: <%= link_to_function( image_tag (user profile, action buttons)
+
+*/
+
+
+/* to do */
+
+/*
+
+- can make the support box appear to the right on this overlay? http://localhost:3000/openid/new
+
+*/
+
+/* list styles for events */
+
+/* defaults to gear: profile_updated steward_created user_created user_pardoned user_suspended */
+
+

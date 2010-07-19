@@ -1,0 +1,2 @@
+module LightpostsHelper
+end

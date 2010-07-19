@@ -1,0 +1,23 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Mines</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<%= javascript_include_tag 'tool_javascripts'%>
+
+<% form_tag '/mines/search', :method => :get do %>
+  Or search by User/Location: <%= text_field_tag 'q' %>
+  <select name="criteria">
+    <option value="">Select Criteria</option>
+    <option value="user">User</option>
+    <option value="location">Location</option>
+  </select>
+<% end %>
+
+<% form_tag '/mines/destroy', :method => :post, :id => 'tool_form' do %>
+	<%= render :partial => 'usertable' %>
+<% end %>
+
+

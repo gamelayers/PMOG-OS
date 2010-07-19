@@ -1,0 +1,171 @@
+<!-- <%# content_for :title do %>Edit <%#= @user.login %>'s Inventory on the <%# end %> -->
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Edit Game Status</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1><%= avatar_link_to_user :user => @user, :size => 'small' %>&nbsp;<a href="/users/<%= @user.login %>"><%= @user.login %></a>'s Inventory</h1>
+<h5>edit with impunity!</h5>
+
+<br/>
+
+<table cellspacing="20">
+  <tr>
+    <td valign="top" width="220">
+    <b>Tools</b>
+    <table cellpadding="5">
+      <tr>
+        <% [:armor, :crates, :grenades, :lightposts, :mines, :portals, :skeleton_keys, :st_nicks, :watchdogs ].each_with_index do |tool_name, index| %>
+        <% tool = Tool.cached_single tool_name %>
+          <td width="30">
+            <p><img src="<%= tool.icon_image %>" title="<%= tool.name.titleize %>" class="inventory_icon" /></p>
+          </td>
+          <td width="80" class="user_tools_align"> 
+            <p id='edit_tools_<%= tool_name %>'><%=h number_with_delimiter(@user.inventory.send(tool_name)) %></p>
+            <script type="text/javascript" language="javascript">
+            jQuery('#edit_tools_<%= tool_name %>').editInPlace( {
+              url: "/admin/update_inventory/<%= @user.login %>?tool=<%= tool_name %>&authenticity_token=<%= form_authenticity_token %>",
+              params: "ajax=yes",
+              bg_over: "#cff",
+              field_type: "text",
+              show_buttons: false,
+              update_value: 'value'
+            });
+            </script>
+          </td>
+
+          <% if (index + 1) % 2 == 0 %>
+            </tr>
+            <tr>
+          <% end %>
+
+        <% end %>
+    </table>
+    <%= link_to('Delete All Items', "/admin/delete_inventory/#{@user.login}", :confirm => 'Are you sure?', :method => :delete)%>
+    </td>
+    <td width="220" valign="top">
+      <b>Classpoints <%= cp_icon %></b>
+      <br clear="all" />
+      <table cellpadding="5">
+        <tr>
+        <% ['bedouin', 'destroyer', 'benefactor', 'vigilante', 'pathmaker', 'seer'].each_with_index do |class_name, index| %>
+        <% class_data = PmogClass.caches(:find_by_url_name, :with => class_name) %>
+          <td width="30">
+            <p><img src="<%= class_data.icon_image %>" title="<%= class_data.name %>" class="inventory_icon" /></p>
+          </td>
+          <td width="80" class="user_tools_align">
+            <p id='edit_levels_<%= class_name %>'><%=h number_with_delimiter(@user.user_level.send("#{class_name}_cp")) %></p>
+            <script type="text/javascript" language="javascript">
+            jQuery('#edit_levels_<%= class_name %>').editInPlace( {
+              url: "/admin/update_classpoints/<%= @user.login %>?class_name=<%= class_name %>&authenticity_token=<%= form_authenticity_token %>",
+              params: "ajax=yes",
+              bg_over: "#cff",
+              field_type: "text",
+              show_buttons: false,
+              update_value: 'value'
+            });
+            </script>
+          </td>
+
+        <% if (index + 1) % 2 == 0 %>
+        </tr>
+        <tr>
+        <% end %>
+
+        <% end %>
+      </table>
+    </td>
+    <td width="225">
+<table align="center" >
+	<tr>
+		<td>
+			<b>Available <%= dp_icon %></b>
+			<p id="edit_available_datapoints" align="center" style="width: 50px; margin-left: auto; margin-right: auto"><%=h number_with_delimiter(@user.datapoints) %></p>
+			<script type="text/javascript" language="javascript">
+      jQuery('#edit_available_datapoints').editInPlace( {
+        url: "/admin/update_datapoints/<%= @user.login %>?authenticity_token=<%= form_authenticity_token %>&lifetime=false",
+        params: "ajax=yes",
+        bg_over: "#cff",
+        field_type: "text",
+        show_buttons: false,
+        update_value: 'value'
+      });
+      </script>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<b>Lifetime <%= dp_icon %></b>
+			<p id="edit_lifetime_datapoints" align="center" style="width: 50px; margin-left: auto; margin-right: auto"><%=h number_with_delimiter(@user.total_datapoints) %></p>
+			<script type="text/javascript" language="javascript">
+      jQuery('#edit_lifetime_datapoints').editInPlace( {
+        url: "/admin/update_datapoints/<%= @user.login %>?authenticity_token=<%= form_authenticity_token %>&lifetime=true",
+        params: "ajax=yes",
+        bg_over: "#cff",
+        field_type: "text",
+        show_buttons: false,
+        update_value: 'value'
+      });
+      </script>
+		</td>
+	</tr>	
+	<tr>
+	    <td>
+	        <b>Available <%= ping_icon %></b>
+	        <p id="edit_available_pings" align="center" style="width: 50px; margin-left: auto; margin-right: auto"><%=h number_with_delimiter(@user.available_pings) %></p>
+	        <script type="text/javascript" language="javascript">
+          jQuery('#edit_available_pings').editInPlace( {
+            url: "/admin/update_pings/<%= @user.login %>?authenticity_token=<%= form_authenticity_token %>&lifetime=false",
+            params: "ajax=yes",
+            bg_over: "#cff",
+            field_type: "text",
+            show_buttons: false,
+            update_value: 'value'
+          });
+          </script>
+	    </td>
+	</tr>
+	<tr>
+	    <td>
+	        <b>Lifetime <%= ping_icon %></b>
+	        <p id="edit_lifetime_pings" align="center" style="width: 50px; margin-left: auto; margin-right: auto"><%=h number_with_delimiter(@user.lifetime_pings) %></p>
+	        <script type="text/javascript" language="javascript">
+          jQuery('#edit_lifetime_pings').editInPlace( {
+            url: "/admin/update_pings/<%= @user.login %>?lifetime=true&authenticity_token=<%= form_authenticity_token %>",
+            params: "ajax=yes",
+            bg_over: "#cff",
+            field_type: "text",
+            show_buttons: false,
+            update_value: 'value'
+          });
+          </script>
+	    </td>
+	</tr>
+</table>
+</td></tr></table>
+
+<br clear="all" />
+
+<p>
+			Click a number to edit in place!  But don't edit a lot, this clears the user's cache, so it results in a performance hit.  Yeh, I know, it's not exactly 'edit with impunity', but that's just how I roll....
+</p>
+
+			<p align="center"><b><a href="/users/<%= @user.login %>">View <%= @user.login %>'s profile</a></b></p>
+
+						</div>
+											
+					</div>
+				
+				</div>
+
+		</div>

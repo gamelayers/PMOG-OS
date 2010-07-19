@@ -1,0 +1,110 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/arsenal" %>
+		<div class="cell child"><span class="l"></span><span class="c">Upgrades</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="module width960">
+
+					<div class="imageTop">
+<div class="imageTopImage" style="background-image:url(/images/shared/dressing/upgrades-200.png);width:200px;height:200px;" title="Some awsm upgrades!"></div>
+					</div>
+					
+					<div class="copyTop">
+					
+					<h2>Upgrades</h2>
+<p>Upgrades are hacks you can make to your existing tools to get different behavior out of it. For the most part, you just need <a href="/guide/rules/pings">Pings</a> in order to use an Upgrade that you've unlocked. To see which Upgrades you have access to, check out the <a href="/guide/rules/levels">Levels</a> chart.</p>
+
+<!--
+<table align="left">
+
+  <tr>
+    <td>
+    
+    <h4>Total Upgrade Usage on The Nethernet: 
+    <a href="/guide/upgrades/puzzle_crate">
+      <img src="/images/shared/tools/icon/puzzle_crate-16.png"
+        title="Puzzle Crates"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('puzzle_crate') ) %></b> | 
+    <a href="/guide/upgrades/exploding_crate">
+      <img src="/images/shared/tools/icon/exploding_crate-16.png"
+        title="Exploding Crates"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('exploding_crate') ) %></b> | 
+    <a href="/guide/upgrades/ever_crate">
+      <img src="/images/shared/tools/icon/ever_crate-16.png"
+        title="Ever Crates"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('ever_crate') ) %></b> | 
+    <a href="/guide/upgrades/stealth_crate">
+      <img src="/images/shared/tools/icon/stealth_crate-16.png"
+        title="Stealth Crates"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('stealth_crate') ) %></b> | 
+    <a href="/guide/upgrades/ballistic_nick">
+      <img src="/images/shared/tools/icon/ballistic_nick-16.png"
+        title="Ballistic St. Nicks"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('ballistic_nick') ) %></b> | 
+    <a href="/guide/upgrades/stealth_mine">
+      <img src="/images/shared/tools/icon/stealth_mine-16.png"
+        title="Stealth Mines"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('stealth_mine') ) %></b> | 
+    <a href="/guide/upgrades/abundant_mine">
+      <img src="/images/shared/tools/icon/abundant_mine-16.png"
+        title="Abundant mines"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('abundant_mine') ) %></b> | 
+    <a href="/guide/upgrades/puzzle_post">
+      <img src="/images/shared/tools/icon/puzzle_post-16.png"
+        title="Puzzle Posts"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('puzzle_post') ) %></b> | 
+    <a href="/guide/upgrades/give_dp">
+      <img src="/images/shared/tools/icon/abundant_portal-16.png"
+        title="Abundant Portals"
+        class="inventory_icon"
+        width="16" height="16" />
+    </a><b><%#= UpgradeUse.total( Upgrade.cached_single('give_dp') ) %></b>
+   </h4>
+    
+    </td>
+  </tr>
+</table>
+-->
+
+						</div>
+					
+					</div>
+					</div>
+
+			
+				
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/upgrades" %> 
+			
+			<%= render :partial => "shared/guide/arsenal" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+		</div>
+
+
+

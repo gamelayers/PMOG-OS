@@ -1,0 +1,117 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/rules" %>
+		<div class="cell child"><span class="l"></span><span class="c">Classpoints</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+						<div class="module width700">
+
+<h1>Classpoints</h1>
+<h5>Is it not our actions that define us?</h5>
+
+<br />
+
+<img src="/images/shared/icons/classpoint-48.png" align="left" border="0" width="48" height="48" hspace="10"/>
+<p>Each time you use a tool, you earn Classpoints for the Class associated with that tool.  Earning Classpoints gives you <a href="/guide/rules/levels">Levels</a> with each of the <a href="/guide/classes">Classes</a>.</p>
+
+<p>All upgrades earn you classpoints for their respective association(s), and give you a tool use only for the upgrade itself. (i.e. 1 Puzzle Crate laid equals 1 Puzzle Crate Laid with no affect on your regular Crate use count).</p>
+
+<p>This table lists the number of Classpoints rewarded for each action you take.</p>
+
+<p>Don't forget: You only earn Classpoints for using tools from your toolbar; looting another player's crate, for example, will not earn you classpoints, but laying your own crate will!</p>
+
+<!-- the css styles used on this page were looted and pillaged with reckless abandon -->
+
+<div class="profile_content_top">
+
+  <div class="user_profile_title_tab"><h4>Tools</h4></div>
+ 
+  <div class="user_profile_content_tab">
+    <div class="home_news_feed">
+      <p class="user_table_list">
+        <% Tool.all do |tool| %>
+          <p><a href="/guide/tools/<%= tool.url_name %>"><img src="<%= tool.icon_image %>" alt="<%= tool.name.titleize %>" width="16" height="16" hspace="4" class="img_no_border"/></a>
+          <a href="/guide/tools/<%= tool.url_name %>"><%= tool.name.titleize %></a>: <%= tool.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" />
+          for <a href="/guide/classes/<%= PmogClass.find(tool.pmog_class_id).name.downcase %>"><%= PmogClass.find(tool.pmog_class_id).name %></a>
+        <% end %>
+      </p>
+      <br style="clear:both;" />
+    </div>
+  </div>
+
+</div>
+
+<div class="profile_content_top">
+
+  <div class="user_profile_title_tab"><h4>Abilities</h4></div>
+    
+  <div class="user_profile_content_tab">
+    <div class="home_news_feed">
+      <p class="user_table_list">
+
+       <% Ability.all do |ability| %>
+          <p><a href="/guide/abilities/<%= ability.url_name %>"><img src="<%= ability.icon_image %>" alt="<%= ability.name.titleize %>" width="16" height="16" hspace="4" class="img_no_border" /></a>
+          <a href="/guide/abilities/<%= ability.url_name %>"><%= ability.name.titleize %></a>: <%= ability.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" />
+          for <a href="/guide/classes/<%= PmogClass.find(ability.pmog_class_id).name.downcase %>"><%= PmogClass.find(ability.pmog_class_id).name %></a>
+        <% end %>
+      </p>
+      <br style="clear:both;" />
+    </div>
+  </div>
+ 
+</div>
+
+<div class="profile_content_top">
+
+  <div class="user_profile_title_tab"><h4>Upgrades</h4></div>
+   
+  <div class="user_profile_content_tab">
+    <div class="home_news_feed">
+      <p class="user_table_list">
+        <% Upgrade.all do |upgrade| %>
+          <p> <a href="/guide/upgrades/<%= upgrade.url_name %>"><img src="<%= upgrade.icon_image %>" alt="<%= upgrade.name.titleize %>" width="16" height="16" hspace="4" class="img_no_border" /></a>
+          <a href="/guide/upgrades/<%= upgrade.url_name %>"><%= upgrade.name.titleize %></a>: <%= upgrade.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" />
+          for <a href="/guide/classes/<%= PmogClass.find(upgrade.pmog_class_id).name.downcase %>"><%= PmogClass.find(upgrade.pmog_class_id).name %></a>
+        <% end %>
+      </p>
+      <br style="clear:both;" />
+    </div>
+  </div>
+
+	<h3>Missions</h3>
+	<p><a href="/guide/rules/missions"><img src="/images/shared/icons/explore-16.png" alt="Missions" title="Missions" class="icon16 poptip"/></a>
+	<a href="/missions">Mission</a> published: 50 <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /> for <a href="/guide/class/pathmakers">Pathmakers</a></p>
+	<p><a href="/guide/rules/missions"><img src="/images/shared/icons/explore-16.png" alt="Missions" title="Missions" class="icon16 poptip"/></a>
+	Each player taking a <a href="/missions">Mission</a>: <%= MiscAction.cached_single('mission_taken').classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /> for <a href="/guide/class/pathmakers">Pathmakers</a></p>
+
+						</div>
+					
+					</div>
+				
+					<div class="column width240">
+					<div class="imageTop">
+					
+					<div class="ImageTop" style="background-image:url(/images/shared/dressing/charactergroup-240.png); width:240px;height:191px;" title="The Classes"></div>
+				
+						</div>
+						</div>
+						</div>
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/rules" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+
+	
+
+
+		</div>
+
+</div>

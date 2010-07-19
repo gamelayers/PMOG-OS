@@ -1,0 +1,120 @@
+<% content_for :head do %>
+  <script>
+    jQuery(function() {
+      jQuery("table.stripeMe tr:nth-child(even)").addClass("whiteEven").removeClass("whiteOdd");
+      jQuery('#spy-list tbody').simpleSpy();
+      //go();
+    });
+    
+    function stripeIt() {
+      jQuery("table.stripeMe tr:nth-child(even)").addClass("whiteEven").removeClass("whiteOdd");
+      jQuery("table.stripeMe tr:nth-child(odd)").addClass("whiteOdd").removeClass("whiteOdd");
+    }
+    
+    jQuery.fn.fadeEachDown = function() {
+    	var s = this.size();
+    	return this.each(function(i) {
+    		var o = 1 - (s == 1 ? 0.5 : 0.85/s*(i+1));
+    		var e = this.style;
+    		if (window.ActiveXObject)
+    			e.filter = "alpha(opacity=" + o*100 + ")";
+    		e.opacity = o;
+    	});
+    };
+    
+    (function ($) {    
+    $.fn.simpleSpy = function (limit, interval) {
+      // set some defaults
+      limit = limit || 5;
+      interval = interval || 4000;
+
+      return this.each(function () {
+        // 1. setup
+          // capture a cache of all the list items
+        var $list = $(this),
+          items = [], // uninitialised
+          currentItem = limit,
+          total = 0, // initialise later on
+          height = $list.find('> tr:first').height();
+
+        // capture the cache
+        $list.find('> tr').each(function () {
+          items.push('<tr>' + $(this).html() + '</tr>');
+        });
+
+        total = items.length;
+
+        $list.wrap('<div class="spyWrapper" />').parent().css({ height : height * limit });
+
+        // chomp the list down to limit li elements    
+        $list.find('> tr').filter(':gt(' + (limit - 1) + ')').remove();
+
+        // 2. effect        
+        function spy() {
+          // insert a new item with opacity and height of zero
+          var $insert = $(items[currentItem]).css({
+            height : 0,
+            opacity : 0,
+            display : 'none'
+          }).prependTo($list);
+          
+          if ($list.find('> tr:nth-child(2)').hasClass('whiteEven')) {
+            $insert.addClass('whiteOdd');
+          } else {
+            $insert.addClass('whiteEven');
+          }
+          
+          // fade the LAST item out
+          $list.find('> tr:last').animate({ height : 0}, 1000, function () {
+            // increase the height of the NEW first item
+            // $insert.animate({ height : height }, 1000).animate({ opacity : 1 }, 1000);
+
+            // AND at the same time - decrease the height of the LAST item
+            //$(this).animate({ height : 0 }, 1000, function () {
+                // finally fade the first item in (and we can remove the last)
+                $(this).remove();
+            //});
+          });
+          $insert.animate({ height : height }, 1000).animate({ opacity : 1 }, 1000);
+
+          currentItem++;
+          // if (currentItem >= total) {
+          //   // let the spy finish
+          // } else {
+          //   // trigger the effect again in 4 seconds
+          //   setTimeout(spy, interval);
+          // }
+          if (currentItem >= total) {
+            currentItem = 0;
+          }
+          
+          // trigger the effect again in 4 seconds
+          setTimeout(spy, interval);
+        }
+
+        spy();
+      });
+    };    
+    })(jQuery);
+    
+  </script>
+<% end %>
+
+<div id="eventRotatorDiv" class="module width250 maxheight330">
+  <div id="eventsEveryones">
+    <table class="stripeMe list eventslist" id="spy-list" style="overflow: hidden;">
+      <tbody>
+        <% @events.each do |event| %>
+        <tr style='display:block;' id="<%= event.id %>">
+          <td class="icon event_list">
+            <img class="icon32 <%= event.context %>" src="/images/shared/clear.png" width="32" height="32" alt="<%= event.context %>" title="<%= event.context %>.titleize" />
+          </td>
+          <td class="copy">
+            <%= show_event(event) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

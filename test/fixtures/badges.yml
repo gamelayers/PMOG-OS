@@ -1,0 +1,281 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: badges
+#
+#  id          :string(36)    default(""), not null, primary key
+#  name        :string(255)   
+#  description :string(255)   
+#  created_at  :datetime      
+#  updated_at  :datetime      
+#  group_id    :string(36)    
+#  url_name    :string(255)   not null
+#
+
+--- 
+badge_8b5a09c0-e947-11dc-a035-001b63928f8d: 
+  name: Jaunt
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5a09c0-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 1500 Portals
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b583a0a-e947-11dc-a035-001b63928f8d: 
+  name: Invisible Man
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b583a0a-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 250 Portals
+  created_at: 2008-03-03 17:30:40 Z
+badge_8982d1e0-e947-11dc-a035-001b63928f8d: 
+  name: VC
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8982d1e0-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who read Tech Crunch every day they're logged on, for 7 contiguous days
+  created_at: 2008-03-03 17:30:37 Z
+badge_8980d3b8-e947-11dc-a035-001b63928f8d: 
+  name: Indie
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8980d3b8-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who go a 24 hour period without using Google
+  created_at: 2008-03-03 17:30:37 Z
+badge_89837636-e947-11dc-a035-001b63928f8d: 
+  name: Science, It Works Bitches
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 89837636-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who read xkcd.com once a week for 4 contiguous weeks
+  created_at: 2008-03-03 17:30:37 Z
+badge_8984a1c8-e947-11dc-a035-001b63928f8d: 
+  name: All About Mii
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8984a1c8-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who visit nintendo.com more than twice a week for 4 contiguous weeks
+  created_at: 2008-03-03 17:30:37 Z
+badge_8c26a9b2-e947-11dc-a035-001b63928f8d: 
+  name: Alpha
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c26a9b2-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who participated in the original alpha version of PMOG
+  created_at: 2008-03-03 17:30:41 Z
+badge_8c5e2a36-e947-11dc-a035-001b63928f8d: 
+  name: Inviting
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c5e2a36-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: 5 invitations were accepted by players
+  created_at: 2008-03-03 17:30:42 Z
+badge_8b443820-e947-11dc-a035-001b63928f8d: 
+  name: Little Sister
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b443820-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 250 St. Nicks
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b5f1cbc-e947-11dc-a035-001b63928f8d: 
+  name: Beatenest
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5f1cbc-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 500 pieces of Armor
+  created_at: 2008-03-03 17:30:40 Z
+badge_8c5f438a-e947-11dc-a035-001b63928f8d: 
+  name: Alluring
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c5f438a-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: 10 invitations were accepted by players
+  created_at: 2008-03-03 17:30:42 Z
+badge_8c29dfc4-e947-11dc-a035-001b63928f8d: 
+  name: 15 Missions
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c29dfc4-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who create 15 missions
+  created_at: 2008-03-03 17:30:41 Z
+badge_8b4633be-e947-11dc-a035-001b63928f8d: 
+  name: Good Doctor
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b4633be-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 1500 St. Nicks
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b55842c-e947-11dc-a035-001b63928f8d: 
+  name: Matchstick Girl
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b55842c-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 250 Lightposts
+  created_at: 2008-03-03 17:30:40 Z
+badge_8c2bf638-e947-11dc-a035-001b63928f8d: 
+  name: 30 Missions
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c2bf638-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who create 30 missions
+  created_at: 2008-03-03 17:30:41 Z
+badge_8b5ffe20-e947-11dc-a035-001b63928f8d: 
+  name: Tank
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5ffe20-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 1500 pieces of Armor
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b5e2f14-e947-11dc-a035-001b63928f8d: 
+  name: Shields Up
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5e2f14-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 250 pieces of Armor
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b5bcefe-e947-11dc-a035-001b63928f8d: 
+  name: Biddy
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5bcefe-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 500 Crates
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b473cdc-e947-11dc-a035-001b63928f8d: 
+  name: Normandy
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b473cdc-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 250 Mines
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b451b00-e947-11dc-a035-001b63928f8d: 
+  name: Avenger
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b451b00-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 500 St. Nicks
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b4343d4-e947-11dc-a035-001b63928f8d: 
+  name: Fellow Traveller
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b4343d4-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who complete more than 8 missions.
+  created_at: 2008-03-03 17:30:40 Z
+badge_898033f4-e947-11dc-a035-001b63928f8d: 
+  name: Torch
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 898033f4-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players that visit 100 URLs over a 24 hour period
+  created_at: 2008-03-03 17:30:37 Z
+badge_8b57520c-e947-11dc-a035-001b63928f8d: 
+  name: Keeper of the Flame
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b57520c-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 1500 Lightposts
+  created_at: 2008-03-03 17:30:40 Z
+badge_89840d9e-e947-11dc-a035-001b63928f8d: 
+  name: Achiever
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 89840d9e-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who visit xbox360achievements.org and / or live.xbox.com more than twice a week for 4 contiguous weeks
+  created_at: 2008-03-03 17:30:37 Z
+badge_8b53ad14-e947-11dc-a035-001b63928f8d: 
+  name: All-Fired
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b53ad14-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 500 Mines
+  created_at: 2008-03-03 17:30:40 Z
+badge_8b5cb152-e947-11dc-a035-001b63928f8d: 
+  name: The Giver
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5cb152-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 1500 Crates
+  created_at: 2008-03-03 17:30:40 Z
+badge_8c279552-e947-11dc-a035-001b63928f8d: 
+  name: Beta
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c279552-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who participated in the beta version of PMOG
+  created_at: 2008-03-03 17:30:41 Z
+badge_8b549878-e947-11dc-a035-001b63928f8d: 
+  name: Hell Fire
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b549878-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 1500 Mines
+  created_at: 2008-03-03 17:30:40 Z
+badge_89822cd6-e947-11dc-a035-001b63928f8d: 
+  name: Snowglobe
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 89822cd6-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who visit less than 10 sites in 7 days (but who ARE online during each of those 7 days)
+  created_at: 2008-03-03 17:30:37 Z
+badge_8b591dda-e947-11dc-a035-001b63928f8d: 
+  name: Telepmogation
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b591dda-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 500 Portals
+  created_at: 2008-03-03 17:30:40 Z
+badge_8c6019f4-e947-11dc-a035-001b63928f8d: 
+  name: Magnetic
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c6019f4-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: 30 invitations were accepted by players
+  created_at: 2008-03-03 17:30:42 Z
+badge_8b566ee6-e947-11dc-a035-001b63928f8d: 
+  name: Illuminati
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b566ee6-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 500 Lightposts
+  created_at: 2008-03-03 17:30:40 Z
+badge_89819334-e947-11dc-a035-001b63928f8d: 
+  name: Bounce Bounce
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 89819334-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who read Boing Boing every day they're logged on, for 7 contiguous days
+  created_at: 2008-03-03 17:30:37 Z
+badge_8b5ae732-e947-11dc-a035-001b63928f8d: 
+  name: Trail Of Splinters
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8b5ae732-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who use more than 250 Crates
+  created_at: 2008-03-03 17:30:40 Z
+badge_8c28d4b2-e947-11dc-a035-001b63928f8d: 
+  name: 5 Missions
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c28d4b2-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: For players who create 5 missions
+  created_at: 2008-03-03 17:30:41 Z
+badge_8c28d4b2-e947-11dc-a035-001b63928f8d: 
+  name: Inviting
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c28d4b2-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: Inviting
+  created_at: 2008-03-03 17:30:41 Z
+badge_8c28d4b2-e947-11dc-a035-001b63928f8d: 
+  name: Alluring
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c28d4b2-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: Alluring
+  created_at: 2008-03-03 17:30:41 Z
+badge_8c28d4b2-e947-11dc-a035-001b63928f8d: 
+  name: Magnetic 
+  updated_at: 2008-03-03 17:32:22 Z
+  id: 8c28d4b2-e947-11dc-a035-001b63928f8d
+  group_id: 8c89e8f6-e947-11dc-a035-001b63928f8d
+  description: Magnetic
+  created_at: 2008-03-03 17:30:41 Z

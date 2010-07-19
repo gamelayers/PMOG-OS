@@ -1,0 +1,35 @@
+require 'rake'
+require 'rubygems'
+require 'rake/gempackagetask'
+require 'rake/rdoctask'
+
+desc 'Default Task'
+task :default => [:package]
+
+gem_spec = Gem::Specification.new do |s|
+    s.platform  =   Gem::Platform::RUBY
+    s.name      =   "acts_as_readonlyable"
+    s.version   =   "0.0.9"
+    s.author    =   "RHG Team"
+    s.email     =   "rails-trunk@revolution.com"
+    s.summary   =   "acts_as_readonlyable allows to add read-only slaves DBs to models"
+    s.files     =   FileList["init.rb", "lib/**/*"].to_a
+    s.require_path  =   "lib"
+    s.has_rdoc  =   false
+    s.extra_rdoc_files  =   ['README', 'MIT-LICENSE']
+    s.autorequire = 'acts_as_readonlyable'
+end
+    
+gem = Rake::GemPackageTask.new(gem_spec) do |pkg|
+  pkg.need_tar = true
+  pkg.need_zip = true
+end
+
+desc 'Generate documentation'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'Facade'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end

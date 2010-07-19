@@ -1,0 +1,7 @@
+<p id="mine_flash">
+  <%= flash[:notice] || flash[:error] %>
+</p>
+<script>
+	new Effect.Highlight('mine_flash',{duration: 3.0});
+	<%= visual_effect(:fade, 'mine_flash', {:duration => 5.0}) %>
+</script>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+sample_card:
+  id: <%= UUID.timestamp_create().to_s %>
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  location_id: a492e9a2-f117-11dc-bf13-0016cb88feaa
+
+# one:
+#   column: value
+#
+# two:
+#   column: value

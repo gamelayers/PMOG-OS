@@ -1,0 +1,77 @@
+--- 
+brain_buster_00013: 
+  id: 13
+  question: "Complete the following: 'Jack and Jill went up the ???"
+  answer: hill
+brain_buster_00002: 
+  id: 2
+  question: What is the number before twelve?
+  answer: "11"
+brain_buster_00003: 
+  id: 3
+  question: Five times two is what?
+  answer: "10"
+brain_buster_00014: 
+  id: 14
+  question: What is 4 times four?
+  answer: "16"
+brain_buster_00015: 
+  id: 15
+  question: What number comes after 20?
+  answer: "21"
+brain_buster_00004: 
+  id: 4
+  question: "Insert the next number in this sequence: 10, 11, 12, 13, 14, ??"
+  answer: "15"
+brain_buster_00005: 
+  id: 5
+  question: What is five times five?
+  answer: "25"
+brain_buster_00016: 
+  id: 16
+  question: What month comes before July?
+  answer: june
+brain_buster_00017: 
+  id: 17
+  question: What is fifteen divided by three?
+  answer: "5"
+brain_buster_00006: 
+  id: 6
+  question: Ten divided by two is what?
+  answer: "5"
+brain_buster_00007: 
+  id: 7
+  question: What day comes after Monday?
+  answer: tuesday
+brain_buster_00018: 
+  id: 18
+  question: What is 14 minus 4?
+  answer: "10"
+brain_buster_00019: 
+  id: 19
+  question: What comes next? 'Monday Tuesday Wednesday ?????'
+  answer: thursday
+brain_buster_00008: 
+  id: 8
+  question: What is the last month of the year?
+  answer: december
+brain_buster_00009: 
+  id: 9
+  question: How many minutes are in an hour?
+  answer: "60"
+brain_buster_00010: 
+  id: 10
+  question: What is the opposite of down?
+  answer: up
+brain_buster_00011: 
+  id: 11
+  question: What is the opposite of north?
+  answer: south
+brain_buster_00001: 
+  id: 1
+  question: What is two plus two?
+  answer: "4"
+brain_buster_00012: 
+  id: 12
+  question: What is the opposite of bad?
+  answer: good

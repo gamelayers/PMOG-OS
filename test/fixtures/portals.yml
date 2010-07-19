@@ -1,0 +1,68 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: portals
+#
+#  id             :string(36)    primary key
+#  user_id        :string(36)    
+#  location_id    :string(36)    
+#  destination_id :string(36)    
+#  created_at     :datetime      
+#  updated_at     :datetime      
+#  average_rating :integer(11)   default(0)
+#  branch_id      :string(36)    
+#  title          :string(255)   
+#  nsfw           :boolean(1)    
+#  charges        :integer(11)   default(5)
+#
+
+yeah_to_google:
+  nsfw: false
+  title: yeah to google
+  branch_id: 
+  location_id: 09eb0024-f437-11dc-b7f8-0016cb88feaa
+  id: 23998202-f437-11dc-b7f8-0016cb88feaa
+  destination_id: a492e9a2-f117-11dc-bf13-0016cb88feaa
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  charges: 5
+  average_rating: 3
+google_to_yeah:
+  nsfw: false
+  title: google to yeah
+  branch_id: 
+  location_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  id: 23998202-f437-11dc-b7f8-0016cb88feab
+  destination_id: 09eb0024-f437-11dc-b7f8-0016cb88feaa
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  charges: 5
+  average_rating: 3  
+google_to_google:
+  nsfw: false
+  title: round trip
+  branch_id: 
+  location_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  id: fc7ebdac-84ed-11dd-8ce0-0016cb88feaa
+  destination_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  charges: 49
+  average_rating: 4
+marcs_stub_portal:
+  nsfw: false
+  title: round trip
+  branch_id: 
+  location_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  destination_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  charges: 49
+  average_rating: 4
+suttrees_abundant_portal:
+  nsfw: false
+  title: this portal gives dp
+  branch_id: 
+  location_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  destination_id: 8a6a90fc-f5db-11dc-86e6-0016cb88feaa
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+  id: 9e8cdc64-b045-11dd-9d7c-0017f2d41804
+  charges: 5
+  average_rating: 5
+  abundant: true

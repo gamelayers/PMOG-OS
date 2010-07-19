@@ -1,0 +1,131 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell parent"><A href="/upgrades"><span class="l"></span><span class="c">Edit Upgrades</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c">Editing <%= @upgrade.name.pluralize.titleize %></span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+<h1>Editing <%= @upgrade.name.pluralize.titleize %></h1>
+<h3>(return to <a href="/upgrades">edit all upgrades</a> or <a href="/guide/upgrades">guide/upgrades</a>)</h3>
+
+<% form_for(:upgrade, :url => upgrade_path, :html => { :method => :put } ) do |f| %>
+  <p>
+    Name:
+    <br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    Level:
+    <br/>
+    <%= f.text_field :level %>
+  </p>
+	<p>
+		Short description:
+		<br/>
+		<%= f.text_area :short_description, :rows => 5 %>
+		<script type="text/javascript">
+		  $( 'upgrade_short_description' ).focus();
+		</script>
+	</p>
+	<p>
+		Long description
+		<br/>
+		<%= f.text_area :long_description, :rows => 10 %>
+	</p>
+	<p>
+		Icon image path
+		<br/>
+		<%= f.text_field :icon_image %>
+		<img src="<%= @upgrade.icon_image %>" alt="<%= @upgrade.icon_image %>">
+
+	</p>
+	<p>
+		Small image path
+		<br/>
+		<%= f.text_field :small_image %>
+		<img src="<%= @upgrade.small_image %>" alt="<%= @upgrade.small_image %>">
+	</p>
+	<p>
+		Medium image path
+		<br/>
+		<%= f.text_field :medium_image %>
+		<img src="<%= @upgrade.medium_image %>" alt="<%= @upgrade.medium_image %>">
+
+	</p>
+	<p>
+		Large image path
+		<br/>
+		<%= f.text_field :large_image %>
+		<img src="<%= @upgrade.large_image %>" alt="<%= @upgrade.large_image %>">
+
+	</p>
+	<p>
+		DP Cost <%= dp_icon %>
+		<br/>
+		<%= f.text_field :dp_cost %>
+	</p>
+	<p>
+		Ping Cost <%= ping_icon %>
+		<br/>
+		<%= f.text_field :ping_cost %>
+  </p>
+	<p>
+		Classpoints <%= cp_icon %>
+		<br/>
+		<%= f.text_field :classpoints %>
+  </p>
+	<p>
+		Armor Cost
+		<br/>
+		<%= f.text_field :armor_cost %>
+  </p>
+	<p>
+		Crate Cost
+		<br/>
+		<%= f.text_field :crate_cost %>
+  </p>
+	<p>
+		Lightpost Cost
+		<br/>
+		<%= f.text_field :lightpost_cost %>
+  </p>
+	<p>
+		Mine Cost
+		<br/>
+		<%= f.text_field :mine_cost %>
+  </p>
+	<p>
+		Portal Cost
+		<br/>
+		<%= f.text_field :portal_cost %>
+  </p>
+  <p>
+    St. Nick Cost
+    <br/>
+    <%= f.text_field :st_nick_cost %>
+  </p>
+  <p>
+    Misc
+    <%= f.text_field :misc %>
+  </p>
+	<p>
+		<%= submit_tag "Update" %>
+	</p>
+<% end %>
+</div>
+
+						</div>
+											
+					</div>
+				
+				</div>
+			
+			</div>

@@ -1,0 +1,22 @@
+<% @page_title = "PMOG Chat: " + @channel.title %>
+
+<h3>PMOG Chat:</h3>
+
+<div id="conversation">
+    <div id="stage">
+      <% for message in @channel.latest_messages %>
+        <%= message_content(message) %>
+      <% end %>
+    </div>
+</div>
+
+<br/>
+
+<div id="typebox">
+    <%= form_remote_tag :url => { :controller => 'channel', :action => 'say', :channel_name => @channel.name }, :loading => "$('entryfield').value = ''; $('entryfield').focus;", :complete => "eval(request.responseText)" %>
+    <input id="entryfield" size="14" type="text" name="message" value="Type here and press enter" onclick="$('entryfield').value=''" />
+    <input type="submit" value="Say" style="display: none;" />
+    <%= end_form_tag %>
+</div>
+
+<p>or visit the <a href="/forums/" target="_main">PMOG forums</a></p>

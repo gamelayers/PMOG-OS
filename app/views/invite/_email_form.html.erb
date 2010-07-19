@@ -1,0 +1,13 @@
+<% form_tag(:action => :parse_auto_email_form) do %>
+
+  <p>Send an email to the following people:</p>
+  <% @targets.each do |email| %>
+    <%= email %>
+    <input type="hidden" name="emails[<%= email %>]"/><br/>
+  <% end %>
+
+  <p><%= text_area_tag 'message', "Default message goes here eventually", :size => "60x10" %></p>
+
+  <%= submit_tag "Invite!" %>
+
+<% end %>

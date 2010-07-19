@@ -1,0 +1,2 @@
+module AcquaintancesHelper
+end

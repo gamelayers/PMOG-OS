@@ -1,0 +1,98 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/about" %>
+		<div class="cell child"><span class="l"></span><span class="c">Privacy</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>Privacy on The Nethernet</h1>
+<h5>Describing your rights as you play on The Nethernet</h5>
+
+<br/>
+
+<p>The Nethernet is a game built around web surfing trails.  If you install The Nethernet, and surf the web, we index the URLs you surf to give you points and to render The Nethernet game events.</p>
+
+<h3>What We Do Not Track</h3>
+
+<ul>
+<li>We do not track or index secure URLs (URLs starting with <tt>https://</tt>, like bank web sites and webmail).</li>
+<li>We do not capture the contents you write into web windows: we do not capture usernames and passwords, blog updates, email messages or web form typings, unless those bits are passed in a URL.  </li>
+</ul>
+
+<h3>What We Look At and Store</h3>
+
+<p>We collect information through forms on our web site, and a web browser extension, to process for our game.  Collecting this information allows us to provide you with a nuanced and efficient internet play experience.  We collect the following types of information from the players of The Nethernet:</p>
+
+<h4>Information you provide to us directly:</h4>
+
+<ul>
+<li>We store your email and an encrypted version of your password as your login details.</li>
+<li>We also store any other personal details that you fill out on our profile page, such as gender, forename, surname, age, country and timezone.  We store any photos you upload to your profile as well.</li>
+</ul>
+
+<h4>Automatically Gathered Information:</h4>
+
+<ul>
+<li>We store a list of other players that you interact with, these being your acquaintances, allies and rivals. We also store a copy of any message you send and receive using The Nethernet's messaging system. We store a record of your actions in the game: tools used, datapoints earned, missions taken, comments left, ratings made, forum posts and missions made.</li>
+<li>Through the web browser extension for The Nethernet, we look at each URL you surf and we check that specific URL for the presence of an in-game tool.</li>
+<li>Then we store those URLs in a database to render out your badges.</li>
+</ul>
+
+<h3>Password, Login and Cookies</h3>
+
+<ul>
+<li>When you log in to thenethernet.com, we install a web browser cookie to allow you to return to our site easily without re-entering your login information.</li>
+<li>We also use cookies for tracking web site visit statistics.</li>
+<li>Our browser extension will save your password and login if you so choose.  If you are on a shared computer, we recommend you log out of thenethernet.com or the extension when you are finished with your play session.</li>
+</ul>
+
+<h3>Control the Display and Use of Your Information</h3>
+
+<ul>
+<li>You can visit your <% if logged_in? %><a href="/users/<%= current_user.login %>/edit?section=6">Privacy Settings panel</a><% end %>, and adjust at your options.  The default setting is for players to play a full-featured public game of The Nethernet, where your profile information is visible to anyone playing the game, and anyone who surfs to the url for your profile.  You can play so only friends can see your profile, or you can hide your profile completely (essentially playing on The Nethernet alone).</li>
+<li>The web browser extension for The Nethernet allows you to manage the data we collect from you.  Using the Pause button, you can elect to stop sending us data, and stop receiving The Nethernet game events as you surf.  In addition, you can uninstall the browser extension for The Nethernet.  In that event, your player profile would still sit on our servers; however your profile would cease to be updated with your web trails.</li>
+<li>Finally, if you wish, you can completely erase your identity from our system; it's your data and you can choose to remove it.  There is a button for removing your surf history, or your entire profile from The Nethernet, on your privacy settings page.</li>
+</ul>
+
+<h3>How We Share Data</h3>
+
+<p>The Nethernet turns daily use of the web into an ongoing social game, and information from players of The Nethernet is integral to this experience.  We only share your personal information as follows:</p>
+
+<ul>
+<li>Employees of GameLayers or authorized contractors and consultants may have access to user information in the course of their work on The Nethernet.</li>
+<li>In the event of a transfer of ownership of The Nethernet, GameLayers, or its assets, another entity could come in control of our databases.  In this event, we will contact our players to let them know before their data is subject to a different privacy policy.</li>
+<li>GameLayers may disclose player data in limited circumstances if we believe in good faith that doing so would: comply with legal process, prevent fraud or imminent harm, and/or help ensure the integrity of The Nethernet.</li>
+<li>We may share player information through our API for external developers to expand The Nethernet functionality.  This information sharing would be subject to the privacy controls on player profiles.</li>
+</ul>
+
+<h3>Effective Date</h3>
+
+<p>This Privacy Policy is effective as of 14 January, 2008, and last updated on 2 March 2009.</p>
+
+<h3>Questions?</h3>
+
+<p>If you have any questions about this privacy policy, you may email help at thenethernet d0t com, or contact GameLayers via mail at 1 Lombard Street, Suite 303, San Francisco, CA 94111, or by fax: (888) 480-7664.  Review our various <a href="/about/contact">Contact Options</a>.</p>
+
+						</div>
+					
+					</div>
+				
+				</div>
+				
+			<div class="column width960">
+			
+				<%= render :partial => "shared/about" %>
+				
+				<%= render :partial => "shared/guide/guide_module" %>
+				
+			</div>
+
+		</div>

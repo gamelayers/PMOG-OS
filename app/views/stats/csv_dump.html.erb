@@ -1,0 +1,3 @@
+<% @csv_data.each do |csv| %>
+<%= csv[0] %>,<% csv[1].each do |k,v| %><%= k + ',' + v %>,<% end %>
+<% end %>

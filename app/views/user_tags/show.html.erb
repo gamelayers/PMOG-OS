@@ -1,0 +1,9 @@
+<h2><%= @user.username %>'s Missions Tagged: <%=h params[:id] %></h2>
+
+<p>
+  <%= link_to "Show all missions tagged with #{h params[:id]}", tag_path(h(params[:id])) %>
+</p>
+
+<ul id="missions">
+  <%= render :partial => 'missions/association_list', :collection => @missions %>
+</ul>

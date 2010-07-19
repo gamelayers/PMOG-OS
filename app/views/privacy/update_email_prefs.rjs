@@ -1,0 +1,2 @@
+page.replace_html "email_flash", :partial => "shared/flash", :locals => { :flash => flash }
+flash.discard

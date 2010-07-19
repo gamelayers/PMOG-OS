@@ -1,0 +1,9 @@
+/^admin$/
+/^administrator$/
+/^root$/
+/^sales$/
+/^webmaster$/
+/^abuse$/
+/^monitor$/
+/^info$/
+/^toor$/

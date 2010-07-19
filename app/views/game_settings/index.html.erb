@@ -1,0 +1,36 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Edit Game Settings</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>PMOG Game Settings</h1>
+<h5>You tweak what you sow</h5>
+
+<br />
+
+<% @game_settings.each do |g| %>
+  <% form_for(:game_setting, :url => game_setting_path(g), :html => { :method => :put } ) do |f| %>
+    <%= g.key %>: 
+		<%= f.text_field :value, :value => g.value, :size => 5 %>
+		<%= submit_tag "Update setting" %>
+  <% end %>
+<% end %>
+
+
+
+						</div>
+											
+					</div>
+				
+				</div>
+			
+			</div>

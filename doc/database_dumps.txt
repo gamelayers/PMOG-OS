@@ -1,0 +1,39 @@
+= Database Dumps From EngineYard =
+
+Untested, but this may work as a way to dump the production database and import it into staging:
+
+Export
+  mysqldump -h ey03-s00316 -u gamelayers_db -p<pwd> --no-create-db --add-drop-table pmog_stage > /tmp/pmog_staging.dmp
+
+Import
+  mysql -h ey03-s00316 -u gamelayers_db -p<pwd> pmog_stage < /tmp/pmog_staging.dmp
+
+
+
+  
+= Restoring From A Dump =
+
+  From Max Mohun at EngineYard:
+  
+You can use the following one liner to extract the SQL for a given table from the compressed dump file:
+
+TABLE='feeds'; bzip2 -dc pmog_production.dump.bz2 | perl -nle 'BEGIN{$regex=q{^-- Table structure for table };}; exit if $f==1 and /$regex/; $f=0 if /$regex/; $f=1 if /$regex`'$TABLE'`/; print if $f==1' > pmog_production_$TABLE.sql; echo $?
+
+Just change "TABLE='feeds'", at the beginning of the line, to whatever is the appropriate table, e.g., "TABLE='assets'".
+
+This will only read as much of the file as needed and quit.
+
+If you have the uncompressed dump file, you can change the one liner to:
+
+TABLE='feeds'; perl -nle 'BEGIN{$regex=q{^-- Table structure for table };}; exit if $f==1 and /$regex/; $f=0 if /$regex/; $f=1 if /$regex`'$TABLE'`/; print if $f==1' pmog_production.dump > pmog_production_$TABLE.sql; echo $?
+
+to avoid the cost of running bzip2. This uses less cpu but creates more iowait on the shared /data filesystem.
+
+If you want to reconstruct the dump file format for just the one table, you can do:
+
+TABLE='feeds'
+head -17 pmog_production.dump > head_dump.sql
+tail -11 pmog_production.dump > tail_dump.sql
+cat head_dump.sql pmog_production_$TABLE.sql tail_dump.sql > pmog_production_$TABLE.dump
+
+changing "TABLE='feeds'" as appropriate.

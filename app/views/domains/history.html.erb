@@ -1,0 +1,23 @@
+<h1>Daily Domain Browser</h1>
+<h5>The history boys - where did they go, Joe?</h5>
+
+<br/>
+
+<p align='center'>
+  <a href='?period=today'>Today</a> | 
+  <a href='?period=yesterday'>Yesterday</a> | 
+  <a href='?period=this_week'>This Week</a> | 
+  <a href='?period=last_week'>Last Week</a>
+</p>
+
+<p>
+  <b>Where did <%= @user.login %> go <%= @period.gsub('_', ' ') %>?</b>
+</p>
+
+<p>
+  <% @history.each do |h| %>
+    <img src='http://www.google.com/s2/favicons?domain=<%= Url.domain(h.location.url) %>' height='16' width='16' />
+    <a href='<%= h.location.url %>'><%= h.location.url %></a>, <%= pluralize(h.hits, 'hit', 'hits') %> on <%= h.created_on %>.
+    <br/>
+  <% end %>
+</p>

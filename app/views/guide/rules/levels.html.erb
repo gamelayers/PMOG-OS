@@ -1,0 +1,233 @@
+<% content_for :head do %>
+	<script type="text/javascript" src="/javascripts/jquery-1.3.1.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.hoverIntent.js"></script>
+	<script type="text/javascript" src="/javascripts/superfish.js"></script>
+	<script type="text/javascript" src="/javascripts/ui.core.js"></script>
+
+	<script type="text/javascript" src="/javascripts/ui.accordion.js"></script>
+	<script type="text/javascript">
+	// initialise plugins
+	jQuery(function(){
+		jQuery('ul.sf-menu').superfish();
+	});
+  // DO accordion
+  $(document).ready(function(){
+	$('#levels').accordion({ 
+    	active: true,
+   	  autoHeight: false,
+    	header: 'h3',
+    	collapsible: true
+		});
+	});
+	// DO form input stuff
+	$(document).ready(function(){
+  	$('input[type=text]').each(function(n,element){  
+    	if ($(element).val()=='') { $(this).addClass('noTextHere') }
+	    else { $(this).addClass('textHere') }
+  	});
+	  $('input[type=text]').each(function(n,element){
+  	  $(this).focus(function(){$(this).removeClass('textHere')
+    	});
+	  });
+  	$('input[type=text]').each(function(n,element){  
+	    if ($(element).val()!='') { 
+  	  	$(this).blur(function(){$(this).addClass('textHere') });
+    		};
+	  });
+  // DO form extensions
+  $('.extendThis').hide();
+	$('.formElement').hover(
+		function(){$(this).find('.extendThis').fadeIn(200);},
+		function(){$(this).find('.extendThis').hide();}
+		);
+	$('input[type="text"]').focus(
+		function(){$(this).parent().find('.extendThis').fadeIn(200);$(this).parent().addClass('backYellow');}
+		);
+	$('input[type="text"]').blur(
+		function(){$(this).parent().find('.extendThis').hide();$(this).parent().removeClass('backYellow');}
+		);
+	$('select').focus(
+		function(){$(this).parent().find('.extendThis').fadeIn(200);$(this).parent().addClass('backYellow');}
+		);
+	$('select').blur(
+		function(){$(this).parent().find('.extendThis').hide();$(this).parent().removeClass('backYellow');}
+		);
+
+	// DO table striping
+		$("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+
+	});
+	</script>
+<% end %>
+
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/rules" %>
+		<div class="cell child"><span class="l"></span><span class="c">Levels</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+					<div class="module width960">
+
+<!-- LEFT COLUMN -->
+						<div class="column width155">
+						<% if logged_in? %>
+							<img src="/images/shared/associations/medium/<%= current_user.user_level.primary_class.pluralize %>.jpg" alt="" /><br/>
+							<h3><%= current_user.user_level.primary_class.titleize %><br/>
+              Level <%= current_user.current_level %></h3>
+              
+              <p><a href="/users/<%= current_user.login %>/edit#Class">Change your Class</a></p>
+            <% end %>
+
+						</div>
+<!-- /LEFT COLUMN -->
+<!-- RIGHT COLUMN -->
+						<div class="column width775">
+
+							<div class="accordion" id="levels">
+<h2>Your Powers on The Nethernet.</h2>
+
+<p class="intro">The Nethernet is a struggle between <a href="/guide/rules/order/">Order</a> and <a href="/guide/rules/chaos/">Chaos</a>. What powers will you unlock as you level up? Which faction will you choose? The reward for practice is mastery - your time playing the toolbar will unlock more potential mayhem or harmony below:</p>
+
+<p> Remember: You must meet the two requirements listed for each level - both <%= dp_icon %> <a href="/guide/rules/datapoints/">datapoints</a> and <%= cp_icon %> <a href="/guide/rules/classpoints/">classpoints</a>!</p>
+
+<% Level.caches(:find, :with => :all, :ttl => 1.day).each do |level| %>
+<a name="level-<%= level.level %>"></a>
+<h3><a href="#level-<%= level.level %>">
+<% if logged_in? %>
+	<% if level.level == current_user.current_level.to_i %>
+		<div id="levelNotice"><img src="/images/shared/highest_level.png" align="right" /></div>
+	<% end %>
+<% end %>
+Level <%= level.level %><span><strong>Requirements:</strong> <%= number_with_delimiter(Level.caches(:find_by_level, :with => level.level, :ttl => 1.day).datapoints) %> <img src="/images/shared/icons/datapoint-16.png" alt="datapoints" class="icon16" /> and <%= number_with_delimiter(Level.caches(:find_by_level, :with => level.level, :ttl => 1.day).classpoints) %> <img src="/images/shared/icons/classpoint-16.png" alt="classpoints" class="icon16" />
+
+<% if Tool.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).size > 0 || Upgrade.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).size > 0 || Ability.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).size > 0 %>
+
+<strong>Rewards:</strong> 
+<% end %>
+
+<% if Tool.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).size > 0 %>
+	New Tools!
+<% end %>
+<% if Upgrade.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).size > 0 %>
+	New Upgrades!
+<% end %>
+<% if Ability.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).size > 0 %>
+	New Abilities!
+<% end %>
+</span></a></h3>
+
+	<div class="" id="level<%= level.level %>">
+
+		<% Tool.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).each do |tool| %>
+
+			<div class="module width340">
+				<a href="/guide/classes/<%= tool.pmog_class.name.downcase.singularize %>"><img src="/images/shared/associations/levels/<%= tool.pmog_class.name.downcase.singularize %>.png" alt="<%= tool.pmog_class.name.downcase.singularize %>" align="left" width="75" height="200" hspace="10" /></a>
+				
+				<% if logged_in? %>
+					<% if current_user.user_level.unlocked? tool.url_name.to_sym %>
+						<a href="/guide/tools/<%= tool.name.downcase %>"><img src="<%= tool.medium_image %>" alt="<%=tool.name.titleize %>" title="<%= tool.name.titleize %> - you unlocked these!  You have suffient levels as a <%= tool.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+					<% else %>
+						<a href="/guide/tools/<%= tool.url_name %>"><img src="/images/shared/tools/medium/<%= tool.url_name %>-locked.png" alt="<%= tool.name.titleize %>" title="<%= tool.name.titleize %> - you haven't unlocked these yet.  Level up as a <%= tool.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+					<% end %>
+				<% else %>
+					<a href="/guide/tools/<%= tool.url_name %>"><img src="<%= tool.medium_image %>" alt="<%=tool.name.titleize %>" title="<%= tool.name.titleize %> - you unlocked these!  You have suffient levels as a <%= tool.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+				<% end %>
+
+				<h4><a href="/guide/tools/<%= tool.url_name %>"><%= tool.name.titleize %></a></h4>
+				
+				<p><%= tool.short_description %></p>
+				
+				<p><%= tool.name.titleize %> are used by <a href="/guide/classes/<%= tool.pmog_class.name.downcase.singularize %>"><%= tool.pmog_class.name.pluralize.titleize %></a>.</p>
+				
+				<p>Costs: <%= tool.cost %> <img src="/images/shared/icons/datapoint-16.png" alt="datapoints" class="icon16" /><br/>
+				Earns: <%= tool.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /></p>
+				
+				<p><a href="/guide/tools/<%= tool.url_name %>">Learn More about <%= tool.name.titleize %></a></p>
+
+			</div>
+		<!-- FixMe this is pissin me off <div class="width20"></div> -->
+		<% end %>
+
+		<% Upgrade.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).each do |upgrade| %>
+			<div class="module width340">
+				<a href="/guide/classes/<%= upgrade.pmog_class.name.downcase.singularize %>"><img src="/images/shared/associations/levels/<%= upgrade.pmog_class.name.downcase.singularize %>.png" alt="<%= upgrade.pmog_class.name.downcase.singularize %>" align="left" width="75" height="200" hspace="10" /></a>
+				
+				<% if logged_in? %>
+					<% if current_user.user_level.unlocked? upgrade.url_name.to_sym %>
+						<a href="/guide/upgrades/<%= upgrade.url_name %>"><img src="<%= upgrade.medium_image %>" alt="<%=upgrade.name.downcase %>" title="<%= upgrade.name.titleize %> - you unlocked these!  You have suffient levels as a <%= upgrade.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+					<% else %>
+						<a href="/guide/upgrades/<%= upgrade.url_name %>"><img src="/images/shared/tools/medium/<%= upgrade.url_name %>-locked.png" alt="<%= upgrade.name.titleize %>" title="<%= upgrade.name.titleize %> - you haven't unlocked these yet.  Level up as a <%= upgrade.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+					<% end %>
+				<% else %>
+					<a href="/guide/upgrades/<%= upgrade.url_name %>"><img src="<%= upgrade.medium_image %>" alt="<%=upgrade.name.titleize %>" title="<%= upgrade.name.titleize %> - you unlocked these!  You have suffient levels as a <%= upgrade.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+				<% end %>
+
+				<h4><a href="/guide/upgrades/<%= upgrade.url_name %>"><%= upgrade.name.titleize %></a></h4>
+				
+				<p><%= upgrade.short_description %></p>
+
+				<p><%= upgrade.name.pluralize.titleize %> are used by <a href="/guide/classes/<%= upgrade.pmog_class.name.downcase.singularize %>"><%= upgrade.pmog_class.name.pluralize.titleize %></a>.</p>
+				
+				<p>Costs: <%= upgrade.ping_cost %> <img src="/images/shared/icons/ping-16.png" alt="pings" class="icon16" /><br/>
+				Earns: <%= upgrade.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /></p>
+				
+				<p><a href="/guide/upgrades/<%= upgrade.url_name %>">Learn More about <%= upgrade.name.titleize.pluralize %></a></p>
+
+			</div>
+		<!-- FixMe <div class="width20"></div> -->
+		<% end %>
+
+		<% Ability.caches(:find_all_by_level, :with => level.level, :ttl => 1.day).each do |ability| %>
+			<div class="module width340">
+				<a href="/guide/classes/<%= ability.pmog_class.name.downcase.singularize %>"><img src="/images/shared/associations/levels/<%= ability.pmog_class.name.downcase.singularize %>.png" alt="<%= ability.pmog_class.name.downcase.singularize %>" align="left" width="75" height="200" hspace="10" /></a>
+				
+				<% if logged_in? %>
+					<% if current_user.user_level.unlocked? ability.url_name.to_sym %>
+						<a href="/guide/abilities/<%= ability.url_name %>"><img src="<%= ability.medium_image %>" alt="<%=ability.name.titleize %>" title="<%= ability.name.titleize %> - you unlocked these!  You have suffient levels as a <%= ability.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+					<% else %>
+						<a href="/guide/abilities/<%= ability.url_name %>"><img src="/images/shared/tools/medium/<%= ability.url_name %>-locked.png" alt="<%= ability.name.titleize %>" title="<%= ability.name.titleize %> - you haven't unlocked these yet.  Level up as a <%= ability.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+					<% end %>
+				<% else %>
+					<a href="/guide/abilities/<%= ability.url_name %>"><img src="<%= ability.medium_image %>" alt="<%=ability.name.titleize %>" title="<%= ability.name.titleize %> - you unlocked these!  You have suffient levels as a <%= ability.pmog_class.name.singularize.titleize %>!" align="right" hspace="10" /></a>
+				<% end %>
+				
+				<h4><a href="/guide/abilities/<%= ability.url_name %>"><%= ability.name.titleize %></a></h4>
+				
+				<p><%= ability.short_description %></p>
+
+				<p><%= ability.name.pluralize.titleize %> are used by <a href="/guide/classes/<%= ability.pmog_class.name.downcase.singularize %>"><%= ability.pmog_class.name.pluralize.titleize %></a>.</p>
+				
+				<p>Costs: <%= ability.ping_cost %> <img src="/images/shared/icons/ping-16.png" alt="pings" class="icon16" /><br/>
+				Earns: <%= ability.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /></p>
+				
+				<p><a href="/guide/abilities/<%= ability.url_name %>">Learn More about <%= ability.name.titleize %></a></p>
+
+			</div>
+		<% end %>
+		<!-- FixMe <div class="width20"></div> -->
+
+	</div>
+
+<% end %>
+
+						</div>
+					</div>
+					
+			</div>
+
+</div>
+				
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/rules" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+		</div>

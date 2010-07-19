@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+RAILSBENCH_CMDS = %w(
+base
+generate_benchmarks
+convert_raw_data_files
+help
+install
+path
+perf_comp
+perf_comp_gc
+perf_diff
+perf_diff_gc
+perf_html
+perf_plot
+perf_plot_gc
+perf_prof
+perf_run
+perf_run_gc
+perf_table
+perf_tex
+perf_times
+perf_times_gc
+postinstall
+readme
+run_urls
+).inject({}){ |h, cmd| h[cmd] = cmd; h[cmd.sub('perf_', '')] = cmd; h}
+
+cmd = ARGV.shift
+unless real_cmd = RAILSBENCH_CMDS[cmd]
+  $stderr.puts "railsbench: unknown command: #{cmd}"
+  $stderr.puts "use one of: #{RAILSBENCH_CMDS.keys.sort.join(', ')}"
+  $stderr.puts "'railsbench help' displays README"
+  $stderr.puts "'railsbench cmd help' displays help for given command"
+  exit 1
+end
+
+RAILSBENCH_BASE = File.expand_path(File.dirname(__FILE__) + '/..')
+
+case real_cmd
+when 'base'
+  puts "railsbench is installed in: #{RAILSBENCH_BASE}"
+  exit
+when 'help', 'readme'
+  File.open("#{RAILSBENCH_BASE}/README").each_line{|l| puts l}
+  exit
+when 'path'
+  puts "PATH=#{RAILSBENCH_BASE}/script:$PATH"
+  exit
+when 'install', 'postinstall'
+  load "#{RAILSBENCH_BASE}/#{real_cmd}.rb"
+else
+  unless ENV['RAILS_ROOT']
+    if File.exists? 'config/environment.rb'
+      ENV['RAILS_ROOT'] = File.expand_path '.'
+    else
+      $stderr.puts "railsbench: RAILS_ROOT not set"
+      exit 1
+    end
+  end
+  unless File.exists? "#{ENV['RAILS_ROOT']}/config/benchmarks.yml"
+    $stderr.puts "railsbench: benchmarks.yml missing: run `railsbench install'"
+    exit 1
+  end
+  unless File.exists? "#{ENV['RAILS_ROOT']}/config/benchmarks.rb"
+    $stderr.puts "railsbench: benchmarks.rb missing: run `railsbench install'"
+    exit 1
+  end
+  unless File.exists? "#{ENV['RAILS_ROOT']}/config/environments/benchmarking.rb"
+    $stderr.puts "railsbench: environment 'benchmarking' missing: run `railsbench install'"
+    exit 1
+  end
+  load "#{RAILSBENCH_BASE}/script/#{real_cmd}"
+end

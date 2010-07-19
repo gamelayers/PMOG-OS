@@ -1,0 +1,17 @@
+<div class="pmog_single_crate">
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+  <br style="clear:both;"/>
+  <%= render :partial => 'shared/ext/progress_throbber', :locals => { :throbber_id => @window_id } %>  
+    
+  <div class="pmog_single_crate_text">
+    <a href="<%= host %>/users/<%= @location.crates.first.user.login %>" target="new"><%= @location.crates.first.user.login %></a> stashed a <a href="<%= host %>/guide/tools/crates/" target="new">crate</a> here!
+  </div>
+
+  <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                pmog_m.setAttribute('server_url', '/locations/<%= @location.crates.first.location_id %>/crates/<%= @location.crates.first.id %>/loot.json');
+                pmog_m.setAttribute('method', 'put');
+                pmog_m.setAttribute('action', 'submit');
+                pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                <%= render :partial => 'shared/ext/progress_throbber_trigger', :locals => { :throbber_id => @window_id } %>
+                pmog_m.dispatchEvent(pmog_e);return false;" href="#" class="crate_button_loot">&nbsp;</a>
+</div>

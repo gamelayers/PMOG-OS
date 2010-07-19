@@ -1,0 +1,35 @@
+sanitize_params
+==============
+
+A small plugin that puts Rick Olsen's white_list (http://svn.techno-weenie.net/projects/plugins/white_list/) plugin to good use. Sanitize_params crawls through whatever params are coming in through the current request and, you know, sanitizes them.
+
+This is very much an option that covers all possible bases (and possibly more than is necessary), but it has been working well for us.
+
+It began life in the CrowdVine app proper, written by Tony Stubblebine (http://www.stubbleblog.com/index.php/2007/06/rails-xss-filte/). Jodi Showers (http://nnovation.ca/) turned it into a plugin. Jay Laney is the maintainer.
+
+We've been running it on Rails Edge, but it should work fine with 1.2.x.
+
+Installation
+============
+
+You'll need the white_list plugin installed.
+
+$ script/plugin install http://svn.techno-weenie.net/projects/plugins/white_list/
+
+Also, this plugin.
+
+$ script/plugin install http://sanitizeparams.googlecode.com/svn/trunk/sanitize_params/
+
+We want to make sure that white_list loads first, so in environment.rb:
+
+config.plugins = [:white_list, :sanitize_params, :all]
+
+And in application.rb:
+
+before_filter :sanitize_params
+
+And that's it.
+
+--------------
+
+Copyright (c) 2007 Jay Laney, jay@crowdvine.com, released under the MIT license

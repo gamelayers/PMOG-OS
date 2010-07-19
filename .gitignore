@@ -1,0 +1,17 @@
+config/database.yml
+config/developer.yml
+log/*
+tmp/**/*
+db/schema.rb
+index/*
+public/system/*/**
+doc/todo.txt
+*.swp
+.DS_Store
+*~
+*.swo
+*.swn
+.idea
+.project
+tmp/*
+.tmtags

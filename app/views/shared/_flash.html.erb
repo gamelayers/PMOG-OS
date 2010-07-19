@@ -1,0 +1,13 @@
+<% unless flash.nil? %>
+<% if flash[:notice] -%>
+  <div id="flash" class="flash_notice"><%= flash[:notice] %></div>
+<% end -%>
+<% if flash[:error] -%>
+  <div id="flash" class="flash_error"><%= flash[:error] %></div>
+<% end -%>
+<% unless flash.empty? %>
+<script>
+	<%= visual_effect(:fade, 'flash', {:duration => 8.0}) %>
+</script>
+<% end %>
+<% end %>

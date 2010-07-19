@@ -1,0 +1,79 @@
+---
+game_settings_011:
+  updated_at: 2009-06-04 22:17:43
+  id: "17"
+  value: "25"
+  key: Max Overclocks Per Player
+  created_at: 2009-06-04 22:17:43
+game_settings_012:
+  updated_at: 2009-06-04 22:17:43
+  id: "18"
+  value: "25"
+  key: Max Impedes Per Player
+  created_at: 2009-06-04 22:17:43
+game_settings_010:
+  updated_at: 2009-04-27 20:35:41
+  id: "13"
+  value: "3"
+  key: Max Ballistic Nicks per Player
+  created_at: 2009-04-27 20:35:41
+game_settings_001:
+  updated_at: 2009-01-15 19:05:56
+  id: "1"
+  value: "2"
+  key: DP for wearing Armor
+  created_at: 2009-01-15 19:05:56
+game_settings_002:
+  updated_at: 2009-01-15 19:05:56
+  id: "2"
+  value: "3"
+  key: DP for not wearing Armor
+  created_at: 2009-01-15 19:05:56
+game_settings_003:
+  updated_at: 2009-02-12 18:09:55
+  id: "4"
+  value: "15000"
+  key: Suspect Limit
+  created_at: 2009-02-12 18:09:55
+game_settings_004:
+  updated_at: 2009-03-06 18:44:50
+  id: "5"
+  value: "5"
+  key: Max Grenades per Player
+  created_at: 2009-03-06 18:41:59
+game_settings_005:
+  updated_at: 2009-03-06 18:49:47
+  id: "6"
+  value: "5"
+  key: Max St Nicks per Player
+  created_at: 2009-03-06 18:41:59
+game_settings_006:
+  updated_at: 2009-03-06 18:50:09
+  id: "7"
+  value: "6"
+  key: Max Watchdogs per URL
+  created_at: 2009-03-06 18:44:50
+game_settings_007:
+  updated_at: 2009-03-26 01:49:55
+  id: "8"
+  value: "200"
+  key: Invite DP
+  created_at: 2009-03-26 01:49:55
+game_settings_008:
+  updated_at: 2009-03-26 01:49:55
+  id: "9"
+  value: "50"
+  key: Invite Pings
+  created_at: 2009-03-26 01:49:55
+game_settings_009:
+  updated_at: 2009-04-04 00:12:30
+  id: "11"
+  value: "200"
+  key: Shoat Welcome DP Threshold
+  created_at: 2009-04-04 00:12:30
+game_settings_016:
+  updated_at: 2009-07-07 19:22:42
+  id: "29"
+  value: "25"
+  key: DP Per Hour
+  created_at: 2009-07-07 19:22:42

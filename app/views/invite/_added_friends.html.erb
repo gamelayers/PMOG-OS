@@ -1,0 +1,12 @@
+<div class="invitations">
+<h3>Contacts added!</h3>
+<br/>
+<p> The following players are now your contact:
+  <ul>
+    <% session[:added_friends].each do |email| %>
+      <li><%=email%></li>
+    <% end %>
+    <% session[:added_friends] = nil %>
+  </ul>
+</p>
+</div>

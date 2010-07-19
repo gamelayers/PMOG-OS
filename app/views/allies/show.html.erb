@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag 'allies' %>
+
+<h1><%= @user.login %>'s Allies</h1>
+<h5>All Creation may turn against you, but not they.</h5>
+<p><%= render :partial => "shared/acquaintances_header" %></p>
+
+<% if @user.buddies.cached_contacts('ally').empty? %>
+	
+	<br /><br /><br />
+	
+	<h1 align="center"><%= @user.login %> needs to make some Allies!</h1>
+						
+<% end %>
+
+<div class="people">
+
+	<% @user.buddies.cached_contacts('ally').reverse.each do |buddy| %>
+			    			
+		<%= avatar_link_to_user :user => buddy, :size => 'small' %><br />
+		
+		<a href='/users/<%= buddy.login %>'><%= buddy.login %></a>
+		
+		<% if @user.id == current_user.id %>
+		
+			<h5><a href='/acquaintances/remove/<%= buddy.login %>?type=ally'>Remove?</a></h5>
+		
+		<% end %>
+
+	<% end %>
+
+</div>

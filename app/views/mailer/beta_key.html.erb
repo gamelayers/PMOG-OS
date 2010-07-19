@@ -1,0 +1,18 @@
+Hello <%= @email -%> -
+<% if @inviter.login == "PMOG" %>Would you like to play PMOG? Of course you would!<% else %>
+Would you like to play PMOG? <%= @inviter.login %>(<%= @inviter.email %>) thought you would!<% end %>
+
+Visit http://pmog.com/beta/signup/<%= @key %>?email=<%= @email %> where you can signup to start playing.
+
+Once you've signed up, you can download the Firefox extension from http://pmog.com/help/install
+
+If you have any questions or issues, reply to this email or email help@pmog.com.
+
+We welcome your feedback at feedback@pmog.com !
+
+Thank you for playing,
+
+PMOG
+
+
+PS - if you played PMOG in 2007, and you still have that little orange P in the corner of your browser, go to Firefox menu Tools, select Add-Ons, and Uninstall PMOG 2.1 before you install the new one.  Thank you!

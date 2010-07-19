@@ -1,0 +1,10 @@
+<p id='fail'>
+	<% if @beta_user.errors['email'] == "is invalid" %>
+		Woah there! That email is invalid.
+	<% else %>
+		Woah there! That email has already been signed up.
+	<% end %>
+	<script>
+		new Effect.Highlight("fail",{duration: 1.0});
+	</script>
+</p>

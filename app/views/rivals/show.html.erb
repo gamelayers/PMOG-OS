@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag 'rivals' %>
+
+<h1><%= @user.login %>'s Rivals</h1>
+<h5>Nasty little buggers, innit.</h5>
+<p><%= render :partial => "shared/acquaintances_header" %></p>
+
+<% if @user.buddies.cached_contacts('rival').empty? %>
+	
+	<br /><br /><br />
+	
+	<h1 align="center"><%= @user.login %> needs to make some Rivals!</h1>
+	
+<% end %>
+
+<% @user.buddies.cached_contacts'rival').reverse.each do |buddy| %>
+
+	<p id="Person">	
+
+		<%= avatar_link_to_user :user => buddy, :size => 'small' %><br />
+
+		<a href='/users/<%= buddy.login %>'><%= buddy.login %></a>
+
+		<% if @user.id == current_user.id %>
+		 
+			<h5><a href='/acquaintances/remove/<%= buddy.login %>?type=rival'>Remove?</a></h5>
+			
+	</p>
+  
+  	<% end %>
+
+<% end %>

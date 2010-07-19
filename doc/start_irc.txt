@@ -1,0 +1,7 @@
+#! /bin/sh
+
+# This file starts irc on gl00-s00026, and is here so that we have a record in scm
+
+/home/gamelayers/src/Unreal3.2.7/unreal start
+/home/gamelayers/services/services/services
+/home/gamelayers/stats/stats/stats

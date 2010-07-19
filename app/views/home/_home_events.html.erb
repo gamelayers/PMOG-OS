@@ -1,0 +1,22 @@
+<h3 style="padding: 0 15px 0 10px;" >Events on The Nethernet</h4>
+
+    <table class="stripeMe noPage list">
+    <tbody>
+    <% if @events.nil? or @events.empty? %>
+      <br />
+      <h3 align="center">Nothing to see here, yet.</h3>
+    <% else %>
+      <% @events.each_with_index do |event, i| %>
+        <% break if i > 4 %>
+        <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+        <td class="icon event_list"><img class="icon32 <%= event.context %>" src="/images/shared/clear.png" alt="" title="" /></td>
+        <td class="copy" style="padding-right: 5px;"><%= render :partial => "events/event", :locals => { :event => event } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    </tbody>
+    </table>
+			<div class="bottomNav">
+				<a href="http://thenethernet.com/events">See What's Happening</a>
+			</div>

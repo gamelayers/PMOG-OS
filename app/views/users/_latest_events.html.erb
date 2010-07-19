@@ -1,0 +1,18 @@
+<img src="/images/profile/globe.png" class="profile_art_top">
+<div class="profile_content_top">
+<img src="/images/profile/content_boxes/top_left.png" class="user_profile_title_tab_side"><div class="user_profile_title_tab"><h4>Latest Happenings (<a href="/users/<%= @user.login %>.rss">RSS feed</a>)</h4></div><img src="/images/profile/content_boxes/top_right.png" class="user_profile_title_tab_side">
+<br style="clear:both;" />
+<img src="/images/profile/content_boxes/main_top.png" />
+<div class="user_profile_content_tab">
+<p class="user_table_list">
+<ul class="profile_feed">
+<% @events.each do |event| %>
+<li><%= render :partial => "events/event", :locals => { :event => event } %></li>
+<% end %>
+</ul>
+<%#= will_paginate @events, :param_name => :events_page, :class => 'user_profile_pagination' %>
+</p>
+</div>
+<img src="/images/profile/content_boxes/main_bottom.png" />
+</div>
+<br style="clear:both;" />

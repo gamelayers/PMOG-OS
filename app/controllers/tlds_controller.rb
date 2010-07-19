@@ -1,0 +1,2 @@
+class TldsController < ApplicationController
+end

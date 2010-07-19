@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag params[:id].titleize %>
+
+<h1><%= params[:id].titleize %> Missions</h1>
+
+All these missions made by <a href="/guide/classes/<%= params[:id] %>s"><%= params[:id].titleize %></a> type associates!</p>
+
+<ul>
+	<% @missions.each do |mission| %>
+		<li><%= link_to mission.name, mission_path(mission.url_name) %> by <a href="/users/<%= mission.user.login %>"><%= mission.user.login %></a>, created <%= time_ago_in_words(mission.created_at) %> ago.
+		</li>
+	<% end %>
+</ul>
+
+<p>
+	<%= will_paginate @missions %>
+</p>

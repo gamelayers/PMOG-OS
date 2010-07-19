@@ -1,0 +1,66 @@
+/* LAYOUT */
+
+body {
+  background-color: #eee;
+}
+
+#doc2 {
+  background-color: white;
+  padding: 10px 10px 50px 10px;
+}
+
+/* FONTS */
+
+h1 { 
+  font-size: 200%;
+}
+
+h2 {
+  font-size: 180%;
+}
+
+h3 {
+  font-size: 150%;
+}
+
+h4 {
+  font-size: 120%;
+}
+
+p {
+  margin: 0.5em 0;
+  padding-bottom: 0.5em;
+}
+
+.fieldWithErrors {
+  border-left: 2px solid red;
+  padding-left: 2px;
+}
+
+table td,
+table th {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+#flash {
+  padding: 10px;
+  background-color: #ff9;
+  margin: 1em 0;
+}
+
+#openid_url, #user_identity_url {
+  background: url(/images/elements/login-bg.gif) no-repeat #FFF 5px;
+  padding-left: 25px;
+}
+
+img.icon, img.icon:hover {
+	background-color: #FFFBE0;
+	border: 1px dotted #FFFF00;
+	padding: 2px;
+	margin: 2px;
+}
+
+img.icon:hover {
+	background-color: #FFFF00;
+}

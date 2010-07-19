@@ -1,0 +1,39 @@
+<h1>A Listing of all MOTDs sent from PMOG.</h1>
+<h5>Message Du Jour</h5>
+
+<br>
+
+<p align='right'>
+	<%= will_paginate @motds %>
+</p>
+
+<p class='user_table_list'>  
+  <table border='1' cellpadding='5'>
+		<tr>
+			<td bgcolor="white">Title</td>
+			<td bgcolor="white">Body</td>
+			<td bgcolor="white">Created</td>
+			<td bgcolor="white">&nbsp;</td>
+			<td bgcolor="white">&nbsp;</td>
+		</tr>
+		<% @motds.each do |motd| %>
+			<tr>
+				<td bgcolor="white" valign='top'><%= format( motd.title ) %></td>
+				<td bgcolor="white" valign='top'><%= format( motd.body ) %></td>
+				<td bgcolor="white" valign='top'><%= time_ago_in_words(motd.created_at) %> ago</td>
+				<td bgcolor="white" valign='top'><%= link_to 'Edit', edit_motd_path(motd) %></td>
+				<td bgcolor="white" valign='top'><%= link_to 'Destroy', motd_path(motd), :confirm => 'Are you sure?', :method => :delete %></td>
+			</tr>
+		<% end %>
+	</table>
+</p>
+
+<br/>
+
+<%= link_to 'New MOTD', new_motd_path %>
+
+<p align='right'>
+	<%= will_paginate @motds %>
+</p>
+
+<br/>

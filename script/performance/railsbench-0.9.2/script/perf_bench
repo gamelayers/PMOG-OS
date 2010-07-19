@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.expand_path(File.dirname(__FILE__) + '/../lib'))
+
+unless ENV['RAILS_ROOT']
+  $stderr.puts("\nperf_bench: can't benchmark unless RAILS_ROOT is set")
+  $stderr.puts("\nbenchmarking aborted!")
+  exit 1
+end
+
+trap("INT") { $stderr.puts("benchmarking aborted!"); exit!(-1) }
+
+module Benchmark
+  if ENV['RAILS_BENCHMARK_FILE']
+    OUTPUT = File.open(ENV['RAILS_BENCHMARK_FILE'], "a+")
+    SYNC = false
+  else
+    OUTPUT = STDERR
+  end
+end
+require "benchmark"
+include Benchmark
+
+bm(32) do |test|
+  test.report("loading environment") do
+    require 'railsbench/railsbenchmark'
+    require ENV['RAILS_ROOT'] + '/config/benchmarks'
+  end
+
+  trap("INT") do
+    $stderr.puts "clearing database connections ..."
+    ActiveRecord::Base.send :clear_all_cached_connections!
+    $stderr.puts "benchmarking aborted!"
+    exit!(-1)
+  end
+
+  benchmark_name = "default"
+  ARGV.each{ |arg| benchmark_name = $1 if arg =~ /-bm=([a-zA-Z_0-9]+)/ }
+
+  RAILS_BENCHMARKER.iterations = ARGV[0].to_i
+  RAILS_BENCHMARKER.setup_test_urls(benchmark_name)
+  RAILS_BENCHMARKER.establish_test_session
+  RAILS_BENCHMARKER.warmup
+
+  if ARGV.include?('-mix')
+    RAILS_BENCHMARKER.run_url_mix(test)
+  else
+    RAILS_BENCHMARKER.run_urls(test)
+  end
+end
+
+Benchmark::OUTPUT.close unless Benchmark::OUTPUT.nil? || !ENV['RAILS_BENCHMARK_FILE']
+
+__END__
+
+#  Copyright (C) 2005, 2006, 2007  Stefan Kaes
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA

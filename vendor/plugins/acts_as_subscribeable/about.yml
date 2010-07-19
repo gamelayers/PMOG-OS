@@ -1,0 +1,7 @@
+author: E. James O'Kelly
+summary: This plugin allows users to subscribe to changes in your objects, like the creation of a blog post, or a private message.
+homepage: http://www.railsjitsu.com
+plugin: svn://railsjitsu.com/var/svn/repos/acts_as_subscribeable/trunk/
+license: MIT
+version: 0.4.9
+rails_version: 1.2.6+

@@ -1,0 +1,42 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/guide" %>
+		<div class="cell parent"><a href="/guide/classes"><span class="l"></span><span class="c">Classes</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @pmog_class.name.titleize %></span><span class="r"></span></div>
+
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+			
+				<div class="module width960">
+
+			<div class="imageTop">
+					
+				<div class="ImageTop" style="background-image:url(/images/shared/associations/large/<%= @pmog_class.name.downcase %>.png); width:300px;height:400px;" title="A Classy Class"></div></div>
+					
+        <p><%= @pmog_class.long_description %></p>
+					
+<!--				<p><a href="/missions/association/<%= @pmog_class.name.singularize %>">Missions by <%= @pmog_class.name.titleize %></a></p>
+-->
+
+				<!--<br clear="all" />
+				<h4><a href="/leaderboard/classes/<%= @pmog_class.name %>"><%= @pmog_class.name.titleize %> Leaderboards</a></h4>-->
+
+    <% if site_admin? %>
+	    <h5 align="right">Admin: <%= link_to "Edit " + @pmog_class.name, edit_pmog_class_path(@pmog_class) %></h5>
+		<% end %>    
+
+</div>
+</div>
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/classes" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+

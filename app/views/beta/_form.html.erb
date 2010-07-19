@@ -1,0 +1,17 @@
+<p><label for="login">Login</label><br/>
+<%= form.text_field :login %><br/>
+A short nickname or handle to identify yourself across PMOG.  This can not be changed!  So choose wisely.   2-20 characters limit!</p>
+
+<script type="text/javascript">
+  $( 'user_login' ).focus();
+</script>
+
+<p><label for="email">Email</label><br/>
+<%= form.text_field :email %><br/>
+How can we reach you with lost passwords, acquaintance requests, etc.</p>
+
+<p><label for="password">Password</label><br/>
+<%= form.password_field :password %></p>
+
+<p><label for="password_confirmation">Confirm Password</label><br/>
+<%= form.password_field :password_confirmation %></p>

@@ -1,0 +1,96 @@
+== General setup ==
+
+Make sure your database has (or at least the feeds and messages tables
+have) a charset of utf8 and a collation of utf8_general_ci.
+
+Put this in your sitecustomize.py to handle (eg.) links with UTF-8
+data in the URLs:
+
+import sys
+sys.setdefaultencoding("utf-8")
+
+== Quick notes on the scripts ==
+
+import_opml.py takes one command-line argument: the Rails name of the
+database to use (eg. 'development'). It's mainly a test script. You
+can use it to populate the feeds table from a list of feeds you
+already read. It doesn't do dupe checks, so if you run it on multiple
+OPML files you're likely to get the same feed in feeds twice.
+
+refresh_feeds.py fetches a set of feeds, inserts new entries into the
+database, and mirrors changes to existing entries. It works by
+creating a thread for every 100 feeds that need refreshing (this is
+customizable in cfg.py) and having them pull from a queue of
+unrefreshed feeds.
+
+refresh_feeds.py takes at least one command-line argument: the Rails
+name of the database to use. It will take feed IDs or URLs as
+additional command-line arguments, and will only refresh those feeds.
+
+
+== Quick notes on the database tables ==
+
+feeds
+- url
+- etag: Used to make conditional HTTP requests (saves time).
+- last_modified: Ditto.
+- error: For feeds that go 404, can't be read, or trigger exceptions
+  in the import code. A human-readable error (possibly just an HTTP
+  status code)
+
+messages
+- feed_id
+- title: May be blank.
+- body: May not be blank.
+- created_at: Not used by these scripts.
+- updated_at: Used to check whether or not an entry has been updated since
+  last fetched.
+- syndication_id: More-or-less unique string that distinguishes this
+  entry from other entries in the same feed over time. Our primary
+  goal is to be able to distinguish between a new entry and an update
+  to an existing entry.
+
+  In the best case, the syndication_id is the GUID provided in the
+  feed (required in Atom feeds). If no GUID is provided, we look for a
+  permalink: a solitary link associated with the entry (RSS does this
+  (FACT-CHECK)) or a link with a relationship to the entry of 'self'
+  (Atom). If that fails, we look for a link with a relationship of
+  'alternate'. EXCEPT! Some feeds contain multiple entries with the
+  same 'alternate' link. If we detect that, then instead of using
+  links as the syndication_id we use the title. If there's no title,
+  we use the publication date.
+
+  The goal here is not to make every distinction between new and old
+  entries-- given a sufficiently pathological feed, that's
+  impossible. If we can't make the distinction, the behavior might be
+  annoying but the client can usually deal with it. The goal is to
+  limit the annoyance to the truly pathological cases.
+- media_type: Almost always 'text/html', but there will be a few 'text/plain'
+  and you'll need to display those differently.
+
+== om.py ==
+
+om.py defines a cheap ORM: classes for Feed and Message. The bulk of
+the code is in Feed.refresh. The logic looks something like this:
+
+1. Fetch the feed, sending If-Modified-Since and If-None-Match headers
+   for servers that support Last-Modified and ETag. Return if the feed
+   has not been modified since the last fetch.
+2. Reflect problems with the feed itself (it's gone, connection to
+   fetch it timed out) in the database.
+3. If there was an error and it's been fixed, clear the error.
+4. Delete all of the feed's messages except the one actually found in the
+   feed document. This gets rid of archived messages and deleted messages.
+5. For every entry in the feed:
+   a. If it corresponds to an existing message, and the entry has a newer
+      updated date than the message, update the message to bring it in
+      sync with the entry.
+   b. If it corresponds to no existing message, create a new message that
+      contains the information in the entry.
+6. If the Last-Modified or ETag response headers are different from what's
+   in the database (which they should be, since the feed was updated),
+   store them in the database.
+7. If the feed moved, update its URL in the database.
+
+All of this happens within a database transaction (assuming you're
+using a recent version of MySQL).

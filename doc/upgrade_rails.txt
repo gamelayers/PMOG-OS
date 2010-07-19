@@ -1,0 +1,9 @@
+rake rails:unfreeze"
+gem update rails"
+TEST
+rake rails:freeze
+git commit
+
+If there are problems:
+gem install rails --version PreviouslyFrozenRailsVersion
+rake rails:freeze

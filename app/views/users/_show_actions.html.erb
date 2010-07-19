@@ -1,0 +1,74 @@
+<% content_for :head do %>
+  <script type="text/javascript" charset="utf-8">
+      jQuery(document).ready(function() {
+        jQuery('#pmail_message').maxlength({maxCharacters: 500});
+        
+        jQuery('.ajax_throbber').throbber({ image: "/images/redbox_spinner.gif"});
+      });
+  </script>
+<% end %>
+
+<!--#fixme - this is the new location of _interaction_controls.html.erb -->
+
+<% if logged_in? && @user != current_user %>
+  <div id="actions">
+    <%= link_to_function( image_tag( "/images/profile/message_send.png",
+                          :id => 'pmail_button',
+                          :alt => "Send a message!",
+                          :class => "poptip icon48",
+                          :title => "Send PMail - Send #{@user.login} some mail." ),
+                          "jQuery('#outgoing').slideToggle('normal');" ) %>
+
+    <%= link_to_remote( image_tag( "/images/profile/DropDPCard.png", 
+                        :class => "icon48 ajax_throbber poptip",
+                        :alt => 'Play a DP Card!',
+                        :title => "DP Card - Gift #{@user.login} with a DP card"),
+                        :url => formatted_location_giftcards_url( Location.find_or_create_by_url( user_url( @user ) ), :js )) %>
+
+    <span class="poptip" title="Stash a Crate for <%= @user.login %> - You have <%= current_user.inventory.crates %> crates remaining.">
+      <%= link_to( image_tag( "/images/profile/crate_lay.png", 
+                              :alt => "Stash a Crate here for #{@user.login}", 
+                              :class => "poptip icon48", 
+                              :title => '' ), 
+                              location_crates_path( Location.find_or_create_by_url( user_url( @user ) ) ) ) 
+      %>
+    </span>
+
+    <%= link_to_remote( image_tag( "/images/profile/stnick_lay.png", 
+                        :class => "icon48 ajax_throbber poptip",
+                        :alt => 'Attach a St Nick!',
+                        :title => "Attach a St. Nick to #{@user.login}! - You have #{current_user.inventory.st_nicks} remaining."),
+                        :url => formatted_attach_user_st_nicks_url( @user, :js ),
+                        :method => :put ) %>
+
+    <%= link_to_remote( image_tag( "/images/profile/grenade_toss.png", 
+                        :class => "icon48 ajax_throbber poptip",
+                        :alt => 'Toss a grenade!',
+                        :title => "Toss Grenade - Throw a grenade at #{@user.login}! - You have #{current_user.inventory.grenades} remaining."),
+                        :url => formatted_attach_user_grenades_url( @user, :js ),
+                        :method => :put ) %>
+
+    <!--
+    <a href="[DO ACTION]" class="image"><span class="poptip" title="Un-todd Grenade - Un-toss that grenade!"><img class="icon48" src="/images/profile/Un_TossGernade.png" alt="Un_TossGernade"/></span></a>
+    <a href="[DO ACTION]" class="image"><span class="poptip" title="Un-swat - Un-swat <%#= @user.login %>!"><img class="icon48" src="/images/profile/Un_Swatter.png" alt="Un_Swatter"/></span></a>
+    -->
+
+    <!-- #fixme - PMail doesn't work yet, I think I have both code pieces but it's not working with Lance's scripts, etc-->
+    <br clear="all" />
+
+    <div class="module width220" id="outgoing" style="display: none;">
+      <div id="outgoingOuter" class="slider_wrapper">
+        <div id="outgoingInner">
+          <% remote_form_for  :message,
+                              :url => user_messages_path(current_user),
+                              :html => { :method => :post, :style => "display: inline", :id => 'message_form'},
+                              :complete => "jQuery('#message_form')[0].reset('message_body');" do |f| %>
+            <%= f.text_area :body, :class => "input", :name => "pmail_message", :id => "pmail_message", :value => "@" + @user.login + " ", :cols => 22, :rows => 10 %>
+            <br/>
+            <p class="small"><%= submit_tag "Message", :class => "input", :onclick => "jQuery('#outgoing').slideToggle('normal');" %> <a href="#" onclick="jQuery('#outgoing').slideToggle('normal'); return false;">Don't Message</a></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

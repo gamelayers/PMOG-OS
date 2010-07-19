@@ -1,0 +1,22 @@
+<h1>Recommendations</h1>
+<h5>Which trustee is most like you?</h5>
+
+<br/>
+<br/>
+
+<table>
+  <tr>
+    <th>Trustee</th>
+    <th>Score</th>
+  </tr>
+<% @users.each do |u| %>
+  <tr>
+    <td>
+      <a href='/users/<%= u[1] %>'><%= u[1] %></a>
+    </td>
+    <td>
+      <%= u[0] %>
+    </td>
+  </tr>
+<% end %>
+</table>

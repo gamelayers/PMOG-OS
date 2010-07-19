@@ -1,0 +1,12 @@
+<h3>PMOG Chat:</h3>
+
+<div id="conversation">
+  <div id="stage">
+    <% for message in @messages %>
+      <%= message_content(message) %>
+    <% end %>
+  </div>
+  <div class='pager'>
+    <%= render :partial => "shared/pager" %>
+  </p>
+</div>

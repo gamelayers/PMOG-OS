@@ -1,0 +1,49 @@
+ActsAsSubscribeable
+===================
+
+The acts_as_subscribeable plugin is a generator and plugin to allow the subscription based email notification 
+(or other system if you choose to implement it differently) of changes in the model you specify as a subscribeable
+object. The associations are polymorphic and can pertain to any model type.
+
+Prerequisites
+=============
+Rails 1.2.6+
+A User model that includes a field called email (Restful Auth compatible!)
+
+Installing the plugin
+=====================
+  -- Get the plugin:
+    ./script/plugin install svn://railsjitsu.com/var/svn/repos/acts_as_subscribeable/trunk/
+  -- Run:
+    ./script/generate acts_as_subscribeable_installation
+  -- Add a has_many :subscriptions to your User model
+  -- Configure the mailer initializer placed in /config/initializers/mailer.rb for your mail server
+
+  NOTES:
+  ======
+  This will install the migration file and mailer initializer for the plugin.
+
+Generating Subscribebale Models
+===============================
+  -- Create a model
+  -- Add the hook:
+    acts_as_subscribeable
+  
+  -- Run:
+    ./script/generate subscribeable_model MODEL_NAME
+
+  -- Add your observer hook in your environment.rb file
+    config.active_record.observers = :MODEL_NAME_observer  
+
+  NOTES:
+  ======
+  This will generate an observer and mailer for your model and hook in the observer. It defaults to an after_update 
+  callback but you can add as many as you need or customize the observer to watch a parent model to alert on child 
+  creation instead.
+
+Customizing your email notification
+===============================
+  -- Customize the generated send_email_notification.html.erb file in your MODEL_NAME_mailer views directory to suit your needs  and the MODEL_NAME_mailer.rb mailer in your Models directory.
+
+Copyright (c) 2007 E. James O'Kelly, released under the MIT license
+www.railsjitsu.com

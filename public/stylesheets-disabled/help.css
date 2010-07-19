@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/codex/bg_books.png);
+background-position:550px 12px;
+background-repeat:repeat-y;
+}
+
+.main_content {
+	width: 490px !important;
+	margin: 0pt !important;
+	padding-left: 40px;
+}

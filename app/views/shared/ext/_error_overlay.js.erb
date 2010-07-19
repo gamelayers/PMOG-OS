@@ -1,0 +1,21 @@
+<div style="background:red !important;
+            font-size:12px!important;
+            color:white !important;
+            text-align:center !important;
+            opacity:.8 !important; display:block !important;" id="pmog_<%= @window_id %>" class="pmog_error_window pmog_window">
+  <div class="pmog_error_background"></div>
+  <div class="pmog_error_icon">
+    <%= render :partial => 'shared/ext/button_close', :locals => { :window_id => @window_id } %>
+  <br/ style="clear:both;">
+  <dl class="pmog_error_message">
+    <dd id="pmog_body_<%= @window_id %>" class="pmog_error_body"><b>Error:</b> <%= @body %></dd>
+    <dd>
+      <a href="#" style="color:#fff;text-decoration:underline;" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                           pmog_m.setAttribute('method', 'post');
+                           pmog_m.setAttribute('action', 'report_a_bug');
+                           pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                           pmog_m.dispatchEvent(pmog_e);return false;">Report A Bug</a>
+    </dd>
+  </dl>
+  <br style="clear:both;"/>
+</div>

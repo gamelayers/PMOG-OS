@@ -1,0 +1,92 @@
+<div class="footer">
+	<div class="footer_content">
+		<div class="footer_content_left">
+
+			<div class="did_you_know_text">
+				<%= render :partial => FOOTER_DIDYOUKNOW[rand(FOOTER_DIDYOUKNOW.size)] %> 
+			</div>
+
+		</div><!--footer_content_left-->
+
+		<div class="footer_content_right">
+			<h2 class="caps">ALLY WITH PMOG!</h2>
+
+			<table class="ally_with_pmog" cellspacing="10">
+				<tr>
+					<td valign="top">
+
+						<p>
+
+							<img src="/images/layouts/icon_delicious.png" alt="del.icio.us" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://delicious.com/tag/pmog">del.icio.us</a><br />
+
+							<img src="/images/layouts/icon_flickr.png" alt="Flickr" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://www.flickr.com/photos/tags/pmog">Flickr</a><br />
+
+							<img src="/images/layouts/icon_facebook.png" alt="Facebook" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://www.facebook.com/group.php?gid=2355267981">Facebook</a><br />
+
+							<img src="/images/layouts/icon_getsatisfaction.png" alt="Get Satisfaction" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://getsatisfaction.com/gamelayers/products/gamelayers_pmog">GetSatisfaction</a>
+
+						</p>
+
+					</td>
+
+					<td valign="top">
+
+						<p>
+							<img src="/images/layouts/icon_googlegroups.png" alt="Google Groups" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://groups.google.com/group/pmog">Google Groups</a><br />
+
+							<img src="/images/layouts/icon_jaiku.png" alt="Jaiku" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://pmog.jaiku.com">Jaiku</a><br />
+
+							<img src="/images/layouts/icon_lastfm.png" alt="Last.fm" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://www.last.fm/group/Passively+Multiplayer+Online+Music">Last.FM</a><br />
+
+							<img src="/images/layouts/icon_livejournal.png" alt="LiveJournal" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://community.livejournal.com/pmog">LiveJournal</a>
+						</p>
+
+					</td>
+
+					<td valign="top">
+
+						<p>
+
+							<img src="/images/layouts/icon_mahalo.png" alt="Mahalo" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://www.mahalo.com/PMOG">Mahalo</a><br />
+
+							<img src="/images/layouts/icon_twitter.png" alt="Twitter" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://www.twitter.com/pmog">Twitter</a><br />
+
+							<img src="/images/layouts/icon_wikia.png" alt="Wikia" class="ally_with_pmog_icon" width="16" height="16" />
+							<a href="http://pmog.wikia.com/wiki/Main_Page">Wikia</a><br />
+
+						</p>
+
+					</td>
+				</tr>
+			</table>
+
+			<div class="menu">
+				<div class="menu_item_footer"><a href="/about/privacy">PRIVACY</a></div>
+				<div class="menu_item_footer"><a href="/about/terms">TERMS</a></div>
+				<div class="menu_item_footer"><a href="/about/contact">CONTACT</a></div>
+				<div class="menu_item_footer"><a href="/help">HELP</a></div>
+				<div class="menu_item_footer"><a href="/about">ABOUT</a></div>
+			</div><!--menu-->
+
+			<br style="clear:both;" />
+
+		  <div class="gamelayers">
+				&copy; 2008 <a href="http://www.gamelayers.com">GameLayers</a>, Inc. - Player-Generated Content is licensed under a <a id="cc" rel="license" href="http://creativecommons.org/licenses/by/3.0/us/" title="Creative Commons Attribution 3.0 (BY) - more information">Creative Commons Attribution License</a>.
+				<br />
+				<!-- The beautiful background pattern used in our toolbar was created by Ben Usher Smith. http://www.bu-s.com/ -->
+				<%= render :partial => "shared/app_version" %>
+			</div>
+
+		</div><!--footer_content_right-->
+	</div><!--footer_content-->		
+</div><!--footer-->

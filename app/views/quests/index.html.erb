@@ -1,0 +1,8 @@
+<% if !@quests.blank? %>
+  <% for item in @quests %>
+    <%= link_to item.name, quest_path(item.to_param) %>
+    <br />  
+  <% end %>
+<% else %>
+  <h3>No quests to display</h3>
+<% end %>

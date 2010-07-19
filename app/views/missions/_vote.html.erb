@@ -1,0 +1,5 @@
+<% unless @mission.votes.find_by_user_id(current_user.id) %>
+	<div id="vote" class="vote_nsfw">
+    <%= link_to_remote "<img src=\"/images/missions/show_layout/flag_nsfw.png\" class=\"img_no_border\" />", :url => {:controller => 'missions', :action => 'vote',:id => @mission.id}  %>
+  </div>
+<% end %>

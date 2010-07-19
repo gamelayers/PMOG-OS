@@ -1,0 +1,24 @@
+<div id="profileOvc">
+  <table class="list" id="profileTagsTable">
+    <tbody>
+      <tr>
+        <td>
+          <strong>Order Points Earned</strong>
+          <br />
+          Daily: <%= number_with_delimiter(@order_points.daily) %><br />
+          Weekly: <%= number_with_delimiter(@order_points.weekly) %><br />
+          Monthly: <%= number_with_delimiter(@order_points.monthly) %><br />
+          Overall: <%= number_with_delimiter(@order_points.overall) %><br />
+        </td>
+        <td>
+          <strong>Chaos Points Earned</strong>
+          <br />
+          Daily: <%= number_with_delimiter(@chaos_points.daily) %><br />
+          Weekly:<%= number_with_delimiter(@chaos_points.weekly) %><br />
+          Monthly: <%= number_with_delimiter(@chaos_points.monthly) %><br />
+          Overall: <%= number_with_delimiter(@chaos_points.overall) %><br />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

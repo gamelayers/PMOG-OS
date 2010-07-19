@@ -1,0 +1,9 @@
+<h3>Unsubscribe from PMOG</h3>
+
+<% if session[:unsubscribed] == true %>
+  You have been successfully unsubcribed.
+<% else %>
+  There was a problem with your request.
+  <br/>
+  If you need help, please do <a href='/about/contact'>contact us</a>.
+<% end %>

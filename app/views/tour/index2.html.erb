@@ -1,0 +1,60 @@
+<% if logged_in? and current_user.tool_uses.uses(:mines) < 2 %>
+  <div class="tour_titles">
+    <div class="tour_titles_margins">
+<% else %>
+  <div class="tour_titles_loggedout">
+  <img src="/images/new_player/tour/tour_text_top.png" width="662" height="11" alt="Tour Text Top" /> 
+<% end %>
+	<span id="heading_text">
+      <%= @heading_text[params[:page].to_i - 1] %>
+  </span>
+<% if logged_in? and current_user.tool_uses.uses(:mines) < 2 %>
+		</div>
+	</div>
+<% else %>
+  <img src="/images/new_player/tour/tour_text_bottom.png" width="662" height="11" alt="Tour Text Bottom" /> 
+	</div>  
+<% end %>
+
+<div class="tour_main">
+  
+  <div class="tour_prev_width">
+  <% if params[:page].to_i > 1 %>
+		<span id="prev_arrow">
+		<%= link_to_remote "", :url => {:action => "index", :page => params[:page].to_i - 1}, :html => {:class => "tour_prev"} %>
+    </span>
+<!-- <a href="#" class="tour_prev">&nbsp;</a> -->
+	<% else %>
+			<span id="prev_arrow">&nbsp;&nbsp;</span>
+	<% end %>
+
+  </div>
+
+  <div class="tour_content">
+  
+    <img src="/images/new_player/tour/tourbox_left.png" width="11" height="479" alt="" style="float:left;"/>
+    
+    <div class="tour_image_box" id="tour_image_container">
+    
+      <%= image_tag @image, :alt => "Missions", :class => "tour_image" %>
+    
+    </div>
+    
+    <img src="/images/new_player/tour/tourbox_right.png" width="14" height="479" alt="" style="float:left;"/>
+    
+  </div>
+  
+  <div class="tour_next_width">
+  <% if params[:page].to_i < @images.length + 1 %>
+	<span id="next_arrow">
+	<%= link_to_remote "", :url => {:action => "index", :page => params[:page].to_i + 1}, :html => {:class => "tour_next"} %>
+   </span>
+	<% else %>
+		<span id="next_arrow">&nbsp;</span>
+ <!-- <a href="#" class="tour_next">&nbsp;</a> -->
+  <% end %>
+  </div>
+  
+</div>
+
+<br style="clear:both;" />

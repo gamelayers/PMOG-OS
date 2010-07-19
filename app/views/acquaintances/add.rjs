@@ -1,0 +1,1 @@
+page.replace "#{@buddy.login}_#{@filter}_avatar_actions", { :partial => "/shared/avatar_actions", :locals => {:user => @buddy, :filter => @filter} }

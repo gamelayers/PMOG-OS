@@ -1,0 +1,25 @@
+<%= error_messages_for :mission %>
+
+<%= text_field_for form, "name", 60 %>
+
+  <h2><label for="description">Description:</label></h2>
+  <%= form.text_area :description, :rows => 15, :cols => 59, :class => 'input' %>
+  <div class="height20"></div>
+
+<% if current_user.current_level > 4 %>
+
+  	<h2><label for="minimum_level">Minimum Level required to take your Mission (optional; default is Level 1):</label></h2>
+  	<%= form.text_field :minimum_level, :size => 2, :class => 'input' %>
+
+<% end %>
+
+<div class="height20"></div>	
+
+<%# Only allow site admins to make pmog_only missions %>
+<% unless !site_admin? %>
+
+
+		<%= form.check_box(:pmog_mission) %> If this is a PMOG-related mission, check this box (Admins only)
+
+<% end %>
+<div class="height20"></div>

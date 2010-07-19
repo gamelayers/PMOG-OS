@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+if ARGV.length < 4 || ARGV.first == 'help'
+  $stderr.puts 'usage: perf_diff iterations common-options options1 options4 [conf-name1] [conf-name2]'
+  $stderr.puts 'example: perf_diff 100 "-bm=all"  "-log" "-nocache" c1 c2'
+  exit 1
+end
+
+bindir = File.dirname(__FILE__)
+require "#{bindir}/../lib/railsbench/perf_utils"
+
+die("perf_diff: RAILS_ROOT not set") unless ENV['RAILS_ROOT']
+
+iterations = ARGV[0]
+common = ARGV[1]
+options1 = ARGV[2]
+options2 = ARGV[3]
+
+benchmark = "default"
+benchmark = $1 if common =~ /-bm=([^ ]+)/
+
+file1 = benchmark_file_name(benchmark, ARGV[4], 1)
+perf_run("perf_diff", iterations, "#{common} #{options1}", file1)
+puts;puts
+
+file2 = benchmark_file_name(benchmark, ARGV[5], 2)
+perf_run("perf_diff", iterations, "#{common} #{options2}", file2)
+puts;puts
+
+system("ruby #{bindir}/perf_comp #{file1} #{file2}")
+
+__END__
+
+#  Copyright (C) 2005, 2006, 2007  Stefan Kaes
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA

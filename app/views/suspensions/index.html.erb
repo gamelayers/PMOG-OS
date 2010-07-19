@@ -1,0 +1,40 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">List of Suspended Players</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+					<div class="module width960">
+					
+					<p>These <%= @suspensions.size %> players have been suspended, typically after appearing on the <a href="/suspects/">Suspects</a> list.</p>
+					
+  <table class="leaderboardTable">
+		<tr>
+			<th colspan="2">User</th>
+			<th>Start</th>
+			<th>End</th>
+			<th>Reason</th>
+			<th>Form</th>
+		</tr>
+		<% @suspensions.each do |s| %>
+			<tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+				<td valign="top"><%= avatar_link_to_user :user => s.user, :size => 'small' %></td>
+			  <td valign="top"><%= link_to s.user.login, :action => 'search', :q => s.user.login, :criteria => 'user' %>
+				<td valign="top"><%= s.created_at %></td>
+				<td valign="top"><%= s.expires_at %></td>
+				<td valign="top"><p><%= s.reason %></p></td>
+				<td valign="top"><a href="/suspensions/form/<%= s.user.login %>/">form</a></td>
+			</tr>
+		<% end %>
+	</table>
+					</div>
+				
+				</div>
+			
+			</div>
+
+		</div>

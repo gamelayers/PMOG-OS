@@ -1,0 +1,38 @@
+<h1>Editing forum</h1>
+
+<%= error_messages_for :forum %>
+
+<% form_for(:forum, :url => forum_path(@forum), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <script type="text/javascript">
+    $( 'forum_title' ).focus();
+  </script>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_area :description %>
+  </p>
+  
+  <% if site_admin? %>
+    <p>
+      <b>PMOG Only? (Non-trustees can look but not post)</b>
+      <%= f.check_box(:pmog_only) %>
+    </p>
+    
+    <p>
+      <b>Private? (Trustees and stewards only)</b>
+      <%= f.check_box(:private) %>
+    </p>
+  <% end %>
+  
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', forum_path(@forum) %> |
+<%= link_to 'Back', forums_path %>

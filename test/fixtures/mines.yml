@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: mines
+#
+#  id          :string(36)    primary key
+#  user_id     :string(36)    
+#  location_id :string(36)    
+#  created_at  :datetime      
+#  updated_at  :datetime      
+#  charges     :integer(11)   default(0)
+#
+
+<% for i in 1..250 %>
+mine_<%= i %>:
+  id: <%= UUID.timestamp_create().to_s %>
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  location_id: 09eb0024-f437-11dc-b7f8-0016cb88feaa
+  created_at: <%= i.minutes.ago < Time.now %>
+  updated_at: <%= i.minutes.ago < Time.now %>
+<% end %>

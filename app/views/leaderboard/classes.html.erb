@@ -1,0 +1,98 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+  	<%= render :partial => "shared/breadcrumbs/leaderboards" %>
+    <div class="cell parent">
+      <a href="/leaderboard/classes">
+        <span class="l"></span>
+        <span class="c">Classes</span>
+        <span class="r"></span>
+      </a>
+    </div>
+  </div>
+<% end %>
+
+<div id="copy">
+	<div class="column width960">	
+	  <div class="height20"></div>
+		<div class="column width700">			
+			<div class="module width700">
+				<div class="width325">
+<h3>Chaos Leaderboards</h3>
+
+  <% @pmog_classes.each do |pmog_class| %>
+  	<% if pmog_class.name.downcase == 'grenadiers' %>
+  	<% elsif pmog_class.name.downcase == 'riveters' %>
+  	<% elsif pmog_class.name.downcase == 'benefactors' %>
+  	<% elsif pmog_class.name.downcase == 'pathmakers' %>
+  	<% elsif pmog_class.name.downcase == 'bedouins' %>
+  	<% elsif pmog_class.name.downcase == 'shoats' %>
+  	<% else %>
+  	
+<%= link_to "<img src=\"#{pmog_class.small_image}\" title=\"#{pmog_class.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{pmog_class.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/leaderboard/classes/#{pmog_class.name.downcase}" %>
+<h4><a
+href="/leaderboard/classes/<%= pmog_class.name.downcase %>"><%= pmog_class.name.titleize %></a></h4>
+<p><%= pmog_class.short_description %></p>
+
+<% end %>
+<% end %>
+						</div>
+						<div class="width20"></div>
+
+						<div class="width325">
+
+<h3>Order Leaderboards</h3>
+
+  <% @pmog_classes.each do |pmog_class| %>
+  	<% if pmog_class.name.downcase == 'grenadiers' %>
+  	<% elsif pmog_class.name.downcase == 'riveters' %>
+  	<% elsif pmog_class.name.downcase == 'seers' %>
+  	<% elsif pmog_class.name.downcase == 'destroyers' %>
+  	<% elsif pmog_class.name.downcase == 'vigilantes' %>
+  	<% elsif pmog_class.name.downcase == 'shoats' %>
+  	<% else %>
+  	
+<%= link_to "<img src=\"#{pmog_class.small_image}\" title=\"#{pmog_class.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{pmog_class.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/leaderboard/classes/#{pmog_class.name.downcase}" %>
+<h4><a href="/leaderboard/classes/<%= pmog_class.name.downcase %>"><%= pmog_class.name.titleize %></a></h4>
+<p><%= pmog_class.short_description %></p>
+<% end %>
+<% end %>
+
+						</div>
+					</div>
+				</div>
+							<div class="column width240">
+    						<div class="module width240">
+      	<h2>Class Leaderboards</h2>
+				<p>Class Leaderboards are based on Class Points.  <a href="/guide/rules/classpoints/">Learn more about Class Points in the Guide</a>.</p>
+
+      	<p>
+				<% @pmog_classes.each do |class_link| %>
+					<% if params[:id] == class_link.name.downcase %>
+						<strong><%= class_link.name.titleize %></strong><br />
+					<% else %>
+						<a href="/leaderboard/classes/<%= class_link.name.downcase %>"><%= class_link.name.titleize %></a><br />
+					<% end %>
+				<% end %>
+				</p>   
+
+      						</div>
+
+					</div>
+				</div>
+				</div>

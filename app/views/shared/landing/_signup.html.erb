@@ -1,0 +1,106 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "jquery.validate.pack" %>
+  <%= javascript_include_tag "jquery.typewatch" %>
+
+  <script type="text/javascript">
+
+  function extensionEventListener(event) {
+    jQuery("#toolbar_installed").attr("value", jQuery('#pmog_installed #installed').text());
+  }
+  window.addEventListener("PmogInstalledEvent", extensionEventListener, false);
+
+  function initFormValidator() {
+    $("#new_user").validate();
+    $("#signupSubmit").track({
+      category : 'Landing',
+      action : 'click',
+      label : 'SignUp',
+    });
+
+    $('#user_login').typeWatch({
+      callback: function() {
+        //remove all the class add the messagebox classes and start fading
+        $("#msgbox").removeClass().addClass('messagebox').text('Checking...').fadeIn("slow");
+        //check the username exists or not from ajax
+        $.post("/checkuser",{ user_login:$('#user_login').val() } ,function(data) {
+          $('#general_debug_info').append(data);
+          if(data=='true') { //if username not avaiable
+            $("#msgbox").fadeTo(200,0.1,function() { //start fading the messagebox
+              //add message and change the class of the box and start fading
+              $(this).html('This User name Already exists').addClass('form_error_message').fadeTo(900,1);
+            });
+            } else {
+              $("#msgbox").fadeTo(200,0.1,function() {  //start fading the messagebox
+              //add message and change the class of the box and start fading
+              $(this).html('Username available to register').addClass('messageboxok').fadeTo(900,1);
+            });
+          }
+        });
+      },
+      wait: 500
+    });
+  };
+
+  $(document).ready(function() {
+    initFormValidator();
+  });
+  </script>
+<% end %>
+
+
+<p class="signupElement">
+  <%= link_to(image_tag('/images/twitter/Sign-in-with-Twitter-darker.png', :alt => "Twitter Sign In"), :controller => 'oauth', :action => "new", :id => 'twitter') %><br/>Sign up/in using your Twitter account or enter your information below.
+</p>
+<hr>
+
+
+
+<%= error_messages_for :user %>
+
+<%# remote_error_handling_form_for(@user) do |f| %>
+<% error_handling_form_for(@user) do |f| %>
+    <%= f.hidden_field :signup_source, :value => "web" %>
+    <%= f.hidden_field :signup_version, :value => version %>
+    <input type="hidden" id="toolbar_installed" name="toolbar_installed">
+
+    <div class="signupElement">
+        <p class="counter"><span id="charCount"></span></p>
+        <label for="user_login">Player Name <span class="red">*</span></label>
+        <%= f.text_field :login, :size => 20, :class => "playerName signupInput" %>
+        <p>Must be between <strong>2</strong> and <strong>20</strong> characters.</p>
+        <span id="msgbox"></span>
+
+        <div class="extendThis">This is your player name and your login name.</div>
+    </div>
+
+    <script type="text/javascript">
+        //PLAYER NAME CHARACTER COUNTER
+        $('input.playerName').keyup(function() {
+            var charLength = $(this).val().length;
+            $('span#charCount').html(charLength + ' used');
+        });
+    </script>
+    <div class="signupElement">
+        <label for="user_email">Email <span class="red">*</span></label>
+        <%= f.text_field :email, :class => "signupInput required email", :size => 30 %>
+        <div class="extendThis">We won't send you undesirable spam email.</div>
+    </div>
+    <div class="signupElement">
+        <label for="user_password">Password <span class="red">*</span></label>
+        <%= f.password_field :password, :size => 16, :class => "signupInput" %>
+        <p>Must be between <strong>6</strong> and <strong>10</strong> characters.</p>
+        <div class="extendThis">Keep it secret. Keep it safe.</div>
+    </div>
+
+       <%= render :partial => '/signup_captcha', :locals => { :f => f } %>
+
+    <div class="signupElement submit">
+        <p>
+            By clicking below you are agreeing to the <a href="/guide/rules/terms" target="_blank">Terms of Service</a>
+            and the <a href="/about/privacy" target="_blank">Privacy Policy</a>. </p>
+
+        <div class="button" style="text-align: center;">
+            <%= f.submit 'Sign Up', :class => "buttonSignUp signupInput ajax_throbber", :id => "signupSubmit" %>
+        </div>
+    </div>
+<% end %>

@@ -1,0 +1,35 @@
+<div class="column width700">
+
+	<h2>Badges ::
+	<span>Earn something for surfing the internet all day! </span>
+	</h2>				
+
+	<div class="module width700">
+					
+		<h3>Badges</h3>
+
+		<% badges.each do |badge| %>
+			<% if badge.active? %>
+
+				<%= link_to "<img src=\"/images/shared/badges/small/#{badge.image}\" title=\"#{badge.name.titleize}\" 
+                              width=\"39\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{badge.name.titleize}\" 
+                              class=\"\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"left\">", "/guide/badges/#{badge.url_name.downcase}" %>
+				<br/>
+
+				<h4><a href="/guide/badges/<%= badge.url_name.downcase %>"><%= badge.name.titleize %></a></h4>
+
+				<p><%= badge.description %>. <a href="/guide/badges/<%= badge.url_name.downcase %>">Learn More</a></p>
+
+			<% end %>
+
+		<% end %>
+					
+	</div>
+
+</div>

@@ -1,0 +1,13 @@
+<div class='pmog_action'>
+  <div class='pmog_action_link'><a href='<%= host %>'>PMOG</a></div>  
+  <%= render :partial => 'shared/ext/button_close', :locals => { :window_id => @window_id } %>
+  <div class='pmog_action_text'>
+    <% if flash[:notice].nil? or flash[:notice].empty? %>
+      Message sent!
+    <% else %>
+      <%= flash[:notice] %>
+    <% end %>
+  </div>
+</div>
+
+<br style='clear:both;'>

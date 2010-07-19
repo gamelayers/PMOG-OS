@@ -1,0 +1,11 @@
+page.replace_html 'branches', { :partial => 'edit_lightposts', :collection => @mission.branches }
+
+page.visual_effect :highlight, "branch_#{@branch.id}", :duration => 2
+
+page.replace_html "transient", "Purchased lightposts for this mission:  #{session[:new_lightposts].nil? ? 0 : session[:new_lightposts].length }"
+
+page.visual_effect :highlight, "transient", :duration => 2
+
+if @unpublished
+  page.replace_html "gen_progress", :partial => 'generator_progress'
+end

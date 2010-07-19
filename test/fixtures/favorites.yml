@@ -1,0 +1,14 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: favorites
+#
+#  user_id        :string(36)    
+#  favorable_type :string(30)    
+#  favorable_id   :string(36)    
+#  created_at     :datetime      
+#  updated_at     :datetime      
+#  id             :string(36)    primary key
+#
+
+

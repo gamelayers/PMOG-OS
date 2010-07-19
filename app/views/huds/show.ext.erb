@@ -1,0 +1,27 @@
+<div class="use1column">&nbsp;</div>
+
+<%= form_tag(user_preferences_path(:format => :ext), { :method => :put, :id => 'preference_form', :name => 'preference_form' })%>
+  <dl class="use6columns">
+    <% @groups.each do |group| -%>
+      <dt><h5><%= group[:label] %></h5></dt>
+      
+      <% group[:settings].each do |p| -%>
+        <dt><%= h Preference.preferences[p][:text] %></dt>
+        <dd><%= h Preference.preferences[p][:description] %></dd>
+        
+        <% if Preference.preferences[p][:type] == 'boolean' -%>
+          <dd><%= radio_button("preferences", Preference.preferences[p][:text], "true", { :onchange => "document.preference_form.submit();return false;" }) %> Enable</dd>
+          <dd><%= radio_button("preferences", Preference.preferences[p][:text], "false", { :onchange => "document.preference_form.submit();return false;" }) %> Disable</dd>
+        <% end -%>
+        
+        <% if ['integer', 'level', 'text'].include?(Preference.preferences[p][:type]) -%>
+          <select name="preferences[<%= Preference.preferences[p][:text] %>]" id="preferences_<%= Preference.preferences[p][:text] %>" onchange="document.preference_form.submit();return false;">
+          <%= options_for_select(Preference.preferences[p][:choices].collect {|i| [ i, i ] }, @preferences.send(Preference.preferences[p][:text])) %>
+          </select>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  </dl>
+</form>
+
+<div class="use1column">&nbsp;</div>

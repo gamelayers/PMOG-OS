@@ -1,0 +1,22 @@
+= Using wget to browse pmog.com as a logged in user =
+
+Grab auth_token from your Firerfox session (Preferences, Privacy, Show cookies).
+
+Copy and paste that into cookies.txt.
+
+Then use wget to browse the site as a logged in user:
+
+wget -S --load-cookies cookies.txt http://pmog.com/users/suttree
+
+Or, to deploy a lightpost from the command line (note that we pass auth_token as a parameter, rather than a cookie, as this is how the extension does it):
+
+wget -S --post-data 'auth_token=7142fb4724e676333579696d9d5154908dbf8d14' http://pmog.com/locations/4699bd20-97a4-11dc-9432-00163e4ab66d/lightposts.js
+
+Measure the size of the page using wget:
+  wget -p --convert-links http://0.0.0.0:3000/users/suttree
+
+And kinda of the same thing using curl:
+  curl -w '\nDownload size:\t%{size_download} bytes\n' -o /dev/null -s http://0.0.0.0:3000/users/suttree
+
+Run finished pages through here to get a sense of speed:
+  http://analyze.websiteoptimization.com/wso

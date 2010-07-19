@@ -1,0 +1,23 @@
+<%= javascript_include_tag 'tool_javascripts'%>
+<h1><%= @h1content %></h1>
+<h5><%= link_to '&lt; Back to Full Listing', :action => 'index' %></h5>
+
+<br>
+
+<% form_tag '/giftcards/search', :method => :get do %>
+  Or search by User/Location: <%= text_field_tag 'q' %>
+  <select name="criteria">
+    <option value="">Select Criteria</option>
+    <option value="user">User</option>
+    <option value="location">Location</option>
+  </select>
+<% end %>
+
+<% if @giftcards && !@giftcards.empty? %>
+  <% form_tag '/giftcards/destroy', :method => :post, :id => 'tool_form' do %>
+    <%= render :partial => 'usertable' %>
+  <% end %>
+<% else %>
+  No DP Cards found ...
+<% end %>
+

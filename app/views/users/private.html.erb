@@ -1,0 +1,78 @@
+<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+							<div class="privacy">
+
+	<% if logged_in? && @user != current_user %>
+		<%= render :partial => 'show_acquaint_controls' %>
+		<%= render :partial => 'show_actions' %>
+	<% end %>
+	<%# End user buttons set %>
+
+	<img src="/images/profile/private.png" width="300" height="353">
+	<h1><%= @user.login %> is a private person.</h1>
+	<p>If you're interested in this player, please <a href="#" onclick="jQuery('#outgoing').show();return false;">send this user a message.</a></p>
+
+							</div><!--privacy-->
+						</div>
+					</div>
+				</div>
+					
+<% if site_admin? %>
+			<div class="column width960">		
+					<div class="column width700">
+						<div class="module width700">
+<br clear="all" />
+
+<table cellspacing="10"><tr><td>
+<p><b>First Login:</b> <%= @user.created_at.strftime("%h %e %Y") %> <br />
+          <b>Last Login:</b> <% if not @user.last_active.nil? %><%= @user.last_active.strftime("%h %e %Y") %><% end %><br />
+          <b>Last Version:</b> <%= @user.last_version %>
+        <% end %>
+
+</td>
+<td><% if site_admin? %>
+				<h5 class="user_edit_link"><a href='/admin/inventory/<%= @user.login %>'>Edit inventory and datapoints</a></h5>
+	
+        <h5 class="user_edit_link">
+          <img src="/images/profile/profile_edit.png" class="img_no_border" />
+          <a href='/suspensions/form/<%= @user.login %>'>Suspend Player</a>
+        </h5>
+        
+        <h5 class="user_edit_link">
+          <img src="/images/profile/profile_edit.png" class="img_no_border" />
+          <%= link_to 'Become', { :controller => "users", :action => "become", :id => @user.login }, { :confirm => "Be careful out there, and don't forget to LOGOUT when you're done!" } %>
+        </h5>
+      <% end
+      
+      if site_admin? or steward? %>
+        <h5 class="user_edit_link">
+          <img src="/images/profile/profile_edit.png" class="img_no_border" />
+          <%= link_to 'Delete Assets', { :controller => 'users', :action => 'delete_assets', :id => @user.login }, :confirm => "This will delete ALL of the users assets. Are you sure?", :method => 'delete' %>
+        </h5>
+      <% end
+        
+      if site_admin? %>
+        <% if !@user.has_role?('steward') %>
+          <h5 class="user_edit_link">
+            <img src="/images/profile/profile_edit.png" class="img_no_border" />
+            <%= link_to 'Promote', { :controller => 'users', :action => 'promote', :id => @user.login }, :confirm => "This will give this user permission to lock and pin forum topics. You know what yer doin, troublemaker?", :method => 'post' %>
+          </h5>
+        <% else %>
+          <h5 class="user_edit_link">
+            <img src="/images/profile/profile_edit.png" class="img_no_border" />
+            <%= link_to 'Demote', { :controller => 'users', :action => 'demote', :id => @user.login }, :confirm => "This will strip this user of permission to lock and pin forum topics. Are you sure?", :method => 'post' %>
+          </h5>
+      <% end %>
+</td></tr></table>
+						</div>
+					</div>
+				</div>
+
+     <% end %>
+      

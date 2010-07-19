@@ -1,0 +1,7 @@
+<div class="pmog_action">
+  <div class="pmog_action_link"><a href="<%= host %>" target="new">PMOG</a></div>
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+  <img src="<%= host %>/images/ext/st_nick.png" width="16" height="16" alt="St. Nick" class="pmog_action_margin" />
+  <div class="pmog_action_text">Sorry, <%= @user.login %> is already covered in enough St Nicks!</div>
+</div>
+<br style="clear:both;" />

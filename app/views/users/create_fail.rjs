@@ -1,0 +1,3 @@
+page.replace_html "signupFormPartial", :partial => '/shared/landing/signup'
+page << "initForm();"
+page << "initFormValidator();"

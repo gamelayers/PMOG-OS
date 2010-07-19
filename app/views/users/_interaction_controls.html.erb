@@ -1,0 +1,76 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'character_count' %>
+	<script type="text/javascript" charset="utf-8">
+		Event.observe(window, 'load', init);
+		
+		function init(){
+			makeItCount('pmail_message', 500);
+		};
+	</script>
+<% end %>
+<% if not @suspended %>
+<div class="user_button_mine">
+	<% remote_form_for  :mine,
+	:url => location_mines_url( Location.find_or_create_by_url( user_url( @user ) ) ),
+	:html => { :method => :post, :style => "display: inline" },
+	:update => 'button_response',
+	:loading => "jQuery('#loader_img').show();",
+	:complete => "jQuery('#loader_img').hide();" do |f| %>
+
+	<input type="image" src="/images/profile/mine_lay.png" alt="Deploy a mine here!" type="submit" title="Lay a Mine here for this player! You have <%= current_user.inventory.mines %> remaining." class="user_button_set_img">
+	<% end %>
+</div><!--user buttons-->
+
+<div class="user_button_mine">
+<% remote_form_for  :st_nick,
+:url => attach_user_st_nicks_path( @user ),
+:html => { :method => :put, :style => "display: inline" },
+:update => 'button_response',
+:loading => "jQuery('#loader_img').show();",
+:complete => "jQuery('loader_img').hide();" do |f| %>
+
+<input type="image" src="/images/profile/stnick_lay.png" alt="Attach a St Nick!" type="submit" title="Attach a St. Nick to this player! You have <%= current_user.inventory.st_nicks %> remaining." class="user_button_set_img">
+<% end %>
+</div><!--user buttons-->
+
+<div class="user_button_mine">
+<%= link_to( image_tag( "/images/profile/crate_lay.png", 
+                        :alt => "Stash a Crate here for this player", 
+                        :class => "img_no_border", 
+												:title => "Stash a Crate here for this player! You have #{current_user.inventory.crates} remaining." ), 
+						 location_crates_path( Location.find_or_create_by_url( user_url( @user ) ) ) ) 
+%>
+</div><!--user buttons-->
+
+<%= link_to_function( image_tag( "/images/profile/message_send.png", 
+                                 :alt => "Send a message!",
+ 														 		 :class => "user_button_set_img img_no_border" ), 
+                      "jQuery('#outgoing').show();" )
+%>
+
+<span id="outgoing" style="display:none;" class="user_profile_message">
+	<h5>
+		<% remote_form_for  :message,
+		:url => user_messages_path,
+		:html => { :method => :post, :style => "display: inline", :id => 'message_form'},
+		:loading => "jQuery('#loader_img').show();",
+		:complete => "jQuery('#loader_img').hide(); $('message_form').reset('message_body');" do |f| %>
+		<%= f.text_field :body, :class => "input", :name => "pmail_message", :id => "pmail_message", :value => "@" + @user.login + " " %>
+		<br/>
+		<span>( <span id="counter-pmail_message"><b>#</b></span> characters )</span>
+		<%= submit_tag "Message", :class => "input", :onclick => "jQuery('#outgoing').hide();" %>
+		<br/><br/>
+		<a href="#" onclick="jQuery('#outgoing').hide();return false;">Don't Message</a>
+	</h5>
+	<% end %><!--message form-->
+</span><!--outgoing message-->
+
+<div id="loader_img" style="text-align:center;display:none;">
+
+	<img src="/images/profile/profile_event_loader.gif" width="220" height="19" alt="Loading..." />
+
+</div>
+
+<span id='button_response'>&nbsp;</span>
+
+<% end %>

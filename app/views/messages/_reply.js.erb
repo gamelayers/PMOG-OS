@@ -1,0 +1,26 @@
+<div class="pmog_action">
+	<%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+	<div class="pmog_action_link"><a href="<%= host %>">PMOG</a> : Reply to <%= @message.user.login %></div>
+	<div class="pmog_message_text">
+		<div class="instant_message_form">
+		  <form name="instant_message" method="post" action="">
+		    <input type="hidden" value="@<%= @message.user.login %>" size="30" name="instant_message[recipient]" class="instant_message_recipient" id="instant_message_recipient"/>
+					<%= strip_message_recipient( format( @message.body ) )%>
+				<br/>
+		    &nbsp;<input type="text" value="" name="instant_message[body]" class="instant_message_body instant_message_input" id="instant_message_body"/>
+				<br/>
+				<a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+				      pmog_m.setAttribute('instant_message_recipient', ''+ document.instant_message.instant_message_recipient.value + '');
+				      pmog_m.setAttribute('instant_message_body', ''+ document.instant_message.instant_message_body.value + '');
+				      pmog_m.setAttribute('extra_attributes', 'instant_message_recipient, instant_message_body');
+				      pmog_m.setAttribute('method', 'post');
+				      pmog_m.setAttribute('action', 'send_instant_message');
+				      pmog_m.setAttribute('server_url', '/users/<%= @message.user.login %>/messages.json' );
+				      pmog_m.setAttribute('window_id', '<%= @window_id %>' );
+				      pmog_m.dispatchEvent(pmog_e);return false;" class="instant_message">Send Message (costs 1 DP)</a>
+		  </form>
+		</div>
+	</div>
+</div>
+
+<br style="clear:both;">

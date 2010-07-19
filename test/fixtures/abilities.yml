@@ -1,0 +1,150 @@
+--- 
+abilities_007: 
+  name: Vengeance
+  updated_at: 2009-04-16 18:41:56
+  misc: 
+  history: 
+  short_description: High Level Bedouins can enhance their Armor with Vengeance. If you choose to use this ability, your armor will reflect damage back onto your attacker!
+  dp_cost: "0"
+  level: "15"
+  pmog_class_id: "8"
+  classpoints: "25"
+  large_image: 
+  id: f60a60fc-1f1b-11de-b37d-0017f2d41804
+  value: "0"
+  long_description: With each use, the Vengeance present on any piece of Armor will degrade with time. Watch your Armor to know how many charges you have left.  You will be automatically charged a few Pings each time Vengeance is triggered.
+  small_image: 
+  percentage: "50"
+  ping_cost: "20"
+  url_name: vengeance
+  created_at: 2009-04-02 00:19:42
+  medium_image: 
+  icon_image: 
+abilities_001: 
+  name: Overclock
+  updated_at: 2009-06-03 01:09:55
+  misc: 
+  history: 
+  short_description: Grants another player bonus classpoints as they play.
+  dp_cost: 
+  level: 
+  pmog_class_id: "1"
+  classpoints: 
+  large_image: 
+  id: 401b7448-4fdb-11de-b2ca-0017f2d41804
+  value: "5"
+  long_description: 
+  small_image: 
+  percentage: 
+  ping_cost: 
+  url_name: overclock
+  created_at: 2009-06-03 01:09:55
+  medium_image: 
+  icon_image: 
+  charges: "5"
+abilities_002:
+  charges: "5"
+  name: Impede
+  updated_at: 2009-06-03 01:09:56
+  misc: 
+  history: 
+  short_description: Grants another player bonus classpoints as they play.
+  dp_cost: 
+  level: 
+  pmog_class_id: "3"
+  classpoints: 
+  large_image: 
+  id: 402caf9c-4fdb-11de-b2ca-0017f2d41804
+  value: "5"
+  long_description: 
+  small_image: 
+  percentage: 
+  ping_cost: 
+  url_name: impede
+  created_at: 2009-06-03 01:09:56
+  medium_image: 
+  icon_image: 
+abilities_003: 
+  name: Create a Skeleton Key
+  updated_at: 2009-04-16 18:41:56
+  misc: 
+  history: 
+  short_description: Crafted by Seers from their knowledge of transmission and transgression, Skeleton Keys unlock Puzzle Crates and Puzzle Posts.
+  dp_cost: "100"
+  level: "10"
+  pmog_class_id: "2"
+  classpoints: "15"
+  large_image: /images/shared/tools/large/skeleton_key.png
+  id: a4055908-22de-11de-8b48-0017f2d41804
+  value: "0"
+  long_description: Skeleton Keys can only be created by Seers, but can be used by any player that can convince a Seer to give one up. Skeleton Keys will unlock Puzzle Crates, revealing the answer to the riddle, and yielding all the contents inside.  Skeleton Keys will also unlock Puzzle Posts, but the answers to those riddles can not yet be gleaned with this Seer technology.
+  small_image: /images/shared/tools/small/skeleton_key.png
+  percentage: 
+  ping_cost: "50"
+  url_name: create_skeleton_key
+  created_at: 2009-04-06 19:10:49
+  medium_image: /images/shared/tools/medium/skeleton_key.png
+  icon_image: /images/shared/tools/icon/skeleton_key-16.png
+abilities_004: 
+  name: DP Cards
+  updated_at: 2009-03-01 15:40:27
+  misc: 
+  history: 
+  short_description: "Play a DP Card and leave 10 DP on a site for another player to find. "
+  dp_cost: "10"
+  level: "1"
+  pmog_class_id: "1"
+  classpoints: "5"
+  large_image: 
+  id: acc6b318-dce1-11dd-88b1-0017f2d41804
+  value: "10"
+  long_description: Playing DP Cards is a simple way to show that you like something.
+  small_image: 
+  percentage: 
+  ping_cost: "0"
+  url_name: giftcard
+  created_at: 2009-01-07 17:36:11
+  medium_image: 
+  icon_image: 
+abilities_005: 
+  name: Dodge
+  updated_at: 2009-05-11 16:52:19
+  misc: 
+  history: 
+  short_description: Dodge a mine after setting it off, avoiding all damage.
+  dp_cost: "0"
+  level: "3"
+  pmog_class_id: "8"
+  classpoints: "15"
+  large_image: ""
+  id: be6f2ed6-e724-11dd-abce-0017f2d41804
+  value: "0"
+  long_description: Dodge works against a grenade attack or a mine attack. This ability costs Pings, so you can turn it off from the toolbar if you'd rather not spend your Pings avoiding damage.
+  small_image: ""
+  percentage: "100"
+  ping_cost: "10"
+  url_name: dodge
+  created_at: 2009-01-20 19:01:29
+  medium_image: ""
+  icon_image: ""
+abilities_006: 
+  name: Dodge and Disarm
+  updated_at: 2009-05-08 18:45:45
+  misc: 
+  history: 
+  short_description: Stop an attack and add the tool used against you to your inventory.
+  dp_cost: "0"
+  level: "12"
+  pmog_class_id: "8"
+  classpoints: "20"
+  large_image: ""
+  id: e369a58a-f166-11dd-8852-0017f2d41804
+  value: "0"
+  long_description: Dodge and disarm works against a grenade attack or a mine attack. This ability costs Pings, so you can turn it off from the toolbar if you'd rather not spend your Pings collecting weapons.
+  small_image: ""
+  percentage: "100"
+  ping_cost: "15"
+  url_name: disarm
+  created_at: 2009-02-02 20:20:09
+  medium_image: ""
+  icon_image: ""

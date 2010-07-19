@@ -1,0 +1,9 @@
+@branches.each do |b|
+  page.replace_html "pos_#{b.id}", b.position
+end
+
+page.visual_effect :highlight, "branches", :duration => 2
+
+if @unpublished
+  page.replace_html "gen_progress", :partial => 'generator_progress'
+end

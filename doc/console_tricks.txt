@@ -1,0 +1,11 @@
+= Console Tricks =
+
+	From http://clarkware.com/cgi/blosxom/2006/04/04
+	
+	Setup controller logging to the console:
+		ActionController::Base.logger = Logger.new(STDOUT)
+
+	Then, explore using app, like this, to test login:
+		app.post "/session", :login => "suttree", :password => "xxxx"
+		app.cookies
+		app.session[:user]	

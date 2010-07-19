@@ -1,0 +1,21 @@
+<div class="pmog_action">
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+  <div class="pmog_action_link"><a href="<%= host %>">PMOG</a></div>
+  <div class="pmog_message_text">
+    <%= avatar_link_to_user :user => @message.user, :size => "tiny", :only_path => false %>
+    <%= strip_message_recipient( format( @message.body ) )%> from <a href="<%= host %>/users/<%= @message.user.login %>"><%= @message.user.login %></a>, <%=h time_ago_in_words(@message.created_at) %> ago
+    <br/>
+    <br/>
+    <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                pmog_m.setAttribute('server_url', '/users/<%= current_user.login %>/messages/<%= @message.id %>/reply.json'); 
+                pmog_m.setAttribute('method', 'post'); 
+                pmog_m.setAttribute('action', 'submit'); 
+                pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                pmog_m.setAttribute('params', '{\'window_id\' : \'<%= @window_id %>\'}');
+                pmog_m.dispatchEvent(pmog_e);
+                return false;" href="#">Reply</a>
+  </div>
+  
+</div>
+
+<br style="clear:both;">

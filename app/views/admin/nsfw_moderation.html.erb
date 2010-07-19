@@ -1,0 +1,20 @@
+<p>The missions listed below have had 3 or more votes against them for having NSFW content 
+   and not being flagged as such by the author.</p>
+
+<% if @missions.empty? %>
+	Good news, there aren't any LIARS!
+<% else %>
+	<table>
+		<tr>
+			<th>Mission</th>
+			<th>&nbsp;</th>
+		</tr>
+		<% for mission in @missions %>
+			<tr>
+				<td><%= link_to mission.name, mission_path(mission.url_name) %></td>
+				<td id="<%= mission.url_name %>"><center><%= link_to_remote "<img src=\"/images/missions/thumb_up.png\" class=\"img_no_border\" title=\"Mark this as Safe For Work\" />", :url => {:controller => 'missions',
+				 :action => 'toggle_nsfw', :id => mission.url_name}, :with => "'nsfw=false'"  %></center></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

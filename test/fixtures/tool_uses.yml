@@ -1,0 +1,23 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: tool_uses
+#
+#  id         :string(36)    default(""), not null, primary key
+#  tool_id    :string(36)    
+#  user_id    :string(36)    
+#  created_at :datetime      
+#  updated_at :datetime      
+#  points     :float         not null
+#  usage_type :string(255)   default("tool")
+#
+
+<% for i in 1..250 %>
+
+crate_<%= i %>:
+  id: <%= UUID.timestamp_create().to_s %>
+  tool_id: 63a00536-de72-11dc-9796-001b63928f8d
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  created_at: <%= i.minutes.ago < Time.now %>
+  updated_at: <%= i.minutes.ago < Time.now %>
+<% end %>

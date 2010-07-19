@@ -1,0 +1,3 @@
+page.replace_html 'show_rate', "Invalid rating. Nice try though.<br />"
+page.visual_effect :highlight, "show_rate", :duration => 5, :startcolor => '#FF0000'
+page.visual_effect :fade, 'show_rate', :duration => 3

@@ -1,0 +1,2 @@
+#!/bin/sh
+RAILS_ENV=development SUPPRESS_COMMENTS=true mongrel_rails start

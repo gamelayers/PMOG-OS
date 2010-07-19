@@ -1,0 +1,97 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Players</div>
+		<div class="cell child"><span class="l"></span><span class="c">Search</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'users/search_form' %>
+<% end %>
+
+<div id="copy">
+
+	<div class="column width960">
+
+		<div class="column width700">					
+			<div class="module width700">
+
+				<!--
+					<div class="users_search_again">
+						<form action="/users/search" method="post">
+							<%#= token_tag %>
+							<h4>Search Again
+								<input name="q" class="input" type="text" value="">
+								<input type="submit" class="input" value="Search" />
+							</h4>
+						</form>
+					</div>
+				-->
+
+		   <h1>Search Results for '<%=h params[:q] %>'</h1>
+
+<table style="width: 100%;">
+	<% for user in @users %>
+	<tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+		<td width="130">
+			<%= avatar_link_to_user :user => user, :size => 'medium' %>
+		</td>
+
+		<td>
+			<h2><a href="/users/<%= user.login %>"><%= user.login %></a><br /></h2>
+			<% unless user.motto.blank? or user.motto.empty? or user.motto.nil?%>
+				<h5>"<%= user.motto %>"</h5><br />
+			<% end %>
+				<p>
+					<strong>Level <%= user.current_level %> <%= user.primary_association.titleize %></strong></p>
+					<br style="clear:both;" />
+		</td>
+
+	<% if logged_in? %>
+		<td>
+			<% if current_user.buddies.allied_with? user %>
+				<%= link_to "<img src='/images/profile/ally_unmake.png' alt='remove ally' border='0' width='32' height='32' class='img_no_border'>", { :controller => 'acquaintances', :action =>'remove', :id => user.login, :type => 'ally' }, { :title => 'Remove this player as an Ally'} %>
+			<% else %>
+				<%= link_to "<img src='/images/profile/ally_make.png' alt='make ally' border='0' width='32' height='32' class='img_no_border'>", { :controller => 'acquaintances', :action =>'add', :id => user.login, :type => 'ally' }, { :title => 'Add this player as an Ally'} %>
+			<% end %>
+
+			<% if current_user.buddies.acquainted_with? user %>
+				<%= link_to "<img src='/images/profile/acquaintance_unmake.png' alt='remove acquaintance' border='0' width='48' height='48' class='img_no_border'>", { :controller => 'acquaintances', :action =>'remove', :id => user.login, :type => 'acquaintance' }, { :title => 'Remove this player as an Acquaintance'} %>
+			<% else %>
+				<%= link_to "<img src='/images/profile/acquaintance_make.png' alt='make acquaintance' border='0' width='48' height='48' class='img_no_border'>", { :controller => 'acquaintances', :action =>'add', :id => user.login, :type => 'acquaintance' }, { :title => 'Add this player as an Acquaintance'} %>
+			<% end %>
+
+			<% if current_user.buddies.rivaled_with? user %>
+				<%= link_to "<img src='/images/profile/rival_unmake.png' alt='remove rival' border='0' width='32' height='32' class='img_no_border' >", { :controller => 'acquaintances', :action =>'remove', :id => user.login, :type => 'rival' }, { :title => 'Remove this player as a Rival'} %>
+			<% else %>
+				<%= link_to "<img src='/images/profile/rival_make.png' alt='make rival' border='0' width='32' height='32' class='img_no_border' >", { :controller => 'acquaintances', :action =>'add', :id => user.login, :type => 'rival' }, { :title => 'Add this player as a Rival'} %>
+			<% end %>
+		</td>
+	<% end %>
+
+
+		<td>
+		<%# if current_user.cached_has_role? 'site_admin' %>
+		<% if current_user.admin? %>
+			<h6 align="center">Admin: <%= link_to 'Edit', edit_user_path(user) %> | <%= link_to 'Become', { :controller => "users", :action => "become", :id => user.login }, { :confirm => "Be careful out there, and don't forget to LOGOUT when you're done!" } %></h6>
+		<% end %>
+		</td>
+
+	</tr>
+	<% end %>
+</table>
+
+			<br clear="all">
+
+			<%# if current_user.cached_has_role? 'site_admin' %>
+			<% if current_user.admin? %>
+			Admin: <%= link_to 'Create new user', new_user_path %>
+			<% end %>
+
+		</div>
+
+	</div>
+
+</div>
+
+</div>

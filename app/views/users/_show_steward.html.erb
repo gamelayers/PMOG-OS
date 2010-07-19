@@ -1,0 +1,41 @@
+<% if site_admin? or steward? %><!--adding a second check, just in case -->
+  <!-- PROFILE steward -->
+  <!-- #fixme steward functions missing -->
+  <div id="profileAdmin">
+    <div class="name">
+      <h4>only visible to Stewards viewing this profile</h4>
+      <br/>
+
+      <h5 class="user_edit_link">
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <%= link_to 'Clear Avatar', { :controller => 'users', :action => 'delete_assets', :id => @user.login }, :confirm => "This will delete ALL of the users past avatars. Are you sure?", :method => 'delete' %>
+      </h5>
+
+      <h5 class="user_edit_link">
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <%= link_to 'Clear Login Delay', { :controller => 'users', :action => 'reset_login_delay', :id => @user.login }, :confirm => "This will reset the login delay for this player, allowing them to attempt a login immediately. Are you sure?", :method => 'delete' %>
+      </h5>
+
+      <h5 class="user_edit_link">
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <a href='/suspensions/form/<%= @user.login %>'>Suspend Player</a>
+      </h5>
+      <br/>
+
+      <p class="bottom">
+        <b>First Login:</b> <%= @user.created_at.strftime("%h %e %Y") %> <br />
+        <b>Last Login:</b> <% if not @user.last_active.nil? %><%= @user.last_active.strftime("%h %e %Y") %><% end %><br />
+        <b>Last Version:</b> <%= @user.last_version %>
+
+      <br/>
+      <br/>
+
+      <% unless @user.beta_key.nil? %>
+        <p class="bottom">Invited By: <a href="/users/<%= @user.beta_key.user.login %>"><%= @user.beta_key.user.login %></a></p>
+      <% else %>
+        <p><%= @user.login %> was not invited by another player</p>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>

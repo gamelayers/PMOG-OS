@@ -1,0 +1,62 @@
+<h2>Finding errant mission lightposts hiding like tiny criminals</h2>
+<h5>That's what she said??</h5>
+
+<br />
+<br />
+<h4>Branches with Null Locations</h4>
+<p>These are branches applied to missions that have null location id's</p>
+<% if @null_branch_locations.empty? %>
+	<p>
+		Shit son! We must be doing something right, or you're playing locally. Either way, there's nothing to show here!
+	</p>
+<% else %>
+	<table>
+		<tr>
+			<th>Badge ID</th>
+			<th>Mission</th>
+			<th>Created</th>
+			<th>Updated</th>
+		</tr>
+		<% @null_branch_locations.each do |b| %>
+			<tr>
+				<td><%= b.id %></td>
+				<td>
+				  <% if b.mission.nil? %>
+						<font color="red">NULL</font>
+					<% else %>
+						<%= b.mission.name %>
+					<% end %>
+				</td>
+				<td><%= b.created_at %></td>
+				<td><%= b.updated_at %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+
+<br />
+<br />
+<h4>Locations with Null URLs</h4>
+<p>These locations that have null locations. In case you were wondering, that's bad.</p>
+<% if @null_location_urls.empty? %>
+	<p>
+		Shit son! We must be doing something right, or you're playing locally. Either way, there's nothing to show here!
+	</p>
+<% else %>
+	<table>
+		<tr>
+			<th>Location ID</th>
+			<th>Created By</th>
+			<th>Created</th>
+			<th>Updated</th>
+		</tr>
+		<% @null_location_urls.each do |l| %>
+			<tr>
+				<td><%= l.id %></td>
+				<td><%= l.user.login %></td>
+				<td><%= l.created_at %></td>
+				<td><%= l.updated_at %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>

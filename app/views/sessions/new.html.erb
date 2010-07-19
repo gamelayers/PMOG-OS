@@ -1,0 +1,79 @@
+<% content_for :title do %>Sign into your Player Account on <% end %>
+
+<% content_for :breadcrumbs do %>
+    <div id="breadcrumbs">
+    <div class="height20"></div>
+    <div class="main">Login</div>
+  </div>
+<% end %>
+
+    <div id="copy">
+
+      <div class="column width960">
+
+        <div class="column width700">
+
+          <div class="module width700">
+
+<p>
+  Don't have an account? <%= link_to "Create one now", new_user_path %>.
+</p>
+
+<% if @account_locked %>
+  <p>
+    <b>For security reasons, your account has been locked. Please <a href='/about/contact'>contact us</a> to resolve this issue.</b>
+  </p>
+<% elsif @account_limited %>
+  <p>
+    <b>For security reasons, we ask that you wait a short time before trying to login again.</b>
+  </p>
+<% end %>
+
+<div id="textbox" style="width:35%;">
+  <% form_tag session_path, :id => "login" do %>
+    <p>
+    <label for="login">Login</label><br />
+     <input id="login" name="login" type="text" style="border:1px solid #a9a9a9;color:black;" />
+    </p>
+
+    <script type="text/javascript">
+      $( 'login' ).focus();
+    </script>
+
+    <p>
+      <label for="password">Password</label><br/>
+      <input id="password" name="password" type="password" style="border:1px solid #a9a9a9;" />
+    </p>
+
+    <p>
+      <%= submit_tag 'Log in' %> (<a href="/sessions/find">Forgot Password?</a>)
+    </p>
+  <% end %>
+  <p>
+    <a href='#' onclick="jQuery('#textbox').hide();jQuery('#textbox_openid').show();$( 'openid_url' ).focus();">OpenID login</a>
+  </p>
+</div>
+
+<div id="textbox_openid" style="width:35%;display:none;">
+  <% form_tag openid_path do %>
+    <p><label for="login">OpenID</label><br/>
+    <%= text_field_tag 'openid_url' %></p>
+
+    <p><%= submit_tag 'Login' %></p>
+  <% end %>
+  <p>
+    <a href='#' onclick="jQuery('#textbox_openid').hide();jQuery('#textbox').show();$( 'login' ).focus();">Username and password login</a>
+  </p>
+</div>
+
+            </div>
+
+          </div>
+
+            <div class="column width240">
+          <%= render :partial => "/shared/support_module" %>
+        </div>
+
+      </div>
+
+    </div>

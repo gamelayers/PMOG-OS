@@ -1,0 +1,45 @@
+<!-- #fixme these need to be wired up with functionality from PMOG-era _user_missions maybe -->
+<div class="subtabs" id="missionTabs">
+  <ul>
+    <li><%= render :partial => "shared/spinner", :locals => { :spinner_id => "missions_panel_spinner"} %> &nbsp;&nbsp;</li>
+    <li><a href="#missions_created" onclick="reloadPanel('missions', 'created');"><span><%= number_with_delimiter(@user.missions.count) %> Created</span></a></li>
+    <li>|</li>
+    <% if logged_in? && @user == current_user %>
+    <li><a href="#missions_drafts" onclick="reloadPanel('missions', 'drafts');"><span><%= number_with_delimiter(@user.missions.count_drafts) %> Drafts</span></a></li>
+    <li>|</li>
+    <% end %>
+    <li><a href="#missions_taken" onclick="reloadPanel('missions', 'taken');"><span><%= number_with_delimiter(@user.missions.count_completed) %> Taken</span></a></li>
+    <li>|</li>
+    <li><a href="#missions_queued" onclick="reloadPanel('missions', 'queued');"><span>Queued</span></a></li>
+    <li>|</li>
+    <li><a href="#missions_favorites" onclick="reloadPanel('missions', 'favorites');"><span>Favorites</span></a></li>
+    <li>|</li>
+    <li><a href="#missions_recommended" onclick="reloadPanel('missions', 'recommended');"><span>Recommended</span></a></li>
+  </ul>
+
+  <!-- MISSIONS created -->
+  <div id="missions_created">
+    <%= render :partial => 'show_missions_list', :locals => { :panel => 'generated', :missions => @missions } %>
+  </div>
+
+  <% if logged_in? && @user == current_user %>
+  <div id="missions_drafts">
+  </div>
+  <% end %>
+
+  <!-- MISSIONS taken -->
+  <div id="missions_taken">
+  </div>
+
+  <!-- MISSIONS queued -->
+  <div id="missions_queued">
+  </div>
+
+  <!-- MISSIONS favorites -->
+  <div id="missions_favorites">
+  </div>
+  
+  <!-- MISSIONS recommended -->
+  <div id="missions_recommended">
+  </div>
+</div>

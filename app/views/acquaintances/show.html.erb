@@ -1,0 +1,270 @@
+<% content_for :head do %>
+
+<style type="text/css" media="all">@import "/css/ui.tabs.css";</style>
+
+<script src="/javascripts/ui.tabs.js" type="text/javascript"></script>
+<script src="/javascripts/ui.subtabs.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.dimensions.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tooltip.js" type="text/javascript"></script>
+  <%= javascript_include_tag 'jquery.jqModal.js' %>
+
+<script type="text/javascript">
+// initialise plugins
+
+function reloadPanel(area,name){
+  if(name == 'main') {
+    jQuery.ajax({
+      beforeSend: function(request) {jQuery('#main_panel_spinner').show();},
+      complete: function(request) {jQuery('#main_panel_spinner').hide();},
+      data:'',
+      dataType:'script',
+      type:'get',
+      url:'<%= host %>/acquaintances/<%=@user.login%>?panel='+area+'&filter='+name});
+  } else {
+    if(jQuery('#'+area+'_'+name).children().length == 0 ) {
+      jQuery.ajax({
+        beforeSend: function(request) {jQuery('#'+area+'_panel_spinner').show();},
+        complete: function(request) {jQuery('#'+area+'_panel_spinner').hide();},
+        data:'',
+        dataType:'script',
+        type:'get',
+        url:'<%= host %>/acquaintances/<%=@user.login%>?panel='+area+'&filter='+name});
+    }
+  }
+}
+
+// DO user menus
+jQuery(function(){jQuery('ul.sf-menu').superfish();});
+
+// DO tabification
+$(function(){
+
+<% if session[:acquaintances_show_tab_state] == :contactsFind %>
+	<% session[:acquaintances_show_tab_state] = nil %>
+	$('.tabs > ul').tabs({fx:{opacity:'toggle',duration:200}}).tabs('select', '#contactsFind');
+<% else %>
+	$('.tabs > ul').tabs({fx:{opacity:'toggle',duration:200}}).tabs();
+<% end %>
+
+$('.tabs > ul').tabs({selected:2,fx:{opacity:'toggle',duration:200}}).tabs();
+$('.subtabs > ul').subtabs({fx:{opacity:'toggle',duration:200}}).subtabs();
+$(".tip").tooltip({track:false,delay:0,showURL:false,showBody:" - ",fixPNG:true,opacity:0.95,left:-100,fade:"toggle",duration:200});
+});
+
+$(document).ready(function(){
+
+// DO mission table fx
+$(".blueMe tr").mouseover(function(){$(this).addClass("overBlue");}).mouseout(function(){$(this).removeClass("overBlue");});
+//$("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+//$("table.stripeMe tr:nth-child(odd) td.spacer").removeClass("whiteEven");
+//$("ol.stripeMe li:even").addClass("whiteEven");
+$("table.missions td.mission").hover( function() {$(this).find("div.hidden").fadeIn(200);}, function() {$(this).find("div.hidden").fadeOut(200);});
+
+// DO contact mouseovers, etc.
+$('.avatarPop').prev().append('<a href="javascript:;" class="opener"></a>');
+$('.avatarOver').append('<a href="javascript:;" class="closer"></a>');
+$('.avatarPop').hide();
+$('a.opener').click(function() {
+$(this).parent().next('.avatarPop').show();
+return false;
+});
+$('a.closer').click(function() {
+$(this).parents('.avatarPop').hide();
+return false;
+});
+$('.avatarPop').hover(function(){$(this).fadeIn(100);},function(){$(this).fadeOut(500);});
+
+//DO contact form effects  
+$("a[href='.select_all']").click( function() {
+$("#" + $(this).attr('rel') + " input[type='checkbox']").attr('checked', true);
+return false;
+});
+$("a[href='.select_none']").click( function() {
+$("#" + $(this).attr('rel') + " input[type='checkbox']").attr('checked', false);
+return false;
+});
+
+$('#personalNote').hide();
+$('#moreAddr').hide();
+
+$('#addPersonalNote').click(function(){
+$('personalNote').toggle('slow');
+});
+$('#addMoreAddr').click(function(){
+$('#moreAddr').toggle('slow');
+});
+
+
+});
+
+</script>
+<% end %>
+
+<% if @user.recent_signup %>
+  <% content_for :body do %>
+    class="user"
+  <% end %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+<div class="main"><%= @user.login %>'s Contacts</div>
+</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'users/search_form' %>
+<% end %>
+
+<%# the messages in this block are now inlined %>
+<% if false %>
+<%# if current_user.recent_signup %>
+<!-- USE ONLY FOR NEWBIES -->
+  <% if !session[:added_friends].nil? %>
+<div class="column width960 center">
+  <div id="greetContacts">
+    <h2>Nice.  Now you have some contacts!</h2>
+    <img class="avatar100" src="/images/shared/greet_vigilantes.png" alt="Congrats!"/>
+    <h4>Wanna invite more people?  Go for it!</h4>
+    <p><a href="/users/<%= current_user.login %>/edit?section=1#Class">No, I'm ready to play!</a></p>
+  </div>
+</div>
+  <% elsif !session[:unregistered_emails].nil? || !session[:registered_emails].nil? %>
+<div class="column width960 center">
+  <div id="greetContacts">
+    <h2>Great!  Here are your friends ...</h2>
+    <img class="avatar100" src="/images/shared/greet_vigilantes.png" alt="Congrats!"/>
+    <h4>Use the form below to friend or invite the people you know.</h4>
+    <p><a href="/users/<%= current_user.login %>/edit?section=1#Class">Actually, forget it.</a></p>
+  </div>
+</div>
+  <% else %>
+<div class="column width960 center">
+  <div id="greetContacts">
+    <h2>Congratulations!</h2>
+    <img class="avatar100" src="/images/shared/greet_vigilantes.png" alt="Congrats!"/>
+    <h4>You are new on The Nethernet!</h4>
+    <h3>Find and invite some folks to play with or antagonize. ;-)</h3>
+    <p><a href="/users/<%= current_user.login %>/edit?section=1#Class">Skip this step.</a></p>
+  </div>
+</div>
+  <% end %>
+<% end %>
+
+<div id="copy">
+
+<!-- FULL WIDTH COLUMN POSITIONING-->
+<div class="column width960">
+<div class="height20"></div> <!-- ADD SOME SPACE -->
+
+<!-- BOTTOM-LEFT (TABBED) PROFILE MODULE -->
+<div class="column width700">
+
+<div class="tabs" id="dashboardContacts">
+<!-- MAIN STATUS TABS (FIRST TAB ALWAYS OPEN ON LOAD) -->
+<ul>
+
+<% if @user.buddies.any? && !@user.recent_signup %>
+<li><a href="#contacts_main" onclick="reloadPanel('contacts', 'main');"><div class="l"></div><span>Contacts</span><div class="r"></div></a></li>
+<% end %>
+
+<% if @user.buddies.any_followers? && !@user.recent_signup %>
+<li><a href="#followers_main" onclick="reloadPanel('followers', 'main');"><div class="l"></div><span>Followers</span><div class="r"></div></a></li>
+<% end %>
+
+<!-- Find Players: Before -->
+<li><a href="#contactsFind"><div class="l"></div><span>Find &amp; Invite Players</span><div class="r"></div></a></li>
+<li><%= render :partial => "shared/spinner", :locals => { :spinner_id => "main_panel_spinner"} %> &nbsp;&nbsp;</li>
+</ul>
+
+<% if @user.buddies.any? && !@user.recent_signup %>
+<!-- CONTACTS ALL -->
+<div id="contacts_main">
+<%= render :partial => '/acquaintances/show_contacts_panel' %>
+</div>
+<!-- /CONTACTS MAIN -->
+<% end %>
+
+<% if @user.buddies.any_followers? && !@user.recent_signup %>
+<!-- FOLLOWERS ALL -->
+<div id="followers_main">
+<%#= render :partial => '/acquaintances/show_followers_panel' %>
+</div>
+<!-- /CONTACTS MAIN -->
+<% end %>
+
+
+<!-- FIND CONTACTS -->
+<div id="contactsFind">
+
+<div class="subtabs" id="eventTabs">
+<ul>
+<li><a href="#findAll"><span>Find Players on Other Networks</span></a></li>
+<li>|</li>
+<li><a href="#findDirectly"><span>Invite Directly</span></a></li>
+</ul>
+
+<!-- OTHER NETWORKS -->
+<div id="findAll">
+  <div id="findPartialContainer">
+    <% if session[:invite_context] == :select %>
+      <%= render :partial => 'invite/select_friends' %>
+    <% else %>
+      <%= render :partial => 'invite/landing_view' %>
+    <% end %>
+  </div>
+</div>
+<!-- /OTHER NETWORKS -->
+
+<!-- DIRECT INVITE -->
+<div id="findDirectly">
+  <div id="directPartialContainer">
+  <%= render :partial => 'invite/direct_email' %>
+  </div>
+</div>
+<!-- /DIRECT INVITE -->
+</div>
+
+</div>
+<!-- /FIND CONTACTS -->
+
+</div>
+<!-- /MAIN STATUS TABS -->
+
+</div>
+
+</div>
+
+<!-- /LEFT PROFILE MODULES -->
+
+
+
+
+<!-- RIGHT MODULES -->
+<% unless @user.recent_signup %>
+<div class="column width240">
+
+<div class="module width240">
+	<div class="imageTop">
+		<div class="imageTopImage" style="background-image:url(/images/shared/dressing/contacts-210.png);width:210px;height:158px;" title="Contacts">
+	</div>
+</div>
+
+<div class="height20"></div>
+<h2>Contacts</h2>
+<p><a href="/guide/rules/allies">What Are Allies?</a><br/>
+<a href="/guide/rules/rivals">What Are Rivals?</a><br/>
+<a href="/forums">Where Can I Meet Other Players?</a><br/>
+<a href="/events">What Are Other Players Doing?</a></p>
+
+</div>
+
+</div>
+<% end %>
+<!-- /RIGHT MODULES -->
+
+
+</div>
+<!-- /FULL-WIDTH COLUMN POSITIONING -->
+
+

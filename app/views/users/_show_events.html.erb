@@ -1,0 +1,29 @@
+<div class="subtabs" id="eventTabs">
+  <ul>
+    <li><%= render :partial => "shared/spinner", :locals => { :spinner_id => "events_panel_spinner" } %></li>
+    <li><a href="#events_players" onclick="reloadPanel('events', 'players');"><span><%= @user.login %>'s</span></a></li>
+		<% if show_content?(@user, current_user, Preference.preferences[:acquaintances][:text])  %>
+	    <li>|</li>
+  	  <li><a href="#events_contacts" onclick="reloadPanel('events', 'contacts');"><span>Contacts</span></a></li>
+	    <li>|</li>
+	    <li><a href="#events_allies" onclick="reloadPanel('events', 'allies');"><span>Allies</span></a></li>
+	    <li>|</li>
+	    <li><a href="#events_rivals" onclick="reloadPanel('events', 'rivals');"><span>Rivals</span></a></li>
+	  <% end %>
+  </ul>
+  <!-- EVENTS Players -->
+  <div id="events_players">
+    <%= render :partial => "/users/show_events_list", :locals => {:panel => 'players', :events => @events}%>
+  </div>
+	<% if show_content?(@user, current_user, Preference.preferences[:acquaintances][:text])  %>
+	  <!-- EVENTS contacts -->
+	  <div id="events_contacts">
+	  </div>
+  	<!-- EVENTS allies -->
+ 		<div id="events_allies">
+	  </div>
+  	<!-- EVENTS rivals -->
+ 		<div id="events_rivals">
+  	</div>
+  <% end %>
+</div>

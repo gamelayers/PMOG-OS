@@ -1,0 +1,8 @@
+<a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+            pmog_m.setAttribute('action', 'open_im');
+            pmog_m.setAttribute('window_id', '<%= window_id %>');
+            <% if @recipient -%>
+            pmog_m.setAttribute('extra_attributes', 'recipient');
+            pmog_m.setAttribute('recipient', '<%= @recipient %>');
+            <% end -%>
+            pmog_m.dispatchEvent(pmog_e);return false;" href="#" class="link_to_im">&nbsp;</a>

@@ -1,0 +1,57 @@
+<li id="<%= goal.id %>" style="border-top: 1px solid #999;">
+  <span style="float: left; background: url('/images/shared/icons/star-24.png') no-repeat 0 0; width: 24px; height: 24px; cursor: move; margin-right: 10px;" class="handle">&nbsp;</span>
+  <h4 style="background:transparent url(/images/missions/show_layout/section_bg.png) repeat scroll 0 0; padding: 5px; cursor: hand; cursor: pointer;">
+    <span class="position-index"><%= goal.position %></span>. <span class="goal-deets"><%= goal.action.name %> <%= goal.count %></span> times
+  </h4>
+
+  <div id="div_<%= goal.id %>" class="goal-container" style="display: none;">
+    
+  <p id="note_<%= goal.id %>" style="display: none; margin: auto;" class="flash_notice"></p>
+
+  <%= error_messages_for :goal %>
+
+  <% remote_form_for(:goal, goal, :url => quest_goal_path(:quest_id => @quest, :id => goal), 
+                                  :method => :put, 
+                                  :loading => "jQuery('input[id=#{goal.id}]').attr('value', 'Editing...').disable()",
+                                  :complete => "jQuery('input[id=#{goal.id}]').attr('value', 'Edit').enable()") do |f| %>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  
+  <div>
+  <label><span style="color: red;">*</span> Action
+    <span class="small">The objective</span>
+  </label>
+  <%= f.select(:action_id, Action.find(:all).collect{|a| [a.name, a.id]}) %>  
+  </div>
+  
+  <div>
+  <label><span style="color: red;">*</span> Count
+    <span class="small"># of times</span>
+  </label>
+  <%= f.text_field :count, :size => 4 %>
+  </div>
+  
+  <div>
+  <label>URL
+    <span class="small">URL Specific?</span>
+  </label>
+  <%= f.text_field :location_id, :value => goal.url %>
+  </div>
+  
+  <div>
+  <label>Message
+    <span class="small">A note</span>
+  </label>
+  <%= f.text_area :description, :rows => 6, :cols => 28, :class => "area" %>
+  </div>
+  
+  <div>
+    <label>&nbsp;</label>
+  <%= f.submit 'Edit', :id => goal.id %> <%= link_to "Delete", quest_goal_path(:quest_id => @quest, :id => goal), :confirm => "Are you sure?", :method => :delete %>
+  </div>
+
+  <% end %>
+
+</div>
+  <img src="/images/missions/generator_layout/control_content_bottom.png" />
+</li>

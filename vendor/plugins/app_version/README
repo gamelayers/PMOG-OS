@@ -1,0 +1,41 @@
+= App Version
+
+This is a simple plugin that makes it easy to manage the version number of your
+Rails application. The version numbers supported by this plugin look like 
+'2.0.1 M4 (600)'. The components of the version number are:
+
+  2 => major
+  0 => minor
+  1 => patch
+  M4 => milestone
+  (600) => build number (usually Subversion revision)
+
+Only the major and minor numbers are required. The rest can be omitted and the
+plugin will attempt to do the right thing. 
+
+== Usage
+
+To use, simply place a file in RAILS_ROOT/config called version.yml with the 
+following format:
+
+  major:     2
+  minor:     0
+  patch:     1
+  milestone: 4
+  build:     svn
+
+If the milestone or patch fields are less than 0 then they will not show up
+in the version string. The build field can be a build number or the string
+svn. If it is a number then that number will be used as the build number, if it
+is the string 'svn' then the plugin will attempt to query Subversion for the 
+build number.
+
+The plugin creates a constant APP_VERSION that contains the version number of
+the application. Calling the +to_s+ method on APP_VERSION will result in a
+properly formatted version number. APP_VERSION also has +major+, +minor+,
++patch+, +milestone+ and +build+ methods to retrieve the individual components
+of the version number.
+
+Finally, there is a rake task for displaying the version number from the command
+line. 'rake app:version' will output the version number of the current rails
+application.

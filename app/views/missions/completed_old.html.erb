@@ -1,0 +1,50 @@
+<h1>You Completed <%= link_to @mission.name, mission_path(@mission.url_name) %>!</h1>
+
+<!-- Area for the flash message -->
+<%= render :partial => "shared/flash", :locals => { :flash => flash } %>
+
+<img src="/images/missions/missioncomplete.png" class="mission_take"/>
+<br />
+
+<p>
+	<% if @mission.users.include? current_user %>
+		<%= render :partial => 'rate' %>
+	<% end %>
+</p>
+
+<% if @mission.users.include? current_user %>
+<p>
+	<%= render :partial => 'favorite' %>
+</p>
+<% end %>
+
+<p>
+	<% if @mission.nsfw == false and @mission.users.include? current_user and !@mission.voted_by_user?(current_user) %>
+		<%= render :partial => 'vote' %>
+	<% end %>
+</p>
+
+<% if @mission.users.include? current_user %>
+	<%= render :partial => "reveal_links" %>
+<% end %>
+
+
+<br />
+
+<h3>Comments</h3>
+
+   <!-- Render an ordered list of comments -->
+   <p>
+       <%= render :partial => "comments/list_comments", :locals => { :comments => @comments } %>
+   </p>
+   
+   <h3>Leave a Comment</h3>
+   
+   <!-- The partial rendered for comments displays and allows creation of comments --><%= render :partial => "comments/add_comment", :locals => { :commentable => @mission, :type => "mission" } %>
+   <br/>
+   <h3>Tags About This Mission</h3>
+   <%= render :partial => "tags/tags", :locals => { :taggable => @mission, :type => "mission" } %>
+   <p align="center">
+       <a href="/missions/">Look for more missions</a>
+   </p>
+</div>

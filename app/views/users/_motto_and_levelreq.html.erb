@@ -1,0 +1,14 @@
+<% # please leave images and spans out of the H5 tag %>
+<%# if @user.cached_has_role? 'steward' %>
+<% if @user.admin? %>
+  <img src="/images/icons/roles/steward.png" class="role_icon" title="Steward" alt="Steward" /><span class="role_title">STEWARD</span>
+<% end %>
+<%# if @user.cached_has_role? 'site_admin' %>
+<% if @user.steward? %>
+  <img src="/images/icons/roles/trustee.png" class="role_icon" title="Trustee" alt="Trustee" /><span class="role_title">TRUSTEE</span>
+<% end %>
+<h5>
+  <% unless @user.motto.blank? or @user.motto.empty? or @user.motto.nil?%>
+     - &#8220;<%=h @user.motto %>&#8221;
+  <% end %>
+</h5>

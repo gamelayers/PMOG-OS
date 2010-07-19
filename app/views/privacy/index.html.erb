@@ -1,0 +1,140 @@
+<% content_for :head do %>
+<script language="JavaScript" type="text/javascript">
+	// Super special function made just for PMOG
+	// This will select all the radio buttons related
+	// to a specific permission level
+	//
+	// f = The form where the radio buttons/groups reside
+	// newVal = the value of the select all radio item
+	function setAll(f, newVal) {
+		// Loop over all the elements in the form
+		for (var i=0; i < f.elements.length; i++) {
+			// Create a reference to the element
+			var btn = f.elements[i];
+			// If it's a radio button....
+			if (btn.type == "radio") {
+				// And if the radio value is the same as the newVal value
+			 	if (btn.value == newVal) {
+					// Select that radio option
+					btn.checked = true;
+				}
+			}
+		}
+	}
+</script>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="cell child"><span class="l"></span><span class="c">Privacy</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					<h1><%= current_user.login.titleize %>'s Privacy Settings</h1>
+
+<h5>Measure your presence on The Nethernet</h5>
+
+<br/>
+<%= error_messages_for :user %>
+
+<p>This page allows you to control your personal information on The Nethernet.  We also have a <a href="/about/privacy">Privacy Policy</a> you may wish to peruse.</p>
+
+<h2>What to Share of Your Profile</h2>
+
+<br />
+<p>By selecting the appropriate field from the table below, you may choose which pieces of your Nethernet profile may be viewed by which other players.  Badges can be private, Tool Use perhaps for your acquaintances-only.</p>
+
+<p>Please note - the full functionality of this table has not yet been implemented.  Still, we wish to register your preference!  Thank you for your patience.</p>
+
+<% form_for :preference, @preference, :url => { :action => 'update_privacy'}, :html => {:id => 'privacy_form'} do |f| %>
+<table border="0" cellpadding="0" cellspacing="10" id="privacy_table">
+	<tr>
+		<th>&nbsp;</th>
+		<% Preference.levels.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each { |level| %>
+			<th>
+				<%= level[1][:text] %>
+			</th>
+		<% } %>
+	</tr>
+	<tr class="oddpost">
+		<td align="right"><strong>Select All</strong></td>
+		<% Preference.levels.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each { |level| %>
+			<td align="center"><input type="radio" name="level" value="<%= level[1][:text] %>" onclick="setAll(this.form, this.value);"></td>
+		<% } %>
+	</tr>
+	
+	<% Preference.preferences.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each do |option| %>
+	<% if option[1][:group] == "privacy" %>
+		<tr>
+			<td align="right">
+				<%= option[1][:text] %>
+			</td>
+					<% Preference.levels.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each do |level| %>
+			<td align="center">
+				<%= get_privacy(option[1][:text], level[1][:text], current_user.id) %>
+			</td>
+		<% end%>
+		</tr>
+		<% end %>
+	<% end %>
+</table>
+<%= submit_tag "Save Changes", "class" => "input" %>
+<% end %>
+
+<br/><br>
+
+<h2>Nethernet Email Preferences</h2>
+
+<br />
+
+<p>Here you may select how you wish to allow Nethernet to correspond with your email address.  We have <%= current_user.email %> in our files.  Some of these emails we are not sending yet; we still wish to register your preference!</p>
+
+<div id="flash">
+	<%= render :partial => "shared/flash" %>
+</div>
+
+<table>
+	<% Preference.preferences.sort {|a,b| a[1][:ordinal] <=> b[1][:ordinal]}.each do |pref| %>
+    <% if pref[1][:group] == "email" %>
+      <tr>
+        <td><%= pref[1][:text] %></td>
+        <% form_for :preference, @preference, :url => { :action => 'update_email_prefs'}, :html => {:id => 'email_pref_form'} do |f| %>
+          <td><%= get_preference_checkbox(pref[1][:text], current_user.id, pref[1][:text]) %></td>
+          <input type='hidden' name='key' value="<%= pref[1][:text] %>" />
+          <td><%= submit_tag %>
+        <% end %>
+      </tr>
+    <% end %>
+	<% end %>
+</table>
+
+<br/><br>
+
+<h2>Remove Thyself from the Game Stream</h2>
+
+<p>Perhaps you wish to stop playing.  Perhaps you wish to never have played!  You may remove yourself from our game memory; these actions below are data-binding and can not be un-done:</p>
+
+<p>
+	<strong>Delete My Nethernet History</strong><br/>
+	Deletes your browsing history from our database. You would still keep your tools, badges, aquaintances, forum posts and mission history (missions both taken, and created).
+  <% form_for :user, :url => { :controller => 'privacy', :action => 'delete_history' }, :confirm => "Are you sure you want to delete your PMOG browsing history?", :method => 'post' do |f| %>
+    Enter your password to delete your Nethernet history: <%= f.password_field :password_confirmation %>
+    <%= f.submit 'Delete', :disable_with => 'Deleting...' %>
+  <% end %>
+</p>
+
+<p>
+	<strong>Delete My Nethernet Account</strong><br/>
+	Deletes all of your PMOG data from the system.
+  <% form_for :user, :url => { :controller => 'privacy', :action => 'close_account' }, :confirm => "WARNING: This will delete your ENTIRE account!  Once deleted, your account CANNOT be retrieved.  Are you sure you want to delete your account?", :method => 'post' do |f| %>
+    Enter your password to delete your Nethernet account: <%= f.password_field :password_confirmation %>
+    <%= f.submit 'Delete', :disable_with => 'Deleting...' %>
+  <% end %>
+</p>

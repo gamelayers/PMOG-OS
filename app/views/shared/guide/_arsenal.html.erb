@@ -1,0 +1,150 @@
+				<div class="column width700">
+
+<h2>Arsenal ::
+
+<span>Tools, Upgrades, and Abilities</span>
+</h2>				
+
+<% tools=Tool.cached_multi %>
+			
+					<div class="module width700">
+					
+						<div class="width325">
+<h2><a href="/guide/tools">Tools</a></h2>
+
+<% tools.select{|tool| [:mines, :grenades, :skeleton_keys, :st_nicks, :watchdogs, :portals].include? tool.url_name.to_sym }.each do |tool| %>
+
+<%= link_to "<img src=\"/images/shared/icons/#{tool.url_name.singularize}-48.png\" title=\"#{tool.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{tool.name.titleize}\" 
+                              class=\"thumbNoBorder\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/tools/#{tool.url_name}" %>
+<h4><a
+href="/guide/tools/<%= tool.url_name %>"><%= tool.name.titleize %></a></h4>
+<p><%= tool.short_description %>. <a
+href="/guide/tools/<%= tool.url_name %>">Learn More</a></p>
+
+<% end %>
+						
+						
+
+<% tools.select{|tool| [:crates, :lightposts, :armor].include? tool.url_name.to_sym }.each do |tool| %>
+
+<%= link_to "<img src=\"/images/shared/icons/#{tool.url_name.singularize}-48.png\" title=\"#{tool.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{tool.name.titleize}\" 
+                              class=\"thumbNoBorder\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/tools/#{tool.url_name}" %>
+<h4><a
+href="/guide/tools/<%= tool.url_name %>"><%= tool.name.titleize %></a></h4>
+<p><%= tool.short_description %> <a
+href="/guide/tools/<%= tool.url_name %>">Learn More</a></p>
+
+<% end %>
+						
+				</div>
+				
+				<div class="width20"></div>
+
+						<div class="width325">
+				
+<h2><a href="/guide/upgrades">Upgrades</a></h2>				
+
+<% upgrades=Upgrade.cached_multi %>
+			
+
+<% upgrades.select{|upgrade| [:give_dp, :exploding_crate, :stealth_mine, :abundant_mine, :ballistic_nick].include? upgrade.url_name.to_sym}.each do |upgrade| %>
+
+<%= link_to "<img src=\"/images/shared/icons/#{upgrade.url_name.singularize}-48.png\" title=\"#{upgrade.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{upgrade.name.titleize}\" 
+                              class=\"thumbNoBorder\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/upgrades/#{upgrade.url_name.downcase}" %>
+<h4><a
+href="/guide/upgrades/<%= upgrade.url_name.downcase %>"><%= upgrade.name.titleize %></a></h4>
+<p><%= upgrade.short_description %>. <a href="/guide/upgrades/<%= upgrade.url_name.downcase %>">Learn More</a></p>
+
+<% end %>
+						
+
+<% upgrades.select{|upgrade| [:puzzle_crate, :ever_crate, :stealth_crate, :puzzle_post].include? upgrade.url_name.to_sym}.each do |upgrade| %>
+
+<%= link_to "<img src=\"/images/shared/icons/#{upgrade.url_name.singularize}-48.png\" title=\"#{upgrade.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{upgrade.name.titleize}\" 
+                              class=\"thumbNoBorder\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/upgrades/#{upgrade.url_name}" %>
+<h4><a
+href="/guide/upgrades/<%= upgrade.url_name %>"><%= upgrade.name.titleize %></a></h4>
+<p><%= upgrade.short_description %>. <a href="/guide/upgrades/<%= upgrade.url_name %>">Learn More</a></p>
+
+<% end %>
+					
+					
+<h2><a href="/codex/abilities">Abilities</a></h2>
+
+		
+
+<% abilities=Ability.cached_multi %>
+			
+				
+
+
+<% abilities.select{|ability| [:create_skeleton_key, :impede].include? ability.url_name.to_sym}.each do |ability| %>
+
+<%= link_to "<img src=\"/images/shared/icons/#{ability.url_name.singularize}-48.png\" title=\"#{ability.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{ability.name.titleize}\" 
+                              class=\"thumbNoBorder\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/abilities/#{ability.url_name}" %>
+<h4><a
+href="/guide/abilities/<%= ability.url_name %>"><%= ability.name.titleize %></a></h4>
+<p><%= ability.short_description %>. <a
+href="/guide/abilities/<%= ability.url_name %>">Learn More</a></p>
+
+<% end %>
+						
+
+
+<% abilities.select{|ability| [:giftcard, :dodge, :disarm, :vengeance, :overclock].include? ability.url_name.to_sym}.each do |ability| %>
+
+<%= link_to "<img src=\"/images/shared/icons/#{ability.url_name.singularize}-48.png\" title=\"#{ability.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{ability.name.titleize}\" 
+                              class=\"thumbNoBorder\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/abilities/#{ability.url_name}" %>
+<h4><a
+href="/guide/abilities/<%= ability.url_name %>"><%= ability.name.titleize %></a></h4>
+<p><%= ability.short_description %>. <a
+href="/guide/abilities/<%= ability.url_name %>">Learn More</a></p>
+
+<% end %>
+						</div>
+					
+					</div>
+				</div>
+

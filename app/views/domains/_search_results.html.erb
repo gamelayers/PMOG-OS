@@ -1,0 +1,21 @@
+<% if @location and @domain %>
+  <p>
+    <%= @user.login %> was online for <b><%= pluralize( @visits.size, 'day', 'days' ) %></b> and visited <a href='http://<%=h @location.url %>' target='_new'><%=h @domain.url %></a> <b><%= pluralize( @hits.collect{ |h| h.hits }.sum, 'time', 'times' ) %></b> between <i><%= @start_date %></i> and <i><%= @end_date %></i>.
+  </p>
+<p>
+	<h3>Detailed Breakdown</h3>
+	<% @hits.each do |h| %>
+		On: <%= h.created_on.to_s %> <strong><%= @user.login %></strong> made <strong><%= h.hits %></strong> visits to <strong><%= @location.url %></strong>
+    <br />
+	<% end %>
+</p>
+<p>
+  <a href='/domains/history/<%= @user.login %>'>View more of <%= @user.login %>'s browsing history</a>
+</p>
+<% else %>
+  <p>
+    <small>
+      <i>Search to begin...</i>
+    </small>
+  </p>
+<% end %>

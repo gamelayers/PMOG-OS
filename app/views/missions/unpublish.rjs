@@ -1,0 +1,3 @@
+page.replace_html "unpublish_mission", "Unpublished mission: #{@mission.name}"
+page.visual_effect :highlight, "unpublish_mission", :duration => 4
+page.visual_effect :fade, "unpublish_mission", :duration => 4

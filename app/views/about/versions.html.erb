@@ -1,0 +1,52 @@
+<% content_for :breadcrumbs do %>
+  <div id="breadcrumbs">
+    <%= render :partial => "shared/breadcrumbs/about" %>
+    <div class="cell child"><span class="l"></span><span class="c">Versions</span><span class="r"></span></div>
+  </div>
+<% end %>
+
+    <div id="copy">
+
+      <div class="column width960">
+
+        <div class="column width700">
+
+          <div class="module width700">
+
+<h1>Versions of The Nethernet</h1>
+<h5>recounting an evolution of infrastruction</h5>
+
+<br />
+
+<p>The current version of The Nethernet is 1.1.3, which was released on 20 January 2010.</p>
+
+<p><b><a id="upgradeLink" href="/xpi/pmog.xpi">Install the latest Toolbar for Firefox</a></b></p>
+<script type="text/javascript" charset="utf-8">
+  $("#upgradeLink").track({
+    category : "Help",
+    action   : "Upgrade",
+    label    : "Firefox"
+  });
+</script>
+
+<p>If you need help installing the toolbar, please refer to our <a href="/guide/support/install">Installing The Nethernet Toolbar</a> help page.
+
+<p>For the latest information on the newest version of The Nethernet, visit <a href="http://news.thenethernet.com">the The Nethernet Community blog</a> where we highlight the newest feature and fixes.</p>
+
+<p>For more detailed patch notes check out <a href="/forums/the-nethernet-news">the The Nethernet News Forum</a>; older version information is no longer available.</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <div class="column width960">
+
+        <%= render :partial => "shared/about" %>
+
+        <%= render :partial => "shared/guide/guide_module" %>
+
+      </div>
+
+    </div>

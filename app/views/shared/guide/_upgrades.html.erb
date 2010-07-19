@@ -1,0 +1,59 @@
+				<div class="column width700">
+
+<h2>Upgrades ::
+
+<span>Order vs. Chaos - enhancing creation and destruction</span>
+</h2>				
+
+<% upgrades=Upgrade.cached_multi %>
+			
+					<div class="module width700">
+					
+
+						<div class="width325">
+<h3>Order upgrades</h3>
+
+<% upgrades.select{|upgrade| [:puzzle_crate,:ever_crate, :stealth_crate, :puzzle_post].include? upgrade.url_name.to_sym}.each do |upgrade| %>
+
+<%= link_to "<img src=\"#{upgrade.small_image}\" title=\"#{upgrade.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{upgrade.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/upgrades/#{upgrade.url_name}" %>
+<h4><a
+href="/guide/upgrades/<%= upgrade.url_name %>"><%= upgrade.name.titleize %></a></h4>
+<p><%= upgrade.short_description %>. <a href="/guide/upgrades/<%= upgrade.url_name %>">Learn More</a></p>
+
+<% end %>
+</div>
+<div class="width20"></div>
+
+						<div class="width325">
+<h3>Chaos upgrades</h3>
+
+<% upgrades.select{|upgrade| [:give_dp, :exploding_crate, :ballistic_nick, :abundant_mine, :stealth_mine].include? upgrade.url_name.to_sym}.each do |upgrade| %>
+
+<%= link_to "<img src=\"#{upgrade.small_image}\" title=\"#{upgrade.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{upgrade.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/upgrades/#{upgrade.url_name}" %>
+<h4><a
+href="/guide/upgrades/<%= upgrade.url_name %>"><%= upgrade.name.titleize %></a></h4>
+<p><%= upgrade.short_description %>. <a href="/guide/upgrades/<%= upgrade.url_name %>">Learn More</a></p>
+
+<% end %>
+						</div>
+						</div>
+					
+					</div>
+				
+				</div>

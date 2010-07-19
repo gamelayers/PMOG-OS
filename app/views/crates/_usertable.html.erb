@@ -1,0 +1,75 @@
+<p align='right'>
+	<%= will_paginate @crates %>
+	<%= submit_tag 'Delete Checked', :confirm => 'Are you sure you want to delete all the checked items?' %>
+</p>
+
+<p class='user_table_list'>  
+  <table border='1' cellpadding='5'>
+		<tr>
+			<td bgcolor="white">User</td>
+			<%= '<td bgcolor="white" nowrap>See all by</td>' if @searcheduser.nil? %>
+			<td bgcolor="white">Url</td>
+			<td bgcolor="white">Contents</td>
+			<td bgcolor="white"><img src="/images/shared/icons/puzzle_crate-32.png" alt="Puzzle" title="Puzzle" width="32" height="32" border="0" /></td>
+			<td bgcolor="white"><img src="/images/shared/icons/exploding_crate-32.png" alt="Exploding" title="Exploding" width="32" height="32" border="0" /></td>
+			<td bgcolor="white"><img src="/images/shared/icons/ever_crate-32.png" alt="Ever" title="Ever" width="32" height="32" border="0" /></td>
+			<td bgcolor="white">Created</td>
+			<td bgcolor="white">&nbsp;</td>
+			<td bgcolor="white"><%= check_box_tag 'checkall', 1, false, :onclick => 'checkedAll();' %></td>
+		</tr>
+		<% @crates.each do |crate| %>
+      <% if crate.inventory.nil? %>
+      <tr>
+        <td bgcolor="white"><%= avatar_link_to_user :user => crate.user, :size => 'small' %></td>
+        <% if @searcheduser.nil? %>
+          <td bgcolor="white"><%= link_to crate.user.login, :action => 'search', :q => crate.user.login, :criteria => 'user' %></td>
+        <% end %>
+        <td bgcolor="white"><a href='<%= crate.location.url %>' target='_new'  style='font-size: 9pt;'><%= crate.location.url %></a></td>
+        <td bgcolor="white" colspan="4"><span style="color:red;">THIS CRATE IS BUGGED, YOU SHOULD DELETE IT</span></td>
+        <td bgcolor="white"><div  style='font-size: 9pt;'><%= crate.created_at %></div></td>
+        <td bgcolor="white"><div  style='font-size: 9pt;'><%= link_to '<img src="/images/shared/icons/close_window-16.png" alt="Destroy" title="Destroy" width="16" height="16" class="icon16" />', crate_path(crate), :method => :delete %></div></td>
+        <td bgcolor="white"><%= check_box_tag 'delete_these[]', crate.id %></td>
+      </tr>
+      <% else %>
+			<tr>
+				<td bgcolor="white"><%= avatar_link_to_user :user => crate.user, :size => 'small' %></td>
+				<% if @searcheduser.nil? %>
+				  <td bgcolor="white"><%= link_to crate.user.login, :action => 'search', :q => crate.user.login, :criteria => 'user' %></td>
+				<% end %>
+				<td bgcolor="white"><a href='<%= crate.location.url %>' target='_new'  style='font-size: 9pt;'><%= crate.location.url %></a></td>
+				<td bgcolor="white">
+					<% crate.contents.each do |item, amount| %>
+						<% unless amount == 0 %>
+							<img src='<%= host %>/images/ext/<%= item.singularize %>.png' width='16' height='16' alt='<%= item.singularize %>'> <small>(<%= amount %>)</small>
+						<% end %>
+					<% end %>
+				</td>
+        <% if crate.is_upgraded? %>
+  				<td bgcolor="white" style='font-size: 9pt;'>
+            <% if (crate.crate_upgrade.puzzle_question.blank?) %>
+              
+            <% else %><p>
+              <b>Q:</b>[<%= crate.crate_upgrade.puzzle_question.to_s %>]<br/><b>A:</b>[<%= crate.crate_upgrade.puzzle_answer.to_s %>]</p>
+            <% end %>
+          </td>
+  				<td bgcolor="white"><div  style='font-size: 9pt;'><% if crate.crate_upgrade.exploding? %><img src="/images/shared/icons/exploding_crate-32.png" alt="Exploding" title="Exploding" width="32" height="32" border="0" /><% end %></div></td>
+  				<td bgcolor="white"><div  style='font-size: 9pt;'><% if crate.crate_upgrade.ever_crate? %><img src="/images/shared/icons/exploding_crate-32.png" alt="Exploding" title="Exploding" width="32" height="32" border="0" /><% end %></div></td>
+        <% else %>
+          <td bgcolor="white"> </td><td bgcolor="white"> </td><td bgcolor="white"> </td>
+        <% end %>
+				<td bgcolor="white"><div  style='font-size: 9pt;'><%= crate.created_at %></div></td>
+				<td bgcolor="white"><div  style='font-size: 9pt;'><%= link_to '<img src="/images/shared/icons/close_window-16.png" alt="Destroy" title="Destroy" width="16" height="16" class="icon16" />', crate_path(crate), :confirm => 'Are you sure?', :method => :delete %></div></td>
+				<td bgcolor="white"><%= check_box_tag 'delete_these[]', crate.id %></td>
+			</tr>
+      <% end %>
+		<% end %>
+	</table>
+</p>
+
+<br/>
+
+<p align='right'>
+	<%= will_paginate @crates %>
+</p>
+
+<br/>

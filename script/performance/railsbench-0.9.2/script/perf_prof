@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+if ARGV.length < 1
+  $stderr.puts "usage: perf_prof iterations options"
+  $stderr.puts "example: perf_prof 100 \"-bm=default -log\""
+  exit 1
+end
+
+bindir = File.dirname(__FILE__)
+require "#{bindir}/../lib/railsbench/perf_utils"
+
+perf_data_dir = (ENV['RAILS_PERF_DATA'] ||= ENV['HOME'])
+
+iterations = ARGV[0]
+options = ARGV[1]
+config = ARGV[2]
+benchmark = ""
+
+ruby_prof_opts="-ruby_prof=1"
+warmup="-warmup"
+
+warmup = "" if options =~ /-warmup/
+benchmark = $1 if options =~ /-bm=([^ ]+)/
+ruby_prof_opts = $1 if options =~ /(-ruby_prof=[^ ]+)/
+options = options.sub(ruby_prof_opts, '')
+
+date = Time.now.strftime '%m-%d'
+
+if config
+  benchmark_file="#{perf_data_dir}/#{date}.#{benchmark}.#{config}.html"
+else
+  benchmark_file="#{perf_data_dir}/perf_run.#{benchmark}.html"
+end
+ENV['RAILS_BENCHMARK_FILE'] = benchmark_file
+
+set_gc_variables([options])
+disable_gc_stats
+
+null = (RUBY_PLATFORM =~ /win32/) ? 'nul' : '/dev/null'
+
+perf_options="#{iterations} #{options} #{warmup} #{ruby_prof_opts}"
+perf_cmd = "ruby #{bindir}/run_urls #{perf_options} >#{null}"
+system(perf_cmd) || die("perf_prof: #{perf_cmd} returned #{$?}")
+
+puts "profile data written to #{benchmark_file}"
+
+case RUBY_PLATFORM
+when /win32/  then system("start #{benchmark_file.gsub(/\//, '\\')}")
+when /darwin/ then system("open #{benchmark_file}")
+end
+
+__END__
+
+#  Copyright (C) 2005, 2006, 2007  Stefan Kaes
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA

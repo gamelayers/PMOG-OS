@@ -1,0 +1,221 @@
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+  <div class="main">Admin</span></div>
+</div>
+<% end %>
+
+<div id="copy">
+
+  <div class="column width960">
+
+    <div class="column width700">
+
+      <div class="module width700">
+
+        <% cache( :fragment => 'admin_' + Digest::MD5.hexdigest(params.to_s), :ttl => 12.hours ) do %>
+        <h1>The Nethernet Admin</h1>
+        <h5>with great power comes an all-right interface</h5>
+        <br />
+
+        <table align="right" width="200">
+        <% if site_admin? %>
+          <tr><td>
+            <h3><a href="/admin/stats">Nethernet Stats</a></h3><br />
+            <h3>User Counts:</h3>
+            Registered Users:
+            <%= number_with_delimiter(@total_users) %><br/>
+            Beta signups:<br />
+            <%= number_with_delimiter(@total_beta_users) %> total |
+            <%= number_with_delimiter(@invited_beta_users) %> invited<br />
+            <%= number_with_delimiter(@uninvited_beta_users) %> uninvited |
+            <%= number_with_delimiter(@signed_up_beta_users) %> signed up.<br /><br />
+          </td></tr>
+
+          <tr><td>
+            <h3>Missions</h3>
+            Total: <%= number_with_delimiter(Mission.count) %><br />
+            Average # Lightposts Per Mission: (disabled)<%#= Mission.caches( :average_lightposts_per_mission ) %><br/><br/>
+          </td></tr>
+          <tr><td>
+            <h3>Order Counts</h3>
+            Daily: <%#= number_with_delimiter(@order_point_totals.daily) %> <br />
+            Weekly: <%#= number_with_delimiter(@order_point_totals.weekly) %><br />
+            Monthly: <%#= number_with_delimiter(@order_point_totals.monthly) %><br />
+            Overall: <%#= number_with_delimiter(@order_point_totals.overall) %><br />
+          </td></tr>
+          <tr><td>
+            <h3>Chaos Counts</h3>
+            Daily: <%#= number_with_delimiter(@chaos_point_totals.daily) %> <br />
+            Weekly: <%#= number_with_delimiter(@chaos_point_totals.weekly) %><br />
+            Monthly: <%#= number_with_delimiter(@chaos_point_totals.monthly) %><br />
+            Overall: <%#= number_with_delimiter(@chaos_point_totals.overall) %><br />
+          </td></tr>
+
+          <tr>
+            <td colspan='4'>
+              <% remote_form_for  :user,
+              :url => "/admin/free_credits",
+              :html => { :style => "display: inline" },
+              :update => 'credits_response',
+              :loading => "jQuery('#spinner').show();",
+              :complete => "jQuery('#spinner').hide();" do |f| %>
+
+              <input type="submit" value="Whee! 1000 DP for free!">
+              <% end %>
+
+              <p>
+                <small>
+                  <span id='credits_response'>You currently have <%= number_with_delimiter(current_user.datapoints) %> DP</span>
+                </small>
+                <%= render :partial => "shared/spinner" %>
+              </p>
+            </td>
+          </tr>
+
+          <tr><td colspan="4"><h3>Message as The Nethernet</h3></td></tr>
+          <tr>
+            <td colspan='4'>
+              <% remote_form_for  :message,
+              :url => "/admin/message_as_pmog",
+              :html => { :style => "display: inline" },
+              :loading => "jQuery('#message_spinner').show();",
+              :complete => "jQuery('#message_spinner').hide();" do |f| %>
+              <%= f.text_area :body, :rows => 3, :cols => 40, :class => "input" %>
+              <input type="submit" value="Omg, messages as The Nethernet!">
+              <% end %>
+
+              <p>
+                <big>
+                  <span id='message_response'> </span>
+                </big>
+                <%= render :partial => "shared/spinner", :locals => { :spinner_id => "message_spinner" }%>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href='/admin/pmog_inbox'>View The Nethernet's Inbox</a>
+            </td>
+          </tr>
+          <tr>
+            <td><div style="height: 25px;" /></td>
+          </tr>
+          <% end %>
+          <tr>
+            <td colspan="4"><h3>Message as an NPC</h3></td>
+          </tr>
+          <tr>
+            <td colspan='4'>
+
+              <p>
+                No need to put @(login) here, this form sends the supplied message
+                from the selected NPC to all players that have logged in within the last
+                week.
+              </p>
+              <p>
+                Selecting a class from the second combo box will send the message to all players
+                with the selected class as their primary class and also have been active in the
+                last week.
+              <p>
+
+              <% remote_form_for  :message,
+              :url => "/admin/message_as_npc",
+              :html => { :style => "display: inline" },
+              :loading => "jQuery('#npc_message_spinner').show();",
+              :complete => "jQuery('#npc_message_spinner').hide();" do |f| %>
+              <%= f.select(:login, ['victoria_ash', 'bloody_tuesday', 'sasha_watkins', 'thomas_hoggins', 'ninefinder', 'thaddeus_esper', 'jerdu_gains']) %>
+              <%= f.select(:class, PmogClass.find(:all).collect{|a| [a.name, a.name.downcase.singularize]}, { :include_blank => true }) %>
+              <%= f.text_area :body, :rows => 3, :cols => 40, :class => "input" %>
+              <input type="submit" value="Omg, messages as an NPC!">
+              <% end %>
+
+              <p>
+                <big>
+                  <span id='npc_message_response'> </span>
+                </big>
+                <%= render :partial => "shared/spinner", :locals => { :spinner_id => "npc_message_spinner" }%>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      <% if site_admin? %>
+        <h3>System:</h3>
+
+        <ul>
+          <li><a href='/game_settings'>Game Settings</a></li>
+          <li><a href="/admin/api">API test</a></li>
+          <li><a href='/admin/test'>Misc test</a></li>
+          <li><a href="/bench">Bench</a></li>
+          <li><a href='/clientperf'>Clientperf</a></li>
+          <li><a href="/logged_exceptions">Exceptions</a></li>
+          <li><a href='/admin/sql_profiler'>Sql profiler</a></li>
+          <li><a href="http://hospital.thenethernet.com:8080">TNN Hospital</a>
+            <li><a href='http://pmog.devjavu.com'>PMOG Devjavu</a>: <a href="http://pmog.devjavu.com/report/1">open tickets</a>, <a href='http://help.devjavu.com/'>help</a></li>
+            <li><a href='/admin/auto_acquaintances/<%= current_user.login %>'>Auto Acquaintances</a></li>
+            <li><a href='http://74.201.255.112/'>IRC stats</a></li>
+          </ul>
+
+          <h3>GamePlay</h3>
+
+          <ul>
+            <li><a href='/admin/badges'>Badges</a></li>
+            <li><a href='/crates'>Browse crates</a></li>
+            <li><a href='/mines'>Browse mines</a></li>
+            <li><a href='/portals'>Browse portals</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/levels">Levels</a></li>
+            <li><a href="/admin/pings">Pings</a></li>
+            <li><a href="/admin/order_chaos">Order/Chaos</a></li>
+            <li><a href="/locations">Locations</a></li>
+            <li><a href="/admin/nsfw_moderation">Moderate NSFW Missions</a></li>
+            <li><a href='/suspects'>Track Suspect Users</a></li>
+            <li><a href='/suspensions'>View Suspended Players</a></li>
+            <li><a href='/motd'>Message Of The Day</a></li>
+            <li><a href='/admin/incomplete_mission_takings'>Incomplete Mission Takings</a></li>
+            <li><a href='/admin/top_missionaters'>Top Missionaters</a></li>
+            <li><a href='/admin/null_mission_data'>Null Mission Related Data</a></li>
+          </ul>
+
+          <h3>Codexification:</h3>
+
+          <ul>
+            <li><a href='/pmog_classes'>Classes</a></li>
+            <li><a href="/tools">Tools</a></li>
+          </ul>
+
+          <h3>Users:</h3>
+
+          <ul>
+            <li><a href='/users'>Browse Users</a></li>
+            <li><a href="/beta_users">Beta Users</a></li>
+            <li><a href='/admin/inventory'>User Inventory</a></li>
+            <li><a href='/admin/change_user_password'>Change User Password</a></li>
+          </ul>
+
+          <h3>Bj</h3>
+
+          <ul>
+            <li><a href='/jobs/list'>Jobs</a></li>
+          </ul>
+
+          <h3>Manic <small><small>(Data)</small></small> Mining</h3>
+
+          <ul>
+            <li><a href='/domains'>Domains</a></li>
+          </ul>
+
+          <% end %>
+
+          <% end %>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>

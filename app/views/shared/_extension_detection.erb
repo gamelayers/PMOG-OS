@@ -1,0 +1,25 @@
+<%= render :partial => 'shared/import_pmog_extension_css'%>
+  <div id="pmog_version"></div>
+  <script type="text/javascript" charset="utf-8">
+    var div = document.getElementById('pmog_version');
+    if(div) {
+      var parts = []
+      parts.push(document.defaultView.getComputedStyle(div, '').getPropertyValue("margin-top"));
+      parts.push(document.defaultView.getComputedStyle(div, '').getPropertyValue("margin-right"));
+      for(var x = 0; x < parts.length; x++){
+        parts[x] = parts[x].replace('px','');
+      }
+      version = parts.join(".")
+      extension_div = document.getElementById('extension_version')
+      var style = document.defaultView.getComputedStyle(div, '').getPropertyValue("list-style-image");
+      if(style == "url(chrome://pmog/skin/classic/icons/p-12.png)" && extension_div ) {
+        var most_recent_version = "<%= PMOG_EXTENSION_VERSION %>";
+        recent_parts = most_recent_version.split('.')
+        if(recent_parts[0] > parts[0] || recent_parts[1] > parts[1]) {
+          extension_div.innerHTML= "You are using " + version + " of the PMOG extension - the current version is <%= PMOG_EXTENSION_VERSION %>. <a href='http://thenethernet.com/xpi/pmog.xpi'>upgrade here</a>."
+        } else {
+          extension_div.innerHTML= "You are using " + version + " of the PMOG extension - congrats! That is the current version."
+        }
+      }
+    }
+  </script>

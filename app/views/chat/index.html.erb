@@ -1,0 +1,17 @@
+<h3>PMOG Chat:</h3>
+
+<div id="conversation">
+  <div id="stage">
+    <% for message in @messages %>
+      <%= message_content(message) %>
+    <% end %>
+  </div>
+  <div class='pager'>
+    <%= render :partial => "shared/pager" %>
+  </p>
+	<div class='footer'>
+		<small>
+			Original chat application written by <a href='http://www.petercooper.co.uk'>Peter Cooper</a>.
+		</small>
+	</div>
+</div>

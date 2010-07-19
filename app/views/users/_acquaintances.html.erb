@@ -1,0 +1,56 @@
+<img src="/images/profile/acquaintances.png" class="profile_art">
+
+<div class="profile_content">
+  <% acquaintance_type = ["acquaintance", "ally", "rival"] %>
+  <% params[:acquaintance_type] = "acquaintance" if params[:acquaintance_type].nil? %>
+  <div class="user_acquaintances_menu">
+    <ul>
+      <% for i in 0...acquaintance_type.length %>
+        <li <%= 'class="user_missions_selected"' if params[:acquaintance_type] == acquaintance_type[i] %>>
+          <%= link_to_remote acquaintance_type[i].capitalize.pluralize, :url => {:controller => "users", :action => "show", :acquaintance_type => acquaintance_type[i]}, :method => :get, :loading => "jQuery('#acquaintance_loading').show();",:complete => "jQuery('#acquaintance_loading').hide();"%>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <img src="/images/profile/content_boxes/top_left.png" class="user_profile_title_tab_side"><div class="user_profile_title_tab"><h4><a href="/acquaintances/<%= @user.login %>"><%= @user.buddies.accepted('acquaintance').size %> Acquaintances</a></h4></div><img src="/images/profile/content_boxes/top_right.png" class="user_profile_title_tab_side">
+    
+    <br style="clear:both;" />
+
+    <img src="/images/profile/content_boxes/main_top.png" />
+
+    <div class="user_profile_content_tab">
+    <div id="acquaintance_loading" style="display:none;"><center><img src="/images/ajax-loader.gif" class="no_img_border" /></center></div>
+      <div class="user_acquaintance_list">
+        
+        <% if @acquaintances.empty? %>
+          <br />
+          <h3>No <%= params[:acquaintance_type].pluralize %> yet.</h3>
+          <% if @user == current_user %>
+            <br />
+            <form action="/users/search" method="post">
+            <%= token_tag %>
+              <h4>Search Players:
+              <input name="q" type="text" class="input" style="font-size:16px;padding:3px;width:200px;" value="<%=h params[:q] %>">
+              <input type="submit" class="input" style="font-size:14px;padding:3px" value="Search" />
+              </h4>
+            </form>
+            <br />
+            <h5 align="center">Search by username, e-mail address, real name, or web site address.</h5>
+
+          <% end %>
+          <br style="clear:both;" />
+        <% else %>
+          <% @acquaintances.each do |buddy| %>
+            <%= avatar_link_to_user :user => buddy, :size => 'small' %>
+          <% end %>
+        <% end %>
+      </div>
+      <%#= will_paginate @acquaintances, :param_name => :buddy_page, :class => 'user_profile_pagination' %>
+    </div>
+
+    <img src="/images/profile/content_boxes/main_bottom.png" />
+    
+</div>
+
+<br style="clear:both;" />

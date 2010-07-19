@@ -1,0 +1,6 @@
+if error_messages_for('branch')
+  page["errors_for_#{params[:field]}"].replace_html error_messages_for 'branch'
+  page["errors_for_#{params[:field]}"].show
+else
+  page["errors_for_#{params[:field]}"].hide
+end

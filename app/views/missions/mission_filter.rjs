@@ -1,0 +1,3 @@
+page.replace_html 'missions_lists', :partial => 'association_list'
+page.replace_html 'missions_lists_header', :partial => 'index_header'
+page << "jQuery('table.missions td.mission').hover( function() {jQuery(this).find('div.hidden').fadeIn(200);}, function() {jQuery(this).find('div.hidden').fadeOut(200);});"

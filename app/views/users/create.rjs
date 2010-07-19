@@ -1,0 +1,4 @@
+page.replace_html "modalDialog", :partial => 'home/after_signup_dialog', :locals => { :login => @user.login }
+page << "$(function() { if ($('#pmog_installed #installed').text() === 'true') { window.location = '/users/#{@user.login}' } else { $('#dialog1').jqm({ overlay: 50, modal: true }).jqmShow(); } });"
+
+ 

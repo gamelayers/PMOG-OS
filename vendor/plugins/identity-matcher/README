@@ -1,0 +1,35 @@
+IdentityMatcher
+===============
+
+This is a Rails plugin that adds the ability to import social networks from sites such as Twitter and Gmail. Put it in your vendor/plugins directory. 
+
+
+Example
+=======
+
+Add this line to your app's User model:
+
+  matches_identities :nickname_field => 'realname', :email_field => 'work_email', :username_field => 'login'
+
+and your user model will gain the following methods:
+
+  User.match_gmail(username, password)
+  User.match_gmail_api(authsub_token)
+  User.match_twitter(nick)
+  User.match_hcard(url)
+  etc...
+
+The return value is a two-element list. The first element is a list of User objects that match the identities found in the external source. The second element, if available for that mode of matching, is a list of found external identities that weren't matched, giving their name and email address in a hash.
+
+The default values for matches_identities are:
+  :nickname_field => 'name'     # used for real name, alias or nickname columns (eg. "John Doe")
+  :username_field => 'username' # used for login or username columns (eg. "johndoe")
+  :email_field    => 'email'    # email, 'nuff said
+
+Contributing
+============
+
+Git source repository: http://github.com/mattb/identity-matcher/tree/master
+Please feel free to fork the project at GitHub and submit pull requests or patches.
+
+Copyright (c) 2007-2008 Matt Biddulph, released under the MIT license

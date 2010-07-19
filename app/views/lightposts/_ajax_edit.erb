@@ -1,0 +1,21 @@
+<%= error_messages_for :lightpost %>
+<%- if flash[:notice] -%>
+  <%= "<h3 id='lightpost_flash' class='flash_notice' style='width:auto;'>#{flash[:notice]}</h3>" if flash[:notice] %>
+  <script type="text/javascript" charset="utf-8">
+    <%= visual_effect(:fade, 'lightpost_flash', {:duration => 8.0}) %>  
+  </script>
+<%- end -%>
+<%= image_tag 'ajax-loader.gif', :id => "lightpost_throbber", :style => 'display:none;text-align:center;' %>
+
+<% form_remote_for(:lightpost, @lightpost, :before => "$('lightpost_throbber').toggle();",:url => user_lightpost_path(current_user,@lightpost, :lightpost_id => "lightpost_#{@index}" ), :html => { :method => :put }) do |f| %>
+
+<h3 style="margin-bottom:10px;"><%= image_tag("/images/shared/tools/icon/lightpost-16.png", :style => 'display:inline;') %> Editing Lightpost</h3>
+
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+        <%= link_to_remote('Cancel', :url => formatted_replace_line_user_lightpost_path(@lightpost, :js, :lightpost_id => "lightpost_#{@index}"),
+                                     :before => "$('lightpost_throbber').toggle();",
+                                     :method => :put) %> | 
+        <%= submit_tag "Update", :class => "input" %>
+  
+<% end %>

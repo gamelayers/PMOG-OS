@@ -1,0 +1,82 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:rss, formatted_user_badges_url(:rss)) %>
+<% end %>
+
+<div id="copy">
+
+  <div class="column width960">
+
+    <div class="column width700">
+
+      <div class="module width700">
+
+        <center>
+          <h5><%= pluralize( @user.badges.size, "Badge", "Badges" ) %> Earnt!</h5>
+
+          <!--code for displaying badges from user profiles-->
+          <% @user.badges.each do |badge| %>
+
+          <a href="/guide/badges/<%= badge.url_name %>"><img src="/images/shared/badges/small/<%= badge.image %>" width='39' height='50' title='<%= badge.name %>' alt='<%= badge.name %>' class="user_badge"></a>
+
+          <% end %>
+        </center>
+
+
+        <br/>
+        <br/>
+
+        <table cellspacing="10" class="badge_table">
+
+          <% @badges.each do |badge| %>
+
+          <tr>
+            <td valign="top">
+
+              <a name="<%= badge.name %>"></a>
+
+              <% if @user.badges.include? badge %>
+              <img src="/images/shared/badges/medium/<%= badge.image %>" width='125' height='161' title='<%= badge.name %>' alt='<%= badge.name %>'>
+              <% else %>
+              <img src="/images/shared/badges/unearned/<%= badge.image %>" width='125' height='161' title='<%= badge.name %>' alt='<%= badge.name %>'>
+              <% end %><!--does user have badge-->
+
+            </td>
+
+            <td valign="top" class="badge_table_description">
+              <h3>
+                <a href='/guide/badges/<%= badge.url_name %>'><%= badge.name %></a>
+                <br />
+              </h3>
+              <p><%= badge.description %></p>
+            </td>
+          </tr>
+          <% end %>
+
+        </table>
+
+      </div>
+    </div>
+
+    <div class="column width240">
+      <div class="module width240">
+        <h3><a href="/users/<%= @user.login %>"><%= @user.login %>'s Profile</a>: Badges</h3>
+
+        <p>Badges are just one part of your profile on The Nethernet.  This page allows you to have a deeper view of the Badges you have, and the Badges you don't!</p>
+
+        <p><strong><a href="/guide/badges">Badges in the Guide</a></strong></p>
+
+        <p>Due to the current strife between Order and Chaos, badges will be awarded nightly. Too many couriers have been lost to continue daylight transference of credits. Our apologies, the Trustees.</p>
+
+      </div>
+
+      <div class="column width20"></div>
+      <div class="column width20"></div>
+      <div class="imageTop">
+        <div class="ImageTop" style="background-image:url(/images/shared/dressing/child-240.png); width:240px;height:312px;" title="How Tall Am I, Daddy?"></div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

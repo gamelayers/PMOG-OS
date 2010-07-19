@@ -1,0 +1,5 @@
+check process memcache_pmog_11211
+  with pidfile /var/run/memcached/memcached.11211.pid
+  start program = "/etc/init.d/memcached start"
+  stop program = "/etc/init.d/memcached stop"
+  group memcached_pmog

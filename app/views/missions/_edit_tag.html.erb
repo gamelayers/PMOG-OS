@@ -1,0 +1,12 @@
+<table class="tagTable collapsed" id="tag_<%= edit_tag.id %>">
+  <tr class="tagRow">
+	<td class="tagName collapsed"><%= link_to(strip_tags(edit_tag.name), tag_path(:id => edit_tag, :type => "mission"), :rel => "tag", :id => "#{edit_tag.id}") %></td>
+    <td class="tagDelete collapsed"><%= link_to_remote( " ",
+		                        {
+		                          :url => remove_tag_user_mission_path( :user_id => current_user.id, :id => @mission.url_name, :tag_id =>edit_tag.id),
+		                          :method => :delete,
+		                          :confirm => "Are you sure?"
+		                        }, :class => 'exButton') %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,45 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Tags</div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<% @tags.each do |tags| %>
+	<h2>Most Popular <%= tags[0] %> Tags</h2>
+	<% if tags[1].empty? %>
+		<h4>No tags for <%= tags[0].pluralize %> yet...</h4>
+	<% else %>
+			
+		<% tag_cloud tags[1], %w(tag1 tag2 tag3 tag4 tag5) do |tag, css_class| %>
+  		<%= link_to h(tag.name), tag_path(:id => tag.friendly_id, :type => tags[0].downcase), :class => css_class, :rel => "tag" rescue next %>
+		<% end %>
+		
+	<% end %>
+	<br />
+	<br />
+<% end %>
+
+					</div>
+					
+				</div>
+				
+				<div class="column width240">
+					<div class="module width240">
+						<h3>Tags</h3>
+						
+						<p>Tags are a system for knitting together disparate pieces of data on The Nethernet.  You can view tags for Users, Missions and Lightposts here.  Make some tags of your own, across the whole game!</p>
+					</div>
+				</div>
+				
+			</div>
+	
+		</div>
+		

@@ -1,0 +1,32 @@
+Description
+===========
+
+ActsAsTinyURL utilizes TinyURL's API to allow you to pass in any URL and 
+have it generate a shortened URL on the fly.
+
+If you want one of your model's to be able to use ActsAsTinyURL, just add
+the following line right under the class declaration of one of your 
+controllers.
+
+include ActsAsTinyURL
+
+Options
+=======
+
+The validate_uri option allows you to check, before trying to retrieve a
+URL, whether or not it is formatted correctly.
+
+
+Example Usage
+=============
+
+tiny_url("http://brendanlim.com")			
+# returns http://tinyurl.com/3274fk
+
+tiny_url("http://brendanlim.com", :validate_uri => true)
+# returns true
+
+tiny_url("http/brendanlim.com", :validate_uri => true)
+# returns false
+
+Copyright (c) 2008 Brendan G. Lim (brendangl@gmail.com), released under the MIT license

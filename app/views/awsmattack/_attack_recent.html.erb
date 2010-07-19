@@ -1,0 +1,18 @@
+<ol class='stripeMe awsm_page'>
+  <% if awsmattacks.nil? || awsmattacks.empty? %>
+    No Awsm Attacks to see here!
+  <% else %>
+    <% awsmattacks.each do |a| %>
+      <li>
+        <div>
+          <a href='<%= a.location.url %>'>
+            <img class='favicon' src='http://www.google.com/s2/favicons?domain=<%= Url.domain(a.location.url) %>' height='16' width='16' />
+            <%= truncate(a.location.url, 50) %>
+          </a>
+          <br />
+          <span><a href="/users/<%= a.user.login %>"><%= a.user.login %></a> tripped <a href="/users/<%= a.creator.login %>"><%= a.creator.login %>'s</a> Mine <!--on <a href='<%= a.location.url %>'><%= truncate(a.location.url, 50) %></a>,-->here <%= time_ago_in_words(a.created_at) %> ago.</span>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ol>

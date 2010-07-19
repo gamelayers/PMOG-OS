@@ -1,0 +1,26 @@
+#wrapper {
+	margin: 1.5em;
+}
+
+#wrap {
+	float: left;
+	margin-right: 20px;
+}
+
+#previewOuterWrap {
+	float: left;
+	width: 300px;
+}
+
+#previewWrap {
+	border: 1px solid black;
+}
+
+#results {
+	display: none;
+}
+
+div.buttons {
+	clear: both;
+	padding: 10px;
+}

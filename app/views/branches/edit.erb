@@ -1,0 +1,88 @@
+<% form_for(:branch, :url => mission_branch_path, :html => { :method => :put } ) do |f| %>
+  <%= f.hidden_field :mission_id, :value => params[:mission_id] %>
+  <%= f.hidden_field :parent_id, :value => params[:parent_id] unless params[:parent_id].blank? %>
+  <p>
+		Url
+		<br/>
+		<%= f.text_field :location_id, :size => 50, :value => @branch.location.url %>
+    <script type="text/javascript">
+      $( 'branch_location_id' ).focus();
+    </script>
+		<br/>
+		Description
+		<br/>
+		<%= f.text_area :description, :rows => 5, :cols => 50 %>
+    <script type="text/javascript">
+      $( 'branch_description' ).focus();
+    </script>
+
+		<br/>
+
+		<% if @branch.portal.nil? %>
+			<a href='#' onclick="jQuery('#new_portal').show(); $( 'branch_portal_destination' ).focus();">Deploy a portal here?</a>
+		<% else %>
+			Portal destination
+			<br/>
+			<%= f.text_field :portal_destination, :size => 50 %>
+			<br/>	
+			Remove this portal: <input type='checkbox' name='delete_portal'>
+		<% end %>
+
+		<% if @branch.npcs.empty? %>
+			<a href='#' onclick="jQuery('#new_npc').show(); $( 'npc_name' ).focus();">Deploy one of your NPCs here?</a>
+		<% else %>
+			<br/>
+			Change NPC:
+			<%= collection_select( :npc, :id, @npcs, :id, :name, { :selected => @branch.npcs[0].id }, options = { :selected => @branch.npcs[0].id, :prompt => " - Pick an NPC - "} ) %>
+			<br>
+			Remove this NPC: <input type='checkbox' name='delete_npc'>
+		<% end %>
+
+		<% if @branch.bird_bots.empty? %>
+			<a href='#' onclick="jQuery('#new_bird_bot').show(); $( 'bird_bot_name' ).focus();">Deploy one of your Bird Bots here?</a>
+		<% else %>
+			<br/>
+			Change Bird bot:
+			<%= collection_select( :bird_bot, :id, @bird_bots, :id, :name,  { :selected => @branch.bird_bots[0].id }, options = {:prompt => " - Pick a Bird bot - "} ) %>
+			<br>
+			Remove this Bird Bot: <input type='checkbox' name='delete_bird_bot'>
+		<% end %>
+
+		<% if @branch.missions.empty? %>
+			<a href='#' onclick="jQuery('#link_to_mission').show(); $( 'mission_name' ).focus();">Link this branch to a different Mission?</a>
+		<% else %>
+			<br/>
+			Change Mission:
+			<%= collection_select( :mission, :id, @missions, :id, :name, { :selected => @branch.missions[0].id }, options = { :selected => @branch.missions[0].id, :prompt => " - Pick a Mission - "} ) %>
+			<br>
+			Remove this Mission: <input type='checkbox' name='delete_mission'>
+		<% end %>
+
+		<br/>
+		
+		<span id='new_portal' style='display:none;'>
+			Portal destination
+			<br/>
+			<%= f.text_field :portal_destination, :size => 50 %>
+			<a href='#' onclick="jQuery('#new_portal').hide();">Close</a>
+			<br/>
+		</span>
+		<span id='new_npc' style='display:none;'>
+			<%= collection_select( :npc, :id, @npcs, :id, :name, options = {:include_blank => true} ) unless @npcs.nil? %>
+			<a href='#' onclick="jQuery('#new_npc').hide();">Close</a>
+			<br/>
+		</span>
+		<span id='new_bird_bot' style='display:none;'>
+			<%= collection_select( :bird_bot, :id, @bird_bots, :id, :name, options = {:include_blank => true} ) unless @bird_bots.nil? %>
+			<a href='#' onclick="jQuery('#new_bird_bot').hide();">Close</a>
+			<br/>
+		</span>
+		<span id='link_to_mission' style='display:none;'>
+			<%= collection_select( :mission, :id, @missions, :id, :name, options = {:include_blank => true} ) unless @missions.nil? %>
+			<a href='#' onclick="jQuery('#link_to_mission').hide();">Close</a>
+			<br/>
+		</span>
+
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>

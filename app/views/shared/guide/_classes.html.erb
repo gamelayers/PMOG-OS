@@ -1,0 +1,66 @@
+<div class="column width700">
+<h2>Classes ::
+<span>Playing on either side of Order and Chaos</span>
+</h2>				
+<div class="module width700">
+<div class="width325">
+<h3>Chaos</h3>
+
+  <% @pmog_classes.each do |pmog_class| %>
+  	<% if pmog_class.name.downcase == 'grenadiers' %>
+  	<% elsif pmog_class.name.downcase == 'riveters' %>
+  	<% elsif pmog_class.name.downcase == 'benefactors' %>
+  	<% elsif pmog_class.name.downcase == 'pathmakers' %>
+  	<% elsif pmog_class.name.downcase == 'bedouins' %>
+  	<% elsif pmog_class.name.downcase == 'shoats' %>
+  	<% else %>
+  	
+<%= link_to "<img src=\"#{pmog_class.small_image}\" title=\"#{pmog_class.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{pmog_class.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/pmog_class/#{pmog_class.name.downcase}" %>
+<h4><a
+href="/guide/classes/<%= pmog_class.name.downcase %>"><%= pmog_class.name.titleize %></a></h4>
+<p><%= pmog_class.short_description %> <a
+href="/guide/classes/<%= pmog_class.name.downcase %>">Learn More</a></p>
+
+<% end %>
+<% end %>
+						</div>
+						<div class="width20"></div>
+
+						<div class="width325">
+
+<h3>Order</h3>
+
+  <% @pmog_classes.each do |pmog_class| %>
+  	<% if pmog_class.name.downcase == 'grenadiers' %>
+  	<% elsif pmog_class.name.downcase == 'riveters' %>
+  	<% elsif pmog_class.name.downcase == 'seers' %>
+  	<% elsif pmog_class.name.downcase == 'destroyers' %>
+  	<% elsif pmog_class.name.downcase == 'vigilantes' %>
+  	<% elsif pmog_class.name.downcase == 'shoats' %>
+  	<% else %>
+  	
+<%= link_to "<img src=\"#{pmog_class.small_image}\" title=\"#{pmog_class.name.titleize}\" 
+                              width=\"50\" 
+                              height=\"50\"
+                              border=\"0\"
+                              alt=\"#{pmog_class.name.titleize}\" 
+                              class=\"thumb\"
+                              hspace=\"10\"
+                              vspace=\"10\"
+                              align=\"center\">", "/guide/pmog_class./#{pmog_class.name.downcase}" %>
+<h4><a href="/guide/classes/<%= pmog_class.name.downcase %>"><%= pmog_class.name.titleize %></a></h4>
+<p><%= pmog_class.short_description %> <a href="/guide/classes/<%= pmog_class.name.downcase %>">Learn More</a></p>
+
+<% end %>
+<% end %>
+						</div>
+					</div>
+				</div>

@@ -1,0 +1,5 @@
+<% crate.contents.each do |item, amount| %>
+	<% unless amount == 0 %>
+		<img src='<%= host %>/images/ext/<%= item.singularize %>.png' width='16' height='16' alt='<%= item.singularize %>'> (<%= amount %>)&nbsp;|&nbsp;
+	<% end %>
+<% end %>

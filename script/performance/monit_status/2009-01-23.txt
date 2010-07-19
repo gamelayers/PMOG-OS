@@ -1,0 +1,797 @@
+65.74.143.100:8013 -> *******************************************************
+The monit daemon 4.10.1 uptime: 1d 15h 25m 
+
+Process 'mongrel_pmog_5000'
+  status                            running
+  monitoring status                 monitored
+  pid                               3199
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  114540
+  memory kilobytes total            114540
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       1.0%
+  cpu percent total                 1.0%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5001'
+  status                            running
+  monitoring status                 monitored
+  pid                               3262
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  120236
+  memory kilobytes total            120236
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       1.5%
+  cpu percent total                 1.5%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5002'
+  status                            running
+  monitoring status                 monitored
+  pid                               3194
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  127500
+  memory kilobytes total            127500
+  memory percent                    2.4%
+  memory percent total              2.4%
+  cpu percent                       1.4%
+  cpu percent total                 1.4%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5003'
+  status                            running
+  monitoring status                 monitored
+  pid                               3222
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  119120
+  memory kilobytes total            119120
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       1.4%
+  cpu percent total                 1.4%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5004'
+  status                            running
+  monitoring status                 monitored
+  pid                               3218
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  141188
+  memory kilobytes total            141188
+  memory percent                    2.6%
+  memory percent total              2.6%
+  cpu percent                       1.1%
+  cpu percent total                 1.1%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5005'
+  status                            running
+  monitoring status                 monitored
+  pid                               3211
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  112944
+  memory kilobytes total            112944
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       1.3%
+  cpu percent total                 1.3%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5006'
+  status                            running
+  monitoring status                 monitored
+  pid                               3216
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  110168
+  memory kilobytes total            110168
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       1.1%
+  cpu percent total                 1.1%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5007'
+  status                            running
+  monitoring status                 monitored
+  pid                               3202
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  109940
+  memory kilobytes total            109940
+  memory percent                    2.0%
+  memory percent total              2.0%
+  cpu percent                       1.2%
+  cpu percent total                 1.2%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5008'
+  status                            running
+  monitoring status                 monitored
+  pid                               3354
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  114592
+  memory kilobytes total            114592
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       1.1%
+  cpu percent total                 1.1%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5009'
+  status                            running
+  monitoring status                 monitored
+  pid                               3350
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  119560
+  memory kilobytes total            119560
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       0.3%
+  cpu percent total                 0.3%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5010'
+  status                            running
+  monitoring status                 monitored
+  pid                               26949
+  parent pid                        1
+  uptime                            1h 8m 
+  childrens                         0
+  memory kilobytes                  241068
+  memory kilobytes total            241068
+  memory percent                    4.5%
+  memory percent total              4.5%
+  cpu percent                       1.4%
+  cpu percent total                 1.4%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5011'
+  status                            running
+  monitoring status                 monitored
+  pid                               15864
+  parent pid                        1
+  uptime                            2h 39m 
+  childrens                         0
+  memory kilobytes                  255448
+  memory kilobytes total            255448
+  memory percent                    4.8%
+  memory percent total              4.8%
+  cpu percent                       1.0%
+  cpu percent total                 1.0%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5012'
+  status                            running
+  monitoring status                 monitored
+  pid                               2306
+  parent pid                        1
+  uptime                            7m 
+  childrens                         0
+  memory kilobytes                  133188
+  memory kilobytes total            133188
+  memory percent                    2.5%
+  memory percent total              2.5%
+  cpu percent                       0.6%
+  cpu percent total                 0.6%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5013'
+  status                            running
+  monitoring status                 monitored
+  pid                               25272
+  parent pid                        1
+  uptime                            1h 21m 
+  childrens                         0
+  memory kilobytes                  232044
+  memory kilobytes total            232044
+  memory percent                    4.4%
+  memory percent total              4.4%
+  cpu percent                       1.4%
+  cpu percent total                 1.4%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5014'
+  status                            running
+  monitoring status                 monitored
+  pid                               32501
+  parent pid                        1
+  uptime                            25m 
+  childrens                         0
+  memory kilobytes                  164660
+  memory kilobytes total            164660
+  memory percent                    3.1%
+  memory percent total              3.1%
+  cpu percent                       0.5%
+  cpu percent total                 0.5%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'mongrel_pmog_5015'
+  status                            running
+  monitoring status                 monitored
+  pid                               2304
+  parent pid                        1
+  uptime                            7m 
+  childrens                         0
+  memory kilobytes                  139860
+  memory kilobytes total            139860
+  memory percent                    2.6%
+  memory percent total              2.6%
+  cpu percent                       1.1%
+  cpu percent total                 1.1%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+Process 'memcache_pmog_11211'
+  status                            running
+  monitoring status                 monitored
+  pid                               4202
+  parent pid                        1
+  uptime                            1d 15h 25m 
+  childrens                         0
+  memory kilobytes                  270868
+  memory kilobytes total            270868
+  memory percent                    5.1%
+  memory percent total              5.1%
+  cpu percent                       0.2%
+  cpu percent total                 0.2%
+  data collected                    Fri Jan 23 14:37:34 2009
+
+System 'gl00-s00013'
+  status                            running
+  monitoring status                 monitored
+  load average                      [4.69] [4.66] [3.00]
+  cpu                               13.7%us 5.5%sy 0.1%wa
+  memory usage                      2929100 kB [55.8%]
+  data collected                    Fri Jan 23 14:37:34 2009
+65.74.143.100:8014 -> *******************************************************
+The monit daemon 4.10.1 uptime: 1d 15h 25m 
+
+Process 'mongrel_pmog_5000'
+  status                            running
+  monitoring status                 monitored
+  pid                               1986
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  110592
+  memory kilobytes total            110592
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       7.0%
+  cpu percent total                 7.0%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5001'
+  status                            running
+  monitoring status                 monitored
+  pid                               1917
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  112556
+  memory kilobytes total            112556
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       4.8%
+  cpu percent total                 4.8%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5002'
+  status                            running
+  monitoring status                 monitored
+  pid                               1928
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  97176
+  memory kilobytes total            97176
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       4.2%
+  cpu percent total                 4.2%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5003'
+  status                            running
+  monitoring status                 monitored
+  pid                               1989
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  95404
+  memory kilobytes total            95404
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       3.5%
+  cpu percent total                 3.5%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5004'
+  status                            running
+  monitoring status                 monitored
+  pid                               1936
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  99528
+  memory kilobytes total            99528
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       4.8%
+  cpu percent total                 4.8%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5005'
+  status                            running
+  monitoring status                 monitored
+  pid                               1940
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  95796
+  memory kilobytes total            95796
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       3.9%
+  cpu percent total                 3.9%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5006'
+  status                            running
+  monitoring status                 monitored
+  pid                               1961
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  96028
+  memory kilobytes total            96028
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       4
+.0%
+  cpu percent total                 4.0%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5007'
+  status                            running
+  monitoring status                 monitored
+  pid                               1951
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  95792
+  memory kilobytes total            95792
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       3.7%
+  cpu percent total                 3.7%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5008'
+  status                            running
+  monitoring status                 monitored
+  pid                               1935
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  103136
+  memory kilobytes total            103136
+  memory percent                    1.9%
+  memory percent total              1.9%
+  cpu percent                       3.5%
+  cpu percent total                 3.5%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5009'
+  status                            running
+  monitoring status                 monitored
+  pid                               1947
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  95308
+  memory kilobytes total            95308
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       3.7%
+  cpu percent total                 3.7%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5010'
+  status                            running
+  monitoring status                 monitored
+  pid                               1938
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  103180
+  memory kilobytes total            103180
+  memory percent                    1.9%
+  memory percent total              1.9%
+  cpu percent                       4.3%
+  cpu percent total                 4.3%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5011'
+  status                            running
+  monitoring status                 monitored
+  pid                               1943
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  109196
+  memory kilobytes total            109196
+  memory percent                    2.0%
+  memory percent total              2.0%
+  cpu percent                       4.0%
+  cpu percent total                 4.0%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5012'
+  status                            running
+  monitoring status                 monitored
+  pid                               1715
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  198328
+  memory kilobytes total            198328
+  memory percent                    3.7%
+  memory percent total              3.7%
+  cpu percent                       4.4%
+  cpu percent total                 4.4%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5013'
+  status                            running
+  monitoring status                 monitored
+  pid                               1933
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  107444
+  memory kilobytes total            107444
+  memo
+ry percent                    2.0%
+  memory percent total              2.0%
+  cpu percent                       4.4%
+  cpu percent total                 4.4%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5014'
+  status                            running
+  monitoring status                 monitored
+  pid                               1954
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  95312
+  memory kilobytes total            95312
+  memory percent                    1.8%
+  memory percent total              1.8%
+  cpu percent                       3.3%
+  cpu percent total                 3.3%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'mongrel_pmog_5015'
+  status                            running
+  monitoring status                 monitored
+  pid                               1945
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  108980
+  memory kilobytes total            108980
+  memory percent                    2.0%
+  memory percent total              2.0%
+  cpu percent                       5.2%
+  cpu percent total                 5.2%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+Process 'memcache_pmog_11211'
+  status                            running
+  monitoring status                 monitored
+  pid                               4289
+  parent pid                        1
+  uptime                            1d 15h 25m 
+  childrens                         0
+  memory kilobytes                  270556
+  memory kilobytes total            270556
+  memory percent                    5.1%
+  memory percent total              5.1%
+  cpu percent                       0.3%
+  cpu percent total                 0.3%
+  data collected                    Fri Jan 23 14:37:11 2009
+
+System 'gl00-s00014'
+  status                            running
+  monitoring status                 monitored
+  load average                      [15.64] [8.33] [4.10]
+  cpu                               20.7%us 50.6%sy 0.1%wa
+  memory usage                      2287780 kB [43.6%]
+  data collected                    Fri Jan 23 14:37:11 2009
+65.74.143.100:8015 -> *******************************************************
+The monit daemon 4.10.1 uptime: 1d 15h 25m 
+
+Process 'mongrel_pmog_5000'
+  status                            running
+  monitoring status                 monitored
+  pid                               23074
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  113848
+  memory kilobytes total            113848
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       3.7%
+  cpu percent total                 3.7%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5001'
+  status                            running
+  monitoring status                 monitored
+  pid                               23080
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  113844
+  memory kilobytes total            113844
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       8.0%
+  cpu percent total                 8.0%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5002'
+  status                            running
+  monitoring status                 monitored
+  pid                               23094
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  114076
+  memory kilobytes total            114076
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       4.7%
+  cpu percent total                 4.7%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5003'
+  status                            running
+  monitoring status                 monitored
+  pid                               23112
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  113648
+  memory kilobytes total            113648
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       5.3%
+  cpu percent total                 5.3%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5004'
+  status                            running
+  monitoring status                 monitored
+  pid                               23081
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  117764
+  memory kilobytes total            117764
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       5.2%
+  cpu percent total                 5.2%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5005'
+  status                            running
+  monitoring status                 monitored
+  pid                               23066
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  113240
+  memory kilobytes total            113240
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       4.8%
+  cpu percent total                 4.8%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5006'
+  status                            running
+  monitoring status                 monitored
+  pid                               23062
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  114500
+  memory kilobytes total            114500
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       5.7%
+  cpu percent total                 5.7%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5007'
+  status                            running
+  monitoring status                 monitored
+  pid                               23092
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  125208
+  memory kilobytes total            125208
+  memory percent                    2.3%
+  memory percent total              2.3%
+  cpu percent                       7.4%
+  cpu percent total                 7.4%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5008'
+  status                            running
+  monitoring status                 monitored
+  pid                               23085
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  113056
+  memory kilobytes total            113056
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       4.1%
+  cpu percent total                 4.1%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5009'
+  status                            running
+  monitoring status                 monitored
+  pid                               23103
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  114716
+  memory kilobytes total            114716
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       0.8%
+  cpu percent total                 0.8%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5010'
+  status                            running
+  monitoring status                 monitored
+  pid                               22888
+  parent pid                        1
+  uptime                            3m 
+  childrens                         0
+  memory kilobytes                  153808
+  memory kilobytes total            153808
+  memory percent                    2.9%
+  memory percent total              2.9%
+  cpu percent                       1.2%
+  cpu percent total                 1.2%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5011'
+  status                            running
+  monitoring status                 monitored
+  pid                               23108
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  116368
+  memory kilobytes total            116368
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       6.1%
+  cpu percent total                 6.1%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5012'
+  status                            running
+  monitoring status                 monitored
+  pid                               23106
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  115376
+  memory kilobytes total            115376
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       4.2%
+  cpu percent total                 4.2%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5013'
+  status                            running
+  monitoring status                 monitored
+  pid                               23090
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  116000
+  memory kilobytes total            116000
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       4.9%
+  cpu percent total                 4.9%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5014'
+  status                            running
+  monitoring status                 monitored
+  pid                               23088
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  119032
+  memory kilobytes total            119032
+  memory percent                    2.2%
+  memory percent total              2.2%
+  cpu percent                       4.7%
+  cpu percent total                 4.7%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'mongrel_pmog_5015'
+  status                            running
+  monitoring status                 monitored
+  pid                               23077
+  parent pid                        1
+  uptime                            2m 
+  childrens                         0
+  memory kilobytes                  114000
+  memory kilobytes total            114000
+  memory percent                    2.1%
+  memory percent total              2.1%
+  cpu percent                       5.3%
+  cpu percent total                 5.3%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+Process 'memcache_pmog_11211'
+  status                            running
+  monitoring status                 monitored
+  pid                               4357
+  parent pid                        1
+  uptime                            1d 15h 25m 
+  childrens                         0
+  memory kilobytes                  271580
+  memory kilobytes total            271580
+  memory percent                    5.1%
+  memory percent total              5.1%
+  cpu percent                       0.1%
+  cpu percent total                 0.1%
+  data collected                    Fri Jan 23 14:37:10 2009
+
+System 'gl00-s00015'
+  status                            running
+  monitoring status                 monitored
+  load average                      [14.32] [8.06] [4.11]
+  cpu                               41.0%us 37.2%sy 0.1%wa
+  memory usage                      2443032 kB [46.5%]
+  data collected                    Fri Jan 23 14:37:10 2009

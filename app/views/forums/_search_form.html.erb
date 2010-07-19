@@ -1,0 +1,15 @@
+<!-- #fixme can we integrate Lance's stylesheet work here?
+
+<input type="text" size="30" name="search" id="siteSearchInput"/>
+<button type="submit" name="searchSubmit" id="siteSearchSubmit">Search</button>
+
+-->
+
+<div id="search">
+
+<% form_tag({:controller => "forums", :action => "search" }, :method => "get") do %>
+	<%= text_field_tag "q", params[:q], :class => 'input' %>
+	<input type="submit" value="Search Forums" size="30" id="siteSearchInput" class="input">
+<% end %>
+
+</div>

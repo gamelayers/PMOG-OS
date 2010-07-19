@@ -1,0 +1,79 @@
+<h1>Searching beta_users</h1>
+
+<table id='beta_users'>
+	<tr>
+		<td>
+			<b>Email</b>
+		</td>
+		<td>
+			<b>Status</b>
+		</td>
+		<td>
+			<b>Date added</b>
+		</td>
+	</tr>
+	<% @beta_users.each do |beta_user| %>
+		<tr>
+			<td><%= beta_user.email %></td>
+			<td>
+				<% if user = User.find( :first, :conditions => { :beta_key_id => beta_user.beta_key_id }, :include => :assets ) and not beta_user.beta_key_id.nil? %>
+					<%= avatar_link_to_user :user => user, :size => 'tiny' %>
+					<small>
+						<br/>
+						<%= link_to_user :user => user, :include_meta_data => false %>, <b>invited by <%= link_to beta_user.beta_key.user.login, user_path(beta_user.beta_key.user) %></b>
+					</small>
+				<% elsif beta_user.emailed == 1 %>
+					<i>Invite sent</i>
+					<%= link_to "Resend invite", :controller => "beta_users", :action => :resend_invite, :id => beta_user.id, :page => params[:page] %>
+					<br/>
+					<small><small>
+						<% unless beta_user.beta_key.nil? %>
+							<%= url_for :controller => "beta", :action => :signup, :id => beta_user.beta_key.key, :email => beta_user.email, :only_path => false, :escape => false %>
+						<% end %>
+					</small></small>
+				<% elsif user = User.find( :first, :conditions => { :email => beta_user.email } ) %>
+					<%= avatar_link_to_user :user => user, :size => 'tiny' %>
+					<small>
+						<%= link_to_user :user => user, :include_meta_data => false %>
+						<br/>
+						<b>Signed up without invite</b>
+					</small>
+				<% else %>
+					<%= link_to "Send invite", :controller => "beta_users", :action => :send_invite, :id => beta_user.id, :page => params[:page] %>
+				<% end %>
+			</td>
+	    <td>
+				<%= beta_user.created_at %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<br/>
+
+<form action="/beta_users/search" method="post">
+	<%= token_tag %>
+	<h3>Search Beta Users Again
+	<input name="q" type="text" value="<%=h params[:q] %>">
+	<input type="submit" value="Search" />
+</h3>
+</form>
+
+<br />
+
+<h3>or</h3>
+
+<br />
+
+<% form_for :beta_user, :url => { :controller => "beta_users", :action => :admin_create } do |f| %>
+<h3>Enter a New Beta User Email: 
+<%= f.text_field :email %>
+		<%= submit_tag "New b3ta user" %>
+</h3>
+<% end %>
+
+<br/>
+
+<h3>or <a href="/beta_users">back to the beta_users page</a></h3>
+
+</div>

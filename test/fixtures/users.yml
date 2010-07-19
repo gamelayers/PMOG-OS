@@ -1,0 +1,249 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: users
+#
+#  id                        :string(36)    default(""), not null, primary key
+#  login                     :string(255)   
+#  email                     :string(255)   
+#  crypted_password          :string(40)    
+#  salt                      :string(40)    
+#  created_at                :datetime      
+#  updated_at                :datetime      
+#  last_login_at             :datetime      
+#  remember_token            :string(255)   
+#  remember_token_expires_at :datetime      
+#  visits_count              :integer(11)   default(0)
+#  time_zone                 :string(255)   default("Etc/UTC")
+#  identity_url              :string(255)   
+#  forename                  :string(255)   
+#  surname                   :string(255)   
+#  url                       :string(255)   
+#  date_of_birth             :date          
+#  gender                    :string(1)     
+#  country                   :string(255)   
+#  datapoints                :integer(11)   default(0)
+#  primary_association       :string(255)   
+#  secondary_association     :string(255)   
+#  tertiary_association      :string(255)   
+#  total_datapoints          :integer(11)   default(0), not null
+#  beta_key_id               :integer(11)   
+#  motto                     :string(255)   
+#  privacy_level             :string(255)   default("public")
+#  posts_count               :integer(11)   default(0), not null
+#  average_rating            :integer(11)   default(0)
+#  total_ratings             :integer(11)   default(0)
+#  ratings_count             :integer(11)   default(0)
+#  lifetime_pings            :integer(11)   default(0)
+#  available_pings           :integer(11)   default(0)
+#
+
+---
+# alex is a shoat, use this acct to test failure for lvl reqs
+alex:
+  available_pings: 465  
+  lifetime_pings: 34
+  salt: 1361498c870db8cb3386d3ddef8531e2157fef5e
+  total_datapoints: 0
+  visits_count: 10977
+  crypted_password: 25504573dc9e442eb2c58baf018f7edf61703e8f
+  id: f6183ed2-b028-11dd-ad1f-0017f2d41804
+  privacy_level: public
+  datapoints: 2349
+  posts_count: 0
+  date_of_birth: 1985-11-05
+  time_zone: Etc/UTC
+  average_rating: 0
+  surname: 
+  login: atfriedman
+  ratings_count: 26
+  beta_key_id: 
+  created_at: 2008-11-11 19:43:06
+  email: atfriedman@gmail.com
+# marc has max of every level, use this to test success for lvl reqs
+marc: 
+  salt: ec75b202800b6380b69a4355c37f60c407021b76
+  last_login_at: 2008-02-19 20:19:23 Z
+  forename: 
+  updated_at: 2008-02-20 04:56:06 Z
+  total_datapoints: 700000
+  visits_count: 39
+  motto: 
+  crypted_password: 3d1b47a309f4c3de7c86ee1736906efc39933f15
+  url: 
+  remember_token_expires_at: 2008-03-05 02:19:23 Z
+  country: 
+  id: 46393294-de84-11dc-b0f2-001b63928f8d
+  gender: m
+  privacy_level: public
+  datapoints: 370
+  available_pings: 1000
+  remember_token: d307ce0db9c0fec6d4e550ce76d81b790b043df9
+  identity_url: 
+  time_zone: Etc/UTC
+  date_of_birth: 1975-02-19 00:47:40 Z
+  surname: 
+  login: marc
+  email: marc.adams@gmail.com
+  created_at: 2008-02-19 00:47:40 Z
+  beta_key_id: 
+suttree: 
+  salt: e105c04b449fe0fa8883ec45fa7d56c7194d6011
+  last_login_at: 
+  forename: 
+  updated_at: 2008-02-19 17:56:38 Z
+  total_datapoints: 600
+  visits_count: 0
+  motto: 
+  crypted_password: 0d20f47327b2d3c43e66aaef0bf4e6e1baab3ec4
+  url: 
+  remember_token_expires_at: 
+  country: 
+  id: d780f502-5a13-11dc-a067-0017f232d58f
+  gender: m
+  privacy_level: public
+  datapoints: 100
+  remember_token: 
+  identity_url: http://www.suttree.com/
+  time_zone: Etc/Greenwich
+  date_of_birth: 1975-02-19 00:47:40 Z
+  surname: 
+  login: suttree
+  email: duncan@suttree.com
+  created_at: 2007-09-03 11:50:18 Z
+  beta_key_id:
+  available_pings: 0
+k41d3n: 
+  salt: 1b796d0cd4a9cdda711b0ecd15cfca0e3c57380e
+  last_login_at: 2008-02-19 12:29:37 Z
+  forename: 
+  updated_at: 2008-02-19 18:29:37 Z
+  total_datapoints: 80
+  visits_count: 20
+  motto: 
+  crypted_password: e469f24bdc4c2557425e4af53be83752195c5de2
+  url: 
+  remember_token_expires_at: 
+  country: 
+  id: 243df398-de87-11dc-b0f2-001b63928f8d
+  gender: m
+  privacy_level: public
+  datapoints: 280
+  remember_token: 
+  identity_url: 
+  time_zone: Etc/UTC
+  date_of_birth: 1975-02-19 00:47:40 Z
+  surname: 
+  login: k41d3n
+  email: marc@gamelayers.com
+  created_at: 2008-02-19 01:08:12 Z
+  beta_key_id: 
+thomas_hoggins:
+  lifetime_pings: "25"
+  last_login_at: 2009-01-23 10:39:28
+  salt: fab8897950b9f3ae83dbebb8dfbede7598c80ce1
+  total_datapoints: "86"
+  updated_at: 2009-01-23 23:09:35
+  visits_count: "350"
+  crypted_password: dbffe5fa5d21d22922faafdb05a4539c945f1995
+  last_login_attempt: 2009-01-23 17:42:44
+  total_ratings: "0"
+  id: 99a0566e-b03f-11dd-8b0d-0017f2d41804
+  privacy_level: public
+  datapoints: "28"
+  posts_count: "0"
+  failed_login_attempts: "0"
+  date_of_birth: "1985-11-05"
+  time_zone: Etc/UTC
+  average_rating: "0"
+  login: thomas_hoggins
+  locked: "0"
+  ratings_count: "3"
+  created_at: 2008-11-11 22:25:09
+  email: thomas_hoggins@pmog.com
+pmog: 
+  salt: 73c6d3061a398350c1f08ffbdc7f1da858e3fb00
+  last_login_at: 
+  forename: 
+  updated_at: 2008-02-18 22:39:39 Z
+  total_datapoints: 0
+  visits_count: 0
+  motto: 
+  crypted_password: 40e6aa74ee83c716b7f8d4d086bdfc08a82a4ff2
+  url: 
+  remember_token_expires_at: 
+  country: 
+  id: 63e5a03c-de72-11dc-9796-001b63928f8d
+  gender: m
+  privacy_level: public
+  datapoints: 0
+  remember_token: 
+  identity_url: 
+  time_zone: Etc/UTC
+  date_of_birth: 1975-02-19 00:47:40 Z
+  surname: 
+  login: pmog
+  email: self@pmog.com
+  created_at: 2008-02-18 22:39:39 Z
+  beta_key_id: 
+invalid_user: 
+  salt: 73c6d3061a398350c1f08ffbdc7f1da858e3fb00
+  updated_at: 2008-02-18 22:39:39 Z
+  total_datapoints: 0
+  visits_count: 0
+  crypted_password: 40e6aa74ee83c716b7f8d4d086bdfc08a82a4ff2
+  id: 63e5a03c-de72-11dc-9796-001b63928f8f
+  gender: m
+  privacy_level: public
+  datapoints: 0
+  time_zone: Etc/UTC
+  login: invalid_email
+  email: self+pmog.com
+  created_at: 2008-02-18 22:39:39 Z
+  date_of_birth: 1975-02-19 00:47:40 Z
+mission_creator:
+  id: 6286120e-e952-11dc-8dba-001b63928f8d
+  login: mission_creator
+
+# The following are here to keep the spider test happy
+# as they are linked to from our credits pages, etc
+justin:
+  id: 6f15b9e8-cdfe-11dd-8896-0017f2d41804
+  login: justin
+  salt: 73c6d3061a398350c1f08ffbdc7f1da858e3fb00
+  crypted_password: 40e6aa74ee83c716b7f8d4d086bdfc08a82a4ff2
+merci:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: merci
+  salt: 73c6d3061a398350c1f08ffbdc7f1da858e3fb00
+  crypted_password: 40e6aa74ee83c716b7f8d4d086bdfc08a82a4ff2
+cap:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: cap
+burdenday:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: burdenday
+venasque:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: venasque
+blevin:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: blevin
+neb:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: neb
+matlock:
+    id: <%= UUID.timestamp_create().to_s %>
+    login: matlock
+bryce:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: bryce
+joi:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: joi
+rewolpert:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: rewolpert
+barril:
+  id: <%= UUID.timestamp_create().to_s %>
+  login: barril

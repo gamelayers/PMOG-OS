@@ -1,0 +1,24 @@
+rel_0_0_9:
+  date: 2007-09-22
+  notes:
+    - Disabled reload to run agains a readonly DB by default - replication lag is a killer
+
+rel_0_0_8:
+  date: 2007-06-12
+  notes:
+    - Added calculations to run against a readonly DB by default
+
+rel_0_0_7:
+  date: 2007-06-11
+  notes:
+    - Fixed to work in inhereted AR models
+
+rel_0_0_6:
+  date: 2007-06-06
+  notes:
+    - Disable the read only mode when no entry is defined in database.yml. Allows to run transactional tests.
+
+rel_0_0_5:
+  date: 2007-04-28
+  notes:
+    - Added support for multiple read-only slaves

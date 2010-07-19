@@ -1,0 +1,37 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: crates
+#
+#  id          :string(36)    primary key
+#  user_id     :string(36)    
+#  location_id :string(36)    
+#  created_at  :datetime      
+#  updated_at  :datetime      
+#  comments    :string(255)   
+#  context     :string(255)   
+#  question    :string(255)   
+#  answer      :string(255)   
+#  charges     :integer(11)   default(1)
+#
+
+crate_one:
+  location_id: a492e9a2-f117-11dc-bf13-0016cb88feaa
+  user_id: 243df398-de87-11dc-b0f2-001b63928f8d
+crate_two:
+  location_id: a492e9a2-f117-11dc-bf13-0016cb88feaa
+  user_id: 243df398-de87-11dc-b0f2-001b63928f8d
+puzzle_crate:
+  location_id: 6bc59ef2-b1bb-11dd-81eb-0017f2d41804
+  id: 661f2e72-b66c-11dd-a089-0017f2d41804
+  user_id: 243df398-de87-11dc-b0f2-001b63928f8d
+exploding_crate:
+  location_id: 6bc59ef2-b1bb-11dd-81eb-0017f2d41804
+  id: f9b23456-b507-11dd-ac2e-0017f2d41804 
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+crate_upgrade_test_suttree:
+  location_id: 6bc59ef2-b1bb-11dd-81eb-0017f2d41804
+  user_id: d780f502-5a13-11dc-a067-0017f232d58f
+crate_upgrade_test_marc:
+  location_id: 6bc59ef2-b1bb-11dd-81eb-0017f2d41804
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d

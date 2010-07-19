@@ -1,0 +1,20 @@
+<%= javascript_include_tag 'tool_javascripts'%>
+<h1><%= @h1content %></h1>
+<h5><%= link_to '&lt; Back to Full Listing', :action => 'index' %></h5>
+
+<br>
+
+<% form_tag '/portals/search', :method => :get do %>
+  Or search by User/Location/Destination: <%= text_field_tag 'q' %> 
+  <select name="criteria">
+    <option value="">Select Criteria</option>
+    <option value="user">User</option>
+    <option value="location">Location</option>
+	<option value="destination">Destination</option>
+  </select>
+<% end %>
+
+<% form_tag '/portals/destroy', :method => :post, :id => 'tool_form' do %>
+	<%= render :partial => 'usertable' %>
+<% end %>
+

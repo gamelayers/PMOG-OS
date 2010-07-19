@@ -1,0 +1,12 @@
+<h1>Editing shoppe</h1>
+
+<%= error_messages_for :shoppe %>
+
+<% form_for(:shoppe, :url => shoppe_path(@shoppe), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', shoppe_path(@shoppe) %> |
+<%= link_to 'Back', shoppe_path %>

@@ -1,0 +1,10 @@
+<div id="navUser" class="module">
+  <ul class="font12px">
+  <% if logged_in? %>
+	  <li>Welcome <%= link_to "#{current_user.login}", user_path(current_user) %></li>
+	  <li class="sep">|</li>
+	  <li><%= link_to "Sign Out", session_path, :method => :delete %></li>
+  <% end %>
+  </ul>
+</div>
+

@@ -1,0 +1,8 @@
+<b>Url:</b> <input disabled="true" style="width:400px;margin-left:10px;" class="input" value="<%= @lightpost.location.url %>">
+<p><em style="font-size:0.9em;margin-left:40px;">cannot be changed</em></p>
+
+<b>Tags:</b> <%= f.text_field :tag_list, :style => "margin-left:10px;width:391px;", :class => "input" %>
+<p><em style="font-size:0.9em;margin-left:50px;">use commas to separate keywords</em></p>
+
+<b>Description:</b><br /><%= f.text_area :description, :style => 'height:150px;margin:10px 0;', :class => "input" %><br />
+

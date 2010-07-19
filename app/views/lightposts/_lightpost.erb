@@ -1,0 +1,10 @@
+ <%= image_tag 'ajax-loader.gif', :id => "lightpost_throbber_#{index}", :style => 'display:none;text-align:center;' %>
+  <%= image_tag("/images/shared/tools/icon/lightpost-16.png", :style => 'float:left;margin-right:8px;') %>
+  <%= link_to h(truncate( lightpost.location.url, 45 )), lightpost.location.url, { :target => '_new', :style => 'float:left;' } %>
+  <ul class="inline_list" style="float:right;">
+    <li><%= link_to_remote('Edit', :url => formatted_edit_user_lightpost_path(lightpost, :js, :lightpost_id => "lightpost_#{index}"),
+                                   :before => "jQuery('#lightpost_throbber_#{index}').toggle();",
+                                   :method => :get) %></li>
+    <li><%= link_to "Delete", user_lightpost_path(lightpost), :method => :delete, :confirm => 'Are you sure?' %></li>
+    <li><%= link_to_function('Toggle Display', "jQuery('#lightpost_#{index}_description').toggle();") %></li>
+  </ul>

@@ -1,0 +1,51 @@
+h1. PMOG /  The Nethernet Server Codebase
+
+h2. About
+
+PMOG / The Nethernet is a game played across all the sites of the web.  The game is up and running at "http://thenethernet.com":http://thenethernet.com - the code has been released open source so you can hack on it, improve the game, or build your own multiplayer online experience.
+
+h4. Server: http://github.com/gamelayers/pmog
+
+h4. Client: http://github.com/gamelayers/pmog-hud
+
+h2. Installation Instructions
+
+h3. More up to date information regarding the setup and operation of the server environment is forthcoming.
+
+bq. PMOG uses Ruby on Rails and MySQL.
+    Make sure you have those installed locally.
+    Check doc/local_setup.txt for more infos.
+
+h4. Base Environment
+* Rails version 2.1.0
+* MySQL 5.0 or greater
+* ImageMagick or Image Science
+
+h4. Required Ruby Gems
+* ruby-openid
+* memcache-client
+* dike (for memory profiling)
+* ruby-debug
+* image_science
+
+h2. More information
+
+  PMOG / The Nethernet source code has been released under an open source license.  The Check "http://thenethernet.com/about/source":http://thenethernet.com/about/source for more links and information.
+
+h2. Supporting PMOG / The Nethernet
+
+  PMOG / The Nethernet is a game and source code project that runs on donations from folks like you.  Please visit "our donations page on Mozilla.org":https://addons.mozilla.org/en-US/firefox/addon/6336 to consider donating to support the game and the project.
+
+h2. License
+
+    PMOG / The Nethernet Server codebase - a framework for a game across the web.
+    Copyright (C) 2010 - GameLayers, Inc.
+
+    This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3 of the License.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    This software license means you are free to download, build and run your own online game, as long as you share your source code as well.  The Nethernet is a trademark belonging to GameLayers, Inc. - if you run your own game server using this code, remove the logo and give the game a new name.

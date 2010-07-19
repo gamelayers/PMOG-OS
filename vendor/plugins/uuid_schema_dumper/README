@@ -1,0 +1,24 @@
+UuidSchemaDumper
+================
+
+This plugin will benefit you if you use uuid's for primary keys. You might notice during testing, that your test database is created with integer id's when your migrations define varchar(36) or whatever pattern that your UUID or GUID follow. This is a problem that causes all tests that rely on fixtures to fail.
+
+This plugin is your savior! ;)
+
+
+Example
+=======
+
+Put the plugin in your vendor/plugins folder and run:
+
+rake db:schema:dump
+
+Your schema.rb file (the one that your test db is built from) will now reflect your id column types :)
+
+
+Copyright (c) 2008 Marc Adams (marc@gamelayers.com), released under the MIT license
+
+Special Thanks
+==============
+
+Mark Daggett for the idea and Duncan Gough for the opportunity

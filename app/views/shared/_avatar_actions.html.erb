@@ -1,0 +1,57 @@
+<div class="avatarActions" id="<%=user.login%>_<%=filter%>_avatar_actions">
+  <% if logged_in? %>
+    <% if current_user.buddies.allied_with? user %>
+      <%= link_to_remote 'Remove ally',
+                  { :url => { :controller => 'acquaintances',
+                    :action =>'add',
+                    :id => user.login,
+                    :filter => filter,
+                    :type => 'acquaintance' }}, 
+                  { :title => 'Remove ally' } %>
+    <% else %>
+      <%= link_to_remote 'Make ally', 
+                  { :url => { :controller => 'acquaintances',
+                    :action =>'add',
+                    :id => user.login,
+                    :filter => filter,
+                    :type => 'ally' }},
+                  { :title => 'Make ally' } %>
+    <% end %>
+
+    <% if current_user.buddies.acquainted_with? user %>
+      <%= link_to_remote 'Delete contact',
+                  { :url => { :controller => 'acquaintances',
+                    :action =>'remove',
+                    :id => user.login,
+                    :filter => filter,
+                    :type => 'acquaintance' }},
+                  { :title => 'Remove acquaintance' } %>
+    <% else %>
+      <%= link_to_remote 'Make contact',
+                  { :url => { :controller => 'acquaintances',
+                    :action =>'add',
+                    :id => user.login,
+                    :filter => filter,
+                    :type => 'acquaintance' }},
+                  { :title => 'Make acquaintance' } %>
+    <% end %>
+
+    <% if current_user.buddies.rivaled_with? user %>
+      <%= link_to_remote 'Remove rival',
+                  { :url => { :controller => 'acquaintances',
+                    :action =>'add',
+                    :id => user.login,
+                    :filter => filter,
+                    :type => 'acquaintance' }},
+                  { :title => 'Remove rival' } %>
+    <% else %>
+      <%= link_to_remote 'Make rival', 
+                  { :url => { :controller => 'acquaintances',
+                    :action =>'add',
+                    :id => user.login,
+                    :filter => filter,
+                    :type => 'rival' }},
+                  { :title => 'Make rival' } %>
+    <% end %>
+  <% end %>
+</div>

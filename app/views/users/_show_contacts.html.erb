@@ -1,0 +1,38 @@
+<h2>Contacts <span class="small"><%= @user.buddies.count %> total</span></h2>
+<div class="module width240 subtabs" id="profileContacts">
+  <ul>
+    <li><a href="#contactsAll"><span>All</span></a></li>
+    <li>|</li>
+
+    <li><a href="#contactsAllies"><span><%#= @allies_count %> Allies</span></a></li>
+
+    <li>|</li>
+
+    <li><a href="#contactsRivals"><span><%#= @rivals_count %> Rivals</span></a></li>
+
+  </ul>
+  <!-- CONTACTS all -->
+  <div id="contactsAll">
+    <%#= render :partial => 'show_contacts_list', :locals => { :buddies => @user.buddies.cached_contacts(nil,5) } %>
+    <%= render :partial => 'show_contacts_list', :locals => { :buddies => @user.buddies.find(:all, :order => "users.last_login_at DESC", :limit => 5) } %>
+    <div class="bottomNav">
+      <a href="/acquaintances/<%= @user.login %>">Visit <%= @user.login %>'s Contacts</a>
+    </div>
+  </div>
+
+  <!-- CONTACTS allies -->
+  <div id="contactsAllies">
+    <%= render :partial => 'show_contacts_list', :locals => { :buddies => @user.buddies.cached_contacts('ally',5) } %>
+    <div class="bottomNav">
+      <a href="/acquaintances/<%= @user.login %>">Visit <%= @user.login %>'s Contacts</a>
+    </div>
+  </div>
+
+  <!-- CONTACTS rivals -->
+  <div id="contactsRivals">
+    <%= render :partial => 'show_contacts_list', :locals => { :buddies => @user.buddies.cached_contacts('rival',5) } %>
+    <div class="bottomNav">
+      <a href="/acquaintances/<%= @user.login %>">Visit <%= @user.login %>'s Contacts</a>
+    </div>
+  </div>
+</div>

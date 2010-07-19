@@ -1,0 +1,33 @@
+div.nicetitle {
+	background-color: #333;
+	color: #fff;
+	font: bold 13px "Trebuchet MS", Verdana, Arial, sans-serif;
+	left: 0;
+	padding: 4px;
+	position: absolute;
+	top: 0;
+	width: 25em;
+	z-index: 20;
+	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-topleft: 0;
+	-moz-border-radius-topright: 10px;
+	-moz-opacity: .87;
+	}
+
+div.nicetitle p {
+    margin: 0;
+	padding: 0 3px;
+	-moz-opacity: 1;
+}
+
+div.nicetitle p.destination {
+    font-size: 9px;
+    padding-top: 3px;
+	text-align: left;
+	-moz-opacity: 1;
+}
+
+div.nicetitle p span.accesskey {
+	color: #d17e62;
+}

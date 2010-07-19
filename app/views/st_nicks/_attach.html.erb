@@ -1,0 +1,13 @@
+<p id="st_nick_flash">
+	<% if @flash && @flash[:error].nil? %>
+    <%= @flash[:notice] %>
+  <% elsif @flash %>
+    <%= @flash[:error] %>
+  <% else %>
+    St. Nick failed due to unknown error.
+	<% end %>
+</p>
+<script>
+	new Effect.Highlight('st_nick_flash',{duration: 3.0});
+	<%= visual_effect(:fade, 'st_nick_flash', {:duration => 5.0}) %>
+</script>

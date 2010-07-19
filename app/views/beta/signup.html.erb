@@ -1,0 +1,80 @@
+<% content_for :head do %>
+
+<script type="text/javascript">
+// initialise plugins
+jQuery(function(){
+jQuery('ul.sf-menu').superfish();
+});
+
+// DO form mouseovers, etc.
+$(document).ready(function(){
+
+  $('.signupInput, select').focus(
+   function() {
+     $(this).parent().parent().find('.extendThis:hidden').fadeIn(200);
+     $(this).parent().parent().addClass('backYellow');
+    }
+  );
+  $('.signupInput, select').blur(
+   function() {
+     $(this).parent().parent().find('.extendThis').hide();
+     $(this).parent().parent().removeClass('backYellow');
+   }
+  );
+
+});
+
+</script>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+			
+				<div class="column width700">
+				
+				<h1>Sign up for the The Nethernet</h1>
+
+<!-- COMIC -->
+<div class="column width700">
+<div id="comicstrip">
+<div class="comic" id="wow1"><img src="/images/shared/WoWcomic_01.gif" alt="WoWcomic_01" longdesc="Hi and welcome to the Nethernet! The Nethernet is a free multiplayer game you can play on ant website." width="255" height="469"/></div>
+<div class="comic" id="wow2"><img src="/images/shared/WoWcomic_02.gif" alt="WoWcomic_02" longdesc="Leave traps or rewards where your friends browse." width="197" height="210"/></div>
+<div class="comic" id="wow3"><img src="/images/shared/WoWcomic_03.gif" alt="WoWcomic_03" longdesc="Quest through website, fight with players, and unlock badges just by surfing the web." width="226" height="210"/></div>
+<div class="comic" id="wow4"><img src="/images/shared/WoWcomic_04.gif" alt="WoWcomic_04" longdesc="And if you don't have time to play, you're still earning points!"width="149" height="259"/></div>
+<div class="comic" id="wow5"><img src="/images/shared/WoWcomic_05.gif" alt="WoWcomic_05" longdesc="So browse the Nethernet and you'll be playing the game of the internet!" width="274" height="259"/></div>
+</div>
+<div class="height20"></div>
+<div class="module width700">
+<h3>The Nethernet requires a Mozilla browser.</h3>
+<p>We don't yet support Internet Explorer, Safari, Opera, OmniWeb, Mosaic, Lynx or non-Mozilla browsers. We exploit only Mozilla frameworks for experimental play. We exploit only Mozilla frameworks for experimental play. 
+Pleaes install <a href="http://www.mozilla.com/en-US">Firefox 3</a> for exciting, web surfing, good times.</p>
+
+<h3>PMOG supports OpenID</h3>
+<p>
+	You can tie your profile on The Nethernet to your OpenID after you sign up, when you edit your settings.
+</p>
+</div>
+				</div>
+
+				</div>
+
+    				<div class="column width240">
+                    <div class="module width240 signUp">
+
+                    <h2>Play The Nethernet</h2>
+                    <p class="subhead">Create your Character<br/>Join the Game.</p>
+
+	                <%= render :partial => '/shared/landing/signup' %>
+
+                    </div>
+
+				</div>
+
+			</div>
+			
+
+
+		</div>
+
+<!-- /MAIN CONTENT -->

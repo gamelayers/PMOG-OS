@@ -1,0 +1,118 @@
+<h1>Auto Acquaintances</h1>
+<h5>Your interaction with players via the Tools of PMOG</h5>
+
+<small>
+  <br/>
+  - all of these interactions are based on tool usage
+  <br/>
+  - a minimum of 4 interactions are required before a user can be considered
+  <br/>
+  <br/>
+</small>
+
+<h4>Nemesis</h4>
+<i>Who has mined <%= @user.login %> the most?</i>
+<% if @user.events.nemesis %>
+  <%= @user.events.nemesis.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Punching Bag</h4>
+<i>Who has <%= @user.login %> mined the most?</i>
+<% if @user.events.punching_bag %>
+  <%= @user.events.punching_bag.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>DP Momma</h4>
+<i>Whose crates has <%= @user.login %> looted the most?</i>
+<% if @user.events.dp_momma %>
+  <%= @user.events.dp_momma.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Ward</h4>
+<i>Who has looted <%= @user.login %>'s crates the most?</i>
+<% if @user.events.ward %>
+  <%= @user.events.ward.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Spin Doctor</h4>
+<i>Whose portals has <%= @user.login %> taken the most?</i>
+<% if @user.events.spin_doctor %>
+  <%= @user.events.spin_doctor.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Follower</h4>
+<i>Who has taken <%= @user.login %>'s portals the most?</i>
+<% if @user.events.follower %>
+  <%= @user.events.follower.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Trailblazer</h4>
+<i>Whose missions has <%= @user.login %> completed the most?</i>
+<% if @user.events.trailblazer %>
+  <%= @user.events.trailblazer.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Apprentice</h4>
+<i>Who has completed <%= @user.login %>'s missions the most?</i>
+<% if @user.events.apprentice %>
+  <%= @user.events.apprentice.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Mark</h4>
+<i>Whose St Nicks has <%= @user.login %> triggered the most?</i>
+<% if @user.events.mark %>
+  <%= @user.events.mark.login %>
+<% else %>
+  No-one 
+<% end %>
+
+<br/>
+<br/>
+
+<h4>Prey</h4>
+<i>Who has triggered <%= @user.login %>'s St Nicks the most?</i>
+<% if @user.events.prey%>
+  <%= @user.events.prey.login %>
+<% else %>
+  No-one 
+<% end %>

@@ -1,0 +1,76 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Players</div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'users/search_form' %>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<!-- #fixme this search isn't built using Lance's style:
+
+			<div id="search">
+<form action="" method="get" id="siteSearch">
+<input type="text" size="30" name="search" id="siteSearchInput"/>
+<button type="submit" name="searchSubmit" id="siteSearchSubmit">Search</button>
+</form>
+			</div>-->
+
+<!-- Wrong Search
+<form action="/users/search" method="post">
+	<%= token_tag %>
+	<h1>Search Players:
+		<input name="q" type="text" class="input" style="font-size:20px;padding:5px;width:340px;" value="<%=h params[:q] %>">
+		<input type="submit" class="input" style="font-size:20px;padding:5px" value="Search" />
+	</h1>
+</form>
+
+<h5>You can search by username, e-mail address, real name, or web site address.</h5>
+
+<br />
+-->
+    <h3>Recently Active Players</h3>
+
+    <table class="stripeMe">
+    
+      <% @events.each do |event| %>
+        
+        <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+          <td class="avatar">
+	 	      	<div class="avatarAction">
+	    	    <%= avatar_link_to_user :user => event.user, :size => 'small', :align => "left", :class => 'avatar48' %>
+            	<div class="avatarPop">
+              	<div class="avatarPopIn">
+                	<div class="avatarOver">
+                  	<a href="/users/<%= event.user.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => event.user, :size => "small") %>" alt="<%= event.user.login %>" title="<%= event.user.login %>" /></a>
+                	</div>
+                	<%= render :partial => "/shared/avatar_actions", :locals => {:user => event.user, :filter => "none"} %>
+              	</div>
+            	</div>
+          	</div>
+          </td>
+          
+          <td width="590">  
+            <%= render :partial => 'events/event', :locals => { :event => event } %>
+          </td>
+          
+        </tr>
+          
+      <% end %>
+			
+		</table>
+			
+			
+					</div>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,143 @@
+<% content_for :head do %>
+  <script type="text/javascript" src="/javascripts/jquery-1.3.1.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.hoverIntent.js"></script>
+  <script type="text/javascript" src="/javascripts/superfish.js"></script>
+  <script type="text/javascript" src="/javascripts/ui.core.js"></script>
+  <script type="text/javascript" src="/javascripts/ui.accordion.js"></script>
+
+  <script type="text/javascript">
+  // initialise plugins
+
+  // DO accordion
+  $(document).ready(function(){
+    $('#preferences').accordion({
+      active: <%= params[:section] ? params[:section] : false %>,
+      autoHeight: false,
+      header: 'h3',
+      collapsible: true
+    });
+  });
+  // DO form input stuff
+  $(document).ready(function(){
+    $('input[type=text]').each(function(n,element){
+      if ($(element).val()=='') { $(this).addClass('noTextHere') }
+      else { $(this).addClass('textHere') }
+    });
+    $('input[type=text]').each(function(n,element){
+      $(this).focus(function(){$(this).removeClass('textHere')
+      });
+    });
+    $('input[type=text]').each(function(n,element){
+      if ($(element).val()!='') {
+        $(this).blur(function(){$(this).addClass('textHere') });
+        };
+    });
+
+
+    // DO character panels
+    $("#prefCharDetails > div").hide();
+    $("#prefCharIllus div.pointer").hide();
+    $("#prefCharDetails div#detail00").show();
+
+    $("div#prefCharIllus div").click(function(event){
+        var toggleId = "#" + this.id.replace(/^char/,"detail");
+        var pointerId = "#" + this.id.replace(/^char/,"pointer");
+        $("#prefCharDetails > div").not(toggleId).hide();
+        $(toggleId).show();
+        $("#prefCharIllus div.pointer").not(pointerId).hide();
+        $(pointerId).show();
+        $(this).find("input[type=radio]").attr("checked", "checked");
+    });
+
+
+    // DO show pre-selected character panel
+    $('#prefCharacter').find('input[type=radio]:checked').each(function(event){
+      $("#prefCharDetails div#detail00").hide();
+        var panelId = "#" + this.id.replace(/^radio/,"detail");
+        var arrowId = "#" + this.id.replace(/^radio/,"pointer");
+        if($(panelId).is(':hidden')) {
+          $(panelId).show();
+          $(arrowId).show();
+        };
+    });
+
+    // DO form extensions
+    $('.extendThis').hide();
+    $('.formElement').hover(
+      function(){$(this).find('.extendThis').fadeIn(200);},
+      function(){$(this).find('.extendThis').hide();}
+      );
+    $('input[type="text"]').focus(
+      function(){$(this).parent().find('.extendThis').fadeIn(200);$(this).parent().addClass('backYellow');}
+      );
+    $('input[type="text"]').blur(
+      function(){$(this).parent().find('.extendThis').hide();$(this).parent().removeClass('backYellow');}
+      );
+    $('select').focus(
+      function(){$(this).parent().find('.extendThis').fadeIn(200);$(this).parent().addClass('backYellow');}
+      );
+    $('select').blur(
+      function(){$(this).parent().find('.extendThis').hide();$(this).parent().removeClass('backYellow');}
+      );
+
+  });
+  </script>
+
+<% end %>
+
+<%# if current_user.recently_signed_up? %>
+  <% content_for :alertbox do %>
+    <!-- INSERT (and hide) ALERT POP-UP
+    THIS is REQUIRED to format the pop-up accordingly -->
+
+    <div class="jqmAlert" id="alert"><div class="jqmAlertWindow"><div class="jqmTitle"><h3>Install The Nethernet</h3><a href="#" class="jqmClose icon"></a></div><div class="jqmAlertContent"></div><div class="jqmAlertConfirm"><a class="jqmClose noIcon">OK!</a></div></div></div>
+  <% end %>
+<%# end %>
+
+<% content_for :breadcrumbs do %>
+  <div id="breadcrumbs">
+    <div class="main">Account Settings</div>
+  </div>
+<% end %>
+
+<div id="copy">
+  <div class="column width960">
+    <div class="module width960">
+      <!-- LEFT COLUMN -->
+      <div class="column width155 avatar">
+        <a href="/users/<%= current_user.login %>"><img class="avatar100" src="<%= avatar_path_for_user(:user => current_user, :size => "medium") %>" alt="<%= @user.login %>" title="<%= @user.login %>"/></a><br />
+        <a href="/users/<%= current_user.login %>">Visit Your Profile</a><br />
+      </div>
+      <!-- /LEFT COLUMN -->
+      <!-- RIGHT COLUMN -->
+      <div class="column width775">
+        <div class="accordion forms" id="preferences">
+          <h2>It's all about you.</h2>
+          <p class="intro">Your Account Settings provide you with the power to control your Nethernet experience.  Here you can edit any and all information about yourself.  You can also choose how we at the Nethernet communicate with you, as well as what you prefer to see or not to see.</p>
+<p>Explore your options below, by clicking on what you'd like to edit.</p>
+          <!-- PROFILE -->
+          <%= render :partial => 'edit_profile' %>
+          <!-- CLASS -->
+          <%= render :partial => 'edit_class' %>
+          <!-- AVATAR -->
+          <%= render :partial => 'edit_avatar' %>
+          <!-- PASSWORD -->
+          <%= render :partial => 'edit_password' %>
+          <!-- SECRET QUESTION -->
+          <%= render :partial => 'edit_secret_question' %>
+          <!-- EMAIL -->
+          <%= render :partial => 'edit_email' %>
+          <!-- CONTENT -->
+          <%= render :partial => 'edit_content' %>
+          <!-- EXTENSIONS -->
+          <%#= render :partial => 'edit_extension' %>
+          <!-- PRIVACY -->
+          <%= render :partial => 'edit_privacy' %>
+          <!-- DEACTIVATE -->
+          <%= render :partial => 'edit_deactivate' %>
+        </div>
+      <!-- /RIGHT COLUMN -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="findContacts">
+<table class="list noPage">
+<tbody>
+
+<tr><td>
+<% if !session[:added_friends].nil? %>
+  <%= render :partial => "/invite/added_friends" %>
+<% elsif !session[:registered_emails].nil? && !session[:registered_emails].empty?%>
+  <%= render :partial => "/invite/registered_emails" %>
+<% end %>
+</tr></td>
+
+<tr><td>
+<%= render :partial => "/invite/unregistered_emails" %>
+</tr></td>
+
+</tbody>
+</table>
+<%= link_to_remote ( "search different networks", :url => { :controller => "invite", :action => "landing_view"}  ) %> <% if current_user.recent_signup %> | <a href="/users/<%= current_user.login %>/edit?section=1#Class">skip this step</a> <% end %>
+</div>

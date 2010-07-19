@@ -1,0 +1,20 @@
+<% if logged_in? %>
+	<% current_user.beta_keys.size > 2 ? num_invites = 2 : num_invites = current_user.beta_keys.size || 2 %>
+
+	<span id='response'>
+		<%= flash[:notice] %>
+		<% num_invites.times do %>
+			  <% remote_form_for :user, 
+													 :url => { :controller => "users", :action => "email_invite" },
+			                     :update => 'response',
+			                     :loading => "jQuery('#spinner').show();",
+			                     :complete => "jQuery('#spinner').hide();" do |f| %>
+			    <input id="friend_email" name="friend[email]" size="20" type="text" style="border:1px solid #909090;font-size:10px;" value="" />
+					<input value="Invite!" name="" type="submit" id="input" style="border:1px solid #909090;font-size:10px;" />
+				<% end %>
+		<% end %>
+
+		<%= render :partial => "shared/spinner" %>
+
+	</span>
+<% end %>

@@ -1,0 +1,24 @@
+<h1>Listing deleted_accounts</h1>
+
+<table>
+  <tr>
+		<th>ID</th>
+		<th>Login</th>
+		<th>Deleted ID</th>
+		<th>Deleting ID</th>
+		<th>IP</th>
+		<th>Date</th>
+  </tr>
+	<tr>
+<% for d in @deleted_accounts %>
+	<td style="border: 1px solid;"><%= d.id %></td>
+	<td style="border: 1px solid;"><%= d.deleted_login %></td>
+	<td style="border: 1px solid;"><%= d.deleted_id %></td>
+	<td style="border: 1px solid;"><%= d.user_id %></td>
+	<td style="border: 1px solid;"><%= d.user_ip %></td>
+	<td style="border: 1px solid;"><%= d.created_at %></td>
+<% end %>
+</tr>
+</table>
+
+<br />

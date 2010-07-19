@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="verify-v1" content="v8awNaKAu3476OKp5c2oF3teNyN7ctI+jivQLU8MvQI=" />
+<title>PMOG | The Passively Multiplayer Online Game</title>
+
+<style type="text/css">
+  /* hide from ie on mac \*/
+  html {
+    height: 100%;
+  }
+
+  #flashcontent {
+    float:left;
+    width:500px;
+    height: 100%;
+  }
+  /* end hide */
+
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #181818;
+    color:#ffffff;
+    font-family:Georgia, serif;
+    font-size:24px;
+    text-align:center;
+  }
+
+  h1 {
+    font-size:36px;
+    font-weight:normal;
+    margin:0;
+  }
+
+  a {
+  color:#58b1b7;
+  text-decoration:none;
+  }
+
+  a:hover {
+  color:#58b1b7;
+  text-decoration:underline;
+  }
+
+  .logo{
+    margin:10px auto 0 auto;
+  }
+
+  .content{
+    text-align:center;
+    width:500px;
+    margin:0 auto;
+  }
+
+  .orange{
+    color:#f9a90e;
+  }
+
+  .line_height{
+    line-height:50px;
+  }
+
+</style>
+</head>
+<body>
+
+<img src="/images/shared/logo/pmog_glow_trans.png" width="484" height="229" border="0" alt="PMOG!" class="logo" />
+
+<div class="content">
+
+<h1>
+Some people are playing <span class="orange">PMOG</span>, but not you... yet!
+</h1>
+
+<br />
+
+<h1><span class="orange">Sign up for the beta!</span></h1>
+
+<div id='response' class="line_height">
+
+  <% remote_form_for :beta_user,
+                     :url => beta_users_path,
+                     :update => 'response',
+                     :loading => "jQuery('#spinner').show();",
+                     :complete => "jQuery('#spinner').hide();" do |f| %>
+
+Email:
+
+<input id="beta_user_email" name="beta_user[email]" size="15" type="text" style="border:1px solid #909090;font-size:24px;" value="" />
+    <script type="text/javascript">
+      $( 'beta_user_email' ).focus();
+    </script>
+    <input value="Beta Me!" name="" type="submit" id="input" style="border:1px solid #909090;cursor:pointer;font-size:24px;"/>
+
+</div>
+
+<div style="text-align:center;">
+
+<%= render :partial => "shared/pre_beta_login_link" %>
+
+<% end %>
+<br /><br /><br />
+<span style="font-size:24px;">PMOG stands for <span style="color:#f9a90e;">"Passively Multiplayer Online Game"</span> - ongoing MMO fun in your web browser.  See <a href="http://www.gamelayers.com/pmog">details here</a>.</span>
+
+</div>
+
+  <%# if logged_in? %>
+  <!-- <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  <script type="text/javascript">
+    var pageTracker=_gat._getTracker('UA-939728-1');
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    pageTracker._setVar("logged_in");
+  </script> -->
+  <%# else %><!--user logged in-->
+  <!-- <script type="text/javascript">
+    var pageTracker=_gat._getTracker('UA-939728-1');
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    pageTracker._setVar("logged_out");
+  </script> -->
+  <%# end %>
+
+</body>
+</html>

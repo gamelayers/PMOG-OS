@@ -1,0 +1,11 @@
+Description:
+    Creates a migration to add the sessions table used by the FastSessions
+    session store plugin. Pass the migration name, either CamelCased or under_scored,
+    as an argument.
+
+Example:
+    `./script/generate fast_session_migration CreateSessionTable`
+
+    With 4 existing migrations, this creates the CreateSessionTable migration
+    in db/migrate/005_add_session_table.rb
+

@@ -1,0 +1,99 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell child"><span class="l"></span><span class="c">Edit Tools</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>Edit Tools <small>(<a href="/guide/tools">view guide/tools</a>)</small></h1>
+
+<h4><a href="/upgrades">Edit Tool Upgrades</a></h4>
+
+<ul>
+	<% @tools.each do |tool| %>
+	<li>
+		<h3><img src="<%= tool.icon_image %>" width="16" height="16" alt="<%= tool.icon_image %>" />
+			 <%= tool.name.titleize %> [<%= tool.url_name %>] - (<%= link_to "Edit " + tool.name, edit_tool_path(tool) %>)</h3>
+		<p>
+			<b>Short description:</b><br>
+			 <%= tool.short_description %>
+		</p>
+		<p>
+			<b>Long description:</b><br>
+			 <%= tool.long_description %>
+		</p>
+		<p>
+			<b>Icon image path:</b>
+			 <a href="<%= tool.icon_image %>"><%= tool.icon_image %></a>
+			 <img src="<%= tool.icon_image %>" width="16" height="16" alt="<%= tool.icon_image %>" />
+		</p>
+		<p>
+			<b>Small image path:</b>
+			 <a href="<%= tool.small_image %>"><%= tool.small_image %></a>
+			 <img src="<%= tool.small_image %>" width="16" height="16" alt="<%= tool.small_image %>" />
+		</p>
+		<p>
+			<b>Medium image path:</b>
+			 <a href="<%= tool.medium_image %>"><%= tool.medium_image %></a>
+			 <img src="<%= tool.medium_image %>" width="16" height="16" alt="<%= tool.medium_image %>" />
+		</p>
+		<p>
+			<b>Large image path:</b>
+			 <a href="<%= tool.large_image %>"><%= tool.large_image %></a>
+			 <img src="<%= tool.large_image %>" width="16" height="16" alt="<%= tool.large_image %>" />
+		</p>
+		<p>
+			<b>Charges:</b>
+			 <%= tool.charges %>
+		</p>
+		<p>
+			<b>Cost:</b>
+			 <%= tool.cost %> <%= dp_icon %>
+		</p>
+		<p>
+			<b>Association Cost:</b>
+			 <%= tool.association_cost %> <%= dp_icon %>
+		</p>
+		
+		<p>
+			<b>Damage cost:</b>
+			 <%= tool.damage %>
+		</p>
+
+		<p>
+			<b>Classpoints:</b>
+			 <%= tool.classpoints %> <%= cp_icon %>
+		</p>
+
+	</li><br />
+	<% end %>
+</ul>
+
+						</div>
+											
+					</div>
+				
+				</div>
+
+    				<div class="column width240">
+				</div>
+
+			
+			</div>
+
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/tools" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+

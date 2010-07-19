@@ -1,0 +1,105 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell parent"><A href="/abilities"><span class="l"></span><span class="c">Edit Abilities</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c">Editing <%= @ability.name.pluralize.titleize %></span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+<h1>Editing <%= @ability.name.pluralize.titleize %></h1>
+<h3>(return to <a href="/abilities">edit all abilities</a> or <a href="/guide/abilities">guide/abilities</a>)</h3>
+
+<% form_for(:ability, :url => ability_path, :html => { :method => :put } ) do |f| %>
+  <p>
+    Name:
+    <br/>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    Level:
+    <br/>
+    <%= f.text_field :level %>
+  </p>
+	<p>
+		Short description:
+		<br/>
+		<%= f.text_area :short_description, :rows => 5 %>
+		<script type="text/javascript">
+		  $( 'ability_short_description' ).focus();
+		</script>
+	</p>
+	<p>
+		Long description
+		<br/>
+		<%= f.text_area :long_description, :rows => 10 %>
+	</p>
+	<p>
+		Icon image path
+		<br/>
+		<%= f.text_field :icon_image %>
+		<img src="<%= @ability.icon_image %>" alt="<%= @ability.icon_image %>">
+
+	</p>
+	<p>
+		Small image path
+		<br/>
+		<%= f.text_field :small_image %>
+		<img src="<%= @ability.small_image %>" alt="<%= @ability.small_image %>">
+	</p>
+	<p>
+		Medium image path
+		<br/>
+		<%= f.text_field :medium_image %>
+		<img src="<%= @ability.medium_image %>" alt="<%= @ability.medium_image %>">
+
+	</p>
+	<p>
+		Large image path
+		<br/>
+		<%= f.text_field :large_image %>
+		<img src="<%= @ability.large_image %>" alt="<%= @ability.large_image %>">
+
+	</p>
+	<p>
+		DP Cost <%= dp_icon %>
+		<br/>
+		<%= f.text_field :dp_cost %>
+	</p>
+	<p>
+		Ping Cost <%= ping_icon %>
+		<br/>
+		<%= f.text_field :ping_cost %>
+  </p>
+  <p>
+    Percentage
+    <br/>
+    <%= f.text_field :percentage %>
+  </p>
+  <p>
+    Value
+    <br/>
+    <%= f.text_field :value %>
+  </p>
+  <p>
+    Misc
+    <%= f.text_field :misc %>
+  </p>
+	<p>
+		<%= submit_tag "Update" %>
+	</p>
+<% end %>
+
+						</div>
+											
+					</div>
+				
+				</div>
+			
+			</div>

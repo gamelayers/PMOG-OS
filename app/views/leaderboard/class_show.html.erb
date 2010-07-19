@@ -1,0 +1,101 @@
+<% content_for :title do %>Lively <%= @pmog_class.name.titleize %>, a Leaderboard on the <% end %>
+
+  <% content_for :breadcrumbs do %>
+  <div id="breadcrumbs">
+    <%= render :partial => "shared/breadcrumbs/leaderboards" %>
+    <div class="cell parent">
+      <a href="/leaderboard/classes">
+        <span class="l"></span>
+        <span class="c">Classes</span>
+        <span class="r"></span>
+      </a>
+    </div>
+    <div class="cell child">
+      <span class="l"></span>
+      <span class="c"><%= @pmog_class.name.titleize %></span>
+      <span class="r"></span>
+    </div>
+  </div>
+  <% end %>
+
+  <div id="copy">
+
+    <div class="column width960">
+      <div class="height20"></div>
+      <div class="column width700">
+
+        <div class="module width700">
+          <a href="/guide/classes/<%= @pmog_class.name.downcase %>"><img src="<%= @pmog_class.medium_image %>" width="100" height="100" alt="<%= @pmog_class.medium_image %>" align="right" border="0" /></a>
+
+          <h2>Lively <a href="/guide/classes/<%= @pmog_class.name.downcase %>/"><%= @pmog_class.name.titleize %></a></h2>
+          <p>Those Players using the most <%= @pmog_class.name.titleize.singularize %> Tools between <%= Date.yesterday.at_beginning_of_day.getutc.to_s(:db) %> UTC and <%= Date.yesterday.end_of_day.getutc.to_s(:db) %> UTC</p>
+
+          <% if logged_in? && @personal_stats %><br/>
+          <p>You earned <%= @personal_stats.points %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /> towards <%= @pmog_class.name.titleize.singularize %> level <%= current_user.levels[@pmog_class.name.singularize.downcase.to_sym] + 1 %> in the recent 24 hour period.</p>
+          <% end %>
+
+          <br clear="all" />
+          <table class="leaderboardTable">
+            <tr>
+              <th>Rank</th>
+              <th colspan="2">Player</th>
+              <th nowrap>Primary Class</th>
+              <th>Level</th>
+              <th nowrap><img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /> Earned</th>
+            </tr>
+
+            <% @leaders.each_with_index do |leader,i| %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td align="center"><%= i+1 %></td>
+              <% if logged_in? %>
+              <td>
+                <div class="avatarAction">
+                  <%= avatar_link_to_user :user => leader.user, :size => 'small' %>
+                  <div class="avatarPop">
+                    <div class="avatarPopIn">
+                      <div class="avatarOver">
+                        <a href="/users/<%= leader.user.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => leader.user, :size => "small") %>" alt="<%= leader.user.login %>" title="<%= leader.user.login %>" /></a>
+                      </div>
+                      <%= render :partial => "/shared/avatar_actions", :locals => {:user => leader.user, :filter => "none"} %>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <% else %>
+              <td>
+                <%= avatar_link_to_user :user => leader.user, :size => 'small' %>
+              </td>
+              <% end %>
+
+              <td><a href='/users/<%= leader.user.login %>'><%= leader.user.login %></a></td>
+              <td><%= leader.user.user_level.primary_class.titleize %></td>
+              <td nowrap>Level <%= leader.user.current_level %></td>
+              <td align="right"><%= number_with_delimiter(leader.points) %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="icon16" hspace="0" vspace="0" /></td>
+            </tr>
+            <% end %>
+          </table>
+
+        </div>
+
+      </div>
+
+      <div class="column width240">
+        <div class="module width240">
+          <h2>Class Leaderboards</h2>
+          <p>Class Leaderboards are based on Class Points.  <a href="/guide/rules/classpoints/">Learn more about Class Points in the Guide</a>.</p>
+
+          <p>
+            <% @pmog_classes.each do |class_link| %>
+            <% if params[:id] == class_link.name.downcase %>
+            <strong><%= class_link.name.titleize %></strong><br />
+            <% else %>
+            <a href="/leaderboard/classes/<%= class_link.name.downcase %>"><%= class_link.name.titleize %></a><br />
+            <% end %>
+            <% end %>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+

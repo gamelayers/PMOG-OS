@@ -1,0 +1,17 @@
+basic:
+   index, bird_bots, npcs, missions, beta_signup, users
+
+index:
+   uri: /
+
+bird_bots:
+   uri: /bird_bots
+
+npcs:
+   uri: /npcs
+
+missions:
+   uri: /beta/signup/signupkey
+
+users:
+   uri: /users

@@ -1,0 +1,16 @@
+* April 10th, 2007
+* Changing how you delegate url helpers
+
+* April 9th, 2007
+* Added in the 2 remaining features for polymorphic resources, pretty much
+* exactly as I've used them before - as in, they haven't been prettied up 
+* or refactored in any way.  As such, they are subject to change and should
+* not be relied upon.  
+* This commit is mostly to solicit comments and get input on what the 
+* DSL should look like for describing url helper delegation.
+
+* March 20th, 2007
+* Tests refactored courtesy of Steve Baker (on pobox.com he is srbaker)
+
+* March 19th, 2007
+* Added tests for inferencing in url helpers

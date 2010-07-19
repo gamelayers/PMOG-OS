@@ -1,0 +1,63 @@
+<% if @buddies.empty? %>
+	
+	<h1 align="center"><%= @user.login %> needs to make some Rivals!</h1>
+
+<% end %>
+
+<% @buddies.reverse.each do |buddy| %>	
+
+<div class="acquaintances_list_entry">
+  
+  <div class="acquaintances_list_avatar">
+    <%= avatar_link_to_user :user => buddy, :size => 'small' %>
+  </div>
+  
+	<a href="/users/<%= buddy.login %>" class="acquaintance_name"><%= buddy.login %></a>
+			
+	<br />
+	
+	<span class="acquaintances_list_details">
+	
+	  <b>Level:</b> <%= @user.current_level %> | <b>Associations:</b> <%= @user.primary_association.titleize %>, <%= @user.secondary_association.titleize %>, <%= @user.tertiary_association.titleize %>
+	
+	</span>
+	
+	<br /><br />
+	
+	<% if @user.id == current_user.id %>
+				
+	  <h5 align="right">
+		  <a href='/acquaintances/remove/<%= buddy.login %>?type=acquaintance'>UnAcquaint</a> | <a href='/acquaintances/remove/<%= buddy.login %>?type=rival'>UnRival</a> | Ally
+	  </h5>
+	
+	<% end %>
+
+</div>
+
+<div class="acquaintances_more_info_link" id="more_information_link_<%= buddy.login %>">
+
+  <h5 align="right">
+  
+    <a href="#" class="acquaintances_more_info" onclick="jQuery('#more_information_<%= buddy.login %>').show();jQuery('#less_information_link_<%= buddy.login %>').show();jQuery('#more_information_link_<%= buddy.login %>').hide();return false;">More Information  <img src="/images/acquaintances/more_info_arrow.png" width="9" height="9" alt="More Information" /></a>
+    
+  </h5>
+
+</div>
+
+<div class="acquaintances_less_info_link" style="display:none;" id="less_information_link_<%= buddy.login %>">
+
+  <h5 align="right">
+
+    <a href="#" class="acquaintances_less_info" onclick="jQuery('#more_information_link_<%= buddy.login %>').show();jQuery('#more_information_<%= buddy.login %>').hide();jQuery('#less_information_link_<%= buddy.login %>').hide();return false;">Less Information <img src="/images/acquaintances/less_info_arrow.png" width="9" height="9" alt="Less Information" /></a>
+
+  </h5>
+  
+</div>
+
+<div class="acquaintances_list_more_info" style="display:none;" id="more_information_<%= buddy.login %>">
+
+  More information here.
+
+</div>
+
+<% end %>

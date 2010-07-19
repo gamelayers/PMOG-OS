@@ -1,0 +1,21 @@
+<h1>New MOTD</h1>
+
+<%= error_messages_for :motd %>
+
+<% form_for(:motd, :url => {:controller => :motd, :action => :create}) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <b>Body</b><br />
+    <%= f.text_area :body %>
+		<br/>
+		<small>Some html allowed</small>
+  </p>
+
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>

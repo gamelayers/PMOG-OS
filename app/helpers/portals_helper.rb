@@ -1,0 +1,2 @@
+module PortalsHelper
+end

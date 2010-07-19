@@ -1,0 +1,1 @@
+require 'uuid_schema_dumper'

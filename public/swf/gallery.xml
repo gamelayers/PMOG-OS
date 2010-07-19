@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simpleviewerGallery maxImageWidth="500" maxImageHeight="700" textColor="0xFFFFFF" frameColor="0xffffff" frameWidth="0" stagePadding="20" thumbnailColumns="4" thumbnailRows="1" navPosition="bottom" title="" enableRightClickOpen="true" backgroundImagePath="" imagePath="/images/comic/" thumbPath="">
+<image>
+	<filename>page1.jpg</filename>
+</image>
+<image>
+	<filename>page2.jpg</filename>
+</image>
+<image>
+	<filename>page3.jpg</filename>
+</image>
+<image>
+	<filename>page4.jpg</filename>
+</image>
+</simpleviewerGallery>

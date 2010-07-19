@@ -1,0 +1,4 @@
+sqlite3:
+  adapter: sqlite3
+  dbfile: acts_as_subscribeable.sqlite3.db
+  adapter:

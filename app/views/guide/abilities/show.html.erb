@@ -1,0 +1,61 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/arsenal" %>
+		<div class="cell parent"><a href="/guide/abilities"><span class="l"></span><span class="c">Abilities</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @ability.name.titleize %></span><span class="r"></span></div>
+
+	</div>
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960">
+			
+		<div class="module width960">
+					
+			<div class="imageTop">
+		    <img src="<%= @ability.large_image %>" 
+    	     class="codex_image_large" 
+      	   title="<%= @ability.name %>" 
+        	 alt="<%= @ability.name %>" />
+      </div>
+       
+		  <h1><%= @ability.name.titleize %></h1>
+      <% if @ability.url_name == 'impede' %>
+    	<h5> Available to Chaos players who have unlocked the <a href="/guide/badges/inviting">Inviting Badge</a></h5>
+      <% elsif @ability.url_name == 'overclock' %>
+    	<h5> Available to Order players who have unlocked the <a href="/guide/badges/inviting">Inviting Badge</a></h5>
+      <% else %>
+    	<h5> Available to Level <%= @ability.level %> <%= PmogClass.find(@ability.pmog_class_id).name %> </h5>
+      <% end %>
+
+   		<p><%= @ability.short_description %></p>
+  
+	    <p><%= @ability.long_description %></p>
+
+  	  <h4><a href="/guide/rules/classpoints">Classpoints</a> Awarded for Use: <%= @ability.classpoints %> <img src="/images/shared/icons/classpoint-16.png" alt="CP" width="16" height="16" border="0" class="menu_img_no_border" hspace="0" vspace="0" /></h4>
+    
+    	<h4><%= @ability.name %> costs <%= @ability.dp_cost.to_i %> <%= dp_icon %> and <%= @ability.ping_cost.to_i %> <%= ping_icon %> for each use.</h4>
+
+      <% if ['impede', 'overclock'].include? @ability.url_name %>
+      <h4>You may only use this ability <%= @max_uses_per_day %> times per day.</h4>
+      <% end %> 
+    	    	
+    	<!--<h4>Total <%#= @ability.name.pluralize %> usage on The Nethernet: <%#= number_with_delimiter(@ability_uses, ",") %></h4>-->
+    
+	    <% if site_admin? %>
+		    <h5 align="right">Admin: <%= link_to "Edit " + @ability.name, edit_ability_path(@ability) %></h5>
+			<% end %>    
+		
+		</div>
+											
+	</div>
+
+	<div class="column width960">
+						
+		<%= render :partial => "shared/guide/arsenal" %>
+				
+		<%= render :partial => "shared/guide/guide_module" %>
+			
+	</div>
+

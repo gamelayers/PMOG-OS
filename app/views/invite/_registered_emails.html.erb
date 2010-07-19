@@ -1,0 +1,65 @@
+<div class="invitations">
+
+<% @buddies = Buddy.find_all_by_email(session[:registered_emails]) %>
+<% form_remote_tag :url => { :controller => "invite", :action => "add_friends" } do %>
+
+<h4 class="contacts">Make Contacts</h4>
+<p>You have <% @buddies.size %> contacts already waiting for you on The Nethernet!</p>
+
+<table class="stripeMe contactsTable">
+<tbody>
+
+  <% @buddies.each do |buddy| %>
+	<tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+  <td class="avatar">
+  <div class="avatarAction">
+
+  <%= avatar_link_to_user :user => buddy, :size => 'small' %>
+<!--  <a href="[PROFILE PAGE]"><img class="avatar48" src="images/clear.png" alt="[username]" title="[username]" /></a> -->
+
+  <div class="avatarPop"><div class="avatarPopIn">
+
+    <div class="avatarOver">
+    <%= avatar_link_to_user :user => buddy, :size => 'small' %>
+<!--      <a href="[PROFILE PAGE]"><img class="avatar48" src="images/clear.png" alt="[username]" title="[username]" /></a> -->
+    </div>
+
+    <div class="avatarActions">
+      <a href="[ACTION]">Add as a Contact</a>
+      <a href="[ACTION]">Add as a Rival</a>
+
+      <a href="[ACTION]">Add as an Ally</a>
+    </div>
+
+  </div></div>
+
+  </div>
+  </td>
+  <td class="meta">
+
+  <p>
+    <a href="/users/<%= buddy.login %>"><strong><%= buddy.login %></strong></a><br />
+    <strong><%= buddy.primary_class.titleize %></strong> - Level <%= buddy.current_level %><br />
+    <%= buddy.email %>
+  </p>
+
+  </td>
+  <td class="icon">
+    <input type="checkbox" name="<%= "friend[#{buddy.login}]" %>" id="<%= "friend_#{buddy.login}" %>" checked="checked"/>
+  </td>
+  </tr>
+    
+  <% end %>
+
+</tbody>
+</table>
+
+<div class="formElement">
+<div class="button">
+  <%= submit_tag 'Make Contacts' %>
+</div>
+</div>
+
+<% end %>
+
+</div>

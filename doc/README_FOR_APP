@@ -1,0 +1,15 @@
+Passively Multiplayer Online Game
+
+Q: What is PMOG?
+
+A: PMOG allows its users to own the web. it takes the data we already feed into online networks and builds a playground with it. users are encouraged to tag the internet, to mine sites, to curate a web experience. Whereas the unaugmented internet structure is like a series of rooms in a museum; you can walk from room to room: but all the rooms belong to someone else and you can't touch anything. Tags are like actual tags, like tagging the wall of a city. PMOG is a city. the ground is composed of dead websites and old code. all the structures are sites slammed messily together. that becomes the PMOG playground. you can carve out streets (quests) or you can write on the walls of someone else's turf by tagging it, just to piss them off.
+
+You can find out more at http://pmog.devjavu.com/wiki or play the game at http://www.pmog.com
+
+Q: Who created PMOG?
+
+A: A company called GameLayers, see http://www.gamelayers.com
+
+Q: How do I get the documentation?
+
+A: Run "rake doc:app" to generate API documentation for your models and controllers.

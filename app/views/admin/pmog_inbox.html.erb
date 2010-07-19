@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag 'messages' %>
+
+<h1>PMOG's Messages</h1>
+<h5>Idle keys are a playground.</h5>
+
+<br/>
+
+<table class="messages_list">
+  <% @messages.each_with_index do |message, index| %>
+  <tr>
+    <td width="50" valign="top">
+      <%= avatar_link_to_user :user => message.user, :size => "small" %>
+		</td>
+	  <td valign="top">	      
+			<h5>from <%= link_to h(message.user.login), user_path(message.user) %>, <%= time_ago_in_words(message.created_at) %> ago</h5>
+			<p><%= strip_message_recipient( format( message.body ) ) %></p> 	      
+ 	  </td>
+	</tr>
+	<% end %>
+</table>
+
+<p align="right">
+	<%= will_paginate @messages %>
+</p>

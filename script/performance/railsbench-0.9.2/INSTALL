@@ -1,0 +1,70 @@
+==================================================
+           RAILSBENCH INSTALLATION
+==================================================
+
+STEP 1: installing railsbench and PATH modification
+---------------------------------------------------
+
+If you obtained and installed railsbench as a gem, a script called
+railsbench is available in your Ruby bin directory. railsbench is a
+simple driver for the railsbench scripts, which are located in the gem
+installation directory. Example:
+
+    railsbench perf_run 100 -bm=all
+
+Alternatively, add the railsbench script directory to your search
+path. The exact place can be found running
+
+    railsbench base
+
+which prints the script directory path. Another option is to run
+
+    eval `railsbench path`
+
+Since gem packages don't support running postinstall scripts, you will
+need to make the scripts executable by running
+
+   sudo railsbench postinstall
+
+After performing these steps, individual commands can be run directly:
+
+    perf_run 100 -bm=all
+
+The environment variable RAILS_ROOT must be set and point to your apps
+base directory, in order for railsbench to work properly.
+
+If you obtained railsbench as a svn checkout, add the railsbench
+script directory to your search path.
+
+
+STEP 2: prepare your application for benchmarking
+-------------------------------------------------
+
+Manual installation:
+
+  Copy benchmarks.rb and benchmarks.yml into $RAILS_ROOT/config and
+  edit them to suit your needs. The provided default benchmark.yml
+  will run the root URL of your app.
+
+  Copy benchmarking.rb to $RAILS_ROOT/config/environments and add a
+  corresponding section to database.yml.
+
+Automatic installation:
+
+  Run 'railsbench install'. This will perform all of the above steps
+  and create a configuration named 'benchmarking' in database.yml
+  pointing to your development database. In case you are worrying
+  about possible results, you can call railsbench install --dry-run
+  first.
+
+In either case, run `railsbench generate_benchmarks'. This will create
+a benchmarks.yml file with a benchmark for each controller and action.
+
+
+STEP 3: optional (but highly recommended)
+-----------------------------------------
+
+Patch the ruby garbage collector using rubygc18{45}.patch, depending
+on your ruby version. Recompile ruby and copy the ruby binary and
+shared libs to where they were previously installed. See GCPATCH for
+details on how to influence the patched ruby gc.

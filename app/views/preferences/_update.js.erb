@@ -1,0 +1,12 @@
+<div class="pmog_action">
+	<%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+	<div class="pmog_action_link"><a href="<%= host %>">PMOG</a></div>
+	<img src="<%= host %>/images/ext/mine.png">
+	<div class="pmog_action_text">
+		<% if @preference and @preference.valid? %>
+			Preference updated!
+		<% else %>
+			Updating preference failed :(
+		<% end %>
+	</div>
+</div>

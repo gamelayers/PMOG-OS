@@ -1,0 +1,1 @@
+Badge.award 'alpha_user'

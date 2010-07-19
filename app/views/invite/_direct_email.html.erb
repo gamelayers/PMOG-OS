@@ -1,0 +1,55 @@
+<% if @user.recent_signup %>
+  <div class="findAllNewPlayer">
+    <h2>Congratulations! You are now a part of The Nethernet!</p>
+    </p>
+    <h3>Invite your friends to play with or antagonize.</h3>
+  </div>
+<% end %>
+
+<div id="inviteContent" class="forms">
+
+<a href="/guide/rules/recruit"><img src="/images/shared/badges/medium/inviting.png" alt="Home, Sweet Home" width="125" height="161" class="right" /></a>
+<p>For each player who joins from your invite, you'll receive <%= GameSetting.value('Invite DP').to_i %> <%= dp_icon %>, <%= GameSetting.value('Invite Pings').to_i %> <%= ping_icon %> and be closer to a badge for your efforts. <a href="/guide/rules/recruit/">Learn More</a>.</p>
+<br/>
+
+<p>You can share this link to ask people to sign up:</p>
+
+<p><tt>http://thenethernet.com/join/<%= current_user.login %></tt></p>
+
+<p>Or email invite people to play with you directly:</p>
+
+<% form_remote_tag :url => { :controller => :invite, :action => :parse_direct_invite} do %>
+
+<div class="formElement">
+<label for="emailAddr">Email</label>
+<a href="javascript:;" id="addMoreAddr">Invite more than one person at a time?</a><br/>
+<input type="text" name="emails[1]" id="emailAddr01"/>
+<div id="moreAddr">
+<input type="text" name="emails[2]" id="emailAddr02"/><br/>
+<input type="text" name="emails[3]" id="emailAddr03"/><br/>
+<input type="text" name="emails[4]" id="emailAddr04"/><br/>
+<input type="text" name="emails[5]" id="emailAddr05"/><br/>
+</div>
+
+</div>
+
+<div class="formElement">
+<label for="inviteMsg">A personal message</label>
+<textarea name="addNote" cols="20" rows="5"></textarea>
+<p>If you choose to add a personal message, it will be added to the standard email invitation that we send. However, it's entirely optional.</p>
+</div>
+
+<div class="formElement">
+<div class="button">
+<input class="submit" name="commit" onclick="" type="submit" value="Invite Away" />
+</div>
+
+</div>
+
+<% if @user.recent_signup %>
+<div id="skipStep">
+    <a href="/users/<%= current_user.login %>/edit?section=1#Class">Skip this step and choose your Class!</a>
+</div>
+<% end %>
+
+<% end %>

@@ -1,0 +1,14 @@
+<h1>Editing topic</h1>
+
+<%= error_messages_for :topic %>
+
+<% form_for(:topic, :url => forum_topic_path(@topic), :html => { :method => :put }) do |f| %>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>

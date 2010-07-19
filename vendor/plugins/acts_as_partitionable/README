@@ -1,0 +1,17 @@
+ActsAsPartitionable
+===================
+
+Partitioning the daily_domains table by month and year.
+
+This plugin *does not work*, it is a work in progress as I attempt to extract the plugin out of the codebase once it is working reliably.
+
+
+Example
+=======
+
+Add this line to any model you want partitioned
+
+acts_as_partitionable :prefix => 'daily_domains'
+
+
+Copyright (c) 2009 Duncan Gough, released under the MIT license

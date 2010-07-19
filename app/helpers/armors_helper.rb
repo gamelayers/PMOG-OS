@@ -1,0 +1,2 @@
+module ArmorsHelper
+end

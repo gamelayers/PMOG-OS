@@ -1,0 +1,21 @@
+<p>
+  Mission: <%= link_to @mission.name, mission_path(@mission.url_name, :only_path => false), :target => "_top" %>
+</p>
+
+<p>
+	<%=h @branch.description %>
+</p>
+
+<p>
+	<% unless @previous.nil? %>
+		<a href="<%= @previous.location.url %>">&laquo; previous</a>
+	<% end %>
+
+	<% unless @previous.nil? or @next.nil? %>
+		&nbsp;|&nbsp;
+	<% end %>
+
+	<% unless @next.nil? %>
+		<a href="<%= @next.location.url %>">&raquo; next</a>
+	<% end %>
+</p>

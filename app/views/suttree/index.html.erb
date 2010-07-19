@@ -1,0 +1,247 @@
+<script type="text/javascript" src="/javascripts/jquery.sparkline.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('.concurrency_sparkline').sparkline([<%= @concurrency.join(',') %>], { type:'discrete', thresholdValue:<%= @concurrency.mean.round %>, lineColor:'red', thresholdColor:'blue'}); 
+    $('.daily_concurrency_sparkline').sparkline([<%= @daily_concurrency.join(',') %>], { type:'discrete', thresholdValue:<%= @daily_concurrency.mean %>, lineColor:'red', thresholdColor:'blue'}); 
+    $('.signup_sparkline').sparkline([<%= @signups.join(',') %>], { type:'discrete', thresholdValue:<%= @signups.mean.round %>, lineColor:'red', thresholdColor:'blue'}); 
+    $('.messages_sparkline').sparkline([<%= @messages.join(',') %>], { type:'discrete', thresholdValue:<%= @messages.mean.round %>, lineColor:'red', thresholdColor:'blue'}); 
+    $('.posts_sparkline').sparkline([<%= @posts.join(',') %>], { type:'discrete', thresholdValue:<%= @posts.mean.round %>, lineColor:'red', thresholdColor:'blue'}); 
+    $('.tool_uses_sparkline').sparkline([<%= @tool_uses.join(',') %>], { type:'discrete', thresholdValue:<%= @tool_uses.mean.round %>, lineColor:'red', thresholdColor:'blue'}); 
+});
+</script>
+
+<div id="copy">
+<div class="column width960">
+<div class="column width700">
+<div class="module width700">
+  <table border='0' cellpadding='10' cellspacing='5' width='100%'>
+  <tr>
+    <td bgcolor="white">
+      <h1>24hr suttree on <%= current_slice %></h1>
+      <h4><a href='/suttree'>24hr suttree</a> | <a href='/suttree/c3pu'>c3pu</a>| <a href='/suttree/rpm'>rpm</a></h4>
+
+      <br/>
+      <br/>
+      
+      <small>
+        <b>Uptime/load avg</b>: <%= @status[:uptime] %> at <%= @status[:top].join(' ') %>
+        <br/>
+        <b>Hits</b>: <%= number_with_delimiter(@status[:estimated_hits].to_i) %> since last log rotation
+      </small>
+      
+      <br/>
+      <br/>
+      
+      <small>
+        <table border='1' cellpadding='10' cellspacing='5' width='100%'>
+          <tr>
+            <td>
+              <b>Concurrency:</b>
+            </td>
+            <td>
+              <br/>
+              <span class="concurrency_sparkline">Loading...</span>
+              <br/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Daily concurrency:</b>
+            </td>
+            <td>
+              <br/>
+              <span class="daily_concurrency_sparkline">Loading...</span>
+              <br/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Signups:</b>
+            </td>
+            <td>
+              <br/>
+              <span class="signup_sparkline">Loading...</span>
+              <br/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>IMs:</b>
+            </td>
+            <td>
+              <br/>
+              <span class="messages_sparkline">Loading...</span>
+              <br/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Forum posts:</b>
+            </td>
+            <td>
+              <br/>
+              <span class="posts_sparkline">Loading...</span>
+              <br/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Tools Uses:</b>
+            </td>
+            <td>
+              <br/>
+              <span class="tool_uses_sparkline">Loading...</span>
+              <br/>
+            </td>
+          </tr>
+        </table>
+      </small>
+      
+      <br/>
+      <br/>
+
+      <small>
+        <table border='1' cellpadding='10' cellspacing='5' width='100%'>
+          <tr>
+            <td>&nbsp;</td>
+            <td><b>Rows</b></td>
+            <td><b>Avg row length</b></td>
+            <td><b>Data length</b></td>
+            <td><b>Index length</b></td>
+          </tr>
+          <tr>
+            <td>Locations</td>
+            <td><%= number_with_delimiter(@locations_data[0]) %></td>
+            <td><%= number_with_delimiter(@locations_data[1]) %></td>
+            <td><%= number_to_human_size(@locations_data[2]) %></td>
+            <td><%= number_to_human_size(@locations_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Daily domains (<%= DailyDomain.table_name %>)</td>
+            <td><%= number_with_delimiter(@daily_domains_data[0]) %></td>
+            <td><%= number_with_delimiter(@daily_domains_data[1]) %></td>
+            <td><%= number_to_human_size(@daily_domains_data[2]) %></td>
+            <td><%= number_to_human_size(@daily_domains_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Inventories</td>
+            <td><%= number_with_delimiter(@inventories_data[0]) %></td>
+            <td><%= number_with_delimiter(@inventories_data[1]) %></td>
+            <td><%= number_to_human_size(@inventories_data[2]) %></td>
+            <td><%= number_to_human_size(@inventories_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Hourly Activities</td>
+            <td><%= number_with_delimiter(@hourly_activities_data[0]) %></td>
+            <td><%= number_with_delimiter(@hourly_activities_data[1]) %></td>
+            <td><%= number_to_human_size(@hourly_activities_data[2]) %></td>
+            <td><%= number_to_human_size(@hourly_activities_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Events</td>
+            <td><%= number_with_delimiter(@events_data[0]) %></td>
+            <td><%= number_with_delimiter(@events_data[1]) %></td>
+            <td><%= number_to_human_size(@events_data[2]) %></td>
+            <td><%= number_to_human_size(@events_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Tool uses</td>
+            <td><%= number_with_delimiter(@tool_uses_data[0]) %></td>
+            <td><%= number_with_delimiter(@tool_uses_data[1]) %></td>
+            <td><%= number_to_human_size(@tool_uses_data[2]) %></td>
+            <td><%= number_to_human_size(@tool_uses_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Messages</td>
+            <td><%= number_with_delimiter(@messages_data[0]) %></td>
+            <td><%= number_with_delimiter(@messages[1]) %></td>
+            <td><%= number_to_human_size(@messages[2]) %></td>
+            <td><%= number_to_human_size(@messages[3]) %></td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Daily activities</td>
+            <td><%= number_with_delimiter(@daily_activities_data[0]) %></td>
+            <td><%= number_with_delimiter(@daily_activities_data[1]) %></td>
+            <td><%= number_to_human_size(@daily_activities_data[2]) %></td>
+            <td><%= number_to_human_size(@daily_activities_data[3]) %></td>
+          </tr>
+          <tr>
+            <td>Daily log ins</td>
+            <td><%= number_with_delimiter(@daily_log_ins_data[0]) %></td>
+            <td><%= number_with_delimiter(@daily_log_ins_data[1]) %></td>
+            <td><%= number_to_human_size(@daily_log_ins_data[2]) %></td>
+            <td><%= number_to_human_size(@daily_log_ins_data[3]) %></td>
+          </tr>
+        </table>
+        
+        <!--
+        <small>
+          <b>Request/response times</b>: <a href='/clientperf'>(more)</a>
+        </small>
+
+        <div class="chart">
+    			<h4>24 hour</h4>
+    			<%#= chart_for(ClientperfResult.last_24_hours) %>
+    		</div>
+        -->
+    		
+    		
+        <br>
+        <b>Background Jobs</b>
+        <table border='1' cellpadding='10' cellspacing='5' width='100%'>
+          <tr>
+            <td>#</td>
+            <td>Tag</td>
+            <td>Exit status</td>
+            <td>Stdout</td>
+            <td>Sterr</td>
+            <td>Priority</td>
+            <td>Status</td>
+          </tr>
+          <% @jobs.each do |job| %>
+            <tr>
+              <td><%= job.bj_job_id %></td>
+              <td><%= job.tag %></td>
+              <td><%= job.exit_status %></td>
+              <td><%= job.stdout %></td>
+              <td><%= job.stderr %></td>
+              <td><%= job.priority %></td>
+              <td><b><%= job.state %></b></td>
+            </tr>
+          <% end %>
+        </table>
+
+    		<br/>
+        <b>CACHE.status</b>:
+        <table border='1' cellpadding='10' cellspacing='5' width='100%'>
+          <% if @status[:cache] %>
+            <tr>
+              <td><b>Server</b></td>
+              <td><b>curr_items</b></td>
+              <td><b>curr_connections</b></td>
+            </tr>
+            <% @status[:cache].each do |server| %>
+              <tr>
+                <td><%= server[0] %></td>
+                <td><%= server[1]['curr_items'] %></td>
+                <td><%= server[1]['curr_connections'] %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td>
+                Disabled
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </small>
+      
+    </td>
+  </tr>
+</table>
+</div>
+</div>
+</div>
+</div>

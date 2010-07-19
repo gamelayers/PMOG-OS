@@ -1,0 +1,11 @@
+	<a href='/acquaintances/<%= @user.login %>'>Acquaintances</a> |
+	
+	<a href='/allies/<%= @user.login %>'>Allies</a>
+	
+	<% if @user.buddies.pending_your_approval('ally').size > 0 %>
+	
+		<h5>NEW!</h5>
+	
+	<% end %> |
+	
+	<a href='/rivals/<%= @user.login %>'>Rivals</a>

@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: ratings
+#
+#  id            :string(36)    default(""), not null, primary key
+#  score         :integer(11)   default(0)
+#  rateable_type :string(255)   
+#  rateable_id   :string(36)    
+#  user_id       :string(36)    
+#  updated_at    :datetime      
+#  created_at    :datetime      
+#
+
+default_rating_for_portal_yeah_to_google:
+  score: 3
+  rateable_type: Portal
+  rateable_id: 23998202-f437-11dc-b7f8-0016cb88feaa
+  id: c8cc16b8-f43c-11dc-9f6a-0016cb88feaa
+  user_id: 23998202-f437-11dc-b7f8-0016cb88feaa
+    

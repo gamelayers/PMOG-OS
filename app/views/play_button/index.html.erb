@@ -1,0 +1,14 @@
+<%- form_for :weights, @weights, :url => { :action => :update }, :html => { :method => :put } do |f| -%>
+<fieldset>
+  <legend>Weights For The Play Button (All values must total 100 combined)</legend>
+  <label>Crates</label><%= f.text_field :crates %>
+  <br/>
+  <label>Mines</label><%= f.text_field :mines %>
+  <br/>
+  <label>Missions</label><%= f.text_field :missions %>
+  <br/>
+  <label>Portals</label><%= f.text_field :portals %>
+  <br/>
+</fieldset>
+<%= submit_tag 'adjust weights' %>
+<%- end -%>

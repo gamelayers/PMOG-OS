@@ -1,0 +1,172 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/codex/bg_books.png);
+background-position:550px 12px;
+background-repeat:repeat-y;
+}
+
+.codex_first_letter:first-letter {
+  font-size: 32px;
+}
+
+.codex_header {
+  float: right;
+  padding: 0 0 5px 8px;
+  border: 0px !important;
+}
+
+.codex_main_img_list_align{
+width:640px;
+margin:0 auto;
+}
+
+.codex_main_img_list{
+float:left;
+width:270px;
+margin:10px 25px;
+}
+
+.codex_tool_items{
+float:left;
+width:50px;
+text-align:center;
+margin:5px 20px;
+}
+
+.codex_association_items{
+float:left;
+width:70px;
+text-align:center;
+margin:5px 10px;
+}
+
+.codex_table{
+width:630px;
+margin:0 auto;
+}
+
+.codex_table h3 {
+margin-left: 25px;
+}
+
+.codex_image_large {
+  float: right;
+}
+
+.codex_description {
+  float: left;
+  width: 300px;
+  height: 400px;
+  margin: 25px 0 0 15px;
+  margin-left: 15px;
+}
+
+.codex_levels{
+	width:570px;
+	text-align:center;
+	margin:15px auto 0 auto;
+}
+
+.codex_levels_level_header, .codex_levels_dp_header{
+	font-size:24px;
+	font-weight:bold;
+	padding-bottom:10px;
+	float:left;
+}
+
+.codex_levels_level_header{
+	margin-top:58px;
+}
+
+.codex_levels_level_header, .codex_levels_level{
+	width:70px;
+}
+
+.codex_levels_dp_header, .codex_levels_dp{
+	width:241px;
+}
+
+.codex_levels_dropdown{
+	width:259px;
+	font-size:18px;
+	padding-bottom:10px;
+	float:left;
+}
+
+.codex_levels_dropdown_bracket{
+	margin-top:1px;
+}
+
+.codex_levels_level, .codex_levels_dp, .codex_levels_usage{
+	height:42px;
+	float:left;
+}
+
+.codex_levels_level{
+	font-size:30px;
+	font-weight:bold;
+}
+
+.codex_levels_level_odd{
+	background-color:#caad84;
+	background-image:url(/images/codex/levels/left_odd.png);
+	background-position:left;
+	background-repeat:no-repeat;
+}
+
+.codex_levels_level_even{
+	background-color:#dabc93;
+	background-image:url(/images/codex/levels/left_even.png);
+	background-position:left;
+	background-repeat:no-repeat;
+}
+
+.codex_levels_dp, .codex_levels_usage{
+	font-size:18px;
+	font-weight:bold;
+	line-height:35px;
+}
+
+.codex_levels_dp_odd{
+	background-color:#caad84;
+}
+
+.codex_levels_dp_even{
+	background-color:#dabc93;
+}
+
+.codex_levels_usage{
+	width:259px;
+}
+
+.codex_levels_usage_odd{
+	background-image:url(/images/codex/levels/right_odd.png);
+	background-position:right;
+	background-repeat:no-repeat;
+}
+
+.codex_levels_usage_even{
+	background-image:url(/images/codex/levels/right_even.png);
+	background-position:right;
+	background-repeat:no-repeat;
+}
+
+.codex_content {
+  margin: 0pt !important;
+  width: 490px !important;
+}
+
+.codex_histories_list {
+  margin: 10px 0 10px 0;
+  list-style-type: none;
+}
+
+.codex_histories_list li {
+  padding: 3px 0 3px 0;
+}
+
+.codex_appendices {
+  margin: 10px 0 15px 15px;
+}

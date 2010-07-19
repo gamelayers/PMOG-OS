@@ -1,0 +1,3 @@
+page.remove "mission_#{@mission.id}"
+
+page.visual_effect :highlight, "mission_list", :duration => 2

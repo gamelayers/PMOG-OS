@@ -1,0 +1,125 @@
+# Having a problem with the home page loading slowly on the first hit.
+# Moved into a new cluster but the web servers run at 1% CPU rather than 0.x% CPU in top.
+
+duncan@Desktop $ ab -n400 http://pmog.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+apr_poll: The timeout specified has expired (70007)
+Total of 19 requests completed
+duncan@Desktop $ ab -C auth_token=d060a71ee15fb5d3876436bae9b5b0e0e378432a -kc50 -t300 http://pmog.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Completed 5000 requests
+Finished 8630 requests
+
+
+Server Software:        nginx/0.6.32
+Server Hostname:        pmog.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        13028 bytes
+
+Concurrency Level:      50
+Time taken for tests:   300.029 seconds
+Complete requests:      8630
+Failed requests:        5445
+   (Connect: 0, Receive: 0, Length: 5445, Exceptions: 0)
+Write errors:           0
+Keep-Alive requests:    8630
+Total transferred:      116752864 bytes
+HTML transferred:       112591733 bytes
+Requests per second:    28.76 [#/sec] (mean)
+Time per request:       1738.292 [ms] (mean)
+Time per request:       34.766 [ms] (mean, across all concurrent requests)
+Transfer rate:          380.02 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   24 497.6      0   19193
+Processing:   190 1682 10207.0    545  230521
+Waiting:      165 1272 10172.2    199  230177
+Total:        190 1706 10228.9    545  230521
+
+Percentage of the requests served within a certain time (ms)
+  50%    545
+  66%    714
+  75%   1104
+  80%   1469
+  90%   1868
+  95%   3515
+  98%   7040
+  99%  12088
+ 100%  230521 (longest request)
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ ab -C auth_token=d060a71ee15fb5d3876436bae9b5b0e0e378432a -kc50 -t300 http://pmog.com/users/suttree
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Finished 1739 requests
+
+
+Server Software:        nginx/0.6.32
+Server Hostname:        pmog.com
+Server Port:            80
+
+Document Path:          /users/suttree
+Document Length:        56657 bytes
+
+Concurrency Level:      50
+Time taken for tests:   300.164 seconds
+Complete requests:      1739
+Failed requests:        1528
+   (Connect: 0, Receive: 0, Length: 1528, Exceptions: 0)
+Write errors:           0
+Keep-Alive requests:    1739
+Total transferred:      99465466 bytes
+HTML transferred:       98625637 bytes
+Requests per second:    5.79 [#/sec] (mean)
+Time per request:       8630.368 [ms] (mean)
+Time per request:       172.607 [ms] (mean, across all concurrent requests)
+Transfer rate:          323.60 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   32 264.8      0    3076
+Processing:  2629 8198 10532.9   5445  137652
+Waiting:     1604 6965 10482.2   4180  136258
+Total:       2629 8230 10545.1   5445  137652
+
+Percentage of the requests served within a certain time (ms)
+  50%   5443
+  66%   6483
+  75%   7701
+  80%   8979
+  90%  13840
+  95%  21506
+  98%  33594
+  99%  39007
+ 100%  137652 (longest request)
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ 
+duncan@Desktop $ ab -C auth_token=d060a71ee15fb5d3876436bae9b5b0e0e378432a -kc50 -t300 "http://pmog.com/track.js?http://www.suttree.com"
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Completed 5000 requests
+Completed 10000 requests
+apr_poll: The timeout specified has expired (70007)
+Total of 13806 requests completed

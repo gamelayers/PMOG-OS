@@ -1,0 +1,12 @@
+<h1>Editing inventory</h1>
+
+<%= error_messages_for :inventory %>
+
+<% form_for(:inventory, :url => inventory_path(@inventory), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', inventory_path(@inventory) %> |
+<%= link_to 'Back', inventory_path %>

@@ -1,0 +1,20 @@
+<h2>Order / Chaos</h2>
+<h5>Keeping players honest since 2008</h5>
+
+<% form_tag('/admin/chaos_order') do %>
+
+<table>
+    <% @order_chaos_values.each do |order_chaos| %>
+        <tr>
+            <td>
+        <%= "#{order_chaos.name} (#{order_chaos.oc_type}):" %>
+        </td>
+        <td>
+        <%= text_field_tag "value[#{order_chaos.name}]", order_chaos.points %>
+        </td>
+    </tr>
+    <% end %>
+    </table>
+    <%= submit_tag %>
+
+<% end %>

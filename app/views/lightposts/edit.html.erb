@@ -1,0 +1,15 @@
+<%= error_messages_for :lightpost %>
+
+<% form_for(:lightpost, :url => user_lightpost_path(current_user,@lightpost), :html => { :method => :put }) do |f| %>
+<table class="tabular_data">
+  <caption>Editing Lightpost</caption>
+  <tfoot>
+    <tr colspan="2">
+      <td><%= submit_tag "Update", :class => "input" %></td>
+    </tr>
+  </tfoot>
+  
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  
+  </table>
+<% end %>

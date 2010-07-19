@@ -1,0 +1,12 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: st_nicks
+#
+#  id          :string(36)    primary key
+#  user_id     :string(36)    
+#  attachee_id :string(36)    
+#  created_at  :datetime      
+#  updated_at  :datetime      
+#
+

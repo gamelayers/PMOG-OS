@@ -1,0 +1,48 @@
+body {
+  margin-bottom:25px;
+}
+
+#routing-navigator {
+  width:100%;
+}
+
+#routing-navigator td, #routing-navigator th, #routing-navigator div, #routing-navigator p {
+  text-align:left;
+}
+
+#routing-navigator a,
+#routing-navigator a:visited {
+  color:#005;
+  text-decoration:none;
+}
+
+#routing-navigator a:hover,
+#routing-navigator a:active {
+  text-decoration:underline;
+}
+
+#routing-navigator .routing-navigator-tab {
+  background-color:#fff;
+  padding:1em;
+  margin:0;
+}
+
+#routing-navigator-tabs {
+  width:100%;
+  height:25px;
+  margin:0; padding:0;
+  list-style-type:none;
+  background:#000;
+}
+
+#routing-navigator-tabs li {
+  float:left;
+}
+
+#routing-navigator-tabs li a,
+#routing-navigator-tabs li a:visited {
+  display:block;
+  line-height:25px;
+  margin:0 1em;
+  color:#fff;
+}

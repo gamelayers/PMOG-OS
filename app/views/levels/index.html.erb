@@ -1,0 +1,44 @@
+<h1>PMOG Levels</h1>
+
+<p>
+  <i>Warning: Changing these values will alter active players' levels.  Tread carefully....</i>
+</p>
+
+<!--<p>
+  Based on the current settings, you're at level <b><%#= @level %></b>, <b><%#= @level_percentage %>%</b> of the way to the next level!
+</p>-->
+
+<table border='1'>
+  <tr>
+    <td>
+      Level
+    </td>
+    <td>
+      Datapoints
+    </td>
+    <td>
+      Classpoints
+    </td>
+    <td>
+      &nbsp;
+    </td>
+  </tr>
+  <% @levels.each do |level| %>
+    <tr>
+      <% form_for(:level, :url => level_path(level), :html => { :method => :put }) do |f| %>
+        <td>
+          <b><%= level.level %></b>
+        </td>
+        <td>
+          <%= f.text_field :datapoints, :value => level.datapoints, :size => 5 %>
+        </td>
+        <td>
+          <%= f.text_field :classpoints, :value => level.classpoints, :size => 5 %>
+        </td>
+        <td>
+          <%= submit_tag "Update" %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

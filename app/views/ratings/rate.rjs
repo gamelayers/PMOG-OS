@@ -1,0 +1,4 @@
+page.replace_html 'show_rate', "Rating received!<br />"
+page.visual_effect :highlight, "show_rate", :duration => 3
+page.visual_effect :fade, 'show_rate', :duration => 3
+page.replace_html 'show_rating', :partial => 'ratings/rating', :locals => { :rateable => @rateable, :type => params[:type] }

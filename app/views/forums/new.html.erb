@@ -1,0 +1,69 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Forums</span></div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'forums/search_form' %>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+<h1>New Forum</h1>
+<h5>only Admins have Forum Creation power - choose wisely</h5>
+
+<br />
+<%= error_messages_for :forum %>
+
+<% form_for(:forum, :url => forums_path) do |f| %>
+  <p>
+    <b>Title</b>
+    <%= f.text_field :title %>
+  </p>
+
+  <script type="text/javascript">
+    $( 'forum_title' ).focus();
+  </script>
+
+  <p>
+    <b>Description</b><br />
+    <%= f.text_area :description %>
+  </p>
+
+	<p>
+		<b>PMOG Only? (Non-trustees can look but not post)</b>
+		<%= f.check_box(:pmog_only) %>
+	</p>
+  
+  <p>
+		<b>Private? (Trustees and stewards only)</b>
+		<%= f.check_box(:private) %>
+	</p>
+  
+  <p>
+    <%= submit_tag "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', forums_path %>
+
+
+
+</div>
+
+
+
+						</div>
+											
+					</div>
+				
+				</div>
+
+			</div>

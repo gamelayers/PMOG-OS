@@ -1,0 +1,32 @@
+<h1>Editing npc</h1>
+
+<%= error_messages_for :npc %>
+
+<% form_for(:npc, :url => npc_path(@npc), :html => { :method => :put }) do |f| %>
+	<p>
+		Name:<br/>
+		<%= f.text_field :name %>
+	</p>
+
+  <script type="text/javascript">
+    $( 'npc_name' ).focus();
+  </script>
+
+	<p>
+		Description:<br/>
+		<%= f.text_area :description %>
+	</p>
+	<p>
+		First words:<br/>
+		<%= f.text_field :first_words %>
+	</p>
+
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+
+<% end %>
+
+<%= link_to 'New image', "/npcs/#{@npc.url_name}/assets/new" %> | 
+<%= link_to 'Show', npc_path(@npc) %> |
+<%= link_to 'Back', npcs_path %>

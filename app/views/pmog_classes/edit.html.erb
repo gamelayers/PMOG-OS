@@ -1,0 +1,68 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell parent"><A href="/pmog_classes"><span class="l"></span><span class="c">Edit Classes</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c">Editing <%= @pmog_class.name %></span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+
+<h1>Editing <%= @pmog_class.name %></h1>
+
+<% form_for(:pmog_class, :url => pmog_class_path, :html => { :method => :put } ) do |f| %>
+	<p>
+		Short description:
+		<br/>
+		<%= f.text_area :short_description, :rows => 5 %>
+		<script type="text/javascript">
+		  $( 'tool_short_description' ).focus();
+		</script>
+	</p>
+	<p>
+		Long description
+		<br/>
+		<%= f.text_area :long_description, :rows => 10 %>
+	</p>
+	<p>
+		Icon image path
+		<br/>
+		<%= f.text_field :icon_image %>
+		<img src="<%= @pmog_class.icon_image %>" alt="<%= @pmog_class.icon_image %>">
+	</p>
+	<p>
+		Small image path
+		<br/>
+		<%= f.text_field :small_image %>
+		<img src="<%= @pmog_class.small_image %>" alt="<%= @pmog_class.small_image %>">
+	</p>
+	<p>
+		Medium image path
+		<br/>
+		<%= f.text_field :medium_image %>
+		<img src="<%= @pmog_class.medium_image %>" alt="<%= @pmog_class.medium_image %>">
+	</p>
+	<p>
+		Large image path
+		<br/>
+		<%= f.text_field :large_image %>
+		<img src="<%= @pmog_class.large_image %>" alt="<%= @pmog_class.large_image %>">
+	</p>
+	<p>
+		<%= submit_tag "Update" %>
+	</p>
+<% end %>
+
+
+						</div>
+											
+					</div>
+				
+				</div>
+			
+			</div>

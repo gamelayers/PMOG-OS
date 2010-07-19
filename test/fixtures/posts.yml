@@ -1,0 +1,27 @@
+non_public_post:
+  id: 0563410e-dce1-11dd-8767-001b63343339
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  topic_id: acf8318c-dce0-11dd-8767-001b63343339
+  body: A test post in the non public forum
+  created_at: 2007-12-07 23:17:35
+  updated_at: 2007-12-07 23:17:35
+  is_active: 1
+  public: 0
+forum_games_post:
+  id: 1563410e-dce1-11dd-8767-001b63343339
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  topic_id: bcf8318c-dce0-11dd-8767-001b63343339
+  body: pbot is stupid
+  created_at: 2007-12-07 23:17:35
+  updated_at: 2007-12-07 23:17:35
+  is_active: 1
+  public: 1
+pmog_only_post:
+  id: 2563410e-dce1-11dd-8767-001b63343339
+  user_id: 46393294-de84-11dc-b0f2-001b63928f8d
+  topic_id: ccf8318c-dce0-11dd-8767-001b63343339
+  body: pmog only forum post
+  created_at: 2007-12-08 23:17:35
+  updated_at: 2007-12-08 23:17:35
+  is_active: 1
+  public: 1

@@ -1,0 +1,92 @@
+<h1><%=h @npc.name.titleize %></h1>
+
+<% if @npc.assets.size > 0 %>
+	<p><img src="<%= @npc.assets[0].public_filename :medium %>" /></p>
+<% end %>
+
+<p>
+	<span id="subscriptions">
+		<p>
+			Subscribers:
+			<% @npc.users.each do |u| %>
+				<%= link_to h(u.login), user_path(u) %>, 
+			<% end %>
+			<% if @npc.users.blank? %>
+				<i>No subscribers yet...</i>
+			<% end %>
+		</p>
+		<% if logged_in? %>
+			<% if @npc.users.include? current_user %>
+				<%= link_to_remote "Unsubscribe from this NPC", :update => :subscriptions, :url => { :controller => "npcs", :action => :unsubscribe, :id => @npc.id } %>
+			<% else %>
+				<%= link_to_remote "Subscribe to this NPC", :update => :subscriptions, :url => { :controller => "npcs", :action => :subscribe, :id => @npc.id } %>
+			<% end %>
+		<% else %>
+			<%= link_to "Login to subscribe to this NPC", new_session_path %>
+		<% end %>
+	</span>
+</p>
+<p>Description: <%=h @npc.description %></p>
+<p>First words: <%=h @npc.first_words %></p>
+
+<%= render :partial => "tags/tags", :locals => { :taggable => @npc, :type => "npc" } %>
+
+<p>
+	Brainz:
+	<ul>
+	<% @npc.feeds.each do |f| %>
+		<li>
+			<%=h f.url %>
+			<%= link_to_remote "Edit", :update => "more_brainz", :url => edit_npc_feed_path(@npc, f), :method => :get %>
+			<%= link_to "Delete", npc_feed_path(@npc, f), :confirm => "Are you sure?", :method => :delete %>
+		</li>
+	<% end %>
+	<% if @npc.feeds.blank? %>
+		<li>No brainz :(</li>
+	<% end %>
+	</ul>
+</p>
+
+<p>
+	Locations:
+	<ul>
+	<% @npc.locations.each do |l| %>
+		<li>
+			<%=h l.url %>
+			<%= link_to_remote "Edit", :update => "more_locations", :url => edit_npc_location_path(@npc, l), :method => :get %>
+			<%= link_to "Delete", npc_location_path(@npc, l), :confirm => "Are you sure?", :method => :delete %>
+		</li>
+	<% end %>
+	<% if @npc.locations.blank? %>
+		<li>No locations :(</li>
+	<% end %>
+	</ul>
+</p>
+
+<p>
+	Messages:
+	<ul>
+		<% @npc.latest_messages.each do |m| %>
+			<li>
+				<%=h link_to m.title, m.syndication_id %>
+				<br/>
+				<%=h m.body %>
+			</li>
+		<% end %>
+	</ul>
+</p>
+
+<% if logged_in? and current_user == @npc.user %>
+	<p>
+		<%= link_to_remote "Brainz", :update => "more_brainz", :url => new_npc_feed_path(@npc), :method => :get %>
+		|
+		<%= link_to_remote "Locations", :update => "more_locations", :url => new_npc_location_path(@npc), :method => :get %>
+		
+		<div id='spinner' style="display:none;">Loading...</div>
+		<div id='more_locations'></div>
+		<div id='more_brainz'></div>
+	</p>
+
+	<%= link_to 'Edit', edit_npc_path(@npc) %> |
+	<%= link_to 'Back', npcs_path %>
+<% end %>

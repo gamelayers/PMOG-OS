@@ -1,0 +1,37 @@
+<% if @user.recent_signup %>
+<div class="findAllNewPlayer">
+    <h2>Congratulations! You are now a part of The Nethernet!</h2>
+    <p/>
+</div>
+<% end %>
+
+<div id="findAllIcons">
+  <div>
+    <%= link_to_remote( image_tag('/images/shared/icon_Gmail.png') + "&nbsp;&nbsp;Gmail", :url => { :controller => "invite", :action => "start", :service => 'gmail', :context => :contacts }  ) %>
+  </div>
+  <div>
+    <%= link_to_remote( image_tag('/images/shared/icon_WindowsLive.png') + "&nbsp;&nbsp;Windows Live", :url => { :controller => "invite", :action => "start", :service => 'windows_live', :context => :contacts }  ) %>
+  </div>
+  <div>
+    <%= link_to_remote( image_tag('/images/shared/icon_Yahoo.png') + "&nbsp;&nbsp;Yahoo!", :url => { :controller => "invite", :action => "start", :service => 'yahoo', :context => :contacts }  ) %>
+    <!-- <a href="http://my.yahoo.com/" id="yahooIconLink" class="addContacts" name="yahooIconLink"><img src="/images/shared/icon_Yahoo.png" alt="Find Yahoo! Friends" width="17" height="10" /> <span>&nbsp;&nbsp;Yahoo! Live</span></a> -->
+  </div>
+</div>
+
+<div id="findAllCopy">
+  <h3>
+    Find people you already know who are playing The Nethernet
+  </h3>
+  <p>
+    Use one of the networks where you already have contacts. You may find that there may be people you already know from other networks around the web playing, or easily invite them to play with you here. Of course, we will not send email or messages to anyone without your permission.
+  </p>
+  <p>
+    Select one of the networks from the list on the left.
+  </p>
+</div>
+
+<% if @user.recent_signup %>
+<div id="skipStep">
+    <a href="/users/<%= current_user.login %>/edit?section=1#Class">Skip this step and choose your Class!</a>
+</div>
+<% end %>

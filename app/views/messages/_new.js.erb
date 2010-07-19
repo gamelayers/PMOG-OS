@@ -1,0 +1,34 @@
+<div class="pmog_message_new">
+  <div class="pmog_message_new_close">
+      <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+                           pmog_m.setAttribute('action', 'close');
+                           pmog_m.setAttribute('window_id', '<%= @window_id %>');
+                           pmog_m.dispatchEvent(pmog_e);
+                           return false;"><img src="<%= host %>/images/ext/message_send_close.jpg" width="39" height="39" alt="Close" /></a>
+    </div>
+    <br style="clear:both;" />
+    <div class="instant_message_form pmog_message_form">
+      <form name="instant_message" method="post" action="">
+        <span class="pmog_message_new_header">To:</span> <input type="text" value="<%= "@#{@recipient}" if @recipient %>" name="instant_message[recipient]" class="instant_message_recipient pmog_message_to" id="instant_message_recipient"/>
+        <br />
+        <small>Please include an @ before their name.</small><br /><br />
+
+        Message:
+        <input type="text" value="" name="instant_message[body]" class="instant_message_body instant_message_input pmog_message_body" id="instant_message_body"/>
+        <br/>
+        <a href="#" onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+              pmog_m.setAttribute('instant_message_recipient', ''+ document.instant_message.instant_message_recipient.value + '');
+              pmog_m.setAttribute('instant_message_body', ''+ document.instant_message.instant_message_body.value + '');
+              pmog_m.setAttribute('extra_attributes', 'instant_message_recipient, instant_message_body');
+              pmog_m.setAttribute('method', 'post');
+              pmog_m.setAttribute('action', 'send_instant_message');
+              pmog_m.setAttribute('server_url', '/users/<%= current_user.login %>/messages.json' );
+              pmog_m.setAttribute('window_id', '<%= @window_id %>' );
+              pmog_m.dispatchEvent(pmog_e);return false;" class="instant_message"><br />
+              Send Message</a><br /><br />
+              <small>It will cost you 1 <img src="http://pmog.com/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints" class="img_no_border">.</small>
+      </form>
+  </div>
+</div>
+
+<br style="clear:both;">

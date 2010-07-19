@@ -1,0 +1,178 @@
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+  <div class="main">The Shoppe</div>
+</div>
+<% end %>
+
+<div id="copy">
+
+  <div class="column width960">
+
+    <div class="column width700">
+
+      <div class="module width700">
+        <div class="imageTop">
+          <div class="imageTopImage" style="background-image:url(/images/shared/dressing/rival.png);width:140px;height:162px;" title="Special Happenings!"></div>
+        </div>
+
+        <h1>Special Happenings</h1>
+        <h5>From <a href="http://news.thenethernet.com">Community News</a>.</h5>
+        <br />
+
+        <% begin %>
+        <h3><a href="<%= @special_happenings.link %>" id="specialEventLink">
+          <%= @special_happenings.title %>
+        </a></h3>
+        <script type="text/javascript" charset="utf-8">
+        $("#specialEventLink").track({
+          category : "Shoppe",
+          action   : "News",
+          label    : "Story Title"
+        });
+        </script>
+        <p>
+          <%= @special_happenings.description %> <a href="<%= @special_happenings.link %>" id="specialEventReadMoreLink">Learn More</a>
+        </p>
+        <script type="text/javascript" charset="utf-8">
+          $("#specialEventReadMoreLink").track({
+            category : "Shoppe",
+            action   : "News",
+            label    : "Story Title"
+          });
+        </script>
+        <% rescue %>
+        <p class="home_news_title">Latest news unavailable</p>
+        <% end %>
+
+      </div>
+
+      <div class="height20"></div>
+
+      <div class="module width700">
+        <div id="shoppe">
+          <table class="stripeMe" cellspacing="20"><tbody>
+            <tr><td><h2>Tool:</h2></td><td><h2>Cost:</h2></td><td><h2>Quantity:</h2></td></tr>
+
+            <% @tools.sort_by(&:name).each do |tool| %>
+            <% next if @hidden_tools.include? tool.url_name %>
+            <tr>
+              <td style="padding: 10px 0px 10px 0px;">
+                <a href="/guide/tools/<%= tool.url_name %>"><img src="<%= tool.medium_image %>" class="shoppe_tool_float" alt="<%= tool.name %>" align="left" hspace="10" vspace="0" /></a>
+                <p><b><%= tool.name.titleize %> <img src="<%= tool.icon_image %>" alt="<%= tool.name.titleize %>" /></b><br/>
+                  <%= tool.short_description %> <a href="/guide/tools/<%= tool.url_name %>">Learn more</a></p>
+                </td>
+                <td nowrap style="padding:10px 0px 0px 0px;">
+                  <p><b><%= tool.cost %></b> <%= dp_icon %><br/>
+                    <small>you can afford <% begin %> <%= (current_user.datapoints / tool.cost) %> <% rescue Exception => e %> unknown <% end %></small>
+                  </p>
+                </td>
+
+                <td nowrap class="checkout">
+                  <% form_for(:shoppe, :url => "/shoppe/purchase", :html => { :method => :put }) do |f| %>
+
+                  <select id="instances" class="input" style="margin-top:10px;margin-bottom:10px;" name="shoppe[instances]">
+
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <!-- <option value="20">20</option>
+                      <option value="30">30</option>
+                      <option value="40">40</option>
+                      <option value="50">50</option>
+                      <option value="60">60</option>
+                      <option value="70">70</option>
+                      <option value="80">80</option>
+                      <option value="90">90</option>
+                      <option value="100">100</option> -->
+                    </select>
+
+                    <%= f.hidden_field :tool_name, :value => tool.url_name %><br/>
+                    <small>out of 10</small><br/>
+
+                    <%= f.submit 'Purchase', :class => 'input', :style => 'margin-top:15px', :disable_with => 'Purchasing...' %>
+
+                    <% end %>
+
+                  </td>
+                </tr>
+                <% end %>
+              </tbody></table>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="column width240">
+          <img src="/images/shoppe/shoppe-animation.png" alt="Shoppe" border="0" width="200" height="233" />
+          <div class="module width240">
+            <h3>Your Inventory</h3>
+            <div id="shoppeInventory">
+              <div id="inventory">
+                <% @tools.sort_by(&:name).each do |tool| %>
+                <div class="tool">
+                  <a href="/guide/tools/<%= tool.url_name %>"><img class="icon16 poptip" src="<%= tool.icon_image %>" alt="<%= tool.name %>" title="<%= tool.name %>"/></a>
+                  <%= current_user.inventory.send(tool.url_name) %>
+                </div>
+                <% end %>
+              </div>
+              <div id="purse">
+                <h3>Purse</h3>
+                <div id="inside">
+                  <div class="tool top">
+                    <img class="icon16 poptip" src="/images/shared/icons/datapoint-16.png" alt="toolname" title="tool name"/>
+                    <%=h number_with_delimiter(current_user.datapoints) %>
+                  </div>
+                  <div class="tool">
+                    <img class="icon16 poptip" src="/images/shared/icons/ping-16.png" alt="toolname" title="toolname"/>
+                    <%=h number_with_delimiter(current_user.available_pings) %>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="column height20"></div>
+
+          <div class="module width240">
+<h3>Support The Nethernet!</h3>
+
+<p>The Nethernet is a community-supported online game:</p>
+
+<table><tr><td valign="top">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="TJQN5S4JD8E8Q" />
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+</td><td valign="top"><form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="SGJ6AA34KBLAQ" />
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+</td></tr></table>
+
+<div class="bottomNav">
+If you'd like to subscribe for a different amount, you can donate from our <a href="https://addons.mozilla.org/en-US/firefox/addon/6336">Mozilla Add-ons Page</a>.</div>
+					</div>
+
+          <div class="column width20"></div>
+
+          <div class="module width240">
+            <script language="javascript" src="http://www.zazzle.com/api/zp/zpanel?zp=117296772891828289"></script>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>

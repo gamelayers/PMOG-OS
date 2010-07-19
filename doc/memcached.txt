@@ -1,0 +1,24 @@
+= Memcached =
+
+Here's how we setup and use Memcache on PMOG:
+
+1. Ask Engine Yard to install Memcached
+
+2. sudo port install memcached (locally, for testing)
+
+3. sudo gem install memcache-client
+
+4. ./script/plugin install svn://errtheblog.com/svn/plugins/cache_fu
+
+5. Edit config/memcached.yml (locally)
+
+6. Ask Engine Yard to setup deploy.rb so that config/memcached.yml is copied over from a shared/scripts directory, allowing us to point to different memcached servers on different slices/environments
+
+7. Add acts_as_cached to the relevant models, along with after_save :expire_cache
+
+8. Add before_filter :local_cache_for_request to application controller
+
+9. Avoid using Memcached for sessions. There's a limit to the memory memcached has access to, so save that for fragments, etc.
+
+
+Note that we use Memcached for sessions now, since the performance gain is well worth it at higher traffic levels. However, we only use only memcached server for sessions, by setting the session_server on the production servers in config/memcached.yml to the relevant, single server.

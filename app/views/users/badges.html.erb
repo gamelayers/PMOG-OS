@@ -1,0 +1,42 @@
+<h1><%= @user.login %>'s' Badges</h1>
+<h5><%= pluralize( @user.badges.size, "Badge", "Badges" ) %> Earnt!</h5>
+
+<center>Due to the current strife between Order and Chaos, badges will be awarded nightly. Too many couriers have been lost to continue daylight transference of credits. Our apologies, the Trustees.</p>
+
+<!--code for displaying badges from user profiles-->
+              <% @user.badges.each do |badge| %>
+
+                <a href="/guide/badges/#<%= badge.name.titleize %>"><img src="/images/shared/badges/small/<%= badge.image %>" width='39' height='50' title='<%= badge.name %>' alt='<%= badge.name %>' class="user_badge"></a>
+
+              <% end %>
+              
+<!--attempted pseudocode-->
+
+  <table cellspacing="10" class="badge_table">
+
+    <% @user.badges.each do |badge| %>
+    <tr>
+      <td valign="top">
+        
+        <a name="<%= badge.name %>"></a>
+        
+        IF UNEARNT:
+        
+        <img src=/images/shared/badges/unearned/<%= badge.image %> width='125' height='161' title='<%= badge.name %>' alt='<%= badge.name %>'>
+        
+        IF EARNT:
+        
+        <img src=/images/shared/badges/medium/<%= badge.image %> width='125' height='161' title='<%= badge.name %>' alt='<%= badge.name %>'>
+      
+      </td>
+    
+      <td valign="top" class="badge_table_description">
+        <h3><b><%= badge.name %></b><br /></h3>
+        <p><%= badge.description %></p>
+      </td>
+    </tr>
+    <% end %>
+
+  </table>
+</div>
+</div>

@@ -1,0 +1,23 @@
+<h1>High Rollers</h1>
+<h5>They're rollin', we're hatin'</h5>
+
+<br />
+
+<p>(This is only looking through the last 100 suspects for now)</p>
+
+<p class='user_table_list'>  
+  <table border='1' cellpadding='5'>
+		<tr>
+			<td>User</td>
+			<td>Domains last 24 hrs</td>
+			<td>DP total</td>
+		</tr>
+		<% @rollers.each do |pimp| %>
+			<tr>
+				<td><%= avatar_link_to_user :user => pimp, :size => 'small' %></td>
+				<td><%= pimp.daily_domains.count_daily %></td>
+				<td><%= pimp.datapoints %></td>
+			</tr>
+		<% end %>
+  </table>
+</p>

@@ -1,0 +1,28 @@
+<div class="pmog_single_crate">
+
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @crate.id } %>
+  <br style="clear:both;"/>
+  
+  <div class="pmog_single_crate_text">
+    <% unless @crate.comments.nil? or @crate.comments.empty? %>  
+      <a href="<%= host %>/users/<%= @crate.user.login %>" target="new"><%= @crate.user.login %></a> says to you: "<%= @crate.comments %>"
+      <br /><br />
+    <% end %>
+    <% @contents.each do |item, amount| %>
+      <%= image_tag("http://pmog.com/images/ext/#{item.singularize}.png") %> <%= amount %>&nbsp;&nbsp;&nbsp;
+    <% end %>
+    <br />
+  
+  </div>
+
+  <div class="pmog_crate_looted_buttons">
+
+    <img src="<%= host %>/images/ext/crates/looted.png" width="146" height="45" class="crate_button_looted" alt="Crate Looted!" />
+    
+    <%= render :partial => 'shared/ext/link_to_im', :locals => { :message => 'send a thank you note?', :window_id => @crate.id }%>
+    
+  </div>
+  
+  <br style="clear:both" />  
+  
+</div>

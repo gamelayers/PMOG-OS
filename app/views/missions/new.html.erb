@@ -1,0 +1,93 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag '/css/supplemental-missions' %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+	<%= render :partial => "shared/breadcrumbs/mission_generator" %>
+	<div class="cell child"><span class="l"></span><span class="c">Make a New Mission</span><span class="r"></span></div>
+</div>
+<% end %>
+
+<div id="copy">
+	<div class="column width960">
+
+		<div class="column width700">
+			<div class="height20"></div>
+			<div class="module width700">
+
+				<% if current_user.inventory.lightposts < 4 %>
+
+				<a href="/shoppe"><img src="/images/shared/tools/small/lightposts.jpg" alt="lightpost" border="2" width="50" height="50" align="right" /></a>
+				<p>Only <%= current_user.inventory.lightposts %> lightposts? <a href="/shoppe" target="_blank">Buy more at the Shoppe</a>.  With at least 4, you can make a proper, well-lit Mission!</p>
+
+				<% else %>
+				<h3>Pssst! Is this your first mission? Find out how to <a href="/guide/rules/starting_pathmaker" target="_blank">Make It Great</a>!</h3>
+
+				<h2>Create A Mission :: Step 1- Give it a Name</h2>
+				<h4 style="margin-top:-7px;">Be the envy of all your allies.</h4>
+
+				<%= render :partial => 'generator_progress' %>
+				<br/>
+				<%= error_messages_for :mission %>
+
+				<% error_handling_form_for(@mission) do |f| %>
+				<h2><label for="name">Mission Name <span style="color:#CC410F;">*</span></label></h2>
+				<%= f.text_field :name %>
+
+				<div class="height20"></div>
+
+				<h2><label for="description">Mission Description <span style="color:#CC410F;">*</span></label></h2>
+				<%= f.text_area  :description, :rows => 10, :cols => 75 %>
+
+				<% if current_user.current_level > 4 %>
+				<div class="height20"></div>
+
+				<h2><label for="minum_level">Minimum Level required to take your Mission?</label></h2>
+				<%= f.text_field :minimum_level, :size => 2, :label => 'Minimum Level required to take your Mission'  %>
+				<% end %>
+
+				<% unless !site_admin? %>
+				<div class="height20"></div>
+
+				<h2><%= f.check_box  :pmog_mission, :label => 'Is this a PMOG-related mission?' %>
+					<label for="pmog_mission">Is this a Nethernet-related mission?</label></h2>
+					<% end %>
+
+					<div class="height20"></div>
+
+					<div class="button">
+						<%= f.submit 'Proceed to Step 2', :disable_with => "Please wait...", :class => "buttonSignUp signupInput" %>
+					</div>
+					<% end %>
+
+
+					<% end %>
+
+					<img src="/images/shared/dressing/pathmakerdrawing-600.png">
+
+				</div>
+			</div>
+			<div class="column width240">
+				<div class="height20"></div>
+				<div class="module width240 dosdonts">
+					<h2>Helpful Stuff</h2>
+					<h3>Dos</h3>
+					<ul>
+						<li>Be Original! The way to stand out of the herd, save for the egregious way, is to make a creative and original mission that has interesting commentary.</li>
+						<li>Know your audience, and write your mission accordingly.</li>
+						<li>Good missions take time. The more time you spend, the better your mission will be.</li>
+						<li>One Subject Missions will help hold players' interest.</li>
+					</ul>
+					<h3>Simple Don'ts</h3>
+					<ul>
+						<li>Avoid sites that redirect! Use the final URL or your Mission will break. :(</li>
+						<li>Don't link to pages that require log-ins.</li>
+						<li>Do not include special characters in descriptions or URLs, such as accent marks or % signs.</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	

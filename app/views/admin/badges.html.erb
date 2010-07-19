@@ -1,0 +1,8 @@
+<h1>Number of users per Badge</h1>
+
+<% @badges.each do |badge| %>
+  <a href="/guide/badges/<%= badge.url_name %>"><img src="/images/shared/badges/small/<%= badge.image %>" width='39' height='50' title='<%= badge.name %>' alt='<%= badge.name %>' class="user_badge" align='middle'></a>
+  <a href="/guide/badges/<%= badge.url_name %>"><%= badge.name %></a>: <%= badge.user_count %> users with this badge.
+  <br/>
+  <br/>
+<% end %>

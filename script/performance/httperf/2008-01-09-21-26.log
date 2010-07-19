@@ -1,0 +1,25 @@
+duncan@~ httperf --server www.pmog.com --uri /users/suttree --num-conns 500
+httperf --client=0/1 --server=www.pmog.com --port=80 --uri=/users/suttree --send-buffer=4096 --recv-buffer=16384 --num-conns=500 --num-calls=1
+httperf: warning: open file limit > FD_SETSIZE; limiting max. # of open files to FD_SETSIZE
+Maximum connect burst length: 1
+
+Total: connections 500 requests 500 replies 500 test-duration 316.460 s
+
+Connection rate: 1.6 conn/s (632.9 ms/conn, <=1 concurrent connections)
+Connection time [ms]: min 541.7 avg 632.9 max 4129.8 median 552.5 stddev 341.2
+Connection time [ms]: connect 306.7
+Connection length [replies/conn]: 1.000
+
+Request rate: 1.6 req/s (632.9 ms/req)
+Request size [B]: 76.0
+
+Reply rate [replies/s]: min 0.4 avg 1.6 max 2.0 stddev 0.3 (63 samples)
+Reply time [ms]: response 326.2 transfer 0.0
+Reply size [B]: header 204.0 content 161.0 footer 0.0 (total 365.0)
+Reply status: 1xx=0 2xx=0 3xx=500 4xx=0 5xx=0
+
+CPU time [s]: user 72.65 system 238.59 (user 23.0% system 75.4% total 98.4%)
+Net I/O: 0.7 KB/s (0.0*10^6 bps)
+
+Errors: total 0 client-timo 0 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0

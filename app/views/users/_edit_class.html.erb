@@ -1,0 +1,110 @@
+<!-- WARNING! The interactions in this panel rely entirely on the IDs of all divs, radio buttons and images. Change at your peril! -->
+<a name="Class"></a>
+<h3><a href="#Class">Choose your Class<span>Orderly?  Chaotic?  Benefactor?  Destroyer?  Make your choice within.</span></a></h3>
+<div class="back" id="prefCharacter">
+<% form_tag "/users/#{@user.login}/set_primary_class" do %>
+<h4>Choose your Faction and Class</h4>
+<p style="width:auto;">Click on any of the portraits below to get more detailed information about the Faction and Class.</p>
+<div id="prefCharPanels">
+<div id="prefCharTitles">
+<h2 id="prefTitleChaos">Chaos</h2>
+<h2 id="prefTitleOrder">Order</h2>
+</div>
+<div id="prefCharIllus">
+<div class="charIllusPanel" id="char01"><div class="charPosition"><div class="chaos">
+<input type="radio" name="class" id="radio01" value="seer" <% if @user.user_level.primary_class == 'seer' %>checked="checked"<% end %>/>
+<img src="/images/profile/characters/seerf_portrait.png" alt="Seer" width="126" height="126"/>
+</div><div class="pointer chaos" id="pointer01"></div></div></div>
+<div class="charIllusPanel" id="char02"><div class="charPosition"><div class="chaos">
+<input type="radio" name="class" id="radio02" value="destroyer" <% if @user.user_level.primary_class == 'destroyer' %>checked="checked"<% end %>/>
+<img src="/images/profile/characters/destroyerf_portrait.png" alt="Destroyer" width="126" height="126"/>
+</div><div class="pointer chaos" id="pointer02"></div></div></div>
+<div class="charIllusPanel" id="char03"><div class="charPosition"><div class="chaos">
+<input type="radio" name="class" id="radio03" value="vigilante" <% if @user.user_level.primary_class == 'vigilante' %>checked="checked"<% end %>/>
+<img src="/images/profile/characters/vigilantef_portrait.png" alt="Vigilante" width="126" height="126"/>
+</div><div class="pointer chaos" id="pointer03"></div></div></div>
+<div class="charIllusPanel" id="char04"><div class="charPosition"><div class="order">
+<input type="radio" name="class" id="radio04" value="benefactor" <% if @user.user_level.primary_class == 'benefactor' %>checked="checked"<% end %>/>
+<img src="/images/profile/characters/benefactorf_portrait.png" alt="Benefactor" width="126" height="126"/>
+</div><div class="pointer order" id="pointer04"></div></div></div>
+<div class="charIllusPanel" id="char05"><div class="charPosition"><div class="order">
+<input type="radio" name="class" id="radio05" value="pathmaker" <% if @user.user_level.primary_class == 'pathmaker' %>checked="checked"<% end %>/>
+<img src="/images/profile/characters/pathmakerf_portrait.png" alt="Pathmaker" width="126" height="126"/>
+</div><div class="pointer order" id="pointer05"></div></div></div>
+<div class="charIllusPanel" id="char06"><div class="charPosition"><div class="order">
+<input type="radio" name="class" id="radio06" value="bedouin" <% if @user.user_level.primary_class == 'bedouin' %>checked="checked"<% end %>/>
+<img src="/images/profile/characters/bedouinf_portrait.png" alt="Bedouin" width="126" height="126"/>
+</div><div class="pointer order" id="pointer06"></div></div></div>
+</div>
+<div id="prefCharDetails">
+<div class="charDetailPanel" id="detail00">
+<span id="charDetailDefault">
+<h2>Do you strive for Order? Or do you fight for Chaos? Don't worry, you can change your mind later.</h2>
+<p>Choosing a Class does not limit the tools you can use, nor does it give you any inherent benefits.  However, it does give other players an idea of the type of Netizen you are or plan to be.</p>
+<p>So, select a Class that you most connect with or see yourself becoming.  Don't worry, you can always change this later!</p>
+</span>
+</div>
+<div class="charDetailPanel" id="detail01">
+<span class="details">
+<h4>Chaos</h4>
+<%= render :partial => '/shared/guide/chaos_description' %>
+<h4><%= PmogClass.find_by_name("Seers").name.singularize %></h4>
+<p><%= PmogClass.find_by_name("Seers").short_description %></p>
+</span>
+<span class="image"><img src="/images/profile/characters/seer-animation.png" alt="Seer" width="165" height="420"/></span>
+</div>
+<div class="charDetailPanel" id="detail02">
+<span class="details">
+<h4>Chaos</h4>
+<%= render :partial => '/shared/guide/chaos_description' %>
+<h4><%= PmogClass.find_by_name("Destroyers").name.singularize %></h4>
+<p><%= PmogClass.find_by_name("Destroyers").short_description %></p>
+</span>
+<span class="image"><img src="/images/profile/characters/destroyer-animation.png" alt="Destroyer" width="170" height="420"/></span>
+</div>
+<div class="charDetailPanel" id="detail03">
+<span class="details">
+<h4>Chaos</h4>
+<%= render :partial => '/shared/guide/chaos_description' %>
+<h4><%= PmogClass.find_by_name("Vigilantes").name.singularize %></h4>
+<p><%= PmogClass.find_by_name("Vigilantes").short_description %></p>
+</span>
+<span class="image"><img src="/images/profile/characters/vigilante-animation.png" alt="Vigilante" width="154" height="420"/></span>
+</div>
+<div class="charDetailPanel" id="detail04">
+<span class="details">
+<h4>Order</h4>
+<%= render :partial => '/shared/guide/order_description' %>
+<h4><%= PmogClass.find_by_name("Benefactors").name.singularize %></h4>
+<p><%= PmogClass.find_by_name("Benefactors").short_description %></p>
+</span>
+<span class="image"><img src="/images/profile/characters/benefactor-animation.png" alt="Benefactor" width="205" height="420"/></span>
+</div>
+<div class="charDetailPanel" id="detail05">
+<span class="details">
+<h4>Order</h4>
+<%= render :partial => '/shared/guide/order_description' %>
+<h4><%= PmogClass.find_by_name("Pathmakers").name.singularize %></h4>
+<p><%= PmogClass.find_by_name("Pathmakers").short_description %></p>
+</span>
+<span class="image"><img src="/images/profile/characters/pathmaker-animation.png" alt="Pathmaker" width="180" height="420"/></span>
+</div>
+<div class="charDetailPanel" id="detail06">
+<span class="details">
+<h4>Order</h4>
+<%= render :partial => '/shared/guide/order_description' %>
+<h4><%= PmogClass.find_by_name("Bedouins").name.singularize %></h4>
+<p><%= PmogClass.find_by_name("Bedouins").short_description %></p>
+</span>
+<span class="image"><img src="/images/profile/characters/bedouin-animation.png" alt="Bedouin" width="164" height="420"/></span>
+</div>
+</div>
+</div>
+<div class="formElement">
+<div class="button">
+<%= submit_tag 'Save Changes', :class => 'input tag_submit' %>
+</div>
+<p><input type="radio" name="class" id="radio00" value="skip" <% if @user.user_level.primary_class == "shoat" %>checked="checked"<% end %>/> <label for="radio00">Skip it. Choose for me, please.</label></p>
+</div>
+<% end %>
+</div>

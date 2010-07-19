@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/codex/bg_mine.png);
+background-position:center 10px;
+background-repeat:no-repeat;
+}

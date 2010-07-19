@@ -1,0 +1,28 @@
+<div class="pmog_action">
+
+	<div class="pmog_action_link"><a href="<%= host %>">PMOG</a></div>
+	
+	<%= render :partial => "shared/ext/button_close", :locals => { :window_id => @lightpost.id || Time.now.to_i } %>
+
+	<img src="<%= host %>/images/shared/tools/icon/lightpost-16.png" width="14" height="17" class="pmog_action_margin" alt="Lightpost" />
+
+	<div class="pmog_action_text">
+
+		<% if @lightpost.valid? %>
+		  Your lightpost is good to glow!
+		<% elsif @lightpost.errors.on(:location_id) %>
+		  <%= @lightpost.errors.on(:location_id) %>
+    <% else -%>
+			failed to create a lightpost :(
+
+		<% end %>
+    
+	</div>
+
+  <br style="clear:both;">
+  
+  <div style="text-align:center;"><a href="<%= host %>/users/<%= current_user.login %>/lightposts/" target="new">Edit Lightposts</a></div>
+
+</div>
+
+<br style="clear:both;">

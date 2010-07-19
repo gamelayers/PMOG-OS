@@ -1,0 +1,363 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "/css/ui.tabs.css", "/css/jquery.rating.css" %>
+
+  <%= javascript_include_tag 'ui.tabs' %>  
+  <%= javascript_include_tag 'ui.subtabs' %>
+  <%= javascript_include_tag 'jquery.dimensions' %>
+  <%= javascript_include_tag 'jquery.tooltip' %>
+  <%= javascript_include_tag 'jquery.event.hover-1.0' %>
+
+<script type="text/javascript">
+  // DO tabification
+  jQuery(function(){
+    jQuery('.tabs > ul').tabs({fx:{opacity:'toggle',duration:200}});
+    jQuery('.subtabs > ul').subtabs({fx:{opacity:'toggle',duration:200}});
+    jQuery(".tip").tooltip({track:false,delay:0,showURL:false,showBody:" - ",fixPNG:true,opacity:0.95,left:-100,fade:"toggle",duration:200});
+
+    //DO mission table fx
+    jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});
+    jQuery("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+    jQuery("ol.stripeMe li:even").addClass("whiteEven");
+    jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});
+
+    // DO main profile image fx
+    jQuery('a#profileOpener').click(function () {jQuery('#profilePop').show();});
+    jQuery('a#profileCloser').click(function () {jQuery('#profilePop').hide();});
+    jQuery('#profilePop').hover(function(){jQuery(this).fadeIn(100);},function(){jQuery(this).fadeOut(500);});
+
+    // DO contact mouseovers, etc.
+    jQuery('.avatarPop').prev().append('<a href="javascript:;" class="opener"></a>');
+    jQuery('.avatarOver').append('<a href="javascript:;" class="closer"></a>');
+    jQuery('.avatarPop').hide();
+
+    jQuery('a.opener').click(function() {
+      jQuery(this).parent().next('.avatarPop').show();
+      return false;
+    });
+
+    jQuery('a.closer').click(function() {
+      jQuery(this).parents('.avatarPop').hide();
+      return false;
+    });
+
+    jQuery('.avatarPop').hover(function(){
+      jQuery(this).fadeIn(100);},function(){jQuery(this).fadeOut(500);
+    });
+
+    //DO badges slider
+    //SET THE MINIMUM HEIGHT
+    var sliderHeight = "175px";
+
+    //HIDE "SEE MORE" IF NO MORE TO SEE
+    jQuery('#profileBadges .slider_menu').hide();
+
+    if (jQuery('#badgesInner').height() >= 176) {
+      jQuery('#profileBadges .slider_menu').show();
+    }
+
+    jQuery('.slider').each(function () {
+      var current = jQuery(this);
+      current.attr("box_h", current.height());
+    });
+
+    jQuery(".slider").css("height", sliderHeight);
+    jQuery(".slider_menu").html('<a href="javascript:;">See More</a>');
+    jQuery(".slider_menu a").click(function() { openSlider(); });
+
+    function openSlider(){
+      var open_height = jQuery(".slider").attr("box_h") + "px";
+      jQuery(".slider").animate({"height": open_height}, {duration: "slow" });
+      jQuery(".slider_menu").html('<a href="javascript:;">See Less</a>');
+      jQuery(".slider_menu a").click(function() { closeSlider(); });
+    }
+
+    function closeSlider(){
+      jQuery(".slider").animate({"height": sliderHeight}, {duration: "slow" });
+      jQuery(".slider_menu").html('<a href="javascript:;">See More</a>');
+      jQuery(".slider_menu a").click(function() { openSlider(); });
+    }
+
+  });    
+</script>
+
+<% end %>
+
+
+<% content_for :head do %>
+
+  <script type="text/javascript">
+    //DO mission table fx
+    jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});
+    jQuery("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+    jQuery("ol.stripeMe li:even").addClass("whiteEven");
+    jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});
+	</script>
+  <%= stylesheet_link_tag '/css/supplemental-missions' %>
+  <%= stylesheet_link_tag "/css/ui.tabs.css", "/css/jquery.rating.css" %>
+	<%= auto_discovery_link_tag(:rss, formatted_missions_url(:format => "rss"), { :title => "Latest missions on PMOG" }) %>
+<% end %>
+
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<div class="main">Missions</span></div>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'missions/search_form' %>
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960">
+
+		<div class="column width700">
+					
+      <div class="tabs">
+	          
+<!-- MAIN MISSIONS TABS (FIRST TAB ALWAYS OPEN ON LOAD) -->
+
+  		    <ul>
+		        <li><a href="#latest"><div class="l"></div><span>Latest</span><div class="r"></div></a></li>
+      		  <li><a href="#top-rated"><div class="l"></div><span>Top-Rated</span><div class="r"></div></a></li>
+		        <li><a href="#the-nethernet"><div class="l"></div><span>The Nethernet</span><div class="r"></div></a></li>
+	          <% if logged_in? %>
+		          <li><a href="#yours"><div class="l"></div><span>Yours</span><div class="r"></div></a></li>
+		        <% end %>
+		      </ul>
+
+<!-- LATEST -->
+
+					<div id="latest">
+						<div class="subtabs" id="latestTabs">
+							<div id="missions_lists-latest" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+					</div>
+
+<!-- TOP-RATED -->
+
+					<div id="top-rated">
+						<div class="subtabs" id="top-ratedTabs">
+							<ul>
+								<li><a href="#top-ratedDate">Date</a></li>
+								<li>|</li>
+								<li><a href="#top-ratedRating">Rating</a></li>
+							</ul>
+							
+							<div id="top-ratedDate">
+								<div id="missions_lists-top-ratedDate" class="missions_lists">
+									<%= render :partial => 'association_list' %>
+								</div>
+							</div>
+
+							<div id="top-ratedRating">
+								<div id="missions_lists-top-ratedRating" class="missions_lists">
+									<%= render :partial => 'association_list' %>
+								</div>
+							</div>
+						</div>
+					</div>
+
+<!-- NETHERNET -->
+
+					<div id="the-nethernet">
+						<div class="subtabs" id="the-nethernetTabs">
+							<div id="missions_lists-the-nethernet" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+					</div>
+					
+<!-- YOURS -->
+
+					<div id="yours">
+						<div class="subtabs" id="yourTabs">
+						<ul>
+							<li><a href="#yoursGenerated">Generated</a></li>
+							<li>|</li>
+							<li><a href="#yoursDrafts">Drafts</a></li>
+							<li>|</li>
+							<li><a href="#yoursQueued">Queued</a></li>
+							<li>|</li>
+							<li><a href="#yoursFavorites">Favorites</a></li>
+							<li>|</li>
+							<li><a href="#yoursTaken">Taken</a></li>
+							<li>|</li>
+							<li><a href="#yoursContacts">Contacts'</a></li>
+						</ul>
+					
+						<div id="yoursGenerated">
+							<div id="missions_lists" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+
+						<div id="yoursDrafts">
+							<div id="missions_lists" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+
+						<div id="yoursQueued">
+							<div id="missions_lists" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+
+						<div id="yoursFavorites">
+							<div id="missions_lists" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+
+						<div id="yoursTaken">
+							<div id="missions_lists" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+
+						<div id="yoursContacts">
+							<div id="missions_lists" class="missions_lists">
+								<%= render :partial => 'association_list' %>
+							</div>
+						</div>
+
+
+					</div>
+					</div>
+					
+		</div>
+	</div>
+
+		<div class="column width240">
+			<div class="module width240">
+				<div class="imageTop">
+					<div class="ImageTop" style="background-image:url(/images/shared/dressing/missions-100.png); width:100px;height:141px;" title="Missions Globe">
+					</div>
+				</div>
+
+				<h2>Missions</h2>
+				<p>
+				<a href="/missions/new">Make A Mission</a><br/>
+				<a href="/forums/social-tools">Get Advice</a><br/>
+				<a href="/guide/rules/missions">About Missions</a><br/>
+				Good Missions<br/>
+				<a href="/guide/support">Support<br/></a>
+				</p>
+			</div>
+			<div class="imageTop">
+				<div class="ImageTop" style="background-image:url(/images/shared/dressing/pathmakershoat-240.png); width:240px;height:575px;" title="Teach A Shoat to Make a Mission"></div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+					
+<div class="missions_lists_header" id="missions_lists_header">
+
+<%= render :partial => 'index_header' %>
+  
+</div>
+	
+<div class="missions_top_menu">
+
+  <div class="missions_top_menu_wrapper">
+
+
+  <div class="missions_top_menu_item_first"><img src="/images/missions/index_layout/associations.png" width="16" height="16" alt="" class="missions_top_menu_icon" /> <a href="#" onclick="Effect.Appear('missions_sub_menu');Effect.Appear('missions_associations');jQuery('#missions_sponsored').hide();jQuery('#missions_yours').hide();return false;">Associations</a>
+  </div>
+		
+  <div class="missions_top_menu_item"><img src="/images/missions/index_layout/sponsored.png" width="14" height="14" alt="" class="missions_top_menu_icon" /> <a href="#" onclick="Effect.Appear('missions_sub_menu');Effect.Appear('missions_sponsored');jQuery('#missions_associations').hide();jQuery('#missions_yours').hide();return false;">Sponsored</a></div>
+
+  <div class="missions_top_menu_item"><%= link_to_remote "Top-Rated", :url => { :controller => 'missions', :action => 'highest_rated' }, :html => { :onclick => "jQuery('#missions_sponsored').hide();jQuery('#missions_associations').hide();" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+  <div class="missions_top_menu_item"><%= avatar_for_user(:user => current_user, :size => 'mini', :class => 'missions_top_menu_icon') if logged_in? and current_user.has_avatar? %> 
+  <% if logged_in? %>
+    <a href="#" onclick="Effect.Appear('missions_sub_menu');Effect.Appear('missions_yours');jQuery('#missions_associations').hide();jQuery('#missions_sponsored').hide();return false;">Yours</a>
+  <% else %>
+  Yours
+  <% end %>
+  </div>
+    
+  <div class="missions_top_menu_item"> <%= link_to_remote "Nethernet", :url => { :controller => 'missions', :action => 'pmog_missions' }, :html => { :onclick => "jQuery('#missions_sponsored').hide();jQuery('#missions_associations').hide();" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+  
+  </div>
+  
+</div>
+
+<div class="missions_sub_menu_wrapper">
+
+<div class="missions_sub_menu" id="missions_sub_menu" style="display:none;">
+
+  <div id="missions_associations" style="display:none;" class="missions_associations">
+
+    <div class="missions_sub_menu_item_assoc_first"><%= link_to_remote "Shoat", :url => { :controller => 'missions', :action => 'association', :id => "shoat" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Pathmaker", :url => { :controller => 'missions', :action => 'association', :id => "pathmaker" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Seer", :url => { :controller => 'missions', :action => 'association', :id => "seer" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Benefactor", :url => { :controller => 'missions', :action => 'association', :id => "benefactor" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Vigilante", :url => { :controller => 'missions', :action => 'association', :id => "vigilante" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Bedouin", :url => { :controller => 'missions', :action => 'association', :id => "bedouin" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Destroyer", :url => { :controller => 'missions', :action => 'association', :id => "destroyer" }, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+  
+  </div>
+
+  <div id="missions_sponsored" style="display:none;">
+    
+    <div class="missions_coming_soon">Coming Soon - E-mail <span style="color:blue;">partners at pmog dot com</span> for details.</div>
+    
+  </div>
+
+  <div id="missions_yours" style="display:none;" class="missions_yours">
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Taken", :url => { :controller => 'missions', :action => 'user_missions', :id => "taken" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Generated", :url => { :controller => 'missions', :action => 'user_missions', :id => "generated" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Drafts", :url => { :controller => 'missions', :action => 'user_missions', :id => "drafts" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Queued", :url => { :controller => 'missions', :action => 'user_missions', :id => "queued" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Favorites", :url => { :controller => 'missions', :action => 'user_missions', :id => "favorites" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+  
+    <div class="missions_sub_menu_item"><%= link_to_remote "Acquaintances", :url => { :controller => 'missions', :action => 'user_missions', :id => "acquaintances" }, :method => :get, :loading => "jQuery('#loading').show();",:complete => "jQuery('#loading').hide();" %></div>
+  
+  </div>
+
+</div>
+
+</div>
+
+</div>
+<!--  <div id="loading" style="display:none;"><center><img src="/images/ajax-loader.gif" class="no_img_border" /></center></div>
+-->
+
+	<div id="missions_lists" class="missions_lists">
+		<%= render :partial => 'association_list' %>
+	</div>			
+
+
+						</div>
+
+				</div>
+
+</div>
+							</div>

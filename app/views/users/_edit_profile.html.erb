@@ -1,0 +1,60 @@
+<h3><a href="javascript:;">Profile<span>Provide your name, motto, location and change your e-mail here.</span></a></h3>
+<div class="back" id="prefProfile">
+<div id="prefProfile">
+<%= error_messages_for :user %>
+<% error_handling_form_for(@user) do |f| %>
+<div class="formElement">
+<label for="user_email">Email</label>
+<%= f.text_field :email %>
+<div class="extendThis">Click to edit your e-mail address.  Use a real one: we don't spam!</div>
+</div>
+<div class="formElement">
+<label for="user_forename">Name</label>
+<%= f.text_field :forename %>
+<%= f.text_field :surname %>
+<div class="extendThis">Provide your real name or an alias.</div>
+</div>
+<!--
+<div class="formElement">
+<label for="user_date_of_birth">Date of birth</label>
+<%#= f.date_select :date_of_birth, :start_year => 1910, :end_year => Time.now.year - 5, :use_short_month => true, :order => [:day, :month, :year], :include_blank => true %>
+<div class="extendThis">We have to ask for legal reasons! You can hide your age from prying eyes in the Privacy options.</div>
+</div>-->
+<div class="formElement">
+<label for="user_gender">Gender</label>
+<%= f.select :gender, User::SEX %>
+<div class="extendThis">Your gender.</div>
+</div>
+<div class="formElement">
+<label for="user_url">Your personal site or blog</label>
+<%= f.text_field :url, :label => "Your personal site or blog" %>
+<div class="extendThis">Promote your own site or blog!  Don't have one?  Link up your Twitter or Facebook profile.</div>
+</div>
+<div class="formElement">
+<label for="user_country">Country</label>
+<%= f.country_select :country, [ 'United States', 'United Kingdom' ], {} %>
+<div class="extendThis">Represent!</div>
+</div>
+<div class="formElement">
+<label for="user_motto">Motto</label>
+<%= f.text_field :motto %>
+<div class="extendThis">This catchphrase or quote will show on your profile page.</div>
+</div>
+<div class="formElement">
+<label for="user_identity_url">OpenID URL</label>
+<%= f.text_field :identity_url, :label => "Your Personal OpenID URL including \"http://\" (optional)" %>
+<div class="extendThis">If you use OpenID, you can log into the Nethernet website by providing your URL here (Optional).</div>
+</div>
+<div class="formElement">
+<label for="user_time_zone">Time zone</label>
+<%= f.time_zone_select :time_zone, TZInfo::Timezone.all.sort, :model => TZInfo::Timezone %></select>
+<div class="extendThis">Keep track of time.</div>
+</div>
+<div class="formElement">
+<div class="button">
+<%= f.submit 'Update' %>
+</div>
+</div>
+<% end %>
+</div>
+</div>

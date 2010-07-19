@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/missions/generator.png);
+background-position:466px 50px;
+background-repeat:no-repeat;
+}

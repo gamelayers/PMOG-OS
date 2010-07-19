@@ -1,0 +1,82 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/rules" %>
+		<div class="cell child"><span class="l"></span><span class="c">Recruiting New Players</span><span class="r"></span></div>
+	</div>
+<% end %>
+
+<div id="copy">
+
+	<div class="column width960">
+
+		<div class="column width700">
+
+			<div class="module width700">
+			
+<h1>Recruiting New Players</h1>
+<h5>Expand Your in-game <s>Targets</s> Friendship Circle</h5>
+
+<br />
+
+<p>On The Nethernet an 3p1c battle rages between ORDER AND CHAOS!!!11!</p>
+
+<p>You need help, allies to coordinate your orderly efforts.  Or maybe you need rivals to raise your destructive scores!  Successful invites earn you <%= GameSetting.value('Invite DP').to_i %> <%= dp_icon %>, <%= GameSetting.value('Invite Pings').to_i %> <%= ping_icon %> and progress towards these badges:</p>
+
+<center>
+<table><tr>
+<td align="center">
+<a href="/guide/badges/inviting"><img src="/images/shared/badges/medium/inviting.png" alt="Inviting" border="0" width="125" height="161" /></a>
+<h4 style="margin-top: 5px;"><a href="/guide/badges/inviting">Inviting</a></h4>
+</td><td>&nbsp;</td><td align="center">
+<a href="/guide/badges/alluring"><img src="/images/shared/badges/medium/alluring.png" alt="Alluring" border="0" width="125" height="161" /></a>
+<h4 style="margin-top: 5px;"><a href="/guide/badges/alluring">Alluring</a></h4>
+</td><td align="center">
+<a href="/guide/badges/magnetic"><img src="/images/shared/badges/medium/magnetic.png" alt="Magnetic" border="0" width="125" height="161" /></a>
+<h4 style="margin-top: 5px;"><a href="/guide/badges/magnetic">Magnetic</a></h4>
+</td>
+</tr></table>
+</center>
+
+<% if logged_in? %>
+<h2>Your Link</h2>
+
+<p>Here's a link you can post on your weblog, online forums, Twitter - wherever you like to link:</p>
+
+<p><tt>http://thenethernet.com/join/<%= current_user.login %></tt></p>
+
+<p>We have some images you can use with your link.  Here is some code you can copy and paste to your blog or website template where you want the image to appear:</p>
+
+<!-- the width of this textarea is calibrated for 20 character usernames -->
+
+<img src="/images/about/joinme-180-tall.png" width="180" border="0" align="left" hspace="6" />
+<br/>
+<textarea style="height:50px;width:450px;">&lt;a href="http://thenethernet.com/join/<%= current_user.login %>"&gt;&lt;img src="http://thenethernet.com/images/about/joinme-180-tall.png" width="180" border="0" /&gt;&lt;/a&gt;</textarea>
+
+<br clear="all"/>
+<br/>
+
+<img src="/images/about/joinme-180-short.png" width="180" border="0" align="left" hspace="6" />
+
+<textarea style="height:50px;width:450px;">&lt;a href="http://thenethernet.com/join/<%= current_user.login %>"&gt;&lt;img src="http://thenethernet.com/images/about/joinme-180-short.png" width="180" border="0" /&gt;&lt;/a&gt;</textarea>
+
+<div class="height20"></div>
+
+<p>Whether you use that link above, or the <a href="/invite/invite_forward">Inviting Tools</a>, we thank you for inviting people to play with us on The Nethernet.  More Players = More Fun.</p>
+
+<% end %>
+
+						</div>
+					
+					</div>
+				
+				</div>
+				
+			<div class="column width960">
+			
+				<%= render :partial => "shared/guide/rules" %>
+				
+				<%= render :partial => "shared/guide/guide_module" %>
+				
+			</div>
+
+		</div>

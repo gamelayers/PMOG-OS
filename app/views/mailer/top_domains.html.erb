@@ -1,0 +1,5 @@
+Top Domains for <%= Date.yesterday %>
+
+<% @top_tlds.each_with_index do |tld, index| %>
+  <%= index + 1 %>. <%= tld[0] %> - <%= tld[1] %>
+<% end %>

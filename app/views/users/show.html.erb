@@ -1,0 +1,305 @@
+<%= render :partial => 'users_head' %>
+
+<!-- <%= "Time now #{Time.now.to_s(:db)}" %> -->
+<%# cache( :fragment => @cache_key ) do %>
+<!-- <%= "Cached at #{Time.now.to_s(:db)}" %> -->
+
+<div id="copy">
+	<!-- FULL WIDTH COLUMN POSITIONING-->
+	<div class="column width960">
+		<!-- LEFT PROFILE MODULES -->
+		<div class="column width700">
+			<!-- USER PROFILE MODULE -->
+			<div class="column width220">
+				<div class="module width220" id="profileUser">
+					<div id="userAvatar">
+						<%= avatar_link_to_user :user => @user, :size => 'profile' %>
+						<a href="javascript:;" id="profileOpener"></a>
+					</div>
+					<h2><%= @user.login %></h2>
+					<h4 class="userStanding">
+						<%= @user.user_level.primary_class.titleize %>
+						<% if @user.gender %>
+						<% if @user.gender.upcase == "M" %>
+						<a href="/guide/classes/<%= @user.user_level.primary_class %>"><img class="icon32" src="/images/shared/associations/icon/<%= @user.user_level.primary_class %>-M-32.png" alt="A Male <%= @user.user_level.primary_class.titleize %>" title="A Male <%= @user.user_level.primary_class.titleize %>" /></a>
+						<% else %>
+						<a href="/guide/classes/<%= @user.user_level.primary_class %>"><img class="icon32" src="/images/shared/associations/icon/<%= @user.user_level.primary_class %>-F-32.png" alt="A Female <%= @user.user_level.primary_class.titleize %>" title="A Female <%= @user.user_level.primary_class.titleize %>" /></a>
+						<% end %>
+						<% else %>
+						<a href="/guide/classes/<%= @user.user_level.primary_class %>"><img class="icon32" src="/images/shared/associations/icon/<%= @user.user_level.primary_class %>-32.png" alt="<%= @user.user_level.primary_class.titleize %>" title="<%= @user.user_level.primary_class.titleize %>" /></a>
+						<% end %>
+						Level <%= @user.current_level %>
+					</h4>
+
+					<!-- RATINGS module -->
+					<% if logged_in? %>
+					<div id="show_rating">
+						<%= render :partial => 'show_ratings' %>
+					</div>
+					<% end %>
+
+					<%# if @user.cached_has_role?'site_admin' %>
+					<% if @user.admin? %>
+					<h3 class="userStanding"><img src="/images/icons/roles/trustee-16.png" class="icon16" alt="Trustee" title="Trustee" />&nbsp;Trustee</h3>
+					<% end %>
+
+					<%# if @user.cached_has_role?'steward' %>
+					<% if @user.steward? %>
+					<h3 class="userStanding"><img src="/images/icons/roles/steward-16.png" class="icon16" alt="Steward" title="Steward" />&nbsp;Steward</h3>
+					<% end %>
+
+					<% if @user.npc? %>
+					<h3 class="userStanding"><img src="/images/icons/roles/steward-16.png" class="icon16" alt="Character" title="Character" />&nbsp;Character</h3>
+					<% end %>
+
+					<span id='show_rate'></span>
+
+					<% if logged_in? and @user.id == current_user.id %>
+					<table id="profileAdd">
+						<tbody>
+							<tr>
+								<td align="center" style="font-size: 12px;">
+									
+									<img src="/images/shared/icons/pmail-16.png" alt="pmail"> <a href="/users/<%= current_user.login %>/messages"><%= current_user.messages.unread_count %> PMails</a> | <%= link_to 'edit profile', edit_user_path(@user) + '?section=0' %>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<% elsif logged_in? and @user != current_user %>
+					<%= render :partial => 'show_acquaint_controls' %>
+					<% end %>
+				</div>
+			</div>
+			<!-- /USER PROFILE MODULE -->
+
+			<div class="column width460">
+				<!-- USER STATUS MODULE -->
+				<div class="module blank width460" id="profileStatus">
+					<p>
+						<%= render :partial => "events/event", :locals => { :event => @events.first } %>
+					</p>
+					<!-- ACTIONS -->
+					<%= render :partial => 'show_actions' %>
+				</div>
+				<!-- /USER STATUS MODULE -->
+
+				<!-- SPACER BETWEEN STATUS AND INFO -->
+				<div class="height20"></div>
+				<!-- /SPACER -->
+
+				<!-- PLAYER INFO MODULE -->
+				<h2>Player Info</h2>
+				<div class="module width460 subtabs" id="profileInfo">
+					<ul>
+						<li><%= render :partial => "shared/spinner", :locals => { :spinner_id => "profile_panel_spinner" } %> &nbsp;&nbsp;</li>
+						<% if show_content?(@user, current_user, Preference.preferences[:profile_info][:text])  %>
+							<li><a href="#profile_general" onclick="reloadPanel('profile', 'general');"><span>General</span></a></li>
+							<li>|</li>
+						<% end %>
+						<li><a href="#profile_inventory" onclick="reloadPanel('profile', 'inventory');"><span>Arsenal</span></a></li>
+						<li>|</li>
+						<li><a href="#profile_classes" onclick="reloadPanel('profile', 'classes');"><span>Classes</span></a></li>
+						<!--<li>|</li>
+						<li><a href="#profile_tags" onclick="reloadPanel('profile', 'tags');"><span>Tags</span></a></li>-->
+						<% if logged_in? && @user == current_user %>
+						<li>|</li>
+						<li><a href="#profile_feeds" onclick="reloadPanel('profile', 'feeds');"><span>Feeds</span></a></li>
+						<% end %>
+						<% if site_admin? %>
+						<li>|</li>
+						<li><a href="#profile_admin" onclick="reloadPanel('profile', 'admin');"><span>Admin</span></a></li>
+						<li>|</li>
+						<li><a href="#profile_invitees" onclick="reloadPanel('profile', 'invitees');"><span>Invites</span></a></li>
+						<li>|</li>
+						<li><a href="#profile_soul_marks" onclick="reloadPanel('profile', 'soul_marks');"><span>SoulMarks</span></a></li>
+						<% end %>
+						<% if steward? %>
+						<li>|</li>
+						<li><a href="#profile_steward" onclick="reloadPanel('profile', 'steward');"><span>Steward</span></a></li>
+						<li>|</li>
+						<li><a href="#profile_soul_marks" onclick="reloadPanel('profile', 'soul_marks');"><span>Soul Marks</span></a></li>
+						<% end %>
+					</ul>
+
+					<% if show_content?(@user, current_user, Preference.preferences[:profile_info][:text])  %>
+						<div id="profile_general">
+							<!-- start with the general tab on the full page load -->
+							<%= render :partial => 'show_general' %>
+						</div>
+						<div id="profile_inventory"></div>
+					<% else %>
+						<div id="profile_inventory">
+							<%= render :partial => 'show_inventory' %>
+						</div>
+					<% end %>
+
+					<div id="profile_classes"></div>
+<!--					<div id="profile_tags"></div>-->
+					<div id="profile_feeds"></div>
+					<div id="profile_admin"></div>
+					<div id="profile_steward"></div>
+					<div id="profile_invitees"></div>
+          <div id="profile_soul_marks"></div>
+
+				</div>
+
+				<!-- /PLAYER INFO -->
+			</div>
+			<!-- /TOP-LEFT PROFILE MODULES -->
+
+			<!-- SPACER BETWEEN TOP-LEFT AND BOTTOM-LEFT MODULES -->
+			<div class="height20"></div>
+			<!-- /SPACER -->
+
+			<!-- BOTTOM-LEFT (TABBED) PROFILE MODULE -->
+			<div class="column width700">
+				<div class="tabs" id="profileStatus">
+					<!-- MAIN STATUS TABS (FIRST TAB ALWAYS OPEN ON LOAD) -->
+					<ul>
+						<%# if show_content?(@user, current_user, Preference.preferences[:events][:text])  %>
+						<li><a href="#events" onclick="reloadPanel('bottom', 'events');"><div class="l"></div><span>Events</span><div class="r"></div></a></li>
+						<%# end %>
+						<% if show_content?(@user, current_user, Preference.preferences[:mission_hist][:text])  %>  
+						<li><a href="#missions" onclick="reloadPanel('bottom', 'missions');"><div class="l"></div><span>Missions</span><div class="r"></div></a></li>
+						<% end %>
+						<% if show_content?(@user, current_user, Preference.preferences[:forum_data][:text]) %>  
+						<li><a href="#forums" onclick="reloadPanel('bottom', 'forums');"><div class="l"></div><span>Forums</span><div class="r"></div></a></li>
+						<% end %>
+						<li><a href="#awsmattack" onclick="reloadPanel('bottom', 'awsmattack');"><div class="l"></div><span>Awsm vs Attack</span><div class="r"></div></a></li>
+						<li><%= render :partial => "shared/spinner", :locals => { :spinner_id => "bottom_panel_spinner" } %></li>
+					</ul>
+
+					<%# if show_content?(@user, current_user, Preference.preferences[:events][:text])  %>
+					<!-- EVENTS -->
+					<div id="events">
+						<%= render :partial => 'show_events' %>
+					</div>
+					<!-- /EVENTS -->
+					<%# end %>
+
+					<% if show_content?(@user, current_user, Preference.preferences[:mission_hist][:text]) %>
+					<!-- MISSIONS -->
+					<div id="missions">
+					</div>
+					<!-- /MISSIONS -->
+					<% end %>
+
+					<% if show_content?(@user, current_user, Preference.preferences[:forum_data][:text]) %>  
+					<!-- FORUMS -->
+					<div id="forums">
+          </div>
+					<!-- /FORUMS -->
+					<% end %>
+
+					<!-- AWSM ATTACKS -->
+					<div id="awsmattack"></div>
+					<!-- /AWSM ATTACKS -->
+				</div>
+				<!-- /MAIN STATUS TABS -->
+			</div>
+			<!-- /BOTTOM-LEFT (TABBED) PROFILE MODULE -->
+		</div>
+		<!-- /LEFT PROFILE MODULES -->
+
+		<!-- RIGHT MODULES -->
+		<div class="column width240">
+
+			<% if logged_in? and @user.id == current_user.id %>
+			<% if current_user.current_level.to_i < 5 %>
+			<!-- OBJECTIVES -->
+			<%= render :partial => 'show_objectives' %>
+			<!-- /OBJECTIVES -->
+			<div class="height20"></div>
+			<% end %>
+			<% end %>
+
+			<!-- CONTACTS -->
+			<% if show_content?(@user, current_user, Preference.preferences[:acquaintances][:text])  %>
+			<%= render :partial => 'show_contacts' %>
+			<% end %>
+			<!-- /CONTACTS -->
+
+			<!-- SPACER BETWEEN BADGES & CONTACTS -->
+			<div class="height20"></div>
+			<!-- /SPACER -->
+
+			<!-- BADGES -->
+			<% if show_content?(@user, current_user, Preference.preferences[:badges][:text])  %>  
+			<%= render :partial => 'show_badges' %>
+			<% end %>
+			<!-- /BADGES -->
+			
+			<!-- SPACER BETWEEN BADGES & TAGS -->
+			<div class="height20"></div>
+			<!-- /SPACER -->
+
+			<!-- TAGS -->
+			<% if show_content?(@user, current_user, Preference.preferences[:tags][:text]) %>  
+			<%= render :partial => 'show_tags' %>
+			<% end %>
+			<!-- /TAGS -->
+
+
+		</div>
+
+		<!-- /RIGHT MODULES -->
+	</div>
+	<!-- /FULL-WIDTH COLUMN POSITIONING -->
+
+	<!-- PROFILE POP-UP (positioned here to appear over everything else, but 'attached' to profile -->
+	<div id="profilePop">
+		<div id="profilePopIn">
+			<div id="userOver">
+				<img class="avatar175" src="<%= avatar_path_for_user(:user => @user, :size => 'profile') %>" alt="<%= @user.login %>">
+				<a href="javascript:;" id="profileCloser"></a>
+			</div>
+			<div id="userAction">
+				<% if logged_in? and current_user.login == @user.login %>
+				<h2><a href="/users/<%= @user.login %>"><%= @user.login %></a> is you!</h2>
+				<% elsif logged_in? and current_user.buddies.allied_with? @user %>
+				<h2><a href="/users/<%= @user.login %>"><%= @user.login %></a> is your ally</h2>
+				<% elsif logged_in? and current_user.buddies.acquainted_with? @user %>
+				<h2><a href="/users/<%= @user.login %>"><%= @user.login %></a> is your contact</h2>
+				<% elsif logged_in? and current_user.buddies.rivaled_with? @user %>
+				<h2><a href="/users/<%= @user.login %>"><%= @user.login %></a> is your rival</h2>
+				<% else %>
+				<h2><a href="/users/<%= @user.login %>"><%= @user.login %></a> is new to you. <!--a player--></h2>
+				<% end %>
+
+<%# if logged_in? && @user != current_user %>
+				<!-- IMPORTANT: If the user is you, none of the following should show
+					Your options should be - "<a href="">See your Contacts</a>" or "<a href="">Visit your Message Center</a>"-->
+<!--					<hr noshade size="1" color="#ccc"/>
+
+					<h3>Act on this player</h3>
+					<p>
+						<a href="[Message]">Send a Message</a><br />
+						<a href="[DPCard]">Leave a DP Card</a><br />
+						<a href="[ACTION]">Stash a Crate</a><br />
+						<a href="[ACTION]">Attach a St. Nick</a><br />
+						<a href="[ACTION]">Toss A Grenade</a><br />
+					</p><br />
+					<h3>Define your relationship</h3>
+
+					<p>--><!-- There is need sfor all the conditionals here from _avatar_actions.html.erb-->
+<!--						<a href="">Make an Ally</a><br />
+						<a href="">Make a Contact</a><br />
+						<a href="">Make a Rival</a><br />
+					</p>-->
+					<!--            
+						<br/>
+						<h4>View their</h4>
+						<p>
+							<a href="[MISSIONS]">Missions</a><br />
+							<a href="[FAVE MISSIONS]">Favorite Missions</a><br />
+							<a href="[ALLIES]">Allies</a><br />
+						</p>
+					-->
+<%# end %>
+
+				</div>
+			</div>
+		</div>
+		<!-- /PROFILE POP-UP -->
+	</div>
+	<%# end %>

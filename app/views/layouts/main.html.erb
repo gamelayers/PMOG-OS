@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title><%= yield :title %><%= @page_title %>The Nethernet</title>
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="keywords" content="multiplayer online game, loot, datapoints, free mmo, awsm, pmog, toolbar game, firefox game" />
+    <meta name="description" content="<%=h yield :meta_description %>The Nethernet is a free multiplayer online game you play while surfing the web. Find treasure or bombs on sites using a Firefox browser toolbar." />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="verify-v1" content="091M1lQxwsqr3bt9+AnTg/d39D2WwssCyMVTon3rCYo=" />
+
+    <%= stylesheet_link_tag '/css/base' %>
+    <%= stylesheet_link_tag '/css/supplemental'%>
+
+    <%= javascript_tag "if (top != self) { top.location.href = self.location.href; }" %>
+
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'jquery.callout.js' %>
+    <%= javascript_include_tag 'jquery.hoverIntent.js' %>
+    <%= javascript_include_tag 'superfish.js' %>
+    <%= javascript_include_tag 'jquery.throbber.min' %>
+    <%= javascript_include_tag 'jquery.growfield2' %>
+    <%= javascript_include_tag 'jquery.maxlength' %>
+    <%= javascript_include_tag 'jquery.inplace.pack' %>
+    <%= javascript_include_tag 'jquery.jqModal.js' %>
+    <%= javascript_include_tag 'jquery.google-analytics' %>
+
+    <%= pingback_link_tag %>
+
+    <script type="text/javascript">
+    // initialise plugins
+    jQuery(function(){
+      jQuery('ul.sf-menu').superfish();
+      jQuery('.eventslist a').each( function() { this.target = "_new"; });
+
+      <% unless logged_in? %>
+      //DO login replace
+      $('#userOff').click(function(){
+        $('#userOn').removeClass('hidden');
+        $('#passOn').removeClass('hidden');
+        $('#userOff').addClass('hidden');
+        $('#passOff').addClass('hidden');
+        $('input.focus:last').focus();
+      });
+      $('#passOff').click(function(){
+        $('#userOn').removeClass('hidden');
+        $('#passOn').removeClass('hidden');
+        $('#userOff').addClass('hidden');
+        $('#passOff').addClass('hidden');
+        $('input.focus:last').focus();
+      });
+      <% end %>
+    });
+    </script>
+
+    <!-- This allows for the extension to declare its presence and let the web page act on it. -->
+    <script type="application/x-javascript">
+
+    function extensionEventListener(event) {
+      // this is a reference to the DOM element that the extension will add information to.
+      // Contact marc to set up the proper data.
+      //var elm = event.target;
+    }
+    //window.addEventListener("PmogInstalledEvent", extensionEventListener, false);
+
+    function initForm() {
+
+      // DO form extensions
+      $('.extendThis').hide();
+      $('.signupInput, select').focus(
+       function() {
+         $(this).parent().parent().find('.extendThis:hidden').fadeIn(200);
+         $(this).parent().parent().addClass('backYellow');
+        }
+      );
+      $('.signupInput, select').blur(
+       function() {
+         $(this).parent().parent().find('.extendThis').hide();
+         $(this).parent().parent().removeClass('backYellow');
+       }
+      );
+
+      jQuery('.ajax_throbber').throbber({ image: "/images/shared/elements/indicator.gif"});
+
+    }
+
+    </script>
+
+    <%= javascript_tag "window.AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
+
+    <%= yield :head %>
+  </head>
+
+  <body <%= yield :body %>>
+
+  <!-- BREADCRUMBS -->
+  <%= yield :alertbox %>
+  <!-- /BREADCRUMBS -->
+
+  <%# Uncomment the line below to turn on debugging for the google analytics tracker %>
+  <%#= javascript_tag "$.fn.track.defaults.debug = true;" %>
+
+  <%# Load the google analytics tracking and set the tracked variable as logged_in or logged_out based on the users session %>
+  <%= javascript_tag "$.trackPage('UA-939728-1', { user : '#{logged_in? ? 'logged_in' : 'logged_out'}' });" %>
+
+  <% if logged_in? %>
+    <% if current_user.admin_or_steward? %>
+      <!-- ADMIN TOOLBAR -->
+      <% if site_admin? %>
+        <%= render :partial => "shared/nav/trustee" %>
+      <% end %>
+      <% if steward? %>
+        <%= render :partial => "shared/nav/steward" %>
+      <% end %>
+      <!-- /ADMIN TOOLBAR -->
+    <% end %>
+  <% end %>
+
+  <div id="content">
+
+    <!-- CENTER PAGE -->
+    <div id="center">
+
+      <%#= render :partial => 'queries' %>
+
+      <!-- HEADER -->
+      <div id="pmog_installed" style="display: hidden;"></div>
+
+      <div id="header">
+
+        <!-- LOGO -->
+        <div id="logo"> <a href="/" title="Welcome to The Nethernet"><img src="/images/logo/thenethernet-200x98.png" alt="Nethernet Logo"></a>
+          <h1>the nethernet</h1>
+        </div>
+        <!-- /LOGO -->
+
+        <% if logged_in? and current_user.recent_signup %>
+          <%= render :partial => "shared/nav/new_user" %>
+        <% else %>
+          <!-- USER NAVIGATION -->
+          <%= render :partial => "shared/nav/user" %>
+          <!-- /USER NAVIGATION -->
+
+          <!-- SITE NAVIGATION -->
+          <%= render :partial => "shared/nav/site" %>
+          <!-- /SITE NAVIGATION -->
+
+          <!-- BREADCRUMBS -->
+          <%= yield :breadcrumbs %>
+          <!-- /BREADCRUMBS -->
+
+          <!-- SITE SEARCH -->
+          <%= yield :search %>
+          <!-- /SITE SEARCH -->
+
+        <% end %>
+
+      </div>
+      <!-- /HEADER -->
+
+      <% if logged_in? %>
+
+      <script>
+        if ($('#pmog_installed #installed').text() !== "true") {
+          $('#installToolbarNotice').show();
+        }
+      </script>
+
+      <div id="installToolbarNotice" class="column width960" style="display: none;">
+        <div class="module width960">
+          <h3 align="center">
+            You need to <a href="https://addons.mozilla.org/en-US/firefox/addon/6336">install The Nethernet toolbar</a> to play!
+          </h3>
+        </div>
+      </div>
+      <% else %>
+        <%= render :partial => "/shared/extension_install" unless controller.controller_name == 'home' and controller.action_name == 'index' and !logged_in? or controller.action_name == 'toolbarlanding' or controller.action_name == 'new' %>
+      <% end %>
+
+    <span id="flash_msg">
+      <%= render :partial => "shared/flash", :locals => { :flash => flash } %>
+    </span>
+
+    <!-- MAIN CONTENT -->
+
+    <%= yield %>
+
+    <!-- /MAIN CONTENT -->
+
+    </div>
+    <!-- /CENTER PAGE -->
+
+  </div>
+  <!-- /POSITIONING -->
+
+  <!-- CITYSCAPE -->
+  <%= render :partial => "shared/buildings" unless controller.controller_name == 'home' and controller.action_name == 'index' and !logged_in? or controller.action_name == 'toolbarlanding' %>
+  <!-- /CITYSCAPE -->
+
+  <!-- FOOTER -->
+  <div id="footer">
+    <div id="footcenter">
+      <div id="curation">
+        <%= render :partial => FOOTER_DIDYOUKNOW[rand(FOOTER_DIDYOUKNOW.size)] %>
+      </div>
+      <div id="footlinks">
+        <ul>
+          <li class="category">Help</li>
+          <li><a href="/guide/support">Getting Started</a></li>
+          <li>|</li>
+          <li><a href="/guide/support/faq">FAQ</a></li>
+          <li>|</li>
+          <li><a href="/guide/support/install">Installation Support</a></li>
+          <li>|</li>
+          <li><a href="/guide/support/keycommands">Keyboard Shortcuts</a></li>
+        </ul>
+
+        <ul>
+          <li class="category">Guide</li>
+          <li><a href="/guide/tools">Tools</a></li>
+          <li>|</li>
+          <li><a href="/guide/classes">Classes</a></li>
+          <li>|</li>
+          <li><a href="/guide/badges">Badges</a></li>
+          <li>|</li>
+          <li><a href="/guide/characters">Characters</a></li>
+          <li>|</li>
+          <li><a href="/guide/lore">Lore</a></li>
+          <li>|</li>
+          <li><a href="/guide/rules">Rules</a></li>
+        </ul>
+
+        <ul>
+          <li class="category">Forums</li>
+          <li><a href="/posts/latest">Latest Posts</a></li>
+          <li>|</li>
+          <li><a href="/forums/the-nethernet-news">News Forum</a></li>
+          <li>|</li>
+          <li><a href="/forums/social-tools">Community Tools</a></li>
+          <li>|</li>
+          <li><a href="/forums/shoat-sanctuary">Shoat Santuary</a></li>
+          <li>|</li>
+          <li><a href="/forums/forum-games">Forum Games</a></li>
+        </ul>
+
+        <ul>
+          <li class="category">Toolbar</li>
+          <li><a href="http://thenethernet.com/xpi/pmog.xpi">Get the Latest Toolbar</a></li>
+          <li>|</li>
+          <li><a href="https://addons.mozilla.org/en-US/firefox/addons/versions/6336">Learn What's New</a></li>
+        </ul>
+
+        <ul>
+          <li class="category">Elsewhere</li>
+          <li><a href="http://news.thenethernet.com">Community Blog</a></li>
+          <li>|</li>
+          <li><a href="http://twitter.com/thenethernet">Twitter</a></li>
+          <li>|</li>
+          <li><a href="http://www.facebook.com/group.php?gid=2355267981">Facebook</a></li>
+          <li>|</li>
+          <li><a href="http://community.livejournal.com/thenethernet/">LiveJournal</a></li>
+          <li>|</li>
+          <li><a href="http://www.last.fm/group/The+Nethernet">last.fm</a></li>
+          <li>|</li>
+          <li><a href="http://thenethernet.wikia.com">Wikia</a></li>
+        </ul>
+      </div>
+      <div id="copyright">
+        <p>
+          Nethernet &reg; is a registered Trademark of GameLayers, Inc.
+          <a href="/about">About</a>|
+          <a href="/about/privacy">Privacy</a>|
+          <a href="/guide/rules/terms">Terms</a>|
+          <a href="/about/contact">Contact</a>
+        </p>
+
+        <p>
+          The Nethernet was once called PMOG, the Passively Multiplayer Online Game.
+        </p>
+        <p>
+          Content on this site is &copy; 2010, GameLayers, Inc; Player-Generated Content is licensed under a <a id="cc" rel="license" href="http://creativecommons.org/licenses/by/3.0/us/" title="Creative Commons Attribution 3.0 (BY) - more information" target="blank">Creative Commons Attribution License</a>.  Font Credit: <a href="http://www.josbuivenga.demon.nl/diavlo.html" target="blank">Diavlo</a>.<br/>
+          <%= render :partial => "shared/app_version" %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- /FOOTER -->
+
+  <% if ENV["RAILS_ENV"] == "production" %>
+  <!-- Start Stats Tags -->
+  <script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+  <script type="text/javascript">_qacct="p-c8xMF2xLxslRc";quantserve();</script>
+  <noscript>
+    <a href="http://www.quantcast.com/p-c8xMF2xLxslRc" target="_blank"><img src="http://pixel.quantserve.com/pixel/p-c8xMF2xLxslRc.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+  </noscript>
+  <!-- End Stats Tags -->
+  <% end %>
+
+  </body>
+</html>

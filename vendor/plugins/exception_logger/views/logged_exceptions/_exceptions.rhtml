@@ -1,0 +1,43 @@
+<div id="exceptions">
+<div class="pages">
+  <%= link_to_remote 'Delete Visible', :url => { :action => 'destroy_all' }, :with => "ExceptionLogger.deleteAll()" %>
+	<%= will_paginate @exceptions %>
+</div>
+
+<h1><a href='/'>PMOG</a> Exceptions <%= "<span>(filtered)</span>" if filtered? %> </h1>
+
+<table cellspacing="0">
+
+  <thead style="display:none;">
+    <tr>
+      <th>Exception</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% exceptions.each do |exc| -%>
+    <tr id="exception-<%= exc.id %>" class="<%= cycle("eor", "") %> exception">
+      <td>
+<div class="expclass">
+
+<%= link_to_remote "#{exc.exception_class} in #{exc.controller_action}", :url => { :action => 'show', :id => exc } %></div>
+<span class="message"><%=h exc.message %></span>
+
+</td>
+      <td nowrap=nowrap class="time">
+<%= exc.created_at.strftime("%b %d, %Y at %l:%M %p") %>
+</td>
+      <td><%= link_to_remote 'Delete', {:url => { :action => 'destroy', :id => exc }} , :class => "util" %></td>
+
+    </tr>
+  <% end -%>
+  </tbody>
+
+</table>
+
+<div class="pages pages-bottom">
+	<%= will_paginate @exceptions %>
+</div>
+
+</div> <!-- #exceptions -->

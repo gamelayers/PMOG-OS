@@ -1,0 +1,73 @@
+
+
+<h2 style="margin-bottom: 5px;">Recent Posts on the Forums <a href="/forums"><img src="/images/shared/icons/forums-32.png" class="icon24" style="margin: -5px 5px;" alt="Forums" title="Forums"/></a></h2>
+
+<div id="post_listHome" style="border-top: 1px dashed #A5A5A5;">
+	<table class="wrapperHome" cellpadding="0" cellspacing="0">
+		<% @latest_posts.each_with_index do |post, index| %>
+		<% next if post.topic.nil? %>
+		<tr class="dividerHome">
+			<td class="avatar" rowspan="2" valign="top">
+				<% if post.user.nil? %>
+				<b>User Deleted</b><br/><br/>
+				<% else %>
+				<div class="avatarAction">
+					<%= avatar_link_to_user :user => post.user, :size => 'small', :align => "left", :class => 'avatar48' %>
+					<div class="avatarPop">
+						<div class="avatarPopIn">
+							<div class="avatarOver">
+								<a href="/users/<%= post.user.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => post.user, :size => "small") %>" alt="<%= post.user.login %>" title="<%= post.user.login %>"/></a>
+							</div>
+							<%= render :partial => "/shared/avatar_actions", :locals => {:user => post.user, :filter => "none"} %>
+						</div>
+					</div>
+				</div>
+				<% end %>
+			</td>
+
+			<td>
+				<a name='post_<%= index %>'></a>
+				<a name='<%= post.id %>'></a>
+				<% if post.user.nil? %>
+				<b>User Deleted</b>
+				<% else %>
+				<p>
+					<strong><%= link_to( h(post.user.login), user_path(post.user) ) %></strong>  
+
+					posted in <strong><%= link_to post.topic.title, :controller => "topics", :action => "show", :forum_id => post.topic.forum.url_name, :id => post.topic.url_name %>,</strong>
+					<%= time_ago_in_words(post.updated_at) %> ago:
+				</p>
+				<p style="font-size:10px; margin-top: -20px; padding: 0;">
+					Level <%= post.user.current_level %> <%= post.user.user_level.primary_class.titleize %>
+					<% if post.user.cached_has_role? 'site_admin' %>
+					(Trustee)
+					<% elsif post.user.cached_has_role? 'steward' %>
+					(Steward) 
+					<% elsif post.user.cached_has_role? 'npc' %>
+					(Character) 
+					<% end %>
+					| <%= post.user.posts_count %> posts
+					<% end %>
+				</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<!--these screw things up :-/ -->
+				<div class="talkArrow">
+					<div class="wrapperHome">
+
+						<p><%= strip_tags post.body[0..200] %><%= link_to "[...]", "#{forum_topic_path(post.topic.forum, post.topic)}?page=#{post.page}##{post.id}" %></p>
+
+					</div>
+				</div>
+
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	<div class="bottomNav">
+		<a href="/posts/latest">Moar Recent Posts</a>
+	</div>
+</div>

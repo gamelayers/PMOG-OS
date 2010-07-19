@@ -1,0 +1,218 @@
+# Tidied up buddies and events extensions. Database bumped with 5Gb RAM and 
+# solidified the indexes on tool_uses thanks to EngineYard. Code settled down.
+
+duncan@trunk $ ab -n400 http://pmog.com/
+This is ApacheBench, Version 2.0.40-dev <$Revision: 1.146 $> apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 400 requests
+
+
+Server Software:        nginx/0.6.29
+Server Hostname:        pmog.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        12213 bytes
+
+Concurrency Level:      1
+Time taken for tests:   212.286440 seconds
+Complete requests:      400
+Failed requests:        208
+   (Connect: 0, Length: 208, Exceptions: 0)
+Write errors:           0
+Total transferred:      5061456 bytes
+HTML transferred:       4871056 bytes
+Requests per second:    1.88 [#/sec] (mean)
+Time per request:       530.716 [ms] (mean)
+Time per request:       530.716 [ms] (mean, across all concurrent requests)
+Transfer rate:          23.28 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       86  115 137.3     92    1041
+Processing:   201  414 387.1    298    3793
+Waiting:      100  217 369.5    115    3615
+Total:        291  530 439.8    391    4834
+
+Percentage of the requests served within a certain time (ms)
+  50%    391
+  66%    414
+  75%    467
+  80%    506
+  90%    777
+  95%   1310
+  98%   2253
+  99%   2842
+ 100%   4834 (longest request)
+
+
+
+
+duncan@trunk $ ab -C auth_token=d2ad11891dd3294a4297f45af4ce9dab414431c9 -kc50 -t300 http://pmog.com/
+This is ApacheBench, Version 2.0.40-dev <$Revision: 1.146 $> apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Completed 5000 requests
+Completed 10000 requests
+Finished 11079 requests
+
+
+Server Software:        nginx/0.6.29
+Server Hostname:        pmog.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        12145 bytes
+
+Concurrency Level:      50
+Time taken for tests:   300.183 seconds
+Complete requests:      11079
+Failed requests:        5510
+   (Connect: 0, Length: 5510, Exceptions: 0)
+Write errors:           0
+Keep-Alive requests:    11078
+Total transferred:      140485152 bytes
+HTML transferred:       135139318 bytes
+Requests per second:    36.93 [#/sec] (mean)
+Time per request:       1353.914 [ms] (mean)
+Time per request:       27.078 [ms] (mean, across all concurrent requests)
+Transfer rate:          457.31 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   13 320.2      0   19277
+Processing:   147 1335 1210.2   1039   75259
+Waiting:        0  529 723.3    347   32352
+Total:        147 1349 1264.0   1041   75259
+
+Percentage of the requests served within a certain time (ms)
+  50%   1041
+  66%   1345
+  75%   1598
+  80%   1775
+  90%   2271
+  95%   2871
+  98%   3930
+  99%   5123
+ 100%  75259 (longest request)
+
+
+
+
+
+duncan@trunk $ ab -C auth_token=d2ad11891dd3294a4297f45af4ce9dab414431c9 -kc50 -t300 http://pmog.com/users/suttree
+This is ApacheBench, Version 2.0.40-dev <$Revision: 1.146 $> apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Finished 2869 requests
+
+
+Server Software:        nginx/0.6.29
+Server Hostname:        pmog.com
+Server Port:            80
+
+Document Path:          /users/suttree
+Document Length:        39083 bytes
+
+Concurrency Level:      50
+Time taken for tests:   300.25625 seconds
+Complete requests:      2869
+Failed requests:        1416
+   (Connect: 0, Length: 1416, Exceptions: 0)
+Write errors:           0
+Non-2xx responses:      1
+Keep-Alive requests:    2869
+Total transferred:      113628990 bytes
+HTML transferred:       112248113 bytes
+Requests per second:    9.56 [#/sec] (mean)
+Time per request:       5228.750 [ms] (mean)
+Time per request:       104.575 [ms] (mean, across all concurrent requests)
+Transfer rate:          369.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   30 317.0      0    5127
+Processing:   897 5115 4188.5   3722   31045
+Waiting:      409 4322 4211.5   2903   30381
+Total:        897 5146 4190.8   3761   31045
+
+Percentage of the requests served within a certain time (ms)
+  50%   3761
+  66%   5014
+  75%   6148
+  80%   7116
+  90%   9666
+  95%  13057
+  98%  20541
+  99%  22962
+ 100%  31045 (longest request)
+
+
+
+
+
+
+
+duncan@trunk $ ab -C auth_token=d2ad11891dd3294a4297f45af4ce9dab414431c9 -kc50 -t300 "http://pmog.com/track.js?http://www.suttree.com"
+This is ApacheBench, Version 2.0.40-dev <$Revision: 1.146 $> apache-2.0
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Copyright 2006 The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking pmog.com (be patient)
+Completed 5000 requests
+Completed 10000 requests
+Completed 15000 requests
+Completed 20000 requests
+Completed 25000 requests
+Completed 30000 requests
+Completed 35000 requests
+Finished 36545 requests
+
+
+Server Software:        nginx/0.6.29
+Server Hostname:        pmog.com
+Server Port:            80
+
+Document Path:          /track.js?http://www.suttree.com
+Document Length:        269 bytes
+
+Concurrency Level:      50
+Time taken for tests:   300.20510 seconds
+Complete requests:      36545
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    36545
+Total transferred:      27591475 bytes
+HTML transferred:       9830605 bytes
+Requests per second:    121.81 [#/sec] (mean)
+Time per request:       410.481 [ms] (mean)
+Time per request:       8.210 [ms] (mean, across all concurrent requests)
+Transfer rate:          89.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2  95.2      0    7105
+Processing:    99  404 726.3    150   31516
+Waiting:       99  404 726.3    150   31516
+Total:         99  407 734.8    150   31516
+
+Percentage of the requests served within a certain time (ms)
+  50%    150
+  66%    239
+  75%    413
+  80%    535
+  90%   1082
+  95%   1327
+  98%   2145
+  99%   3127
+ 100%  31516 (longest request)

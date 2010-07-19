@@ -1,0 +1,37 @@
+<p align='right'>
+	<%= will_paginate @giftcards %>
+	<%= submit_tag 'Delete Checked', :confirm => 'Are you sure you want to delete all the checked items?' %>
+</p>
+
+<p class='user_table_list'>  
+  <table border='1' cellpadding='5'>
+		<tr>
+			<td bgcolor="white">User</td>
+			<%= '<td bgcolor="white" nowrap>See all by</td>' if @searcheduser.nil? %>
+			<td bgcolor="white" width="600">Location</td>
+			<td bgcolor="white">Created</td>
+			<td bgcolor="white">&nbsp;</td>
+			<td bgcolor="white"><%= check_box_tag 'checkall', 1, false, :onclick => 'checkedAll();' %></td>
+		</tr>
+		<% @giftcards.each do |giftcard| %>
+			<tr>
+				<td bgcolor="white"><%= avatar_link_to_user :user => giftcard.user, :size => 'small' %></td>
+				<% if @searcheduser.nil? %>
+				  <td bgcolor="white"><%= link_to giftcard.user.login, :action => 'search', :q => giftcard.user.login, :criteria => 'user' %></td>
+				<% end %>
+				<td bgcolor="white"><a href='<%= giftcard.location.url %>' target='_new'  style='font-size: 9pt;'><%= giftcard.location.url %></a></td>
+				<td bgcolor="white"><div  style='font-size: 9pt;'><%= giftcard.created_at %></div></td>
+				<td bgcolor="white"><div  style='font-size: 9pt;'><%= link_to '<img src="/images/shared/icons/close_window-16.png" alt="Destroy" title="Destroy" width="16" height="16" class="icon16" />', giftcard_path(giftcard), :confirm => 'Are you sure?', :method => :delete %></div></td>
+				<td bgcolor="white"><%= check_box_tag 'delete_these[]', giftcard.id %></td>
+			</tr>
+		<% end %>
+	</table>
+</p>
+
+<br/>
+
+<p align='right'>
+	<%= will_paginate @giftcards %>
+</p>
+
+<br/>

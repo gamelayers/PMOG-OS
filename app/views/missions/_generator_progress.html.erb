@@ -1,0 +1,18 @@
+<div class="generator_steps_container">
+	<%# I must be struggling today because I can't seem to inline this logic %>
+	<% if current_page?(:action => "new") or current_page?(:action => "edit") %>
+		<% edit_or_new = true %>
+	<% else %>
+		<% edit_or_new = false %>
+	<% end %>
+	
+	<%= progress_for(@mission.has_info?, edit_or_new, "step1", @mission.has_info? ? edit_mission_path(@mission.url_name) : nil) %>
+
+	<%= progress_for(@mission.has_branches?, current_page?(:action => "lightposts"), "step2", @mission.has_info? ? show_lightposts_path(@mission.url_name) : nil) %>
+
+	<%= progress_for(@mission.is_tested?, current_page?(:action => "test"), "step3", @mission.has_branches? ? mission_test_path(@mission.url_name) : nil) %>
+
+	<%= progress_for(@mission.is_active, current_page?(:action => "overview"), "step4", @mission.is_tested? ? overview_path(@mission.url_name) : nil) %>
+</div>
+
+<br style="clear:both;" />

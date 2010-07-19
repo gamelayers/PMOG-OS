@@ -1,0 +1,6 @@
+<% spinner_id = nil if local_assigns[:spinner_id].nil? %>
+<% spinner_id.nil? ? spinner_id = 'spinner' : spinner_id %>
+
+<p id='<%= spinner_id %>' style="display: none;">
+  <img src='/images/shared/elements/indicator.gif' height='16' width='16' border='0' valign='middle' align='left' />
+</p>

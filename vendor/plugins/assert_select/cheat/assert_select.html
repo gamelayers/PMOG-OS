@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>assert_select Cheat Sheet</title>
+    <style type="text/css">
+body {
+  background: white;
+  font-family: Verdana, "Lucida Grande", Arial, Helvetica, sans-serif;
+  text-align: left;
+  margin: 2em;
+}
+h1 {
+  background: #b90b0a;
+  color: white;
+  padding: 0 0.5em 0.3em 0.5em;
+  font-size: 2em;
+  margin: 0 0 0.5em 0;
+}
+h1.separator {
+  display: none;
+}
+h2 {
+  color: #aba9a8;
+}
+p, dl, dl dt {
+  margin: 0 0 0.5em 0;
+}
+dl dt {
+  font-weight: bold;
+}
+dl dd {
+  margin: 0 0 0.5em 2em;
+}
+dl.compact dt {
+  float: left;
+  clear: both;
+  display: inline;
+  width: 15em;
+  margin: 0;
+  font-weight: normal;
+  font-family: "Courier New";
+}
+dl.compact dd {
+  margin: 0 0 0.3em 15em;
+}
+code, pre {
+  font-family: "Courier New";
+}
+pre {
+  font-weight: bold;
+}
+p.copyright {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 2em;
+}
+br.force-break {
+  display: none;
+}
+@media print {
+  @page {
+    size: 8in 8in;
+    margin: 1cm;
+  }
+  body {
+    font-size: 11pt;
+  }
+  h1 {
+    padding: 0.3cm;
+    font-size: 200%;
+    margin: 0 0 0.6cm 0;
+  }
+  h1.separator {
+    border-top: 0.77cm solid white;
+    display: block;
+    page-break-before: always;
+  }
+  p, dl, dl dt {
+    margin: 0 0 0.3cm 0;
+  }
+  dl dd {
+    margin: 0 0 0.3cm 0.6cm;
+  }
+  dl.compact dt {
+    width: 6cm;
+    margin: 0;
+  }
+  dl.compact dd {
+    margin: 0 0 0.15cm 6cm;
+  }
+  p.copyright {
+    margin-top: 0cm;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <h1>assert_select Cheat Sheet</h1>
+    <h2>Selectors</h2>
+    <dl class="compact">
+      <dt>*</dt><dd>any element</dd>
+      <dt>E</dt><dd>an element of type E</dd>
+      <dt>E.warning</dt><dd>an E element whose class is "warning" (the document language specifies how class is determined).</dd>
+      <dt>E#myid</dt><dd>an E element with ID equal to "myid".</dd>
+      <dt>E[foo]</dt><dd>an E element with a "foo" attribute</dd>
+      <dt>E[foo="bar"]</dt><dd>an E element whose "foo" attribute value is exactly equal to "bar"</dd>
+      <dt>E[foo~="bar"]</dt><dd>an E element whose "foo" attribute value is a list of space-separated values, one of which is exactly equal to "bar"</dd>
+      <dt>E[foo^="bar"]</dt><dd>an E element whose "foo" attribute value begins exactly with the string "bar"</dd>
+      <dt>E[foo$="bar"]</dt><dd>an E element whose "foo" attribute value ends exactly with the string "bar"</dd>
+      <dt>E[foo*="bar"]</dt><dd>an E element whose "foo" attribute value contains the substring "bar"</dd>
+      <dt>E[hreflang|="en"]</dt><dd>an E element whose "hreflang" attribute has a hyphen-separated list of values beginning (from the left) with "en"</dd>
+      <dt>E:root</dt><dd>an E element, root of the document</dd>
+      <dt>E:nth-child(n)</dt><dd>an E element, the n-th child of its parent</dd>
+      <dt>E:nth-last-child(n)</dt><dd>an E element, the n-th child of its parent, counting from the last one</dd>
+      <dt>E:nth-of-type(n)</dt><dd>an E element, the n-th sibling of its type</dd>
+      <dt>E:nth-last-of-type(n)</dt><dd>an E element, the n-th sibling of its type, counting from the last one</dd>
+      <dt>E:first-child</dt><dd>an E element, first child of its parent</dd>
+      <dt>E:last-child</dt><dd>an E element, last child of its parent</dd>
+      <dt>E:first-of-type</dt><dd>an E element, first sibling of its type</dd>
+      <dt>E:last-of-type</dt><dd>an E element, last sibling of its type</dd>
+      <dt>E:only-child</dt><dd>an E element, only child of its parent</dd>
+      <dt>E:only-of-type</dt><dd>an E element, only sibling of its type</dd>
+      <dt>E:empty</dt><dd>an E element that has no children (including text nodes)</dd>
+      <dt>E:not(s)</dt><dd>an E element that does not match simple selector s</dd>
+      <dt>E F</dt><dd>an F element descendant of an E element</dd>
+      <dt>E > F</dt><dd>an F element child of an E element</dd>
+      <dt>E + F</dt><dd>an F element immediately preceded by an E element</dd>
+      <dt>E ~ F</dt><dd>an F element preceded by an E element</dd>
+    </dl>
+    <h2>Substitution Values</h2>
+    <dl class="compact">
+      <dt>.?</dt><dd>Class name</dd>
+      <dt>#?</dt><dd>ID attribute</dd>
+      <dt>[foo=?]</dt><dd>Attribute value</dd>
+    </dl>
+    <p>May be string or regular expression, e.g. <code>"[foo=?]", /bar/i</code>.</p>
+    <h1 class="separator">assert_select Cheat Sheet</h1>
+    <h2>Methods</h2>
+    <dl>
+      <dt><code>assert_select(selector, *values, equality?, message?) { |elems| ... }<br/>assert_select(element, selector, *values, equality?, message?) { |elems| ... }</code></dt>
+      <dd>
+        <p>Use <code>selector</code> to select elements from response page or first argument (<code>element</code>), and evalute <code>equality</code> test. Raises exception with <code>message</code> if equality tests fail.</p>
+        <p>Equality tests include:</p>
+        <dl class="compact">
+          <dt>true</dt><dd>At least one element found (<code>:minimum=>1</code>)</dd>
+          <dt>false</dt><dd>No element found (<code>:count=>0</code>)</dd>
+          <dt>text, :text=>text</dt><dd>All elements found have the text contents (string or regexp)</dd>
+          <dt>n, :count=>n</dt><dd>Exactly n elements found</dd>
+          <dt>:minimum=>n</dt><dd>At least n elements found</dd>
+          <dt>:maximum=>n</dt><dd>At most n elements found</dd>
+          <dt>n..m</dt><dd>Between n and m elements found</dd>
+        </dl>
+        <p>If no count specified, default is <code>:minimum=>1</code>.</p>
+        <p>With block, calls block with all selected elements. Calling <code>assert_select</code> (or any of the other functions) within that block operates on element selected by outer block.</p>
+      </dd>
+      <dt><code>assert_select_rjs(id?) { |elems| ... }<br/>assert_select_rjs(statement, id?) { |elems| ... }<br/>assert_select_rjs(:insert, position, id?) { |elems| ... }</code></dt>
+      <dd>
+        <p>Asserts that RJS statement updates/inserts HTML content and allows nested assertions on the content.</p>
+        <p>With <code>id</code>, selects only RJS statement affecting elements with that id. With <code>statement</code>, RJS statements that <code>:replace</code>, <code>:replace_html</code> or <code>:insert</code>. With <code>:insert</code> can limit position (<code>:before</code>, <code>:after</code>, etc).</p>
+      </dd>
+      <dt><code>assert_select_email() { |elems| ... }</code></dt>
+      <dd>Assertions on the (HTML) body of the delivered e-mail.</dd>
+      <dt><code>assert_select_encoded(element?) { |elems| ... }</code></dt>
+      <dd>For operating on encoded HTML (e.g. RSS item description).</dd>
+      <dt><code>css_select(selector, *values) => array<br/>css_select(element, selector, *values) => array</code></dt>
+      <dd>Returns an array with selected elements (empty if no elements selected).</dd>
+    </dl>
+    <h2>Example</h2>
+    <pre>
+assert_select "html:root>head>title", "Login"
+assert_select "form[action=?]", url_for(:action=&gt;"login") do
+  assert_select "input[type=text][name=username]"
+  assert_select "input[type=password][name=password]"
+end
+    </pre>
+    <p class="copyright">&copy; 2006 Assaf Arkin <a href="http://labnotes.org">http://labnotes.org</a><br/>Released under Creative Commons Attribution</p>
+  </body>
+</html>

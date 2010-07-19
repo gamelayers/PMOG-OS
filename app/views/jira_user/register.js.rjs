@@ -1,0 +1,3 @@
+page.hide "spinner"
+page.replace_html "password_form", @response
+page.show    "password_form"

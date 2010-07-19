@@ -1,0 +1,20 @@
+<% if logged_in? && @user == current_user %>
+  <div id="profileFeeds">
+    <div class="name">
+      <h4><%=h @user.login %>'s Feeds</h4>
+        
+      <p class="bottom">
+      RSS Feeds of your travels on The Nethernet, that you can pull into your blog or feed reader or profile elsewhere online:<br/>
+      <br/>            
+      Your Game Events:<br/>
+      <a href="/users/<%= @user.login %>.rss">http://thenethernet.com/users/<%= @user.login %>.rss</a><br/>
+      Game Events from Your Contacts:<br/>
+      <a href="/users/<%= @user.login %>/events/contacts.rss">http://thenethernet.com/users/<%= @user.login %>/events/contacts.rss</a><br/>
+      Missions You Published:<br/>
+      <a href="/users/<%= @user.login %>/missions/created.rss">http://thenethernet.com/users/<%= @user.login %>/missions/created.rss</a><br/>
+      Your PMail Messages:<br/>
+      <a href="/users/<%= @user.login %>/messages.rss">http://thenethernet.com/users/<%= @user.login %>/messages.rss</a>
+      </p>
+    </div>
+  </div>
+<% end %>

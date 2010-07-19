@@ -1,0 +1,17 @@
+<img src="/images/profile/generator.png" class="profile_art">
+<div class="profile_content">
+	<h4>Your Mission Drafts</h4>
+	<h5>Only you can see these...</h5>
+
+	<% if Mission.find_all_drafts_for_user(current_user.id).empty? %>
+		<br />
+		You don't have any drafts...
+	<% else %>
+		<ul class="profile_feed" id="drafts">
+<%= render :partial => 'missions/edit_draft_missions', :collection =>  Mission.find_all_drafts_for_user(current_user.id) %>
+
+  		</ul>
+	<% end %>
+ </div>
+
+ <br style="clear:both;" />

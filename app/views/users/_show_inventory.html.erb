@@ -1,0 +1,43 @@
+<div id="profileInventory">
+  <div id="inventory">
+    <h3><%= @user.login %>'s Arsenal</h3>
+    <% @tools = Tool.cached_multi %>
+    <% @tools.each do |tool| %>
+      <div class="tool">
+        <a href="/guide/tools/<%= tool.url_name %>"><img class="icon16 poptip" src="<%= tool.icon_image %>" alt="<%= tool.name %>" title="<%= tool.name %>"/></a>
+      <%=h number_with_delimiter(@user.inventory[tool.url_name]) %> 
+      </div>
+    <% end %>
+    
+  <h3 class="clear" style="margin-top:10px;" >Lifetime Earnings</h3>
+      <div class="tool clear">
+        <img class="icon16 poptip" src="/images/shared/icons/datapoint-16.png" alt="Lifetime Datapoints" title="Lifetime Datapoints"/>
+        <%=h number_with_delimiter(@user.total_datapoints) %>
+      </div>
+     <div class="tool">
+        <img class="icon16 poptip" src="/images/shared/icons/ping-16.png" alt="Lifetime Pings" title="Lifetime Pings"/>
+        <%=h number_with_delimiter(@user.lifetime_pings) %>
+     </div>
+  </div>
+    
+  <div id="purse">
+    <h3>Purse</h3>
+    <div id="inside">
+      <div class="tool">
+        <img class="icon16 poptip" src="/images/shared/icons/datapoint-16.png" alt="Datapoints" title="Datapoints"/>
+        <%=h number_with_delimiter(@user.datapoints) %>
+      </div>
+      <div class="tool">
+        <img class="icon16 poptip" src="/images/shared/icons/ping-16.png" alt="Pings" title="Pings"/>
+        <%=h number_with_delimiter(@user.available_pings) %>
+      </div>
+    </div>
+    
+    <% if logged_in? and @user.id == current_user.id %>
+      <% if (@user.tool_uses.uses :lightposts) > 0 %>
+        <p style="white-space:nowrap;"><a href="/users/<%= @user.login %>/lightposts"><img class="icon16" src="/images/shared/tools/icon/lightpost-16.png" alt="Lightposts" title="Lightposts" />Edit Lightposts</a></p>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

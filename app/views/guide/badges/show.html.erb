@@ -1,0 +1,56 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/guide" %>
+		<div class="cell parent"><a href="/guide/badges"><span class="l"></span><span class="c">Badges</span><span class="r"></span></a></div>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @badge.name.titleize %></span><span class="r"></span></div>
+
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+			
+			
+					<div class="module width960">
+					
+<img src='/images/shared/badges/large/<%= @badge.image %>' width='300' height='386' title='<%= @badge.name %>' alt='<%= @badge.name %>' style="float:left;" />
+
+<h1><%= @badge.name %></h1>
+
+<h3><%= @badge.description %></h3>
+
+<% if ! @badge.active? %>
+	<h3>This Badge has been temporarily disabled!  <a href="http://thenethernet.com/forums/community-news/topics/surfing-badges-suspended---other-badges-remain">Read more in the Forums</a>.</h3>
+<% end %>
+
+<% if current_user.admin? %>
+	<h4>Admin: Badge awarded <%= pluralize( @badge.users.size, 'time', 'times' ) %>.</h4>
+<% end %>
+
+<br clear="all" />
+<% if @badge.prev && @badge.active? %>
+  <a href='/guide/badges/<%= @badge.prev.url_name %>'><img src="/images/shared/badges/small/<%= @badge.prev.url_name %>.png" width='39' height='50' title='<%= @badge.prev.name %>' alt='<%= @badge.prev.name %>' border='0' class='img_no_border' /> <img src="/images/guide/badges/prev_badge.png" width="49" height="50" alt="Previous Badge" title="Previous Badge" class="img_no_border" /></a>
+<% end %>
+
+&nbsp;<a href='/guide/badges/'><img src="/images/guide/badges/browse.png" width="147" height="50" class="img_no_border" alt="Browse Badges" title="Browse Badges" class='img_no_border' /></a>&nbsp;
+
+<% if @badge.next && @badge.active? %>
+  <a href='/guide/badges/<%= @badge.next.url_name %>'><img src="/images/guide/badges/next_badge.png" class="img_no_border" width="49" height="50" alt="Next Badge" title="Next Badge"  /> <img src="/images/shared/badges/small/<%= @badge.next.url_name %>.png" width='39' height='50' title='<%= @badge.next.name %>' alt='<%= @badge.next.name %>' class='img_no_border' /></a>
+<% end %>
+
+   					</div>
+											
+					</div>
+				
+				
+
+    				
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/badges" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+

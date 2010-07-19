@@ -1,0 +1,2 @@
+module DeletedAccountsHelper
+end

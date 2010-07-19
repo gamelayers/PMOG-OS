@@ -1,0 +1,36 @@
+    <%= link_to_function( image_tag( "/images/profile/message_send.png",
+                          :id => 'pmail_button',
+                          :alt => "Send a message!",
+                          :class => "poptip icon16",
+                          :title => "Send PMail - Send #{buddy.login} some mail." ),
+                          "jQuery('#outgoing-#{buddy.login}').slideToggle('normal');" ) %>
+    <%= link_to_remote( image_tag( "/images/shared/tools/icon/grenade-16.png", 
+                        :class => "icon16 ajax_throbber poptip",
+                        :alt => 'Toss a grenade!',
+                        :title => "Toss Grenade - Throw a grenade at #{buddy.login}! - You have #{current_user.inventory.grenades} remaining."),
+                        :url => formatted_attach_user_grenades_url(buddy, :js ),
+                        :method => :put ) %>
+    <%= link_to_remote( image_tag( "/images/shared/tools/icon/st_nick-16.png", 
+                        :class => "icon16 ajax_throbber poptip",
+                        :alt => 'Attach a St Nick!',
+                        :title => "Attach a St. Nick to #{buddy.login}! - You have #{current_user.inventory.st_nicks} remaining."),
+                        :url => formatted_attach_user_st_nicks_url(buddy, :js ),
+                        :method => :put ) %>                        
+
+    <div class="module width220" id="outgoing-<%= buddy.login %>" style="display: none;">
+      <div id="outgoingOuter" class="slider_wrapper">
+        <div id="outgoingInner">
+          <% remote_form_for  :message,
+                              :url => user_messages_path,
+                              :html => { :method => :post, :style => "display: inline", :id => 'message_form'},
+                              :complete => "jQuery('#message_form')[0].reset('message_body');" do |f| %>
+            <%= f.text_area :body, :class => "input", :name => "pmail_message", :id => "pmail_message", :value => "@#{buddy.login} ", :cols => 22, :rows => 4 %>
+            <br/>
+            <p class="small"><%= submit_tag "Message", :class => "input", :onclick => "jQuery('#outgoing-#{buddy.login}').slideToggle('normal');" %> <a href="#" onclick="jQuery('#outgoing-<%= buddy.login %>').slideToggle('normal'); return false;">Don't Message</a></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+  

@@ -1,0 +1,52 @@
+<div id="copy">
+	<div class="column width960">
+		<div class="column width700"> 
+			<div class="module width700">
+
+<%= stylesheet_link_tag 'forum' %>
+
+<h1>Search The Nethernet Forums</h1>
+<h5>civilized discourse for an uncivilized gameworld</h5>
+
+<br /><br /><br />
+
+<%= render :partial => "forums/search_form" %>
+<p />
+
+<% if @posts.nil? && params[:q] %>
+  We did not find results for: <%= params[:q] %> Please try a new query
+<% end %>
+
+<% unless @posts.nil? %>
+  <%= @posts.length %> results returned for search term <b><%= params[:q] %></b>
+  <table class="forum_post_list_search" cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="forum_post_list_header" width="148">
+        Author
+      </td>
+      <td class="forum_post_list_header">
+        Thread
+      </td>
+    </tr>
+    <% @posts.each do |p| %>
+      <% unless p.user.nil? or p.topic.nil? or p.topic.forum.nil? %>
+      <tr>
+        <td class="forum_post_list_user <%= cycle('forum_post_user_even', 'forum_post_user_odd', :name => 'post_user') %>" valign="top"><h3>
+          <b><%= link_to( highlight(p.user.login, params[:q]), user_path(p.user.login) ) %></b><br /><br />
+          <%= avatar_link_to_user :user => p.user, :size => 'small' %>
+        </h3></td>
+        <td class="forum_post_list_content <%= cycle('forum_post_content_even', 'forum_post_content_odd', :name => 'post_content') %>" valign="top">
+          In <span style="font-size:13px;"><%= link_to highlight(p.topic.forum.title, params[:q]), forum_path(p.topic.forum.url_name) %></span> &raquo; <span style="font-size:13px">In Topic: <%= link_to highlight(p.topic.title, params[:q]), forum_topic_url(:id => p.topic.url_name, :forum_id => p.topic.forum.url_name) %> </span><br /><br />
+            <p><%= highlight(p.body, params[:q]) %></p>
+            <p><%= time_ago_in_words(p.updated_at) %> ago.</p>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </table>
+<% end %>
+
+</div>
+		</div>
+	</div>
+</div>

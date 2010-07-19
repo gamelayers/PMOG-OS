@@ -1,0 +1,2 @@
+page.replace_html 'taglist', :partial => 'edit_tag', :collection => @user.tags
+page.visual_effect :highlight, "taglist", :duration => 2

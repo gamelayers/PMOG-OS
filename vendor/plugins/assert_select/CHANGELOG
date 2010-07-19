@@ -1,0 +1,29 @@
+September 13, 2006
+
+* Fixed: assert_select_rjs does not destroy response body.
+* Fixed: requires in init.rb.
+  (Thanks to Benjamin Birnbaum for the fix and Joey Geiger for reminding me)
+
+September 10, 2006
+
+* Added: select method on Document and Node
+* Changed: handling of text assertions, from matching all elements selected
+  to selecting all elements matched and then asserting their occurrences
+  (Thanks to Jamie van Dyke of www.fearoffish.co.uk for prompting the fix)
+* Changed: list of pre-formatted text elements now includes pre, textarea,
+  script and style.
+
+August 18, 2006
+
+* Added: assert_select_email to handle HTML e-mails.
+* Fixed: requires in init.rb as reported by Benjamin Birnbaum.
+
+August 13, 2006
+
+* Added: assert_select_feed to handle Atom and RSS feeds.
+* Added: assert_select_encoded to handler HTML encoded in XML.
+* Added: :html equality test against HTML of selected element.
+* Changed: Allows multiple :not pseudo classes to be used with the same
+  element (meaning, select where none of the negators match).
+* Changed: :text equality test strips the text value unless the element is pre
+* Fixed: first-of-type, last-of-type.

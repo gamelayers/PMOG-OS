@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>unbranch (Collectivex::Svn)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File script/svn/svn.rb, line 186</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unbranch</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@path</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@branch</span>
+      <span class="ruby-comment cmt">#puts &quot;Did you remember to uptrunk your branch? :)&quot;</span>
+      <span class="ruby-identifier">unbranch_diff</span> = <span class="ruby-value str">&quot;unbranch_#@branch.diff&quot;</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@debug</span>
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">chmod</span>(<span class="ruby-value">0644</span>, <span class="ruby-identifier">unbranch_diff</span>)         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">unbranch_diff</span>) 
+        <span class="ruby-identifier">svn</span> = <span class="ruby-node">&quot;svn diff #{root}/trunk #{root}/branches/#{@branch} &gt; #{unbranch_diff}&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">svn</span> = <span class="ruby-node">&quot;svn merge #{root}/trunk #{root}/branches/#{@branch}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">svn</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">`#{svn}`</span> 
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@debug</span>
+        <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Loading diff in editor for review.&quot;</span>
+        <span class="ruby-node">`chmod 0444 #{unbranch_diff}; mate #{unbranch_diff}`</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-value">`svn propdel svn:trunk .`</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

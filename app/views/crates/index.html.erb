@@ -1,0 +1,100 @@
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+<h1>Stash a Crate <img src="/images/shared/icons/crate-32.png" alt="Crates" border="0" /></h1>
+<h5>The best way to trade with or gift a specific player</h5>
+<br />
+<% tool = Tool.cached_single('crates') %>
+<img src="<%= tool.large_image %>" alt="<%= tool.large_image %>" style="float:right;margin:50px 20px 0 0;" >
+
+<p>Crates can store up to 1000 Datapoints, 10 tools, and 500 Pings. For instance, you can store 1000 Datapoints, 3 lightposts, 7 mines, and 500 Pings in one crate.</p>
+
+<p>Stashing crates will earn you classpoints from the <a href="/guide/classes/benefactors/" target="_new">Benefactors</a>.</p>
+
+<p>
+	<strong>Stash a Crate on:</strong><br />
+	<%= @location.url -%>
+</p>
+
+<% if login = profile_user -%>
+<p>
+	<i>This crate can only be picked up by <%= login -%>!</i>
+</p>
+<% end -%>
+
+<% form_for :crate, :url => location_crates_path(@location) do |f| -%>
+
+<img src="/images/shared/icons/datapoint-16.png" alt="datapoints icon" border="0" width="16" height="16" valign="center" class="img_no_border" />
+Datapoints: 
+<select id="amount" name="crate[datapoints]">
+  <% 0.upto current_user.datapoints >= 1000 ? 1000 : current_user.datapoints do |i| %>
+    <% if i % 10 == 0 %>
+    <option><%= i -%></option>
+    <% end %>
+  <% end %>
+</select>
+<p>You have <%= current_user.datapoints %> Datapoints;<br />
+you can leave up to 1000 <img src="/images/shared/icons/datapoint-16.png" alt="datapoints icon" border="0" width="16" height="16" valign="center" class="img_no_border" />, at today's exchange rates.
+</p>
+
+
+
+<img src="/images/shared/icons/ping-16.png" alt="pings icon" border="0" width="16" height="16" valign="center" class="img_no_border" />
+Pings: 
+<select id="amount" name="crate[pings]">
+  <% 0.upto current_user.available_pings >= 500 ? 500 : current_user.available_pings do |i| %>
+    <% if i % 10 == 0 %>
+    <option><%= i -%></option>
+    <% end %>
+  <% end %>
+</select>
+<p>You have <%= current_user.available_pings %> Pings;<br />
+you can leave up to 500 <img src="/images/shared/icons/ping-16.png" alt="pings icon" border="0" width="16" height="16" valign="center" class="img_no_border" />, at today's exchange rates.
+</p>
+
+
+<table border="0" cellpadding="0" cellspacing="8">
+<% [:armor, :crates, :grenades, :lightposts, :mines, :portals, :skeleton_keys, :st_nicks, :watchdogs ].each do |tool_sym| -%>
+<% unless current_user.inventory.send(tool_sym) == 0 -%>
+<% tool = Tool.cached_single(tool_sym) %>
+	<tr>
+		<td>
+			<img src="<%= tool.icon_image %>" alt="<%= tool.name.titleize %>" border="0" width="16" height="16" hspace="10" class="icon16" />
+		</td>
+		<td>
+			<%= tool.name.titleize -%>:
+		</td>
+		<td>
+			<select id="amount" name="crate[tools][<%= tool_sym -%>]">
+				<option>0</option>
+				<% if current_user.inventory.send(tool_sym) -%>
+					<% current_user.inventory.send(tool_sym) > 10 ? total = 10 : total = current_user.inventory.send(tool_sym) -%>
+					<% 1.upto total do |i| -%>
+						<option value="<%= i -%>"><%= i -%></option>
+					<% end -%>
+				<% end -%>
+			</select> of your <%= current_user.inventory.send(tool_sym) -%> total.
+		</td>
+	</tr>
+<% end -%>
+<% end -%>
+</table><br/>
+<p><i>You can leave a total of 10 tools, according to Benefactor Customs.</i></p>
+<p>Don't forget to leave a message for the recipient of this crate!<br/>
+	<textarea name='crate[comments]' rows='5' cols='40'></textarea>
+</p>
+<br/>
+<%= submit_tag "Stash!" %>
+<% end -%>
+
+					</div>
+				
+				</div>
+			
+			</div>
+
+		</div>

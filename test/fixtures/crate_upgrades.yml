@@ -1,0 +1,24 @@
+# == Schema Information
+# Schema version: 20081220201004
+#
+# Table name: crate_upgrades
+#
+#  id              :string(36)    default(""), not null, primary key
+#  crate_id        :string(36)    
+#  puzzle_question :string(255)   
+#  puzzle_answer   :string(255)   
+#  exploding       :boolean(1)    
+#  created_at      :datetime      
+#  updated_at      :datetime      
+#
+
+locked_crate_puzzle:
+  exploding: 
+  crate_id: 661f2e72-b66c-11dd-a089-0017f2d41804
+  id: 6621c146-b66c-11dd-a089-0017f2d41804
+  puzzle_question: ping
+  puzzle_answer: pong
+exploding_crate_trap:
+  exploding: true
+  crate_id: f9b23456-b507-11dd-ac2e-0017f2d41804
+  id: 661f2e72-b66c-11dd-a089-0017f2d41804

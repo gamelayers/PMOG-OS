@@ -1,0 +1,3 @@
+page.replace_html 'subscribe_button', show_subscription_button(@topic, current_user)
+page.replace_html "flash_msg", :partial => "shared/flash", :locals => { :flash => flash }
+flash.discard

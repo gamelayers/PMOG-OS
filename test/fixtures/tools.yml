@@ -1,0 +1,190 @@
+--- 
+skeleton_keys: 
+  name: Skeleton Keys
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: seers
+  cost: "0"
+  short_description: Unlocks a puzzle crate with a stupid question.
+  level: "1"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "1"
+  classpoints: "5"
+  large_image: 
+  id: ec51388a-13fc-11de-8bdd-0017f2d41804
+  long_description: 
+  small_image: /images/shared/icons/skeleton_key-32.png
+  url_name: skeleton_keys
+  charges: "0"
+  icon_image: /images/shared/icons/skeleton_key-16.png
+  medium_image: /images/shared/icons/skeleton_key-48.png
+  created_at: 2009-03-18 20:39:48
+crates: 
+  name: crates
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: benefactor
+  cost: "10"
+  short_description: Crates allow the safe storage of items across the web.
+  level: "3"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "1"
+  classpoints: "15"
+  large_image: /images/shared/tools/large/crates.png
+  id: aaf32974-ac42-11dd-b6a6-0017f2d41804
+  long_description: Crates can store up to 1000 datapoints, 500 Pings, and 10 tools. Crates can be stored inside of crates. Crates can be upgraded to be an <a href="/guide/upgrades/exploding_crate">Exploding Crate</a>, a <a href="/guide/upgrades/puzzle_crate">Puzzle Crate</a>, or an <a href="/guide/upgrades/ever_crate">Ever Crate</a>.
+  small_image: /images/shared/tools/small/crates.jpg
+  url_name: crates
+  charges: "0"
+  icon_image: /images/shared/tools/icon/crate-16.png
+  medium_image: /images/shared/tools/medium/crates.jpg
+  created_at: 
+lightposts: 
+  name: lightposts
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: pathmaker
+  cost: "5"
+  short_description: Lightposts light up the areas between web sites. They make visible connections that were dark before.
+  level: "1"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "4"
+  classpoints: "10"
+  large_image: /images/shared/tools/large/lightposts.png
+  id: aafc4658-ac42-11dd-b6a6-0017f2d41804
+  long_description: "Lightposts are required to make <a href=\"/missions/\">Missions</a>. Players who rank <a href=\"/codex/associations/pathmakers\">Pathmaker</a> as one of their top three associations can buy lightposts in the Shoppe. Otherwise, players can find Lightposts in crates left on websites. In order to save a website for use in the Generator, players should deploy a lighpost on it - much like bookmarking a site. Lightposts may be gifted between players by the gifter leaving lightposts in crates on the recipient's profile. "
+  small_image: /images/shared/tools/small/lightposts.jpg
+  url_name: lightposts
+  charges: "0"
+  icon_image: /images/shared/tools/icon/lightpost-16.png
+  medium_image: /images/shared/tools/medium/lightposts.jpg
+  created_at: 
+mines: 
+  name: mines
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: destroyer
+  cost: "20"
+  short_description: Mines catch users traveling by and self-destruct to create havoc.
+  level: "1"
+  association_cost: "0"
+  damage: "10"
+  pmog_class_id: "3"
+  classpoints: "5"
+  large_image: /images/shared/tools/large/mines.png
+  id: aafcc268-ac42-11dd-b6a6-0017f2d41804
+  long_description: Mines can be bought in the Shoppe by any player who ranks <a href="/codex/associations/destroyers">Destroyer</a> as one of their top three associations. Otherwise, players can find them in crates left on websites. Mines can be gifted by a player deploying a crate stuffed with Mines on another player's profile.
+  small_image: /images/shared/tools/small/mines.jpg
+  url_name: mines
+  charges: "0"
+  icon_image: /images/shared/tools/icon/mine-16.png
+  medium_image: /images/shared/tools/medium/mines.jpg
+  created_at: 
+portals: 
+  name: portals
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: seer
+  cost: "25"
+  short_description: Portals are a means of traveling from point to point online, guided by the player who puts them down.
+  level: "1"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "2"
+  classpoints: "15"
+  large_image: /images/shared/tools/large/portals.png
+  id: aafd33f6-ac42-11dd-b6a6-0017f2d41804
+  long_description: "Players have to rate their own portals either SFW or NSFW. Portals can be bought in the Shoppe by any player who ranks <a href=\"/codex/associations/seers\">Seer</a> as one of their top three associations. Otherwise, players can find them in crates left on websites. Portals may also be directly gifted from player to player if placed inside a crate on a player profile. "
+  small_image: /images/shared/tools/small/portals.jpg
+  url_name: portals
+  charges: "50"
+  icon_image: /images/shared/tools/icon/portal-16.png
+  medium_image: /images/shared/tools/medium/portals.jpg
+  created_at: 
+st_nicks: 
+  name: st_nicks
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: vigilante
+  cost: "20"
+  short_description: St. Nicks attach to a player and abort one mine or grenade left by that player.
+  level: "1"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "5"
+  classpoints: "10"
+  large_image: /images/shared/tools/large/st_nicks.png
+  id: ab4d9c88-ac42-11dd-b6a6-0017f2d41804
+  long_description: Use St. Nicks to get revenge for damage dealt or to provoke Destroyers into attacking you. If you're looking for the criminal set, start with the Events feed. Any player can have up to 5 St. Nicks attached to them at a time, but no more.
+  small_image: /images/shared/tools/small/st_nicks.jpg
+  url_name: st_nicks
+  charges: "0"
+  icon_image: /images/shared/tools/icon/st_nick-16.png
+  medium_image: /images/shared/tools/medium/st_nicks.jpg
+  created_at: 
+armor: 
+  name: armor
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: bedouin
+  cost: "25"
+  short_description: Armor prevents the player and their datapoints from damage.
+  level: "1"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "8"
+  classpoints: "15"
+  large_image: /images/shared/tools/large/armors.png
+  id: ab4dfe44-ac42-11dd-b6a6-0017f2d41804
+  long_description: One piece of armor can absorb 3 hits of damage from a mine or a grenade.
+  small_image: /images/shared/tools/small/armors.jpg
+  url_name: armor
+  charges: "3"
+  icon_image: /images/shared/tools/icon/armor-16.png
+  medium_image: /images/shared/tools/medium/armors.jpg
+  created_at: 
+watchdogs: 
+  name: watchdogs
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: vigilante
+  cost: "20"
+  short_description: Leave a Watchdog on any URL to prevent Destroyers from leaving mines there.
+  level: "7"
+  association_cost: "0"
+  damage: "0"
+  pmog_class_id: "5"
+  classpoints: "15"
+  large_image: /images/shared/tools/large/watchdogs.png
+  id: 8f9250d2-c7dc-11dd-b7e4-0017f2d41804
+  long_description: Watchdogs are a great way to protect your favorite sites and to catch whomever is attacking them.
+  small_image: /images/shared/tools/small/watchdogs.jpg
+  url_name: watchdogs
+  charges: "0"
+  icon_image: /images/shared/tools/icon/watchdog-16.png
+  medium_image: /images/shared/tools/medium/watchdogs.jpg
+  created_at: 2008-12-11 23:36:40
+grenades: 
+  name: grenades
+  updated_at: 2009-03-18 20:39:48
+  history: 
+  character: destroyer
+  cost: "20"
+  short_description: Throw a grenade at another player to deal damage.
+  level: "3"
+  association_cost: "0"
+  damage: "10"
+  pmog_class_id: "3"
+  classpoints: "10"
+  large_image: 
+  id: 5083182e-f88b-11dd-a001-0017f2d41804
+  long_description: Grenades are used to damage another player in real time.  When you throw a grenade at someone, the next time that player moves to a new web page, it will explode, dealing damage.  Grenades can be stopped by St Nicks, and blocked or dodged by Bedouin. If a player is offline, they can accumulate up to 5 Grenades on their person that will detonate when they begin crossing domains again.
+  small_image: 
+  url_name: grenades
+  charges: "0"
+  icon_image: /images/shared/icons/grenade-16.png
+  medium_image: medium_grenade_image_path
+  created_at: 2009-02-11 22:28:32

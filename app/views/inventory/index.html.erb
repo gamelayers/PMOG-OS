@@ -1,0 +1,11 @@
+<h1><%= @user.login %>'s Inventory</h1>
+
+<ul>
+	<% @inventory.each do |i| %>
+		<li><%= i[0] %>: <%= i[1] %></li>
+	<% end %>
+</ul>
+
+<% form_for(:inventory, :url => { :controller => :inventory, :action => :update, :user_id => @user }, :html => { :method => :put }) do |f| %>
+	<%= submit_tag "Update" %>
+<% end %>

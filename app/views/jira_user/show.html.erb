@@ -1,0 +1,23 @@
+<h2>Prepare to Visit the PMOG Hospital</h2>
+<br />
+<p>
+	At the <a href="http://hospital.pmog.com">PMOG Hospital</a>, we track problems with PMOG and plan for future augmentations.
+</p>
+
+<p>
+	By entering your current PMOG password below, we'll give you access to the Hospital with your current PMOG username/password credentials.
+</p>
+
+<div id="spinner" class="horizontal_spinner" style="display: none;">
+	<img src="/images/ajax-loader.gif"><br />
+	<span id="spinner_text">Setting <%= current_user.login %> up for access to the PMOG Hospital</span>
+</div>
+
+<div id="password_form">
+  <% remote_form_for :user, :url => register_user_hospital_path(current_user), :loading => "jQuery('#password_form').hide(); jQuery('#spinner').show();" do |f| %>
+	  <h4>Current Password:</h4>
+	  <h5>Just enter your current password </h5><br />
+	  <%= f.password_field :password, :class => 'input_newuser', :size => 30 %><br /><br />
+	  <%= submit_tag "Create Hospital Account" %>
+  <% end %>
+</div>

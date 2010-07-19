@@ -1,0 +1,69 @@
+<% content_for :head do %>
+<style type="text/css">
+	div.grippie {
+		background:#EEEEEE url(/images/shared/grippie.png) no-repeat scroll center 2px;
+		border-color:#DDDDDD;
+		border-style:solid;
+		border-width:0pt 1px 1px;
+		cursor:s-resize;
+		height:9px;
+		overflow:hidden;
+	}
+	.resizable-textarea textarea {
+		display:block;
+		margin-bottom:0pt;
+		width:95%;
+		height: 20%;
+	}
+</style>
+<% end %>
+<%# 
+* Change these hyphens to plus signs because jQuery serializes the IDs and includes the hyphens in that conversion
+* so it royally hoses us. So we'll convert the hyphens to plus signs, which get converted to spaces when sent to the
+* server. We convert the spaces back to hyphens to find the branch.
+%>
+<li id="branches_<%= edit_lightposts.id.gsub('-', '+') %>">
+
+<% unless edit_lightposts.puzzle.nil? %>
+  <img src="<%= Upgrade.cached_single('puzzle_post').icon_image %>"/>
+<% end %>
+
+<% if site_admin? %>
+#<span id="pos_<%= edit_lightposts.id %>"><%= edit_lightposts.position %></span>
+<% end %>
+
+<strong>
+  <a style="cursor: pointer;" name="<%= edit_lightposts.location.url %>">
+    <%= truncate(edit_lightposts.location.url, 35, "...") %>
+  </a>
+</strong>
+<small>
+  <%= link_to "(test)", edit_lightposts.location.url, :target => "_new" %>
+  <%= link_to_remote (image_tag("/images/shared/elements/del_16.gif", :class   => "img_no_border", 
+  :title   => "delete #{edit_lightposts.location.url}", 
+  :align   => "absmiddle"), 
+  { :url     => remove_lightpost_mission_path(edit_lightposts.id),
+    :method => "delete",
+    :confirm => 'Are you sure?',
+    :loading  => "jQuery('#spinner').show();", 
+    :complete => "jQuery('#spinner').hide();",
+    :success => "jQuery('branches_#{edit_lightposts.id.gsub('-', '+')}').effect('puff');" })
+    %>
+  </small>
+  <br/>
+  <h5>Type your description here:</h5>
+  <span id="edit_description_<%= edit_lightposts.id %>" class="lightpost_description"><%= edit_lightposts.description %></span>
+  <script type="text/javascript" language="javascript">
+  jQuery('#edit_description_<%= edit_lightposts.id %>').editInPlace( {
+    url: "/branches/set_description/<%= edit_lightposts.id %>",
+    params: "ajax=yes",
+    bg_over: "#cff",
+    field_type: "textarea",
+    show_buttons: false,
+    textarea_cols: 30,
+    char_limit: 399,
+    autogrow: true,
+  });
+  </script>
+  <%= error_messages_for "branch" %>
+</li>

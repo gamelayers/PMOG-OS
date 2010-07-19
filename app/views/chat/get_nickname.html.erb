@@ -1,0 +1,7 @@
+
+
+<div id="nickname" style="text-align: center">
+<%= start_form_tag %>
+Choose a nickname to use in chat:<br /><input type="text" name="nickname" maxlength="30" value="Default<%= rand(1000).to_s %>" /> <input type="submit" value="Join Chat" /><input type="hidden" name="style" value="<%= params[:style] %>" />
+<%= end_form_tag %>
+</div>

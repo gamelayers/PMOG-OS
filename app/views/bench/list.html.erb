@@ -1,0 +1,104 @@
+<h2 class="caps">Benchmarking results</h2>
+
+<a href='/system/data/coverage/index.html'>rcov coverage report</a>
+
+&nbsp;&nbsp;
+
+<a href='http://doc.pmog.com'>auto generated documentation</a>
+
+<br/>
+<br/>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th><a href='view/?chart=production_log_graph'>Production Log</a></th>
+  <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "production_log_graph") %>">
+    <td height="400">
+      <%= @production_log_graph %>
+    </td>
+  </tr>
+</table>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th>Production Log (total)</th>
+  <% Dir[@path + "/completed-total*"].sort.reverse.each do |f| %>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "1") %>">
+      <td>
+        <a href="/<%= f.gsub!( File.expand_path(RAILS_ROOT) + "/public/", '' ) %>"><%= f %></a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th>Production Log (rendering)</th>
+  <% Dir[@path + "/completed-rendering*"].sort.reverse.each do |f| %>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "2") %>">
+      <td>
+        <a href="/<%= f.gsub!( File.expand_path(RAILS_ROOT) + "/public/", '' ) %>"><%= f %></a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th>Production Log (database)</th>
+  <% Dir[@path + "/completed-database*"].sort.reverse.each do |f| %>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "3") %>">
+      <td>
+        <a href="/<%= f.gsub!( File.expand_path(RAILS_ROOT) + "/public/", '' ) %>"><%= f %></a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br/>
+<br/>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th><a href='view/?chart=pl_analyze_graph'>pl_analyze Log</a></th>
+  <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "lightpost") %>">
+    <td height="400">
+      <%= @pl_analyze_graph %>
+    </td>
+  </tr>
+</table>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th>pl_analyze</th>
+  <% Dir[@path + "/pl_analyze*"].sort.reverse.each do |f| %>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "lightpost") %>">
+      <td>
+        <a href="/<%= f.gsub!( File.expand_path(RAILS_ROOT) + "/public/", '' ) %>"><%= f %></a>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+</table>
+
+
+<br/>
+<br/>
+
+<h3>0 reqs/second</h3>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th><a href='view/?chart=zero_requests_graph'>zero requests Log</a></th>
+  <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "lightpost") %>">
+    <td height="400">
+      <%= @zero_requests_graph %>
+    </td>
+  </tr>
+</table>
+
+<table class="tabular_data" cellpadding="0" cellspacing="0" style="font-size:0.9em !important;">
+  <th>zero_requests</th>
+  <% Dir[@path + "/zero_requests*"].sort.reverse.each do |f| %>
+    <tr class="<%= cycle("lightpost_odd", "lightpost_even", :name => "4") %>">
+      <td>
+        <a href="/<%= f.gsub!( File.expand_path(RAILS_ROOT) + "/public/", '' ) %>"><%= f %></a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+</div>

@@ -1,0 +1,32 @@
+SqlProfiler
+===========
+
+I should probably roll this into one of the many other query plugins that exist already for rails. However most of them do 90% of what I want a query plugin to do, so this is the other 10%.
+
+SqlProfiler just logs the queries your application makes so that you can pull out a report of the most executed ones, making it a pretty dumb but quick way of profiling your code and finding the initial places to start caching. It also logs the number of rows returned by each query, which is handy for finding memory leaks, as I discovered recently when a custom finder I'd thought was intelligent (as it make extensive use of :include to fetch in all the required associations) turned out to be lacking a simple 'group by' statement, resulting in thousands upon thousands of rows being returned.
+
+
+Install
+=======
+
+Run 'script/generate SqlProfiler' and then 'rake db:migrate' to get the necessary database tables.
+
+Edit init.rb and alter the @@acceptable_hosts variable to contain the server names you want to run this on. Don't run it in your live environment as it'll hamper performance.
+
+Copy lib/sql_profiler.html.erb to somewhere safe, like sekrit/sql_profiler.html.erb, making sure that it's protected by a before_login or permit 'site_admin' style filter. I haven't figured out how to add views to plugins so this is a hack, sorry!
+
+View the resulting output after browsing your website by going to /sekrit/sql_profiler.
+
+Since the dataset is going to get quite large, I'd advise wiping the table on a daily basis. There's a handy 'wipe' method on the SqlProfiler model, so you can add something like this to your crontab:
+
+@daily	(cd /path/to/your/app; ./script/runner SqlProfiler.wipe -e production) >> /dev/null 2>&1
+
+To do
+=====
+
+Sql Profiler might not be logging *all* queries. Test that it catches INSERTS, SELECTS, DELETES and UPDATES.
+
+Copyright (c) 2007 Duncan Gough, GameLayers, released under the MIT license
+
+http://www.gamelayers.com
+http://www.suttree.com

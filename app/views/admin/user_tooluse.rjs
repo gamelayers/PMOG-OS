@@ -1,0 +1,2 @@
+page.replace_html "user_tooluse_response", "#{@user.login} has used #{@tool_use} #{params[:user][:tool]}"
+page.visual_effect :highlight, "user_tooluse_response", :duration => 3

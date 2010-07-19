@@ -1,0 +1,231 @@
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:rss, formatted_forum_topic_url(:forum_id => @forum.url_name, :id => @topic.url_name, :format => "rss"), :title => "Subscribe to") %>
+  <%= stylesheet_link_tag '/css/supplemental-forums' %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/forums" %>
+	</div>
+<% end %>
+
+<% content_for :search do %>
+<%= render :partial => 'forums/search_form' %>
+<% end %>
+
+<div id="copy">
+		
+	<div class="column width960">
+
+		<div class="column width750">
+
+			<div class="module width750">
+<h2><%=h @topic.title %> <span>(<%= @topic.posts_count - 1 %> Replies)</span></h2>
+	<!-- #fixme pagination here is untested and unstyled -->
+  <%= will_paginate @posts, :class => 'forum_pagination' %>
+
+
+<% unless @topic.nil? %>
+  
+	<div id="post_list">
+  <table class="stripeMe" cellpadding="0" cellspacing="0">
+    <% @posts.each_with_index do |post, index| %>
+    <tr class="divider">
+    	<td class="avatar" rowspan="2">
+	      <% if post.user.nil? %>
+  	      <b>User Deleted</b><br /><br />
+        <% else %>
+<!-- #fixme this popup shows up for users who are not logged in -->
+	      	<div class="avatarAction avatar120">
+    	    <%= avatar_link_to_user :user => post.user, :size => 'medium', :align => "left" %>
+              <div class="avatarPop avatar120">
+              <div class="avatarPopIn avatar120">
+                <div class="avatarOver avatar120">
+                  <a href="/users/<%= post.user.login %>"><img class="avatar120" src="<%= avatar_path_for_user(:user => post.user, :size => "medium") %>" alt="<%= post.user.login %>" title="<%= post.user.login %>" /></a>
+                </div>
+                <%= render :partial => "/shared/avatar120_actions", :locals => {:user => post.user, :filter => "none" } %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      </td>
+
+      <td style="margin-top: 10px;" colspan="2">
+      	<a name='post_<%= index %>'></a>
+				<a name='<%= post.id %>'></a>
+          <% if post.user.nil? %>
+            <b>User Deleted</b><br />
+          <% else %>
+          <p style="padding: 10px 0px 0px; margin:0px;"><strong>
+            <%= link_to( h(post.user.login), user_path(post.user) ) %>
+          </strong>
+      </td>
+      </tr>
+      <tr style="margin-bottom: 10px;">
+      <td width="100"> 
+			<p>
+            <%= post.user.user_level.primary_class.titleize %>
+            <br />
+            Level <%= post.user.current_level %>
+            <br />
+            <% if post.user.cached_has_role? 'site_admin' %>
+            <img src="/images/icons/roles/trustee-16.png"/>  Trustee<br />
+            <% elsif post.user.cached_has_role? 'steward' %>
+            <img src="/images/icons/roles/steward-16.png"/>  Steward<br />
+            <% elsif post.user.cached_has_role? 'npc' %>
+            <img src="/images/icons/roles/steward-16.png"/>  Character<br />
+            <% end %>
+            Posts: <%= post.user.posts_count %>
+            </p>
+
+            <% if post.user.login == 'pmog' %>
+                <p><i>Original account deleted</i></p>
+              <% end %>
+          <% end %>
+          <br/>
+        
+
+      </td>
+      <td class="divider">
+      <div class="talkArrow">
+        <div class="wrapper">
+          <%= format(post.body) %>
+        </div>
+       	<div class="smallReply"><p>
+						Replied <%= time_ago_in_words(post.updated_at) %> ago  
+						
+          	<%= " | <a href='#{forum_topic_path(@topic)}#{'?page='+@page if !@page.nil?}##{post.id}'>Permalink</a>" %>
+         		<% if site_admin? or current_user == post.user %>
+	 						<%= " | #{ link_to('Edit post', edit_forum_topic_post_path(post)) }"%>
+   						<%= " | #{ link_to('Destroy', forum_topic_post_path(post), :action => 'destroy', :method => :delete) }" %>
+						<% end %>
+						<%= " | #{ link_to('Hide', hide_forum_topic_post_path(post), :method => :post) }" if (site_admin? or steward?) and post.is_active %>
+						<%= " | HIDDEN" unless not site_admin? or not steward? and post.is_active %>
+    			</p></div>
+      </div> 
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  </div>
+
+	<!-- #fixme pagination here is untested and unstyled -->
+  <%= will_paginate @posts, :class => 'forum_pagination' %>
+
+<% if @topic.posts.empty? %>
+
+  <p>No posts</p>
+
+<% end %>
+
+<% if logged_in? and not @topic.is_locked? %>
+
+  <br />
+  
+  <div class="forum_post_list_reply">
+
+  <h1 class="forum_post_list_reply_h">Post a reply</h1>
+  
+  <% form_for(:post, :url => forum_topic_posts_path(:forum_id => @topic.forum, :topic_id => @topic)) do |f| %>
+    
+    <textarea cols="60" rows="10" id="post_body" name="post[body]" class="input" value=""></textarea>
+
+    <h5 class="forum_post_list_reply_h">Some html allowed.  If you post an http:// link, it will be clickable.</h5>
+
+    <%#= f.hidden_field :topic_id, :value => @topic.id %>
+  
+    <input value="Post Reply" name="" type="submit" class="input forum_post_submit" />
+      
+  <% end %>
+
+  </div>
+    
+<% end %>
+
+<% if @topic.is_locked? %>
+  <h1>This thread is locked and therefore cannot be posted to.</h1>
+<% end %>
+
+<p style="float:right;">
+  <% if !@topic.is_locked? and (site_admin? or current_user == @topic.user)%>
+    <%= link_to 'Edit Topic', edit_forum_topic_path(@topic) %> |
+  <% end %>
+
+  <%= link_to 'Forums Home', forums_path %></p>
+
+<% end %>
+
+  <% if !logged_in? %>
+    <div class="bottomNav">
+      To comment, please <%= link_to("Sign In", "/session/new") %>
+    </div>
+  <% end %>
+
+						</div>
+				</div>
+				
+		<div class="column width190">
+						<div class="module width190">
+							<h3>About This Topic:</h3>
+							
+								<p><strong><%=h @topic.title %></strong></p>
+						
+								<p>Started by <a href="/users/<%= @topic.user.login %>"><%= @topic.user.login %></a> in <%= link_to h(@forum.title), forum_path(@forum) %>, <%= time_ago_in_words(@topic.created_at) %> ago.</p>
+								
+								<p>Latest reply from <a href="/users/<%= @topic.posts.last.user.login %>"><%= @topic.posts.last.user.login %></a>.</p>
+
+  <% if logged_in? %>
+  	<div id="subscribe_button" class="forum_subscribe_button">
+			<%= show_subscription_button(@topic, current_user) %>
+		</div>
+	<% end %>
+<br/>
+  <%= link_to ' Edit topic', edit_forum_topic_path(@topic) if site_admin? or current_user == @topic.user %>
+  
+	<br/>
+
+						</div>
+					</div>
+					
+		<div class="column width20"></div>
+
+	<% if logged_in? and ( site_admin? or steward? )%>
+		<div id="topic_admin" class="column width190">
+			<div class="module width190">
+				<a href="#" onclick="jQuery('#topic_admin').toggle('slow');return false;"><img src="/images/shared/icons/close_window-16.png" alt="Close" title="Close Topic Admin" width="16" height="16" border="0" align="right" /></a>
+				<h2>Admin:</h2>
+				<p class="">
+			  <% if site_admin? %>
+	  			<%= link_to ' Edit', edit_forum_topic_path(@topic) %> |
+					<%= link_to' Hide',  hide_forum_topic_path(@topic), :method => :post if @topic.is_active %> |
+			    <%= link_to 'Delete', forum_topic_path(@topic), :action => 'destroy', :method => :delete %><br/>
+			  <% end 
+			  if site_admin? or steward? %>
+			    <a onclick="jQuery('#pmog_topic_move').toggle();">Move</a> |
+				  <%= link_to('Lock |', lock_forum_topic_path(@topic), :method => :post, :confirm => "Are you sure?") if not @topic.is_locked? %>
+			    <%= link_to('Unlock |', unlock_forum_topic_path(@topic), :method => :post, :confirm => "Are you sure?") if @topic.is_locked? %>
+			    <%= link_to('Pin', pin_forum_topic_path(@topic), :method => :post, :confirm => "Are you sure?") if not @topic.is_pinned? %>
+					<%= link_to('Un-pin', unpin_forum_topic_path(@topic), :method => :post, :confirm => "Are you sure?") if @topic.is_pinned? %>
+
+	<% end %>
+	
+      <div id="pmog_topic_move" style="display:none;">
+      <p>Move the topic <b><%=h @topic.title %></b> and its <%= @topic.posts_count - 1 %> replies to:</p>
+        <% form_for :topic, 
+                     :url => { :controller => 'topics', :action => 'move' } do |f| %>
+        <%= hidden_field 'topic', 'id' %>
+        <select name="topic[topic_forum_id]">
+          <%= options_from_collection_for_select Forum.find(:all), 'id', 'title', @forum.id %>
+        </select><br/><br/>
+        <input value="Move" name="" type="submit" id="input" class="input" />
+        <% end %>
+        </div>
+
+			</div>
+
+		</div>
+				<% end %>
+
+	</div>
+
+</div>

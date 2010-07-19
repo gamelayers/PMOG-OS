@@ -1,0 +1,50 @@
+<img src="<%= @asset.public_filename(:medium) %>" />
+
+<p>
+  <b>Filename:</b>
+  <%=h @asset.filename %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @asset.width %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @asset.height %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%=h @asset.content_type %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%=h @asset.size %>
+</p>
+
+<p>
+  <b>Attachable type:</b>
+  <%=h @asset.attachable_type %>
+</p>
+
+<p>
+  <b>Attachable:</b>
+  <%=h @asset.attachable_id %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @asset.updated_at %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @asset.created_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path() %>

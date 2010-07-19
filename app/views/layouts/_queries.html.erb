@@ -1,0 +1,14 @@
+      <% if site_admin? %>
+      <div class="queries" id="queries" style="display:none;">
+        <pre>
+          <font size="-5" color="red">
+            Queries in Controller:  <%= queries.count_with_label :controller %>
+            Queries in View:        <%= queries.count_with_label :view %>
+            Query Count:            <%= queries.count %>
+            Query types:            <%= queries.stats.collect{ |q| q[:label] }.uniq.inspect %>
+            Query Time:             <%= queries.runtime %>
+            Host:                   <%= current_slice %>
+          </font>
+        </pre>
+      </div>
+      <% end %>

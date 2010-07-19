@@ -1,0 +1,2 @@
+module InventoryHelper
+end

@@ -1,0 +1,2 @@
+module OauthLoginHelper
+end

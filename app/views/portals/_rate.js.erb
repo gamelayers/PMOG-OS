@@ -1,0 +1,47 @@
+<div class="pmog_single_portal">
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @portal.id } %>
+  <br style="clear:both;"/>
+  <%= render :partial => 'shared/ext/progress_throbber', :locals => { :throbber_id => @portal.id } %>
+
+  <div class="pmog_portal_text">
+    Rate <a href="<%= host %>/users/<%= @portal.user.login %>" target="new">
+    <%= @portal.user.login %>
+    </a>'s portal:
+    <br />
+    <strong><%= @portal.title %></strong>
+    <br /><br />
+    
+    <div style="width:196px;margin:0 auto;">
+    
+    <img src="<%= host %>/images/ext/portals/button_rateportal.png" alt="Rate This Portal!" width="99" height="38" style="float:left;" />
+    
+    <div style="width:92px;float:left;margin:12px 0 0 5px;">
+    
+    <% for i in 1..5 %>
+        <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+              pmog_m.setAttribute('server_url', '/locations/<%= @location.id %>/portals/<%= @portal.id %>/rate.json');
+              pmog_m.setAttribute('params', '{\'portal\' : { \'rating\' : \'<%= i %>\'}}');
+              pmog_m.setAttribute('method', 'post');
+              pmog_m.setAttribute('action', 'submit');
+              pmog_m.setAttribute('window_id', '<%= @portal.id %>');
+              <%= render :partial => 'shared/ext/progress_throbber_trigger', :locals => { :throbber_id => @portal.id } %>
+              pmog_m.dispatchEvent(pmog_e);return false;" href="#"><%= image_tag "#{host}/images/ext/star_medium_on.png" %></a>
+    <% end %>
+    
+    </div>
+  </div>
+    
+    <br style="clear:both;" />
+    <br />
+    <div id="vote">
+      <a onclick="<%= render :partial => 'shared/ext/overlay_init' %>
+        pmog_m.setAttribute('server_url', '/locations/<%= @location.id %>/portals/<%= @portal.id %>/vote.json');
+        pmog_m.setAttribute('method', 'post');
+        pmog_m.setAttribute('action', 'submit');
+        pmog_m.setAttribute('window_id', '<%= @portal.id %>');
+        <%= render :partial => 'shared/ext/progress_throbber_trigger', :locals => { :throbber_id => @portal.id } %>
+        pmog_m.dispatchEvent(pmog_e);return false;" href="#" class="pmog_portal_rate_nsfw">&nbsp;</a>
+      <br />
+    </div>
+  </div>
+</div>

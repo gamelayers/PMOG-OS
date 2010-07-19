@@ -1,0 +1,24 @@
+<h3><a href="javascript:;">Deactivate Account<span>If you wish to close your account or clear your history from our system, you may do so here.</span></a></h3>
+<div class="back" id="prefDeactivate">
+<h4>Remove Thyself from the Game Stream</h4>
+<p style="margin-bottom:30px;">Perhaps you wish to stop playing. Perhaps you wish to never have played! :-(<br/>
+You may remove yourself from our game memory.<br/>
+NOTE: these actions below are data-binding and <span class="red">cannot be un-done</span>:</p>
+<h4>Delete My Nethernet History</h4>
+<p>Deletes your browsing history from our database. You would still keep your tools, badges, acquaintances, forum posts and mission history (missions both taken, and created).</p>
+<% form_for :user, :url => { :controller => 'privacy', :action => 'delete_history' }, :confirm => "Are you sure you want to delete your browsing history on The Nethernet?", :method => 'post' do |f| %>
+<label for="history_delete">To delete your history, Enter your Password:</label>
+<%= f.password_field :password_confirmation %>
+<%= f.submit 'Delete', :disable_with => 'Deleting your history...' %>
+<% end %>
+<div class="extendThis">Starting over?</div>
+<br/>
+<h4>Delete my Account</h4>
+<p>Deletes all of your Nethernet data from the system and permanently closes your account.</p>
+<% form_for :user, :url => { :controller => 'privacy', :action => 'close_account' }, :confirm => "WARNING: This will delete your ENTIRE account on The Nethernet!  Once deleted, your account CANNOT be retrieved.  Are you sure you want to delete your account?", :method => 'post' do |f| %>
+<label for="account_delete">To delete your history, Enter your Password:</label>
+<%= f.password_field :password_confirmation %>
+<%= f.submit 'Delete', :disable_with => 'Deleting your account...' %>
+<% end %>
+<div class="extendThis">Saying goodbye is never easy...</div>
+</div>

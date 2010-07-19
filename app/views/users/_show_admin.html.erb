@@ -1,0 +1,82 @@
+<% if site_admin? %>
+  <!-- PROFILE admin -->
+  <div id="profileAdmin">
+    <div class="name">
+      <h4>only visible to Trustees viewing this profile</h4>
+      <br/>
+
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <%= link_to 'Clear Avatar', { :controller => 'users', :action => 'delete_assets', :id => @user.login }, :confirm => "This will delete ALL of the users past avatars. Are you sure?", :method => 'delete' %>
+      </h5>
+
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <%= link_to 'Clear Login Delay', { :controller => 'users', :action => 'reset_login_delay', :id => @user.login }, :confirm => "This will reset the login delay for this player, allowing them to attempt a login immediately. Are you sure?", :method => 'delete' %>
+      </h5>
+
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <a href="/admin/change_user_password?login=<%= @user.login %>">Edit Password</a>
+      </h5>
+
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <a href="/admin/change_user_login?login=<%= @user.login %>">Edit Login</a>
+      </h5>
+
+      <% if @suspended %>
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <a href='/suspensions/restore/<%= @user.login %>'>Restore Player</a>
+      </h5>
+      <% else %>
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <a href='/suspensions/form/<%= @user.login %>'>Suspend Player</a>
+      </h5>
+      <% end %>
+
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <%= link_to 'Become', { :controller => "users", :action => "become", :id => @user.login }, { :confirm => "Be careful out there, and don't forget to LOGOUT when you're done!" } %>
+      </h5>
+
+      <h5>
+        <img src="/images/profile/profile_edit.png" class="img_no_border" />
+        <a href='/admin/inventory/<%= @user.login %>'>Edit Player Inventory and Classpoints</a></h5>
+
+        <% if !@user.has_role?('steward') %>
+          <h5>
+            <img src="/images/profile/profile_edit.png" class="img_no_border" />
+            <%= link_to 'Promote', { :controller => 'users', :action => 'promote', :id => @user.login }, :confirm => "This will give this user permission to lock and pin forum topics. Is this player worthy?", :method => 'post' %>
+          </h5>
+        <% else %>
+          <h5>
+            <img src="/images/profile/profile_edit.png" class="img_no_border" />
+            <%= link_to 'Demote', { :controller => 'users', :action => 'demote', :id => @user.login }, :confirm => "This will strip this user of permission to lock and pin forum topics. Are you sure?", :method => 'post' %>
+          </h5>
+        <% end %>
+
+        <% if site_admin? && @user.locked? %>
+          <h5>
+            <img src="/images/profile/profile_edit.png" class="img_no_border" />
+            <%= link_to 'Unlock account', { :controller => 'users', :action => 'unlock', :id => @user.login }, :confirm => "This will allow a user to login again, following too mnay failed login attempts previously", :method => 'post' %>
+          </h5>
+        <% end %>
+
+      <br/>
+
+      <p class="bottom"><strong>Player Email:</strong> <%= @user.email.gsub('@', ' A T ') %></p>
+
+      <p>&nbsp;</p>
+
+      <p class="bottom">
+        <b>First Login:</b> <%= @user.created_at.strftime("%h %e %Y") %> <br />
+        <b>Last Login:</b> <% if not @user.last_active.nil? %><%= @user.last_active.strftime("%h %e %Y") %><% end %><br />
+        <b>Last Version:</b> <%= @user.last_version %>
+      </p>
+
+    </div>
+  </div>
+<% end %>

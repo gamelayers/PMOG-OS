@@ -1,0 +1,24 @@
+<h1>Listing bird_bots</h1>
+
+<table>
+  <tr>
+  </tr>
+  
+<% for bird_bot in @bird_bots %>
+  <tr>
+		<% if bird_bot.assets.size > 0 %>
+			<td><img src="<%= bird_bot.assets[0].public_filename :small %>" /></td>
+		<% else %>
+			<td>&nbsp;</td>
+		<% end %>
+		<td><%= bird_bot.name %></td>
+    <td><%= link_to 'Show', bird_bot_path(bird_bot) %></td>
+    <td><%= link_to 'Edit', edit_bird_bot_path(bird_bot) %></td>
+    <td><%= link_to 'Destroy', bird_bot_path(bird_bot), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New bird_bot', new_bird_bot_path %>

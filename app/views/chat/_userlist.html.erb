@@ -1,0 +1,3 @@
+<% for user in @channel.users %>
+    <div class="user"><a href="/members/<%= user.handle %>" target="_main"><%= user.handle %></a></div>
+<% end %>

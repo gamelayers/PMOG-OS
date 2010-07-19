@@ -1,0 +1,271 @@
+--- 
+upgrades_003: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Puzzle Crates
+  updated_at: 2009-03-01 15:38:36
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: You can upgrade a crate with 20 Pings to make a Puzzle Crate. A Puzzle Crate protects the loot with a Question and Answer. Enter a question like, "What are shoats made of?" Then enter your answer, say, "Bacon".
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: "0"
+  level: "7"
+  pmog_class_id: "1"
+  classpoints: "25"
+  large_image: /images/shared/tools/large/puzzlecrate.png
+  id: 6b03a1ce-c32e-11dd-903f-0017f2d41804
+  armor_cost: "0"
+  tool_id: d284528a-b028-11dd-bce3-0017f2d41804
+  mine_cost: "0"
+  long_description: Players who solve your Puzzle Crate will have to spell the answer exactly as you did. We don't look for capitalization but we look for character-matching. Remember this especially if the answer to a Puzzle Crate is a number.
+  small_image: /images/shared/tools/small/puzzlecrate.png
+  ping_cost: "20"
+  url_name: puzzle_crate
+  created_at: 2008-12-06 00:40:02
+  medium_image: /images/shared/tools/medium/puzzlecrate.png
+  icon_image: /images/shared/tools/icon/crate-16.png
+upgrades_004: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Exploding Crates
+  updated_at: 2009-03-01 15:38:36
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Upgrade a crate with 20 Pings and a mine to make an Exploding Crate! While another player thinks they're looting a perfectly safe crate, they'll actually be triggering your trap!
+  damage: "10"
+  portal_cost: "0"
+  dp_cost: "0"
+  level: "5"
+  pmog_class_id: "3"
+  classpoints: "15"
+  large_image: /images/shared/tools/large/explodingcrate.png
+  id: 6b04ed36-c32e-11dd-903f-0017f2d41804
+  armor_cost: "0"
+  tool_id: d284528a-b028-11dd-bce3-0017f2d41804
+  mine_cost: "1"
+  long_description: "You'll need to spend a mine as well as a crate in order to make an Exploding Crate, so this upgrade is a bit expensive. The look on your rival's face will make it totally worth it, though. And because these mines have been hidden in crates, St. Nicks will not prevent against Exploding Crates. "
+  small_image: /images/shared/tools/small/explodingcrate.png
+  ping_cost: "20"
+  url_name: exploding_crate
+  created_at: 2008-12-06 00:40:02
+  medium_image: /images/shared/tools/medium/explodingcrate.png
+  icon_image: /images/shared/tools/icon/crate-16.png
+upgrades_005: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Ever Crates
+  updated_at: 2009-03-01 15:38:36
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Ever Crates can be looted by a large number of people, one time each.
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: "0"
+  level: "10"
+  pmog_class_id: "1"
+  classpoints: "25"
+  large_image: 
+  id: 72a56680-f3ec-11dd-843f-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: When you first stash an Ever Crate on a site, you'll be charged for all the loot that you're putting in there at that time.
+  small_image: 
+  ping_cost: "20"
+  url_name: ever_crate
+  created_at: 2009-02-06 01:21:15
+  medium_image: 
+  icon_image: 
+upgrades_006: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Ever Mines
+  updated_at: 2009-04-02 22:50:09
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Ever Mines will stay on a website exploding once for each new player to come across them.
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: 
+  level: "10"
+  pmog_class_id: "1"
+  classpoints: "25"
+  large_image: 
+  id: 9de7aa20-1fd8-11de-9315-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: 
+  small_image: 
+  ping_cost: "5"
+  url_name: ever_mine
+  created_at: 2009-04-02 22:50:09
+  medium_image: 
+  icon_image: 
+upgrades_007: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Stealth Mines
+  updated_at: 2009-04-02 22:50:09
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Stealth mines will not appear on the event stream unless a watchdog is blocking that site.
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: 
+  level: "8"
+  pmog_class_id: "1"
+  classpoints: "10"
+  large_image: 
+  id: 9df13b76-1fd8-11de-9315-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: 
+  small_image: 
+  ping_cost: "10"
+  url_name: stealth_mine
+  created_at: 2009-04-02 22:50:09
+  medium_image: 
+  icon_image: 
+upgrades_008: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Stealth Crates
+  updated_at: 2009-04-02 22:50:09
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Stealth crates will not appear on the event stream.
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: 
+  level: "8"
+  pmog_class_id: "1"
+  classpoints: "20"
+  large_image: 
+  id: 9df2932c-1fd8-11de-9315-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: 
+  small_image: 
+  ping_cost: "10"
+  url_name: stealth_crate
+  created_at: 2009-04-02 22:50:09
+  medium_image: 
+  icon_image: 
+upgrades_009: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Abundant Mines
+  updated_at: 2009-04-02 22:50:09
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Abundant mines steal DP from your enemies.
+  damage: "15"
+  portal_cost: "0"
+  dp_cost: 
+  level: "7"
+  pmog_class_id: "1"
+  classpoints: "10"
+  large_image: 
+  id: 9df3feba-1fd8-11de-9315-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: 
+  small_image: 
+  ping_cost: "10"
+  url_name: abundant_mine
+  created_at: 2009-04-02 22:50:09
+  medium_image: 
+  icon_image: 
+upgrades_010: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Ballistic St. Nick
+  updated_at: 2009-04-06 19:10:49
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Ballistic St. Nicks immediately destroy a player's armor (or shock them a bit if they don't have any on.)
+  damage: "5"
+  portal_cost: "0"
+  dp_cost: 
+  level: "5"
+  pmog_class_id: "5"
+  classpoints: "15"
+  large_image: 
+  id: a3c81b88-22de-11de-8b48-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: 
+  small_image: 
+  ping_cost: "20"
+  url_name: ballistic_nick
+  created_at: 2009-04-06 19:10:49
+  medium_image: 
+  icon_image: 
+upgrades_001: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Puzzle Post
+  updated_at: 2009-04-09 21:59:06
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: Puzzle Posts don't allow a player to progress through a mission until they have answered a question.
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: 
+  level: "7"
+  pmog_class_id: "4"
+  classpoints: "100"
+  large_image: ""
+  id: 118ae80c-24ca-11de-ae18-0017f2d41804
+  armor_cost: "0"
+  tool_id: 
+  mine_cost: "0"
+  long_description: ""
+  small_image: ""
+  ping_cost: "200"
+  url_name: puzzle_post
+  created_at: 2009-04-09 05:48:36
+  medium_image: ""
+  icon_image: /images/shared/icons/skeleton_key-16.png
+upgrades_002: 
+  st_nick_cost: "0"
+  lightpost_cost: "0"
+  name: Abundant Portals
+  updated_at: 2009-03-01 15:38:36
+  misc: 
+  crate_cost: "0"
+  history: 
+  short_description: If you modify your portals with 20 Pings to make your portals abundant, you will earn 2 datapoints for each player who takes your portal.
+  damage: "0"
+  portal_cost: "0"
+  dp_cost: "0"
+  level: "5"
+  pmog_class_id: "2"
+  classpoints: "20"
+  large_image: /images/shared/tools/large/abundantportal.png
+  id: 6b0238de-c32e-11dd-903f-0017f2d41804
+  armor_cost: "0"
+  tool_id: d28e0352-b028-11dd-bce3-0017f2d41804
+  mine_cost: "0"
+  long_description: This is a good chance to make some extra DP for yourself. Additionally, if the player decides to rate your portal you'll get another 1 DP.
+  small_image: /images/shared/tools/small/abundantportal.png
+  ping_cost: "20"
+  url_name: give_dp
+  created_at: 2008-12-06 00:40:02
+  medium_image: /images/shared/tools/medium/abundantportal.png
+  icon_image: /images/shared/tools/icon/portal-16.png

@@ -1,0 +1,13 @@
+= Apache Bench Tests =
+
+  Run these periodically and store the results in files named `date +%Y-%m-%d-%H-%M`.log
+  Note that you can access auth_token from the Firefox Error Console, if you have the developer
+  toolbar installed
+
+    ab -n400 http://pmog.com/
+    ab -C auth_token=<snip> -kc50 -t300 http://pmog.com/
+    ab -C auth_token=<snip> -kc50 -t300 http://pmog.com/users/suttree
+
+    # To test the track controller, this is proper API call.
+    # It's probably best to copy this from LiveHTTPHeaders in Firefox
+    ab -C auth_token=<snip> -kc50 -t300 "http://ext.pmog.com/track.json?version=0.6.0&auth_token=<snip>&authenticity_token=<snip>&url=http://news.bbc.co.uk/"

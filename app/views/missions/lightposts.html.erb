@@ -1,0 +1,131 @@
+<% content_for :head do %>
+	<%= stylesheet_link_tag '/css/supplemental-missions' %>
+	<% end %>
+
+	<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/mission_generator" %>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @mission.name %></span><span class="r"></span></div>
+	</div>
+	<% end %>
+
+	<% content_for :search do %>
+		<%= render :partial => 'missions/search_form' %>
+		<% end %>
+
+		<div id="copy">
+
+			<div class="column width960">
+
+				<div class="column width700">
+
+					<div class="module width700">
+						<h2>Create A Mission :: Step 2- Organize your Mission</h2>
+						<h4 style="margin-top:-7px;">Add some lightposts to make your Mission.</h4>
+
+
+						<span id="gen_progress">
+							<%= render :partial => 'generator_progress' %>
+						</span>
+
+						<br clear="all"/>
+
+						<h2>Part 1: Add Lightposts</h2>
+						<h4 style="margin-top:-7px;">Choose at least 4 lightposts that will form the backbone of your Mission. </h4>
+
+
+						<div class="generator_control">
+
+							<div class="generator_control_content column width325">
+
+								<% remote_form_for("lightposts", :url => '/missions/add_lightpost/add_lightpost') do |form| %>
+								<%= form.hidden_field :id, :value => "#{@mission.url_name}" %>
+								<div class="height10"></div>
+
+								<h3>Use a Lightpost you lit while surfing:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>*Or*</strong> </h3>
+								<div class="form_row">
+									<% @valid_lightposts = current_user.lightposts.select{ |lightpost| ! lightpost.location.nil? } %>
+									<%= select( :lightposts, :location_id, @valid_lightposts.collect{ |lightpost| [ truncate( lightpost.location.url, 50 ), lightpost.location.id ] }.uniq,{}, :class => "input", :style => "width:299px;" ) %>
+								</div>
+								<div class="height10"></div>
+								<div class="form_row">
+									<%= submit_tag "Add Lightpost", :class => "input generator_submit", :type => "submit", :id => 'add_lightpost', :name => 'add_lightpost' %>
+								</div>
+
+								<% end %>
+							</div>
+							<!-- <div class="width10"><h3>OR</h3></div> --> 
+
+
+							<div class="column width325" style="float: right;">
+								<div class="height10"></div>
+								<h3>Create a new Lightpost</h3>
+								<p>you have <strong><%= current_user.inventory.lightposts %></strong><img src="/images/shared/tools/icon/lightpost-16.png" alt="Lightposts" class="icon16" title="Lightposts" /> remaining.</p>
+
+								<% remote_form_for("lightposts", :url => '/missions/add_lightpost/create_lightpost',
+								:complete => "Field.clear('create_lightpost')") do |form| %>
+								<%= form.hidden_field :id, :value => "#{@mission.url_name}" %>
+
+								<div class="form_row">
+									<p style="margin-top: -15px;"><strong>URL:</strong>
+										<%= form.text_field "location_url", :id => "create_lightpost", :class => 'input generator_text_field' %></p>
+								</div>
+									<div class="form_row" style="margin-top: -10px;">
+										<%= submit_tag "Create Lightpost", :class => "input generator_submit", :type => "submit", :id => 'create_lightpost', :name => 'create_lightpost' %>
+									</div>
+									<% end %>
+									<br/>
+									<!-- <p>Purchased lightposts for this mission: <%= session[:new_lightposts].nil? ? 0 : session[:new_lightposts].length %></p> -->
+
+									<%= render :partial => "shared/spinner" %>
+
+									<br style="clear:both;" />
+								</div>
+							</div>
+							<div class="column width700" style="margin-top: -20px;">
+
+								<div class="generator_lightposts">
+
+									<%# Provide a section to list errors for the form %>
+									<%= error_messages_for :mission %>
+
+									<h2>Part 2: Add a Description to Your Lightposts &amp; Order Them to Your Liking</h2>
+									<!-- <h2>Part 2: Arrange &amp; Describe Your Lightposts</h2>
+										<h4 style="margin-top:-7px;">Add a Description to Your Lightposts &amp; Order Them to Your Liking</h4> -->
+										<p style="margin-top: -10px;">Click and Drag your Lightposts to rearrange the order<br />
+											If you delete a lightpost, please reload this page to see your changes reflected!</p>
+
+											<% form_for(:mission, :url => save_lightposts_path(@mission.url_name), :html => { :id => "mission_form" } ) do |f| %>
+
+											<div id="items">
+												<div id="arrange_lightposts"> 
+													<ul id="branches" style="cursor: move">
+														<%= render :partial => 'edit_lightposts', :collection => @mission.branches %>
+													</ul>
+												</div>
+											</div>
+
+											<%= sortable_element( 'branches', :url => { :action => "order", :id => @mission.url_name } ) %>	
+
+										</div>
+
+									</div>
+
+									<br style="clear:both" /><br />
+
+									<div>
+
+										<!-- <h1 class="generator_orlastly">LASTLY</h1> -->
+
+										<p><%= f.check_box(:nsfw) %>Is this Mission <b>Not Safe For Work</b>? <%= render :partial => 'shared/nsfw_tip' %> 
+										</p>
+
+										<%= submit_tag "Step Three", :disable_with => "Please wait...", :class => "input generator_submit" %>
+
+										<% end %>
+										<img src="/images/shared/dressing/pathmakerdrawing-600.png">
+									</div>
+
+								</div>
+
+							</div>

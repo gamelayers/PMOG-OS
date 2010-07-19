@@ -1,0 +1,190 @@
+body { 
+    padding: 0; 
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 100%;
+    background-color: #EDEDEC;
+		color: #414141;
+}
+
+#wrapper {
+    width: 960px;
+    margin: 0;
+}
+
+#intro {
+ 
+}
+
+#wrapper #intro h2 {
+	/*font-family: "Diavlo", georgia, sans-serif;
+  font-size: 14px;*/
+  font: 14px verdana, sans-serif;
+	margin: 0 0 20px 10px;
+}
+
+#wrapper #intro p {
+	font-size: 13px;
+   padding: 0 10px 20px 0;	
+}
+
+#wrapper h1 {
+	font-family: "Diavlo", georgia, sans-serif;
+	font-size: 21px;
+	margin: 0 0 05px 10px;
+}
+
+#wrapper h1 span {
+	font-size: 18px;
+	font-weight: normal;
+}
+
+#wrapper h1 h2 {
+	font-size: 18px;
+	font-family: "Diavlo", georgia, sans-serif;
+}
+
+#wrapper p {
+	font-size: 13px;
+	margin: 15px 10px 10px;		
+}
+
+.scrollContainer h2 {
+    margin: 0 0 0 10px;
+    padding: 0;
+   
+}
+
+#slider {
+    width: 940px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.scroll {
+    height: 250px;
+    width: 940px;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+    clear: left;
+    background: #FFF;
+}
+
+.scrollContainer {
+	width: 920px;
+}
+.scrollContainer div.panel {
+  padding: 20px;
+  height: 210px;
+  width: 880px;
+}
+
+.scrollContainer div.panel h2 {
+	font-size: 21px;
+	font-family: "Diavlo", georgia, sans-serif;
+}
+
+.scrollContainer div.panel p{
+	font-size: 13px;
+	width: 580px;
+	float: left;
+}
+.caption {
+  color: #555 !important;
+  line-height: 17px !important;
+  margin: 5px 7px 5px 2px;
+  padding: 5px;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #FFF;
+  font-size: 11px !important;
+}
+.scrollContainer div.panel p span{
+	font: 16px "Diavlo", georgia, sans-serif;
+	color:  #414141;
+	padding-right: 5px;
+}
+
+.scrollContainer div.panel img{
+	margin: -20px 0 0 10px;
+	float: right;
+	background-color: red;
+}
+.scrollContainer div.panel h2 img.icon24{
+	height: 24px;
+	width: 24px;
+	float: none;
+}
+
+.scrollButtons {
+  position: absolute;
+  top: 150px;
+  cursor: pointer;
+}
+
+.scrollButtons.left {
+  left: -20px;
+}
+
+.scrollButtons.right {
+  right: -20px;
+}
+
+/*#shade {
+    background: #EDEDEC url(images/shade.jpg) no-repeat 0 0;
+    height: 50px;
+}*/
+
+ul.navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 9px;
+}
+
+ul.navigation li {
+    display: block;
+    float: right;
+    /*display: inline;
+    margin-right: 10px;*/
+}
+
+ul.navigation a {
+    /*padding: 10px;*/
+    color: #000;
+    text-decoration: none;
+}
+
+ul.navigation li a img {
+    border: none;
+    margin: 0 0 5px;
+}
+
+ul.navigation a:hover {
+    background-color: #616161;
+}
+
+ul.navigation a.selected {
+    background-color: #1B5790;
+}
+
+ul.navigation a:focus {
+    outline: none;
+}
+
+.scrollButtons {
+    position: absolute;
+    top: 150px;
+    cursor: pointer;
+}
+
+.scrollButtons.left {
+    left: -20px;
+}
+
+.scrollButtons.right {
+    right: -20px;
+}
+
+.hide {
+    display: none;
+}

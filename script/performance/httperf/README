@@ -1,0 +1,6 @@
+= Httperf Tests =
+
+	Run these periodically and store the results in files named `date +%Y-%m-%d-%H-%M`.log
+
+		httperf --server www.pmog.com --uri /users/suttree --num-conns 500
+		< more tests to go here once i figure out how to test protected content with cookies >

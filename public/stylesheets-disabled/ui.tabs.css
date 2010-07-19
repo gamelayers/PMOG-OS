@@ -1,0 +1,285 @@
+/* Caution! Ensure accessibility in print and other media types... */
+@media projection, screen { /* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
+    .ui-tabs-hide {
+        display: none;
+    }
+}
+
+/* Hide useless elements in print layouts... */
+@media print {
+    .ui-tabs-nav {
+        display: none;
+    }
+}
+
+/* Skin */
+.ui-tabs-nav {
+  font-family: 'Diavlo Bold', 'Verdana', sans-serif;
+  font-size: 22px;
+}
+.ui-tabs-panel {
+    font-family: Verdana, 'Lucida Grande', Arial, sans-serif;
+    font-size: 12px;
+}
+.ui-tabs-nav {
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.ui-tabs-nav li {
+  position: relative;
+  list-style-type: none;
+    float: left;
+    margin: 0 10px 0 11px;
+}
+.ui-tabs-nav a {
+  display: block;
+  background-color: transparent;
+  background-image: url("../images/back_tab-white.png");
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-topright: 10px;
+}
+.ui-tabs-nav a span {
+  display: block;
+  padding: 5px 15px 0 15px;
+}
+.ui-tabs-nav a {
+    padding-left: 0;
+    color: #4d4d4d;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    outline: 0; /* prevent dotted border in Firefox */
+}
+.ui-tabs-nav .ui-tabs-selected a {
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    color: #4d4d4d;
+}
+.ui-tabs-nav a span {
+    width: auto;
+    height: auto;
+}
+.ui-tabs-nav .ui-tabs-selected a span {
+    padding-bottom: 1px;
+}
+.ui-tabs-nav .ui-tabs-selected a,
+.ui-tabs-nav a:hover,
+.ui-tabs-nav a:focus,
+.ui-tabs-nav a:active {
+    background-position: 0 0;
+}
+.ui-tabs-nav a, 
+.ui-tabs-nav 
+.ui-tabs-disabled a:hover, 
+.ui-tabs-nav .ui-tabs-disabled a:focus, 
+.ui-tabs-nav .ui-tabs-disabled a:active {
+    background-position: 0 -50px;
+}
+
+.ui-tabs-nav div.l {
+  position: absolute;
+  left: -10px;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background: transparent url("../images/back_tab-l.png") no-repeat!important;
+}
+.ui-tabs-nav div.r {
+  position: absolute;
+  right: -10px;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background: transparent url("../images/back_tab-r.png") no-repeat!important;
+}
+.ui-tabs-nav .ui-tabs-selected a div.l,
+.ui-tabs-nav a:hover div.l, 
+.ui-tabs-nav a:focus div.l, 
+.ui-tabs-nav a:active div.l,
+.ui-tabs-nav .ui-tabs-selected a div.r, 
+.ui-tabs-nav a:hover div.r, 
+.ui-tabs-nav a:focus div.r, 
+.ui-tabs-nav a:active div.r {
+    background-position: 0 0!important;
+}
+.ui-tabs-nav a div.l, 
+.ui-tabs-nav .ui-tabs-disabled a:hover div.l, 
+.ui-tabs-nav .ui-tabs-disabled a:focus div.l, 
+.ui-tabs-nav .ui-tabs-disabled a:active div.l,
+.ui-tabs-nav a div.r, 
+.ui-tabs-nav .ui-tabs-disabled a:hover div.r, 
+.ui-tabs-nav .ui-tabs-disabled a:focus div.r, 
+.ui-tabs-nav .ui-tabs-disabled a:active div.r {
+    background-position: 0 10px!important;
+}
+.ui-tabs-nav .ui-tabs-selected a:link, 
+.ui-tabs-nav .ui-tabs-selected a:visited, 
+.ui-tabs-nav .ui-tabs-disabled a:link, 
+.ui-tabs-nav .ui-tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: text;
+}
+.ui-tabs-nav a:hover, 
+.ui-tabs-nav a:focus, 
+.ui-tabs-nav a:active,
+.ui-tabs-nav .ui-tabs-deselectable a:hover, 
+.ui-tabs-nav .ui-tabs-deselectable a:focus, 
+.ui-tabs-nav .ui-tabs-deselectable a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer;
+}
+.ui-tabs-disabled {
+    opacity: .4;
+}
+.ui-tabs-panel {
+  background-color: transparent;
+  background-image: url("../images/back_module-white.png");
+  padding: 0;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+}
+.ui-tabs-loading em {
+    padding: 0 0 0 20px;
+    background: url("../images/ajax-loader.gif) no-repeat 0 50%;
+}
+
+
+/* SUBTABS */
+
+@media projection, screen { 
+    .subtabs .ui-tabs-hide {
+        display: none;
+    }
+}
+
+@media print {
+    .subtabs .ui-tabs-nav {
+        display: none;
+    }
+}
+div.subtabs {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+div.subtabs div.paginate {
+  font-family: 'Diavlo Medium', sans-serif;
+  font-size: 12px;
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+  height: 30px
+  padding-left: 100%;
+  white-space: nowrap;
+}
+div.subtabs div.paginate li {
+  position: relative;
+  list-style-type: none;
+  float: left;
+}
+div.subtabs div.paginate li a {
+  display: block;
+  color: #4d4d4d;
+  padding: 3px 3px 1px 2px;
+  margin: 0 2px;
+  line-height: 100%;
+}
+div.module.subtabs div.paginate li a {
+  display: block;
+  color: #4d4d4d;
+  padding: 2px;
+  margin: 0 2px;
+  line-height: 100%;
+}
+div.subtabs div.paginate li a:hover,
+div.subtabs div.paginate li a.this {
+  background: #069;
+  color: #fff;
+  text-decoration: none;
+}
+div.subtabs div.paginate li a.this {
+  cursor: text;
+}
+
+/* Skin */
+.subtabs .ui-tabs-nav {
+  font-family: 'Verdana', sans-serif;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 8px;
+  padding-left: 100%;
+}
+.subtabs .ui-tabs-panel a {
+  color: #369;
+}
+.subtabs .ui-tabs-nav {
+    margin: 0;
+    padding: 0;
+}
+.subtabs .ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+    display: block;
+    clear: both;
+    content: " ";
+}
+.subtabs .ui-tabs-nav li {
+  position: relative;
+  list-style-type: none;
+  float: left;
+  margin: 5px 3px;
+  text-transform: lowercase;
+}
+.subtabs .ui-tabs-nav li.name {
+  text-transform: none;
+}
+.subtabs .ui-tabs-nav a {
+  display: block;
+    color: #369;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+    outline: 0; /* prevent dotted border in Firefox */
+}
+.subtabs .ui-tabs-nav a:hover {
+  text-decoration: underline;
+}
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-selected a {
+    position: relative;
+    z-index: 2;
+    margin-top: 0;
+    color: #4d4d4d;
+}
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-selected a {
+  text-decoration: none;
+}
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-selected a:link, 
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-selected a:visited, 
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-disabled a:link, 
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+    cursor: text;
+}
+.subtabs .ui-tabs-nav a:hover, 
+.subtabs .ui-tabs-nav a:focus, 
+.subtabs .ui-tabs-nav a:active,
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-deselectable a:hover, 
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-deselectable a:focus, 
+.subtabs .ui-tabs-nav .subtabs .ui-tabs-deselectable a:active { /* @ Opera, we need to be explicit again here now... */
+    cursor: pointer;
+}
+.subtabs .ui-tabs-disabled {
+    opacity: .4;
+}
+.subtabs .ui-tabs-panel {
+  padding: 0;
+}
+.subtabs .ui-tabs-loading em {
+  padding: 0 0 0 20px;
+  background: url("../images/ajax-loader.gif) no-repeat 0 50%;
+}
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>request_yahoo_credentials (Yahoo)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/yahoo_bbauth/utility_methods.rb, line 34</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_yahoo_credentials</span>(<span class="ruby-identifier">token</span>)
+    <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">token_request_url</span>(<span class="ruby-identifier">token</span>))
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;host = &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>
+    <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">https_default_port</span>)
+    <span class="ruby-identifier">http</span>.<span class="ruby-identifier">use_ssl</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-value str">&quot;token_request_url = &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">token_request_url</span>(<span class="ruby-identifier">token</span>)
+    <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>, <span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">doc</span> = <span class="ruby-constant">REXML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>).<span class="ruby-identifier">root</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">YahooAuthorizationException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;Yahoo BBAuth error: :code :message&quot;</span> <span class="ruby-operator">%</span> 
+      { <span class="ruby-identifier">:code</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'//Error/ErrorCode'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip</span>,
+        <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'//Error/ErrorDescription'</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip</span> }) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">'//Success'</span>]
+      
+    <span class="ruby-keyword kw">return</span>  { <span class="ruby-identifier">:auth_cookie</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;//Success/Cookie&quot;</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip</span>, 
+              <span class="ruby-identifier">:wssid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;//Success/WSSID&quot;</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip</span>,
+              <span class="ruby-identifier">:timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">elements</span>[<span class="ruby-value str">&quot;//Success/Timeout&quot;</span>].<span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip</span> }
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<% number_to_word = %w[one two three four five] %>                                                                                                                        
+ 
+<% unless logged_in? and rateable.ratings.find_by_user_id(current_user.id) %> 
+  <% heading_content = "Rate This #{rateable.class.to_s.titleize}:" %>
+  <% if type == "Mission" %>
+    <%= content_tag(:h2, heading_content) %>
+  <% else %>
+    <%= content_tag(:h4, heading_content) %>
+  <% end %>
+  
+  <div class="rating_mission">
+    <ul class='star-rating-large'<%= ' style="left: 18px;"' if type == 'User' %>>
+      <% for i in 1..5 %> 
+      <li>
+        <%= link_to_remote i,
+                          :url => { :controller => 'ratings', :action => 'rate', :id => rateable.id, :rating => i, :type => type }, 
+                          :html => { :class => "#{number_to_word[i-1]}-stars", 
+                          :name => "#{i-1} stars out of 5" }
+        %> 
+      </li>
+      <% end %> 
+    </ul>
+  </div>
+<% end %>

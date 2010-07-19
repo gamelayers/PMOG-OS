@@ -1,0 +1,28 @@
+<h1>Listing npcs</h1>
+
+<table>
+  <tr>
+  </tr>
+  
+<% for npc in @npcs %>
+  <tr>
+		<% if npc.assets.size > 0 %>
+			<td><img src="<%= npc.assets[0].public_filename :small %>" /></td>
+		<% else %>
+			<td>&nbsp;</td>
+		<% end %>
+		<td><%= npc.name %></td>
+    <td><%= link_to 'Show', npc_path(npc) %></td>
+		<% if logged_in? and current_user == npc.user %>
+	    <td><%= link_to 'Edit', edit_npc_path(npc) %></td>
+	    <td><%= link_to 'Destroy', npc_path(npc), :confirm => 'Are you sure?', :method => :delete %></td>
+		<% else %>
+			<td colspan='2'></td>
+		<% end%>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New npc', new_npc_path %>

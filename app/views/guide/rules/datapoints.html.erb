@@ -1,0 +1,44 @@
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/rules" %>
+		<div class="cell child"><span class="l"></span><span class="c">Datapoints</span><span class="r"></span></div>
+	</div>
+<% end %>
+		<div id="copy">
+		
+			<div class="column width960">
+
+				<div class="module width960">
+					<div class="imageTop">
+<div class="imageTopImage" style="background-image:url(/images/shared/dressing/dprepresent.png);width:207px;height:287px;" title="A Shoat Sleeping on A Pile of Half-Nommed Books"></div></div>
+
+<h1>Datapoints</h1>
+<h5>Currency of The Nethernet</h5>
+<br />
+
+<p>Datapoints <%= dp_icon %> are the currency of the Nethernet - you can spend them in the <a href="/shoppe">Shoppe</a>, and they help you <a href="/guide/rules/levels">Level up</a>.  How do you earn Datapoints?  Read on, fearless Netizen!</p>
+
+<p>At the top of each hour, if you've been active on The Nethernet, you receive <%= @dp_per_hour %> <%= dp_icon %> for each level you've attained in the game.  If you're level 1, that's just <%= @dp_per_hour %> <%= dp_icon %>.  If you're level 20, that's <%= 20 * @dp_per_hour %> <%= dp_icon %>!</p>
+
+<p>What if it's just five minutes past the hour, and you've already spent all your <%= dp_icon %>?  Take <a href="/missions/">Missions</a> and Portals!  For each Mission you take, you earn <%= @dp_per_mission %> <%= dp_icon %> for each <img src="/images/shared/icons/lightpost-16.png" alt="lightpost icon" border="0" width="16" height="16" valign="center" /> in that Mission.  For each Portal you take, you earn <%= @dp_per_portal %><%= dp_icon %>.
+
+<!--<p>For each new top level domain you surf, you receive 3 datapoints.  If you're wearing <a href="/guide/tools/armor">Armor</a>, you earn only 2 datapoints.  So if you spend all day on zombo.com, you'll just earn 3 datapoints.  But if you travel the wide web, you'll be earning datapoints all day.</p>-->
+
+<p>There are two ways Datapoints are represented: your "Current" Datapoints and your "Lifetime" datapoints.  Your Current Datapoints include any unspent datapoints, including those you come across as gifts by means of your contacts or those found in crates.  Your Lifetime Datapoints do not include those gifted to you or those you found in crates -- only the datapoints you have earned hourly and taking Missions count towards your Lifetime Datapoints.  Additionally, only your Lifetime Datapoints count towards your <a href="/guide/rules/levels">levels progress</a>.</p>
+
+<!--<p>Whenever you see: <img src="/images/shared/icons/datapoint-16.png" alt="datapoints icon" border="0" width="16" height="16" valign="center" /> remember that it is the symbol for Datapoints.</p>-->
+
+						</div>
+					
+					</div>
+
+			<div class="column width960">
+			
+			<%= render :partial => "shared/guide/rules" %>
+				
+			<%= render :partial => "shared/guide/guide_module" %>
+			
+			</div>
+
+		</div>
+

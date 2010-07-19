@@ -1,0 +1,14 @@
+hud:
+  export_folder: <%= "#{RAILS_ROOT}/exported_hud" %>
+  source_folder: <%= "#{RAILS_ROOT}/hud" %>
+  uid: 'pmog@gamelayers.com'
+  name: "pmog"
+  version: '0.408'
+hud_admin:
+  export_folder: <%= "#{RAILS_ROOT}/exported_hud_admin" %>
+  source_folder: <%= "#{RAILS_ROOT}/hud_admin" %>
+  uid: 'pmog_admin@gamelayers.com'
+  name: "pmog_admin"
+  version: '0.5.1'
+update_rdf:
+  source_folder: <%= "#{RAILS_ROOT}/public/firefox/update.rdf" %>

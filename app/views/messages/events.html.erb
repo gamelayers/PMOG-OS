@@ -1,0 +1,167 @@
+<% content_for :head do %>
+    <link href="/users/<%= current_user.login %>/messages.rss" rel="alternate" title="Subscribe to" type="application/rss+xml"/>
+
+    <%= javascript_include_tag 'character_count' %>
+    <%= stylesheet_link_tag '/css/supplemental-forums' %>
+
+<% end %>
+
+<% content_for :breadcrumbs do %>
+    <div id="breadcrumbs">
+        <div class="main">Your Message Center</div>
+    </div>
+<% end %>
+
+<div id="copy">
+
+    <div class="column width960">
+
+        <div class="column width700">
+
+            <div class="module width700" id="messageInbox">
+
+              <h5 align="right"><%= link_to_unless(current_user.system_events.unread_count <= 0, "Mark all #{current_user.system_events.unread_count} read", mark_all_read_user_events_path(current_user)) %></h5>
+
+                <br clear="all"/>
+
+                <!-- <h3>Received | <a href='/users/<%#= current_user.login %>/messages/sent'>Sent</a></h3> -->
+                <%= selected_page(controller.action_name) %>
+
+                <div id="post_list">
+                    <table class="stripeMe" cellpadding="0" cellspacing="0">
+                        <% @events.each_with_index do |event, index| %>
+                        <% usr = event.user %>
+                            <tr id="msgrow_<%= event.id %>" class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+                                <td class="avatar">
+                                    <% if usr.nil? %>
+                                        <b>User Deleted</b><br/><br/>
+                                    <% else %>
+                                        <!-- #fixme this popup shows up for users who are not logged in -->
+                                        <div class="avatarAction">
+                                            <%= avatar_link_to_user :user => usr, :size => 'small', :align => "left" %>
+                                            <div class="avatarPop">
+                                                <div class="avatarPopIn">
+                                                    <div class="avatarOver">
+                                                        <a href="/users/<%= usr.login %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => usr, :size => "small") %>" alt="<%= usr.login %>" title="<%= usr.login %>"/></a>
+                                                    </div>
+                                                    <%= render :partial => "/shared/avatar_actions", :locals => {:user => usr, :filter => "none"} %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                </td>
+                                <td>
+                                    <a name="<%= event.id %>"> </a>
+
+                                    <table>
+                                      <tr>
+                                        <td width="36" style="padding:10px;">
+                                          <img class="icon32 <%= event.context %>" src="/images/shared/clear.png" width="32" height="32" alt="<%= event.context %>" title="<%= event.context.titleize %>" />
+                                        </td>
+                                        <td>
+                                          <p style="vertical-align:top;<%= ' font-weight: bold' unless event.read? %>">
+                                            <%= show_event(event) %>
+                                          </p>
+                                          <% unless event.event_detail.nil? %>
+                                          <p>
+                                            <i><%= event.event_detail.body %></i>
+                                          </p>
+                                          <% end %>
+                                        </td>
+                                      </tr>
+                                    </table>
+
+                                    <% unless event.user == current_user %>
+
+                                    <div style="border-top: 1px dashed #666; margin:0 0 0 56px; padding: 3px 0;">
+                                        <a href="#" onclick="jQuery('#desc_<%= index %>').toggle();return false;"><img src="/images/shared/icons/pmail-16.png"/></a>
+
+                                        <%= link_to_remote( image_tag( "/images/shared/icons/dp_card-16.png",
+                                                            :class => "icon16 ajax_throbber poptip",
+                                                            :alt => 'Play a DP Card!',
+                                                            :title => "DP Card - Gift #{usr.login} with a DP card"),
+                                                            :url => formatted_location_giftcards_url( Location.find_or_create_by_url( user_url( usr ) ), :js )) %>
+
+                                        <span class="poptip" title="Stash a Crate for <%= usr.login %> - You have <%= current_user.inventory.crates %> crates remaining.">
+                                          <%= link_to( image_tag( "/images/shared/icons/crate-16.png",
+                                                                  :alt => "Stash a Crate here for #{usr.login}",
+                                                                  :class => "poptip icon16",
+                                                                  :title => '' ),
+                                                                  location_crates_path( Location.find_or_create_by_url( user_url( usr ) ) ) )
+                                          %>
+                                        </span>
+
+                                        <%= link_to_remote( image_tag( "/images/shared/icons/st_nick-16.png",
+                                                            :class => "icon16 ajax_throbber poptip",
+                                                            :alt => 'Attach a St Nick!',
+                                                            :title => "Attach a St. Nick to #{usr.login}! - You have #{current_user.inventory.st_nicks} remaining."),
+                                                            :url => formatted_attach_user_st_nicks_url( usr, :js ),
+                                                            :method => :put ) %>
+
+                                        <%= link_to_remote( image_tag( "/images/shared/icons/grenade-16.png",
+                                                            :class => "icon16 ajax_throbber poptip",
+                                                            :alt => 'Toss a grenade!',
+                                                            :title => "Toss Grenade - Throw a grenade at #{usr.login}! - You have #{current_user.inventory.grenades} remaining."),
+                                                            :url => formatted_attach_user_grenades_url( usr, :js ),
+                                                            :method => :put ) %>
+                                    </div>
+
+                                    <span id="desc_<%= index %>" style="display: none;">
+                                        <% remote_form_for :message,
+                                            :url => user_messages_path,
+                                            :complete => "jQuery('#desc_#{index}').hide();",
+                                            :html => { :method => :post } do |f| %>
+
+                                            <%= f.text_area :body,
+                                                :rows => 3, :cols => 60,
+                                                :class => "input",
+                                                :value => "@" + usr.login + " ",
+                                                :name => "pmail_message",
+                                                :id => "pmail_message_reply_#{event.id}" %>
+                                            <p>
+                                          <%= submit_tag "Send", :class => "input" %>
+                                          or <a href="#" onclick="jQuery('#desc_<%= index %>').hide();return false;">Don't Reply</a></p>
+                                        <% end %>
+                                    </span>
+
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </table>
+                </div>
+
+                <p align="right">
+                    <%= will_paginate @events %>
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="column width240">
+            <div class="module width240">
+
+                <div class="imageTop">
+                    <div class="ImageTop" style="background-image:url(/images/shared/dressing/playermail-215.png); width:215px;height:100px;" title="A Mess O' Mail"></div>
+                </div>
+
+                <h2>Player Mail</h2>
+
+                <p>Use PMail to stay in touch with your Contacts, Rivals or Allies. Also, PMail keeps you up to date on                    game events in The Nethernet!</p>
+
+<!--
+                <ul>
+                    <li><a href='/users/<%= current_user.login %>/messages/'><span>Inbox</span></a></li>
+                    <li><span>Notices</span></li>
+                    <li><a href='/users/<%= current_user.login %>/messages/sent'><span>Sent Messages</span></a></li>
+                </ul>
+-->
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

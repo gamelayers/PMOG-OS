@@ -1,0 +1,321 @@
+<% if @user.posts.count == 0 %>
+
+  <div class="subtabs" id="forumsTabs">
+    <ul>
+      <li><a href="#forumsActive"><span>The Nethernet's Most Active</span></a></li>
+      <li>|</li>
+      <li><a href="#forumsSubscribed"><span>Subscribed</span></a></li>
+      <li>|</li>
+      <li><a href="#forumsGenerated"><span>Created</span></a></li>
+    </ul>
+    <!-- FORUMS most active -->
+    <div id="forumsActive">
+      <table class="list stripeMe noPage" id="forumTable">
+        <tbody>
+        <% if @latest_posts.nil? || @latest_posts.empty? %>
+          <tr>
+            <h3 align="center">No Latest Posts here! Yet.</h3>
+        <% else %>
+          <% @latest_posts.each do |post| %>
+            <% topic = post.topic %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td class="details">
+                <h3>
+                  <%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+                  <span>in <a href="/forums/<%= topic.forum.url_name %>"><%= topic.forum.url_name %></a></span>
+                </h3>
+
+                <p class="meta">Started by
+                  <a href="/users/<%= topic.user.login %>"><img class="avatar16" src="<%= avatar_path_for_user(:user => topic.user, :size => "mini") %>" alt="<%= topic.user.login %>" title="<%= topic.user.login %>"/> <%= topic.user.login %>
+                  </a> on <%= topic.created_at %>
+                </p>
+
+                <p>
+                  <%= h topic.posts.last.body[0..125] %>
+                  <a href="/forums/<%= topic.forum.url_name %>/topics/<%= topic.url_name %>">[...]</a>
+                </p>
+              </td>
+              <td class="meta">
+                <p>Posts: <%= topic.posts.count %></p>
+
+                <p>
+                  <%= link_to 'Last reply', forum_topic_path(topic.forum, topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %>
+                  by
+                  <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a>
+                </p>
+
+                <p>on <%= topic.updated_at %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+      <div class="bottomNav">
+        <a href="/forums">Visit Forums</a>
+      </div>
+    </div>
+    <!-- FORUMS subscribed -->
+    <div id="forumsSubscribed">
+      <table class="list stripeMe noPage" id="forumTable">
+        <tbody>
+        <% if @subscribed_topics.nil? || @subscribed_topics.empty? %>
+          <tr>
+            <br/>
+
+            <h3 align="center"><%= @user.login %> hasn't subscribed to any Forums yet.</h3>
+        <% else %>
+          <% @subscribed_topics.each do |topic| %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td class="details">
+                <h3>
+                  <%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+                  <span>in <a href="/forums/<%= topic.forum.url_name %>"><%= topic.forum.url_name %></a></span>
+                </h3>
+
+                <p class="meta">Started by
+                  <a href="/users/<%= topic.user.login %>"><img class="avatar16" src="<%= avatar_path_for_user(:user => topic.user, :size => "mini") %>" alt="<%= topic.user.login %>" title="<%= topic.user.login %>"/> <%= topic.user.login %>
+                  </a> on <%= topic.created_at %>
+                </p>
+
+                <p>
+                  <%= topic.description %>
+                  <a href="/forums/<%= topic.forum.url_name %>/topics/<%= topic.url_name %>">[...]</a>
+                </p>
+              </td>
+              <td class="meta">
+                <p>Posts: <%= topic.posts.count %></p>
+
+                <p>
+                  <%= link_to 'Last reply', forum_topic_path(topic.forum, topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %>
+                  by
+                  <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a>
+                </p>
+
+                <p>on <%= topic.updated_at %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+      <div class="bottomNav">
+        <a href="/forums">Visit Forums</a>
+      </div>
+    </div>
+    <!-- FORUMS generated -->
+    <div id="forumsGenerated">
+      <table class="list stripeMe noPage" id="forumTable">
+        <tbody>
+        <% if @topics.nil? || @topics.empty? %>
+          <tr>
+            <br/>
+
+            <h3 align="center"><%= @user.login %> hasn't created any Threads yet.</h3>
+        <% else %>
+          <% @topics.each do |topic| %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td class="details">
+                <h3>
+                  <%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+                  <span>in <a href="/forums/<%= topic.forum.url_name %>"><%= topic.forum.url_name %></a></span>
+                </h3>
+                <!-- #fixme how can we link to the 16px user avatars here and keep lance's style declaration? -->
+                <p class="meta">Started by
+                  <a href="/users/<%= topic.user.login %>"><img class="avatar16" src="<%= avatar_path_for_user(:user => topic.user, :size => "mini") %>" alt="<%= topic.user.login %>" title="<%= topic.user.login %>"/> <%= topic.user.login %>
+                  </a> on <%= topic.created_at %>
+                </p>
+
+                <p>
+                  <%= topic.description %>
+                  <a href="/forums/<%= topic.forum.url_name %>/topics/<%= topic.url_name %>">[...]</a>
+                </p>
+              </td>
+              <td class="meta">
+                <p>Posts: <%= topic.posts.count %></p>
+
+                <p>
+                  <%= link_to 'Last reply', forum_topic_path(topic.forum, topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %>
+                  by
+                  <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a>
+                </p>
+
+                <p>on <%= topic.updated_at %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+      <div class="bottomNav">
+        <a href="/forums">Visit Forums</a>
+      </div>
+    </div>
+  </div>
+
+<% else %>
+
+  <div class="subtabs" id="forumsTabs">
+    <ul>
+      <li><a href="#forumsGenerated"><span><%= @topics.size %> Created</span></a></li>
+      <li>|</li>
+      <li><a href="#forumsSubscribed"><span><%= @subscribed_topics.size %> Subscribed</span></a></li>
+      <li>|</li>
+      <li><a href="#forumsActive"><span>The Nethernet's Most Active</span></a></li>
+    </ul>
+    <!-- FORUMS generated -->
+    <div id="forumsGenerated">
+      <table class="list stripeMe noPage" id="forumTable">
+        <tbody>
+        <% if @topics.nil? || @topics.empty? %>
+          <tr>
+            <br/>
+
+            <h3 align="center"><%= @user.login %> hasn't created any Topics yet.</h3>
+        <% else %>
+          <% @topics.each do |topic| %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td class="details">
+                <h3>
+                  <%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+                  <span>in <a href="/forums/<%= topic.forum.url_name %>"><%= topic.forum.url_name %></a></span>
+                </h3>
+                <!-- #fixme how can we link to the 16px user avatars here and keep lance's style declaration? -->
+                <p class="meta">Started by
+                  <a href="/users/<%= topic.user.login %>"><img class="avatar16" src="<%= avatar_path_for_user(:user => topic.user, :size => "mini") %>" alt="<%= topic.user.login %>" title="<%= topic.user.login %>"/> <%= topic.user.login %>
+                  </a> on <%= topic.created_at %>
+                </p>
+
+                <p>
+                  <%= topic.description %>
+                  <a href="/forums/<%= topic.forum.url_name %>/topics/<%= topic.url_name %>">[...]</a>
+                </p>
+              </td>
+              <td class="meta">
+                <p>Posts: <%= topic.posts.count %></p>
+                <% unless topic.posts.last.nil? %>
+                  <p>
+                    <%= link_to 'Last reply', forum_topic_path(topic.forum, topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %>
+                    by
+                    <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a>
+                  </p>
+                <% end %>
+                <p>on <%= topic.updated_at %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+      <div class="bottomNav">
+        <a href="/forums">Visit Forums</a>
+      </div>
+    </div>
+    <!-- FORUMS subscribed -->
+    <div id="forumsSubscribed">
+      <table class="list stripeMe noPage" id="forumTable">
+        <tbody>
+        <% if @subscribed_topics.nil? or @subscribed_topics.empty? %>
+          <tr>
+            <br/>
+
+            <h3 align="center"><%= @user.login %> hasn't subscribed to any Forums yet.</h3>
+        <% else %>
+          <% @subscribed_topics.each do |topic| %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td class="details">
+                <h3>
+                  <%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+                  <span>in <a href="/forums/<%= topic.forum.url_name %>"><%= topic.forum.url_name %></a></span>
+                </h3>
+
+                <p class="meta">Started by
+                  <% if topic.user.nil? %>
+                    <b>User deleted</b>
+                  <% else %>
+                    <a href="/users/<%= topic.user.login %>"><img class="avatar16" src="<%= avatar_path_for_user(:user => topic.user, :size => "mini") %>" alt="<%= topic.user.login %>" title="<%= topic.user.login %>"/> <%= topic.user.login %>
+                    </a> on <%= topic.created_at %>
+                  <% end %>
+                </p>
+
+                <p>
+                  <%= topic.description %>
+                  <a href="/forums/<%= topic.forum.url_name %>/topics/<%= topic.url_name %>">[...]</a>
+                </p>
+              </td>
+              <td class="meta">
+                <p>Posts: <%= topic.posts.count %></p>
+
+                <p>
+                  <%= link_to 'Last reply', forum_topic_path(topic.forum, topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %>
+                  by
+                  <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a>
+                </p>
+
+                <p>on <%= topic.updated_at %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+      <div class="bottomNav">
+        <a href="/forums">Visit Forums</a>
+      </div>
+    </div>
+    <!-- FORUMS most active -->
+    <div id="forumsActive">
+      <table class="list stripeMe noPage" id="forumTable">
+        <tbody>
+        <% if @latest_posts.nil? or @latest_posts.empty? %>
+          <tr>
+            <h3 align="center">No subscribed topics yet.</h3>
+        <% else %>
+          <% @latest_posts.each do |post| %>
+            <% topic = post.topic %>
+            <tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+              <td class="details">
+                <h3>
+                  <%= link_to topic.title, forum_topic_path(:forum_id => topic.forum.url_name, :id => topic.url_name) %>
+                  <span>in <a href="/forums/<%= topic.forum.url_name %>"><%= topic.forum.url_name %></a></span>
+                </h3>
+
+                <p class="meta">Started by
+                  <a href="/users/<%= topic.user.login %>"><img class="avatar16" src="<%= avatar_path_for_user(:user => topic.user, :size => "mini") %>" alt="<%= topic.user.login %>" title="<%= topic.user.login %>"/> <%= topic.user.login %>
+                  </a> on <%= topic.created_at %>
+                </p>
+
+                <p>
+                  <%= h topic.posts.last.body[0..125] %>
+                  <a href="/forums/<%= topic.forum.url_name %>/topics/<%= topic.url_name %>">[...]</a>
+                </p>
+              </td>
+              <td class="meta">
+                <p>Posts: <%= topic.posts.count %></p>
+
+                <p>
+                  <%= link_to 'Last reply', forum_topic_path(topic.forum, topic) + "?page=#{topic.posts.last.page}#" + topic.posts.last.id %>
+                  by
+                  <a href="/users/<%= topic.posts.last.user.login %>"><%= topic.posts.last.user.login %></a>
+                </p>
+
+                <p>on <%= topic.updated_at %></p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tr>
+        </tbody>
+      </table>
+      <div class="bottomNav">
+        <a href="/forums">Visit Forums</a>
+      </div>
+    </div>
+  </div>
+
+<% end %>

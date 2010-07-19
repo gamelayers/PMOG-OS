@@ -1,0 +1,20 @@
+# Crontab for our Utility slice
+
+# Running backups and background job is the most important thing on here
+0 1 * * * /data/pmog/current/config/shared_scripts/housekeeping.sh
+0 20 * * * /data/pmog/current/config/shared_scripts/backups.sh
+*/15 * * * * (cd /data/pmog/current; script/bj run --forever --rails_env=cron --rails_root=/data/pmog/current) >> /dev/null 2>&1
+@daily (cd /data/pmog/current; script/runner Cron.submit_bj_tasks -e production) >> /dev/null 2>&1
+
+# These are other tasks that need to run
+0 */2 * * * (/usr/bin/find /tmp/pmog.db.production.* -exec rm {} \;) >> /dev/null 2>&1
+0 */2 * * * (/usr/bin/find /data/pmog/tmp/pmog.db.production.* -exec rm {} \;) >> /dev/null 2>&1
+@daily (cd /data/pmog/current; /usr/bin/rake -f /data/pmog/current/Rakefile pmog:generate_beta_keys RAILS_ENV=production)  >> /dev/null 2>&1
+@weekly (cd /data/pmog/current; nice ./script/runner DailyDomain.wipe -e production) >> /dev/null 2>&1
+@monthly (cd /data/pmog/current; nice ./script/runner DailyLogIn.wipe -e production) >> /dev/null 2>&1
+@monthly (cd /data/pmog/current; nice ./script/runner HourlyActivity.wipe -e production) >> /dev/null 2>&1
+
+# This isn't that useful anymore - duncan 18/01/09
+# We run this on production to get at some of the live data.
+# It might slow a slice down for a bit, but it's worth it.
+#0 2 * * * (cd /data/pmog/current; /usr/bin/pl_analyze /data/pmog/current/log/production.log > "/data/pmog/shared/system/data/pl_analyze-`date +%Y-%m-%d-%H-%M`.txt") >> /dev/null 2>&1

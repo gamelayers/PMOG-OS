@@ -1,0 +1,13 @@
+<div class="pmog_action">
+  <div class="pmog_action_link"><a href="<%= host %>">PMOG</a></div>
+  <%= render :partial => "shared/ext/button_close", :locals => { :window_id => @window_id } %>
+  <img src="<%= host %>/images/ext/st_nick.png" class="pmog_action_margin" width="17" height="17" alt="St. Nick" />
+  <br style="clear:both;" />
+  <div class="pmog_action_user">
+    <%= avatar_link_to_user :user => @st_nick.attachee, :size => 'tiny', :only_path => false %>
+  </div>
+  <div class="pmog_action_text_stnick">
+    <a href='<%= host %>/users/<%= @st_nick.attachee.login %>/'><%= @st_nick.attachee.login %></a> foiled your attempt to deploy a mine here by using a <a href='<%= host %>/guide/tools/st_nicks/' target="new">St Nick</a>.
+  </div>
+</div>
+<br style="clear:both;" />

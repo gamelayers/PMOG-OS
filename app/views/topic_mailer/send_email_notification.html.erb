@@ -1,0 +1,13 @@
+Hello <%= @user.email -%> -
+
+The topic "<%= @topic.title %>" that you've subscribed to has been updated by <%= @topic.posts.last.user.login %>!
+
+Click the following link to read the discussion: 
+
+<%= forum_topic_url(:forum_id => @topic.forum.url_name, :id => @topic.url_name) + "?page=#{@topic.posts.last.page}#" + @topic.posts.last.id %>
+
+To unsubscribe from notifications for this topic, click here:
+
+<%= unsubscribe_forum_topic_url(:forum_id => @topic.forum.url_name, :id => @topic.url_name) %>
+
+The Nethernet Team

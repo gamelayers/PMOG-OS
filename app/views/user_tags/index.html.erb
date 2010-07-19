@@ -1,0 +1,7 @@
+<h2><%= @user.username %>'s Most Popular Tags</h2>
+
+<p><%= link_to "Show all user's tags", tags_path %></p>
+
+<% tag_cloud @tags, %w(tag1 tag2 tag3 tag4 tag5) do |name, css_class| %>
+  <%= link_to name, tag_path(name), :class => css_class %>
+<% end %>

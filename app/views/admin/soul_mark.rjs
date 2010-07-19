@@ -1,0 +1,1 @@
+page.replace_html "#{@user.login}_soul_mark_contents", { :partial => "/shared/soul_marks", :locals => {:user => @user} }

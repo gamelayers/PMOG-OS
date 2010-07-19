@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.main_bg{
+background-image:url(/images/profile/acquaintances_lg.png);
+background-position:top center;
+background-repeat:no-repeat;
+}

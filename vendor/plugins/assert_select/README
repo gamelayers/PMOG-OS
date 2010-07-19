@@ -1,0 +1,52 @@
+= assert_select plugin for Rails
+
+Adds the +assert_select+ method for use in Rails functional tests.
+Simplifies content testing using CSS selectors.
+
+You can use assert_select to select elements from the controller
+response page and perform equality tests.
+
+
+You can test that the selected element(s) exist, has specific
+text content, or test the number of elements selected.
+
+Elements are selected using CSS selectors. You can use the same
+CSS selectors to style the HTML page and test its content.
+
+See Test::Unit::AssertSelect and HTML::Selector for more information.
+
+== Examples
+
+  # At least one form element
+  assert_select "form"
+            
+  # Form element includes four input fields
+  assert_select "form input", 4
+       
+  # Page title is "Welcome"
+  assert_select "title", "Welcome"
+            
+  # Page title is "Welcome" and there is only one title element
+  assert_select "title", {:count=>1, :text=>"Welcome"},
+    "Wrong title or more than one title element"
+            
+  # Page contains no forms
+  assert_select "form", false, "This page must contain no forms"
+            
+  # Test the content and style
+  assert_select "body div.header ul.menu"
+            
+  # All input fields in the form have a name
+  assert_select "form input" do |elements|
+    elements.each do |element|
+      assert not element.attributes["name"].empty?
+    end
+  end
+
+== License
+
+Copyright (c) 2006 Assaf Arkin, under Creative Commons Attribution and/or MIT License
+
+Developed for http://co.mments.com
+
+Code and documention: http://labnotes.org

@@ -1,0 +1,28 @@
+<% if session[:outgoing_emails].nil? || session[:outgoing_emails].empty? %>
+
+<h3> A problem has occured ... </h3>
+
+<p> A problem has occured and we were unable to send any emails out.  If you could try again, we would greatly appreciate it.</p>
+
+<% else %>
+
+<h3>Congratulations!  Invitations sent!</h3>
+<br/>
+<p> You have invited the following people to enjoy The Nethernet with you:
+  <ul>
+    <% session[:outgoing_emails].each do |email| %>
+      <li><%=email%></li>
+    <% end %>
+  </ul>
+</p>
+
+<% if current_user.recent_signup %>
+
+  <p>Now you'll have some contacts to play with!</p>
+  <br/>
+  <p><a href="/users/<%= current_user.login %>/edit?section=1#Class">On to the game!</a></p>
+
+<% end %>
+
+<% session[:outgoing_emails] = nil %>
+<% end %>

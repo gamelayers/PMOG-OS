@@ -1,0 +1,41 @@
+<% requires_approval = 0 %>
+
+<h1><%= @user.login %>'s Acquaintances</h1>
+
+<h5>You twit, you wit, to these below:</h5>
+
+<div class="acquaintances_menu">
+
+  <input type="textbox" name="email" class="input" style="width:178px;" value="Search" onfocus="if(this.value==this.defaultValue){this.value=''};" onblur="if(this.value==''){this.value=this.defaultValue};" />
+
+  <a href="#" class="acquaintances_interactions_menu">&nbsp;</a>
+  
+	<%= link_to "&nbsp;", { :action => "show", :id => current_user.login }, { :class => "acquaintances_acquaintances_menu" } %>
+  
+	<%= link_to "&nbsp;", { :action => "allies", :id => current_user.login }, { :class => "acquaintances_allies_menu" } %>
+  
+	<%= link_to "&nbsp;", { :action => "rivals", :id => current_user.login }, { :class => "acquaintances_rivals_menu" } %>
+
+	<% if @user.buddies.pending.size > 0 and @user == current_user %>
+    <%= link_to "&nbsp;", { :action => "pending", :id => current_user.login }, { :class => "acquaintances_pending_menu" } %>
+  <% end %>
+  
+  <%= link_to "&nbsp;", { :action => "invite", :id => current_user.login }, { :class => "acquaintances_invite_menu" } %>
+
+  <img src="/images/acquaintances/acquaintances_head.png" width="177" height="204" style="margin-top:7px;" />
+
+</div>
+
+<div class="acquaintances_content_container">
+
+  <img src="/images/acquaintances/content_top.png" width="531" height="10" alt="Content Top" />
+  
+    <div class="acquaintances_content">
+    	<% unless @partial.nil? %>
+				<%= render :partial => @partial %>
+			<% end %>    
+    </div>
+  
+  <img src="/images/acquaintances/content_bottom.png" width="531" height="10" alt="Content Bottom" />
+
+</div>

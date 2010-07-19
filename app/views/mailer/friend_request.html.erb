@@ -1,0 +1,7 @@
+Hello <%= @buddy.email -%> -
+
+<%= @user.login %> has just requested that you make their acquaintance. To accept or reject this request visit the following page:
+
+<%= url_for :controller => "acquaintances", :action => :show, :id => @buddy.login, :only_path => false, :escape => false %>
+
+-The Nethernet Team

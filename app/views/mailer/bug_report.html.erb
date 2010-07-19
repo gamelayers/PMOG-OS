@@ -1,0 +1,12 @@
+User <%= @user.login %> has submitted a bug report:
+
+Description of the bug by the user (if any):
+<%= @description %>
+
+Overlay and Player session data collected from the extension at the point of submission:
+<%= @dump %>
+
+
+<%- if @email -%>
+  P.S. they would like to be notified here <%= @email %> when the bug is fixed.
+<%- end -%>

@@ -1,0 +1,12 @@
+<%= error_messages_for :quest %>
+
+<% form_for :quest, :url => { :controller => 'quests', :action => "set_requirement", :id => @quest }, :html => { :method => :put } do |f| -%>
+  <%= f.label :level, "Level" %>
+  <%= f.select("level", 1..20) %>
+  <br /><br />
+  <%= f.label :Association, "Association" %>
+  <%= f.select("association", Quest::Associations.values) %>
+  <br /><br />
+  <%= f.label :Submit, "Submit" %>
+  <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end -%>

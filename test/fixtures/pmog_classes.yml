@@ -1,0 +1,109 @@
+--- 
+pmog_classes_005: 
+  name: Vigilantes
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Vigilantes pursue the soldiers of Chaos throughout the PMOG system, planting St. Nicks everywhere they go. Vigilantes carry the torch of Order.
+  large_image: /images/shared/associations/large/vigilantes.png
+  id: "5"
+  long_description: 
+  small_image: /images/shared/associations/small/vigilantes.jpg
+  icon_image: /images/shared/associations/icon/vigilante-16.png
+  medium_image: /images/shared/associations/medium/vigilantes.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_006: 
+  name: Riveters
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Riveters construct walls to protect websites from the daring don'ts of other players. Riveters carry the torch of Order
+  large_image: /images/shared/associations/large/riveters.png
+  id: "6"
+  long_description: 
+  small_image: /images/shared/associations/small/riveters.jpg
+  icon_image: /images/shared/associations/icon/riveter-16.png
+  medium_image: /images/shared/associations/medium/riveters.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_007: 
+  name: Grenadiers
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: "Grenadiers feed on destruction - they use rockets to blow holes in the walls of websites and make way for the ground troops: the Destroyers. Grenadiers carry the torch of Chaos."
+  large_image: /images/shared/associations/large/grenadiers.png
+  id: "7"
+  long_description: 
+  small_image: /images/shared/associations/small/grenadiers.jpg
+  icon_image: /images/shared/associations/icon/grenadier-16.png
+  medium_image: /images/shared/associations/medium/grenadiers.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_008: 
+  name: Bedouins
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Bedouins build personal armor for players, assuring that they will be safe from distraction and their friends might be, too. Bedouins carry the torch of Order.
+  large_image: /images/shared/associations/large/bedouins.png
+  id: "8"
+  long_description: 
+  small_image: /images/shared/associations/small/bedouins.jpg
+  icon_image: /images/shared/associations/icon/bedouin-16.png
+  medium_image: /images/shared/associations/medium/bedouins.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_009: 
+  name: Shoats
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Young pigs whose sweet, soft flesh has not yet been hardened by wearing armor, whose clean, hard hooves have not been marred by mine blasts. Ah, youth!
+  large_image: /images/shared/associations/large/shoats.png
+  id: "9"
+  long_description: Shoats are free to roam PMOG as they will, associating with Order and Chaos both. Shoats may recline on the green swaths of PMOG space, under the glittering moon, thinking only of the joy of undiscovered portals - never fearing retribution or the unordering of their precious tag stacks. No, those thoughts are reserved for the dark moments of each day, when the Other rises in force against you and you must sacrifice your sweet pink flesh to the fires of battle. O! sweet Shoat, it is the best of times and the worst of times.
+  small_image: /images/shared/associations/small/shoats.jpg
+  icon_image: /images/shared/associations/icon/shoat-16.png
+  medium_image: /images/shared/associations/medium/shoats.jpg
+  created_at: 2008-11-11 19:42:09
+pmog_classes_001: 
+  name: Benefactors
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Benefactors primarily use Crates to store datapoints and tools on sites all over the internetz. Benefactors carry the torch of Order.
+  large_image: /images/shared/associations/large/benefactors.png
+  id: "1"
+  long_description: 
+  small_image: /images/shared/associations/small/benefactors.jpg
+  icon_image: /images/shared/associations/icon/benefactor-16.png
+  medium_image: /images/shared/associations/medium/benefactors.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_002: 
+  name: Seers
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Seers use Portals to transport other players to parts unseen, places unknown, cats un-LOLed! Seers carry the torch of Chaos.
+  large_image: /images/shared/associations/large/seers.png
+  id: "2"
+  long_description: 
+  small_image: /images/shared/associations/small/seers.jpg
+  icon_image: /images/shared/associations/icon/seer-16.png
+  medium_image: /images/shared/associations/medium/seers.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_003: 
+  name: Destroyers
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Destroyers use Mines to annoy other players and bring themselves great joy. Destroyers carry the torch of Chaos.
+  large_image: /images/shared/associations/large/destroyers.png
+  id: "3"
+  long_description: 
+  small_image: /images/shared/associations/small/destroyers.jpg
+  icon_image: /images/shared/associations/icon/destroyer-16.png
+  medium_image: /images/shared/associations/medium/destroyers.jpg
+  created_at: 2008-11-11 19:42:08
+pmog_classes_004: 
+  name: Pathmakers
+  updated_at: 2008-12-22 22:06:22
+  history: 
+  short_description: Pathmakers illuminated connections for other citizens of the digital world. Pathmakers carry the torch of Order.
+  large_image: /images/shared/associations/large/pathmakers.png
+  id: "4"
+  long_description: 
+  small_image: /images/shared/associations/small/pathmakers.jpg
+  icon_image: /images/shared/associations/icon/pathmaker-16.png
+  medium_image: /images/shared/associations/medium/pathmakers.jpg
+  created_at: 2008-11-11 19:42:08

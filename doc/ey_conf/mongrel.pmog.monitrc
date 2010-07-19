@@ -1,0 +1,64 @@
+
+check process mongrel_pmog_5000
+  with pidfile /var/run/mongrel/pmog/mongrel.5000.pid
+  start program = "/engineyard/bin/monit_mongrel 112640"
+  stop program = "/engineyard/bin/monit_mongrel 112640"
+  if totalmem is greater than 130.0 MB for 2 cycles then restart      # eating up memory?
+  if failed host 127.0.0.1 port 5000
+    protocol HTTP request /about/ey_test with checksum b10a8db164e0754105b7a99be72e3fe5 then restart
+  group pmog
+
+
+check process mongrel_pmog_5001
+  with pidfile /var/run/mongrel/pmog/mongrel.5001.pid
+  start program = "/engineyard/bin/monit_mongrel 112640"
+  stop program = "/engineyard/bin/monit_mongrel 112640"
+  if totalmem is greater than 130.0 MB for 2 cycles then restart      # eating up memory?
+  if failed host 127.0.0.1 port 5001
+    protocol HTTP request /about/ey_test with checksum b10a8db164e0754105b7a99be72e3fe5 then restart
+  group pmog
+
+
+check process mongrel_pmog_5002
+  with pidfile /var/run/mongrel/pmog/mongrel.5002.pid
+  start program = "/engineyard/bin/monit_mongrel 112640"
+  stop program = "/engineyard/bin/monit_mongrel 112640"
+  if totalmem is greater than 130.0 MB for 2 cycles then restart      # eating up memory?
+  if failed host 127.0.0.1 port 5002
+    protocol HTTP request /about/ey_test with checksum b10a8db164e0754105b7a99be72e3fe5 then restart
+  group pmog
+
+check process mongrel_pmog_5003
+  with pidfile /var/run/mongrel/pmog/mongrel.5003.pid
+  start program = "/engineyard/bin/monit_mongrel 112640"
+  stop program = "/engineyard/bin/monit_mongrel 112640"
+  if totalmem is greater than 130.0 MB for 2 cycles then restart      # eating up memory?
+  if failed host 127.0.0.1 port 5003
+    protocol HTTP request /about/ey_test with checksum b10a8db164e0754105b7a99be72e3fe5 then restart
+  group pmog
+
+
+
+# check process sphinx_pmog_3312
+#   with pidfile /var/run/sphinx/pmog/searchd.pid
+#   start program = "/data/pmog/shared/bin/searchd start" as uid pmog and gid pmog
+#   stop program = "/data/pmog/shared/bin/searchd stop" as uid pmog and gid pmog
+#   group sphinx_pmog
+
+# check process memcache_pmog_11211
+#   with pidfile /data/pmog/shared/log/memcached.11211.pid
+#   start program = "/etc/init.d/memcached start"
+#   stop program = "/etc/init.d/memcached stop"
+#   group memcached_pmog
+
+# check process ferret_pmog_9010
+#   with pidfile /data/pmog/shared/log/ferret.pid
+#   start program = "/data/pmog/shared/bin/ferret start" as uid pmog and gid pmog
+#   stop program = "/data/pmog/shared/bin/ferret stop" as uid pmog and gid pmog
+#   group ferret_pmog
+
+# check process backgroundrb_pmog_2000
+#   with pidfile /data/pmog/shared/log/backgroundrb.pid
+#   start program = "/data/pmog/shared/bin/backgroundrb start" as uid pmog and gid pmog
+#   stop program = "/data/pmog/shared/bin/backgroundrb stop" as uid pmog and gid pmog
+#   group backgroundrb_pmog

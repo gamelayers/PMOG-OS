@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag 'missions' %>
+
+<h1>Latest Missions</h1>
+<h5>Where you might go, that you haven't been lately</h5>
+<br />
+
+<p>A few of the most recent missions created on PMOG:</p>
+
+<ul>
+	<% @missions.each do |mission| %>
+		<li><%= link_to mission.name, mission_path(mission.url_name) %> by <a href="/users/<%= mission.user.login %>"><%= mission.user.login %></a>
+		<%= render :partial => 'current_rating_small', :locals=>{:mission=>mission} %>
+
+		</li>
+	<% end %>
+</ul>

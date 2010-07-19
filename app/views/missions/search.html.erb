@@ -1,0 +1,112 @@
+<% content_for :head do %>
+
+<%= stylesheet_link_tag '/css/supplemental-missions' %>
+<%= stylesheet_link_tag "/css/ui.tabs.css", "/css/jquery.rating.css" %>
+
+<%= javascript_include_tag 'jquery.tooltip' %>
+<%= javascript_include_tag 'jquery.event.hover-1.0' %>
+
+<script type="text/javascript">
+jQuery(function(){
+	jQuery(".tip").tooltip({track:false,delay:0,showURL:false,showBody:" - ",fixPNG:true,opacity:0.95,left:-100,fade:"toggle",duration:200});
+
+	//DO mission table fx
+	jQuery(".blueMe tr").mouseover(function(){jQuery(this).addClass("overBlue");}).mouseout(function(){jQuery(this).removeClass("overBlue");});
+	jQuery("table.stripeMe tr:nth-child(odd)").addClass("whiteEven");
+	jQuery("ol.stripeMe li:even").addClass("whiteEven");
+	jQuery("table.missions td.mission").hover( function() {jQuery(this).find("div.hidden").fadeIn(200);}, function() {jQuery(this).find("div.hidden").fadeOut(200);});
+});
+</script>
+
+<% end %>
+
+<% content_for :breadcrumbs do %>
+<div id="breadcrumbs">
+	<div class="main" id="missions_lists_header">Missions</div>
+	<div class="cell child"><span class="l"></span><span class="c">Search</span><span class="r"></span></div>
+</div>
+<% end %>
+
+<% content_for :search do %>
+	<%= render :partial => 'missions/search_form' %>
+	<% end %>
+
+	<div id="copy">
+		<div class="column width960">
+			<div class="column width700">
+
+				<div id="missions_lists" class="missions_lists">
+					<div id="missions" class="ui-tabs-panel">
+						<div class="subtabs" id="missionTabs">
+							<% if @missions.nil? and params[:q] %>
+							<p style="margin: -20px 0 10px 10px;">We did not find results for: <%= params[:q] %> Please try a new query</p>
+							<% end %>
+
+							<% unless @missions.nil? %>
+							<p style="margin: -20px 0 10px 10px;"><%= @missions.length %> results returned for search term <b><%= params[:q] %></b></p>
+							<table class="list stripeMe blueMe missions" id="missionsTakenTable">
+								<tbody>
+									<% @missions.each do |m| %>
+									<% unless m.user.nil? %>
+									<tr class='<%= cycle('whiteEven', 'whiteOdd') %>'>
+										<td class="mission">
+											<div class="details">
+												<div class="image">
+													<a href="/missions/<%= m.url_name %>"><img class="avatar48" src="<%= avatar_path_for_user(:user => m.user, :size => "small") %>" alt="<%= m.name %>" title="<%= m.name %>" /></a>
+												</div>
+												<div class="meta">
+													<h3><%= link_to_mission(m) %></h3>
+
+													<% if m.is_nsfw? %> 
+													<img src="/images/missions/flag_red.png" class="img_no_border" alt="flag_red" /> (NSFW) 
+													<% end %>
+													<br />created by <a href="/users/<%= m.user.login %>"><%= m.user.login %></a> <span class="interim"><%= time_ago_in_words(m.created_at) %> ago</span> 
+												</div>
+												<div class="desc">
+													<%= highlight(m.description, params[:q]) %>
+												</div>
+											</div>
+											<div class="action">
+												<div class="hidden">
+													<%= take_button(m) %>
+													<% if m.users.include? current_user %>
+													<%= favorite_button('index', m) %>
+													<% else %>
+													<%= queue_button('index', m) %>
+													<% end %>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<% end %>
+									<% end %>
+								</tbody>
+							</table>
+							<% end %>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		<div class="column width240">
+			<div class="module width240">
+				<div class="imageTop">
+
+					<div class="ImageTop" style="background-image:url(/images/shared/dressing/missions-100.png); width:100px;height:141px;" title="Missions Globe"></div></div>
+
+					<h2>Missions</h2>
+					<p><a href="/missions/new">Make A Mission</a><br/>
+						<a href="/forums/social-tools">Get Advice</a><br/>
+						<a href="/guide/rules/missions">About Missions</a><br/>
+						<a href='/missions/top'>Good Missions</a><br/>
+						<a href="/guide/support">Support<br/></a></p>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		</div>

@@ -1,0 +1,47 @@
+			<!-- USER PROFILE MODULE -->
+			<div class="column width220 home">
+				<div class="module width220" id="profileUser">
+					<div id="userAvatar">
+						<%= avatar_link_to_user :user => current_user, :size => 'profile' %>
+						<a href="javascript:;" id="profileOpener"></a>
+					</div>
+					<h2><%= current_user.login %></h2>
+					<h4 class="userStanding">
+						<%= current_user.user_level.primary_class.titleize %>
+						<% if current_user.gender %>
+						<% if current_user.gender.upcase == "M" %>
+						<a href="/guide/classes/<%= current_user.user_level.primary_class %>"><img class="icon32" src="/images/shared/associations/icon/<%= current_user.user_level.primary_class %>-M-32.png" alt="A Male <%= current_user.user_level.primary_class.titleize %>" title="A Male <%= current_user.user_level.primary_class.titleize %>" /></a>
+						<% else %>
+						<a href="/guide/classes/<%= current_user.user_level.primary_class %>"><img class="icon32" src="/images/shared/associations/icon/<%= current_user.user_level.primary_class %>-F-32.png" alt="A Female <%= current_user.user_level.primary_class.titleize %>" title="A Female <%= current_user.user_level.primary_class.titleize %>" /></a>
+						<% end %>
+						<% else %>
+						<a href="/guide/classes/<%= current_user.user_level.primary_class %>"><img class="icon32" src="/images/shared/associations/icon/<%= current_user.user_level.primary_class %>-32.png" alt="<%= current_user.user_level.primary_class.titleize %>" title="<%= current_user.user_level.primary_class.titleize %>" /></a>
+						<% end %>
+						Level <%= current_user.current_level %>
+					</h4>
+
+					<%# if current_user.cached_has_role?'site_admin' %>
+					<% if current_user.admin? %>
+					<h3 class="userStanding"><img src="/images/icons/roles/trustee-16.png" class="icon16" alt="Trustee" title="Trustee" />&nbsp;Trustee</h3>
+					<% end %>
+
+					<%# if current_user.cached_has_role?'steward' %>
+					<% if current_user.steward? %>
+					<h3 class="userStanding"><img src="/images/icons/roles/steward-16.png" class="icon16" alt="Steward" title="Steward" />&nbsp;Steward</h3>
+					<% end %>
+
+					<% if current_user.npc? %>
+					<h3 class="userStanding"><img src="/images/icons/roles/steward-16.png" class="icon16" alt="Character" title="Character" />&nbsp;Character</h3>
+					<% end %>
+
+					
+					
+					<!-- <p><img src="/images/shared/icons/datapoint-16.png" width="16" height="16" border="0" alt="datapoints"> <%= @current_user.datapoints %></p> -->
+					<div class="bottomNav">
+					<img src="/images/shared/icons/pmail-16.png" alt="pmail"> <a href="/users/<%= current_user.login %>/messages"><%= current_user.messages.unread_count %> PMails</a> | <%= link_to 'visit your profile', user_path(current_user) %>
+					</div>
+
+				</div>
+			</div>
+			<!-- /USER PROFILE MODULE -->
+

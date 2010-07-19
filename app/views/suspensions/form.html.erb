@@ -1,0 +1,71 @@
+<%#= calendar_date_select_includes 'silver' %>
+  <%= stylesheet_link_tag '/css/ui.datepicker.css' %>
+  <%= stylesheet_link_tag '/css/ui.all' %>
+<script>
+  jQuery(document).ready(function() {
+    jQuery('#datepicker').datepicker({ altField: '#suspension_expires_at'});
+  });
+</script>
+
+<% content_for :breadcrumbs do %>
+	<div id="breadcrumbs">
+		<%= render :partial => "shared/breadcrumbs/admin" %>
+		<div class="cell parent"><span class="l"></span><span class="c">Suspend a Player</span><span class="r"></span></div>
+		<div class="cell child"><span class="l"></span><span class="c"><%= @user.login %></span><span class="r"></span></div>
+	</div>
+<% end %>
+
+		<div id="copy">
+		
+			<div class="column width960">
+			
+				<div class="column width420">
+
+					<div class="module width420">
+
+<%= error_messages_for :suspension %>
+<% form_for :suspension, :url => { :controller => 'suspensions', :action => "suspend", :id => @user.login } do |f| -%>
+
+      <span id="suspended_stamp"> 
+        <%= render :partial => '/users/show_suspended_stamp' %>
+      </span>
+
+	<div class="form_row">
+		<label for="user_id">Player:</label>
+		<a href="/users/<%= @user.login %>"><%= @user.login %></a>
+		<%= avatar_link_to_user :user => @user, :size => 'small', :align => 'right' %>
+	</div>
+	<div class="form_row">
+		<label for="admin_id">Admin:</label>
+		<%= current_user.login %>
+		<%= f.hidden_field :admin_id, :value => current_user.id %>
+	</div>
+	<div class="form_row">
+		<label for="created_at">Start:</label>
+		<%= Time.now.to_s %>
+	</div>
+	<div class="form_row">
+		<label for="expires_at">Expires:</label>
+		<%#= calendar_date_select_tag "suspension[expires_at]", 24.hours.from_now, { :time => true, :popup => :force, :valid_date_check => 'if (date > new(Date)) return true; else return false;'}  %>
+    <input type="text" id="suspension_expires_at" name="suspension[expires_at]" />
+    <div id="datepicker"></div>
+	</div>
+	<div class="form_row">
+		<label for="reason">Reason:</label>
+		<%= f.text_area :reason, :cols => 20, :rows => 10, :class => "input" %>
+	</div><br/>
+	
+	<div class="form_row">
+    <%= f.submit "Submit", :disable_with => 'Submiting...' %> <a href='/users/<%= @user.login %>'>Cancel</a> or <a href="/suspensions/restore/<%= @user.login %>">Restore</a>
+	</div>
+<% end -%>
+
+
+
+				</div>
+
+				</div>
+
+				</div>
+
+				</div>

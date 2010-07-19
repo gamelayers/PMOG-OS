@@ -1,0 +1,32 @@
+<h2>Player Tags</h2>
+<div class = "module width240">
+	<div id = "profileTags">
+		<table class = "list" id="profileTags2Table">
+			<tbody>
+				<tr>
+					<td style = "max-width: 240px;">
+						<div id = "taglist" class="column2">
+							<%= render :partial => 'edit_tag', :collection => @user.tags if ! @suspended %>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<% if logged_in? and ! @suspended %>
+		<!--<div class = "form">-->
+			<% remote_form_for( :tag,
+			:url        => add_tag_user_path(:id => @user.login),
+			:method     => :put,
+			:loading    => "jQuery('#tag_spinner').show();",
+			:complete   => "jQuery('#tag_spinner').hide(); jQuery('#tag_name').val('');") do |f| %>
+			<%= text_field :tag, :name, :class => 'input tag_box', :size => 15 %>
+			<%= submit_tag 'Tag', :class => 'input tag_submit' %>
+			<% end %>
+		<!--</div>-->
+		<span id = "tag_error" class="sidebar_error" style="display: none;"></span>
+		<p id = 'tag_spinner' style="display: none;">
+			<img src= '/images/shared/elements/indicator.gif' height='16' width='16' border='0' valign='middle' align='left' />
+		</p>
+		<% end %>
+	</div>
+</div>

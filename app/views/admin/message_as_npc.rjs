@@ -1,0 +1,1 @@
+page.replace_html "#{@replace_id}", :partial => "shared/flash", :locals => { :flash => flash }

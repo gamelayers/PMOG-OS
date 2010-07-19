@@ -1,0 +1,38 @@
+<div id="profileGeneral">
+	<div class="name">
+		<% if @user.forename or @user.surname %>
+		<h4><%=h @user.forename.titleize %> <%=h @user.surname.titleize %></h4>
+		<% end %>
+		<p class="bottom">
+			<span id="suspended_stamp"> 
+				<%= render :partial => 'show_suspended_stamp' %>
+			</span>
+			<% if @user.country %><%=h @user.country %><% end %><br/>
+			Began playing <%=h time_ago_in_words(@user.created_at) %> ago<br/>
+			<% if @user.url and ! @user.url.empty? %>Web site: <a href='<%= Url.normalise(@user.url) %>'><%= Url.normalise(@user.url) %></a><% end %>
+			<% if @user == current_user %>
+			<% unless PMOG_EXTENSION_VERSION == @user.last_version %>
+			<a href="http://thenethernet.com/xpi/pmog.xpi"><img src="/images/shared/icons/n-32.png" alt="The Nethernet" border="0" align="right" width="32" height="32" /></a><br/>You should <a href="http://thenethernet.com/xpi/pmog.xpi">upgrade to the latest version</a>!  We show you running version <%= @user.last_version %> of the Nethernet, and the latest version is <%= PMOG_EXTENSION_VERSION %>.  Unless you already upgraded, and our servers are slow to recognize!
+			<% end %>
+			<% end %>
+		</p>
+	</div>
+	<div class="motto">
+		<% unless @user.motto.blank? or @user.motto.empty? or @user.motto.nil?%>
+		<h4>Motto</h4>
+		<p>&#8220;<%=h @user.motto %>&#8221;</p>
+		<% else %>
+		<% if logged_in? && @user == current_user %>
+		<!--<p>Why don't you proclaim your motto on your <a href="/users/<%= current_user.login %>/edit?section=0">profile settings</a>?</p>-->
+		<div class="buttonBigEdit" style="text-align: center;" title="Adjust Your Game Settings"><a href="/users/<%= current_user.login %>/edit?section=0">Adjust Your Game Settings</a></div>
+		<% end %>
+		<% end %>
+		<div class="height20"></div>
+		<% if logged_in? && @user == current_user %>
+		<h4>Your Recruitment Link</h4>
+		<p><tt>http://thenethernet.com/join/<%= @user.login %></tt><br/>
+			Post this link on your weblog, online forums, Twitter - wherever you like.  Players who sign up from this link will earn you <%= GameSetting.value('Invite DP').to_i %> <%= dp_icon %>, <%= GameSetting.value('Invite Pings').to_i %> <%= ping_icon %> and progress towards a badge <a href="/guide/rules/recruit">Learn More</a>.</p>
+			<% end %>
+			<div class="height20"></div>
+		</div>
+	</div>

@@ -1,0 +1,103 @@
+<% content_for :head do %>
+	<%= auto_discovery_link_tag(:rss, formatted_missions_url(:format => "rss"), { :title => "Latest missions on PMOG" }) %>
+<% end %>
+
+<%= stylesheet_link_tag 'missions' %>
+
+<h1>Missions</h1>
+<h5>To sit and rot? Or to live, and fly again!</h5>
+<br />
+<%= render :partial => "missions/search_form" %>
+
+<% if logged_in? %>
+  <a href="/missions/new/" class="missions_generate_button">&nbsp;</a>
+<% else %>
+  <img src="/images/missions/generate_mission_locked.png" width="186" height="62" alt="Sign Up for PMOG to Generate a Mission!" />
+<% end %>
+
+  <div class="missions_search"><%#= render :partial => 'search_form' %></div>
+
+<div class="missions_lists_header" id="missions_lists_header">
+
+<%= render :partial => 'index_header' %>
+  
+</div>
+	
+<div class="missions_top_menu">
+
+  <div class="missions_top_menu_wrapper">
+	
+  <div class="missions_top_menu_item_first"><img src="/images/missions/index_layout/associations.png" width="16" height="16" alt="" class="missions_top_menu_icon" /> <a href="#" onclick="Effect.Appear('missions_sub_menu');Effect.Appear('missions_associations');Element.hide('missions_sponsored');Element.hide('missions_yours');return false;">Associations</a>
+  </div>
+		
+  <div class="missions_top_menu_item"><img src="/images/missions/index_layout/sponsored.png" width="14" height="14" alt="" class="missions_top_menu_icon" /> <a href="#" onclick="Effect.Appear('missions_sub_menu');Effect.Appear('missions_sponsored');Element.hide('missions_associations');Element.hide('missions_yours');return false;">Sponsored</a></div>
+
+  <div class="missions_top_menu_item"><img src="/images/missions/index_layout/top-rated.png" width="17" height="16" alt="" class="missions_top_menu_icon" /> <%= link_to_remote "Top-Rated", :url => { :controller => 'missions', :action => 'highest_rated' }, :html => { :onclick => "Element.hide('missions_sponsored');Element.hide('missions_associations');" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+  <div class="missions_top_menu_item"><%= avatar_for_user(:user => current_user, :size => 'mini', :class => 'missions_top_menu_icon') if logged_in? and current_user.has_avatar? %> 
+  <% if logged_in? %>
+    <a href="#" onclick="Effect.Appear('missions_sub_menu');Effect.Appear('missions_yours');Element.hide('missions_associations');Element.hide('missions_sponsored');return false;">Yours</a>
+  <% else %>
+  Yours
+  <% end %>
+  </div>
+    
+  <div class="missions_top_menu_item"><img src="/images/missions/index_layout/pmog.png" width="14" height="16" alt="" class="missions_top_menu_icon" /> <%= link_to_remote "PMOG", :url => { :controller => 'missions', :action => 'pmog_missions' }, :html => { :onclick => "Element.hide('missions_sponsored');Element.hide('missions_associations');" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+  
+  </div>
+  
+</div>
+
+<div class="missions_sub_menu_wrapper">
+
+<div class="missions_sub_menu" id="missions_sub_menu" style="display:none;">
+
+  <div id="missions_associations" style="display:none;" class="missions_associations">
+
+    <div class="missions_sub_menu_item_assoc_first"><%= link_to_remote "Shoat", :url => { :controller => 'missions', :action => 'association', :id => "shoat" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Pathmaker", :url => { :controller => 'missions', :action => 'association', :id => "pathmaker" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Seer", :url => { :controller => 'missions', :action => 'association', :id => "seer" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Benefactor", :url => { :controller => 'missions', :action => 'association', :id => "benefactor" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Vigilante", :url => { :controller => 'missions', :action => 'association', :id => "vigilante" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Bedouin", :url => { :controller => 'missions', :action => 'association', :id => "bedouin" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Destroyer", :url => { :controller => 'missions', :action => 'association', :id => "destroyer" }, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+  
+  </div>
+
+  <div id="missions_sponsored" style="display:none;">
+    
+    <div class="missions_coming_soon">Coming Soon - E-mail <span style="color:blue;">partners at pmog dot com</span> for details.</div>
+    
+  </div>
+
+  <div id="missions_yours" style="display:none;" class="missions_yours">
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Taken", :url => { :controller => 'missions', :action => 'user_missions', :id => "taken" }, :method => :get, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Generated", :url => { :controller => 'missions', :action => 'user_missions', :id => "generated" }, :method => :get, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Drafts", :url => { :controller => 'missions', :action => 'user_missions', :id => "drafts" }, :method => :get, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Queued", :url => { :controller => 'missions', :action => 'user_missions', :id => "queued" }, :method => :get, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+
+    <div class="missions_sub_menu_item"><%= link_to_remote "Favorites", :url => { :controller => 'missions', :action => 'user_missions', :id => "favorites" }, :method => :get, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+  
+    <div class="missions_sub_menu_item"><%= link_to_remote "Acquaintances", :url => { :controller => 'missions', :action => 'user_missions', :id => "acquaintances" }, :method => :get, :loading => "Element.show('loading')",:complete => "Element.hide('loading')" %></div>
+  
+  </div>
+
+</div>
+
+</div>
+
+<div id="loading" style="display:none;"><center><img src="/images/ajax-loader.gif" class="no_img_border" /></center></div>
+
+<div id="missions_lists" class="missions_lists">
+	<%= render :partial => 'association_list' %>
+</div>

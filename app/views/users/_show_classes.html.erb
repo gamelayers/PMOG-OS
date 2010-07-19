@@ -1,0 +1,235 @@
+<div id="profileClasses">
+  <div class="order">
+    <h2>Order Classes</h2>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/overclock"><img src="/images/shared/icons/overclock-16.png" alt="Overclock" title="Overclock" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :overclock) %> overclocked</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+
+        <tr>
+          <td class="icon main" rowspan="6"><a href="/guide/classes/bedouins"><img src="/images/shared/associations/icon/bedouin-16.png" alt="Bedouin" title="Bedouin" border="0" width="16" height="16" class="icon16 poptip" /></a></td>
+          <td colspan="3">Bedouin - Level <%= @user.levels[:bedouin] %></td>
+        </tr>
+        <tr>
+          <td class="icon"><%= @user.levels[:bedouin] %></td>
+          <td>
+            <div class="levelouter poptip" title="<%= @user.user_level.dp_status 'bedouin' %> DP to next">
+              <div class="levelinner top" style="width:<%= @user.user_level.dp_percentage 'bedouin' %>%;">
+                <div class="classIcon DP">
+                </div>
+              </div>
+            </div>
+            <div class="levelouter poptip" title="<%= @user.user_level.bedouin_cp %> total earned<br /> <%= @user.user_level.cp_status 'bedouin' %> CP to next"><div class="levelinner btm" style="width:<%= @user.user_level.cp_percentage 'bedouin' %>%;"><div class="classIcon CP"></div></div></div>
+          </td>
+          <td><%= (@user.levels[:bedouin] + 1) %></td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/armor"><img src="/images/shared/tools/icon/armor-16.png" alt="Armor" title="Armor" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :armor) %> worn</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/vengeance"><img src="/images/shared/tools/icon/vengeance-16.png" alt="Vengeance" title="Vengeance" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :vengeance) %> revenged</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/dodge"><img src="/images/shared/tools/icon/dodge-16.png" alt="Dodge" title="Dodge" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :dodge) %> dodges</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/disarm"><img src="/images/shared/tools/icon/disarm-16.png" alt="Dodge and Disarm" title="Dodge and Disarm" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :disarm) %> disarms</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon main" rowspan="7"><a href="/guide/classes/benefactors"><img src="/images/shared/associations/icon/benefactor-16.png" alt="Benefactors" title="Benefactors" border="0" width="16" height="16" class="icon16 poptip" /></a></td>
+          <td colspan="3">Benefactor - Level <%= @user.levels[:benefactor] %></td>
+        </tr>
+        <tr>
+          <td class="icon"><%= @user.levels[:benefactor] %></td>
+          <td>
+            <div class="levelouter poptip" title="<%= @user.user_level.dp_status 'benefactor' %> DP to next"><div class="levelinner top" style="width:<%= @user.user_level.dp_percentage 'benefactor' %>%;"><div class="classIcon DP"></div></div></div>
+            <div class="levelouter poptip" title="<%= @user.user_level.benefactor_cp %> total earned<br/> <%= @user.user_level.cp_status 'benefactor' %> CP to next"><div class="levelinner btm" style="width:<%= @user.user_level.cp_percentage 'benefactor' %>%;"><div class="classIcon CP"></div></div></div>
+          </td>
+          <td><%= (@user.levels[:benefactor] + 1) %></td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/giftcard"><img src="/images/shared/tools/icon/giftcard-16.png" alt="pmog_icons_tools_armor_16" alt="DP Cards" title="DP Cards" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :giftcard) %> played</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/crates"><img src="/images/shared/tools/icon/crate-16.png" alt="Crates" title="Crates" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :crates) %> stashed</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/puzzle_crate"><img src="/images/shared/tools/icon/puzzle_crate-16.png" alt="Puzzle Crates" title="Puzzle Crates" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :puzzle_crate) %> locked</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/stealth_crate"><img src="/images/shared/tools/icon/stealth_crate-16.png" alt="Stealth Crates" title="Stealth Crates" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :stealth_crate) %> hidden</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/ever_crate"><img src="/images/shared/tools/icon/ever_crate-16.png" alt="Ever Crates" title="Ever Crates" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :ever_crate) %> immortalized</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon main" rowspan="5"><a href="/guide/classes/pathmakers"><img src="/images/shared/associations/icon/pathmaker-16.png" alt="Pathmaker" title="Pathmaker" border="0" width="16" height="16" class="icon16 poptip" /></a></td>
+          <td colspan="3">Pathmaker - Level <%= @user.levels[:pathmaker] %></td>
+        </tr>
+        <tr>
+          <td class="icon"><%= @user.levels[:pathmaker] %></td>
+          <td>
+            <div class="levelouter poptip" title="<%= @user.user_level.dp_status 'pathmaker' %> DP to next"><div class="levelinner top" style="width:<%= @user.user_level.dp_percentage 'pathmaker' %>%;"><div class="classIcon DP"></div></div></div>
+            <div class="levelouter poptip" title="<%= @user.user_level.pathmaker_cp %> total earned<br/> <%= @user.user_level.cp_status 'pathmaker' %> CP to next"><div class="levelinner btm" style="width:<%= @user.user_level.cp_percentage 'pathmaker' %>%;"><div class="classIcon CP"></div></div></div>
+          </td>
+          <td><%= (@user.levels[:pathmaker] + 1) %></td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/lightposts"><img src="/images/shared/tools/icon/lightpost-16.png" alt="Lightpost" title="Lightposts" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :lightposts) %> lit</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/puzzle_post"><img src="/images/shared/tools/icon/puzzle_post-16.png" alt="Puzzle Posts" title="Puzzle Posts" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :puzzle_post) %> riddled</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/rules/missions"><img src="/images/shared/icons/explore-16.png" alt="Missions" title="Missions" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.missions.count) %> Missions made</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="chaos">
+    <h2>Chaos Classes</h2>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/impede"><img src="/images/shared/icons/impede-16.png" alt="Impede" title="Impede" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :impede) %> impeded</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon main" rowspan="7"><a href="/guide/classes/destroyers"><img src="/images/shared/associations/icon/destroyer-16.png" alt="Destroyer" title="Destroyer" border="0" width="16" height="16" class="icon16 poptip" /></a></td>
+          <td colspan="3">Destroyer - Level <%= @user.levels[:destroyer] %></td>
+        </tr>
+        <tr>
+          <td class="icon"><%= @user.levels[:destroyer] %></td>
+          <td>
+            <div class="levelouter poptip" title="<%= @user.user_level.dp_status 'destroyer' %> DP to next"><div class="levelinner top" style="width:<%= @user.user_level.dp_percentage 'destroyer' %>%;"><div class="classIcon DP"></div></div></div>
+            <div class="levelouter poptip" title="<%= @user.user_level.destroyer_cp %> total earned<br/> <%= @user.user_level.cp_status 'destroyer' %> CP to next"><div class="levelinner btm" style="width:<%= @user.user_level.cp_percentage 'destroyer' %>%;"><div class="classIcon CP"></div></div></div>
+          </td>
+          <td><%= (@user.levels[:destroyer] +1) %></td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/mines"><img src="/images/shared/tools/icon/mine-16.png" alt="Mines" title="Mines" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :mines) %> laid</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/stealth_mine"><img src="/images/shared/tools/icon/stealth_mine-16.png" alt="Stealth Mines" title="Stealth Mines" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :stealth_mine) %> stealth laid</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/abundant_mine"><img src="/images/shared/tools/icon/abundant_mine-16.png" alt="Abundant Mines" title="Abundant Mines" class="icon16 poptip"/></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :abundant_mine) %> laid abundant</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/grenades"><img src="/images/shared/tools/icon/grenade-16.png" alt="Grenades" title="Grenades" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :grenades) %> thrown</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/exploding_crate"><img src="/images/shared/tools/icon/exploding_crate-16.png" alt="Exploding Crates" title="Exploding Crates" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :exploding_crate) %> trapped</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon main" rowspan="7"><a href="/guide/classes/seers"><img src="/images/shared/associations/icon/seer-16.png" alt="Seer" title="Seer" border="0" width="16" height="16" class="icon16 poptip" /></a></td>
+          <td colspan="3">Seer - Level <%= @user.levels[:seer] %></td>
+        </tr>
+        <tr>
+          <td class="icon"><%= @user.levels[:seer] %></td>
+          <td>
+            <div class="levelouter poptip" title="<%= @user.user_level.dp_status 'seer' %> DP to next"><div class="levelinner top" style="width:<%= @user.user_level.dp_percentage 'seer' %>%;"><div class="classIcon DP"></div></div></div>
+            <div class="levelouter poptip" title="<%= @user.user_level.seer_cp %> total earned<br/> <%= @user.user_level.cp_status 'seer' %> CP to next"><div class="levelinner btm" style="width:<%= @user.user_level.cp_percentage 'seer' %>%;"><div class="classIcon CP"></div></div></div>
+          </td>
+          <td><%= (@user.levels[:seer] + 1) %></td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/portals"><img src="/images/shared/tools/icon/portal-16.png" alt="Portals" title="Portals" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :portals) %> deployed</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/give_dp"><img src="/images/shared/tools/icon/abundant_portal-16.png" alt="Abundant Portals" title="Abundant Portals" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :give_dp) %> made abundant</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/skeleton_keys"><img src="/images/shared/tools/icon/skeleton_key-16.png" alt="Skeleton Keys" title="Skeleton Keys" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :skeleton_keys) %> keys used</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/abilities/create_skeleton_key"><img src="/images/shared/tools/icon/skeleton_key-16.png" alt="Create A Skeleton Key" title="Create A Skeleton Key" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.ability_uses.uses :create_skeleton_key) %> keys created</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/portals"><img src="/images/shared/tools/icon/portal-16.png" alt="Players Transported" title="Players Transported" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.misc_action_uses.uses :portal_transportation) %> players transported</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table>
+      <tbody>
+        <tr>
+          <td class="icon main" rowspan="5"><a href="/guide/classes/vigilantes"><img src="/images/shared/associations/icon/vigilante-16.png" alt="Vigilante" title="Vigilante" border="0" width="16" height="16" class="icon16 poptip" /></a></td>
+          <td colspan="3">Vigilante - Level <%= @user.levels[:vigilante] %></td>
+        </tr>
+        <tr>
+          <td class="icon"><%= @user.levels[:vigilante] %></td>
+          <td>
+            <div class="levelouter poptip" title="<%= @user.user_level.dp_status 'vigilante' %> DP to next"><div class="levelinner top" style="width:<%= @user.user_level.dp_percentage 'vigilante' %>%;"><div class="classIcon DP"></div></div></div>
+            <div class="levelouter poptip" title="<%= @user.user_level.vigilante_cp %> total earned<br /> <%= @user.user_level.cp_status 'vigilante' %> CP to next"><div class="levelinner btm" style="width:<%= @user.user_level.cp_percentage 'vigilante' %>%;"><div class="classIcon CP"></div></div></div>
+          </td>
+          <td><%= (@user.levels[:vigilante] + 1) %></td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/st_nicks"><img src="/images/shared/tools/icon/st_nick-16.png" alt="St. Nicks" title="St. Nicks" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :st_nicks) %> intervened</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/upgrades/ballistic_nick"><img src="/images/shared/tools/icon/ballistic_nick-16.png" alt="Ballistic St. Nicks" title="Ballistic St. Nicks" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.upgrade_uses.uses :ballistic_nick) %> electrified</td>
+        </tr>
+        <tr>
+          <td class="icon"><a href="/guide/tools/watchdogs"><img src="/images/shared/tools/icon/watchdog-16.png" alt="Watchdogs" title="Watchdogs" class="icon16 poptip" /></a></td>
+          <td colspan="2"><%= number_with_delimiter(@user.tool_uses.uses :watchdogs) %> unleashed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

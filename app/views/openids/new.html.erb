@@ -1,0 +1,42 @@
+		<div id="copy">
+		
+			<div class="column width960">
+			
+				<div class="column width700">
+
+					<div class="module width700">
+					
+<p>
+	Don't have an account? <%= link_to "Create one now", new_user_path %>.
+</p>
+
+<p>
+	Not got an OpenID? <%= link_to "Login without one here", new_session_path %>
+</p>
+
+<% form_tag openid_path do %>
+  <p><label for="login">OpenID</label><br/>
+  <%= text_field_tag 'openid_url' %></p>
+
+  <script type="text/javascript">
+    $( 'openid_url' ).focus();
+  </script>
+
+	<p><%= submit_tag 'Login' %></p>
+<% end %>
+
+
+				</div>
+
+				</div>
+
+    				<div class="column width240">
+			<%= render :partial => "shared/support_module" %>
+				</div>
+
+			</div>
+			
+
+		</div>
+
+<!-- /MAIN CONTENT -->

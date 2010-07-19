@@ -1,0 +1,5 @@
+weights:
+  portals: 25.0
+  mines: 35.0
+  missions: 15.0
+  crates: 25.0

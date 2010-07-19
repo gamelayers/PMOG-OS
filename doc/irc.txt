@@ -1,0 +1,50 @@
+== Useful irc Commands ==
+  /msg ChanServ REGISTER #channel [password]
+  /msg ChanServ IDENTIFY #channel [password]
+  /msg ChanServ OP channel | ALL [nicknames]
+  /msg ChanServ OP ALL [nicknames]
+  /msg ChanServ SET <channel> GUARD {ON|OFF}
+  /oper <user> <password>
+  /msg StatServ LOGIN <user> <password>
+  /msg StatServ STATS
+  http://blog.freenode.net/?p=78
+  http://blog.freenode.net/?p=80
+  http://t0x.in/ircfreenode.html
+
+  # Botserv
+    http://www.technerd.net/botserv.html
+
+  # Register a channel
+    /msg ChanServ REGISTER channel password description
+
+  # Auto-op people on a channel
+    /msg ChanServ AOP channel ADD nick
+
+  # Ops commands
+    /oper user password
+    /msg OperServ STATS
+    /msg OperServ USERLIST
+
+  # Drop a nickname, so that it can be registered again
+  /msg NickServ DROP nickname
+
+  # The following is handled better with AOP
+    # To setup auto-up. Register as a contact for the channel, then configure Autoop
+      /msg chanserv identify #gamelayers
+      /msg ChanServ LEVEL #gamelayers SET autoop 20
+
+    # To give other people op access
+      Give the user the template and then the flag
+        /msg ChanServ TEMPLATE #pmog burdenday +O
+        /msg ChanServ FLAGS #pmog burdenday +O
+        /msg ChanServ ACCESS <channel> ADD <mask | nickname> <level>
+        /msg ChanServ ACCESS #pmog ADD Pixielo 20
+
+  # Hostmasks
+    /msg hostserv request <hostmask>  - executed by a user, where hostmask is like suttree@unaffiliated.nothing
+    /msg hostserv activate <login> -  an op must execute this on behalf of the user, to approve the hostmask
+
+  # Setup
+  UnrealIRCD and Anope IRC Services
+    http://gentoo-wiki.com/HOWTO_Unrealircd
+    http://news.softpedia.com/news/Building-Your-Own-IRC-Server-With-Services-40772.shtml
